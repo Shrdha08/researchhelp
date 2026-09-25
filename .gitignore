@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# Env / secrets
+.env
+
+# Data (PDFs, local stores, caches)
+data/
+qdrant_storage/
+*.pdf
+.llm_cache.sqlite
+
+# Node
+node_modules/
+dist/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
