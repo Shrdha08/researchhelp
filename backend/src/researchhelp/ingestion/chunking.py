@@ -14,7 +14,9 @@ from researchhelp.ingestion.metadata.sections import Segment
 
 # Namespace for deterministic point IDs (UUIDv5 of chunk_id).
 _CHUNK_NAMESPACE = uuid.UUID("6f1c1d2e-7a0b-4c55-9a53-2b8f3e1d9c10")
-MIN_CHUNK_CHARS = 30
+# Shorter pieces (a lone heading at the bottom of a page, a stray caption) only waste
+# retrieval slots; their text is metadata or duplicated by overlap anyway.
+MIN_CHUNK_CHARS = 60
 
 
 @dataclass(frozen=True)
