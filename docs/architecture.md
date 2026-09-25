@@ -35,7 +35,7 @@ React (Vite)  ──HTTP──►  FastAPI  (thin: validation, file storage, per
 ## Ingestion data flow
 
 ```
-PDF ─► PyMuPDF get_text("dict", sort=True)   per-page lines + font size/bold
+PDF ─► PyMuPDF get_text("dict")              per-page lines + font size/bold (content-stream order)
     ─► cleaning                               ligatures, de-hyphenation, repeated header/footer removal
     ─► section detection                      numbered / known-name headings with larger-or-bold font
     ─► per-page recursive chunking            a chunk never spans two pages → exact page citations
