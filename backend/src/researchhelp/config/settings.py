@@ -26,6 +26,8 @@ class Settings(BaseSettings):
 
     # Stores
     qdrant_url: str = "http://localhost:6333"
+    # If set, use embedded on-disk Qdrant instead of the server (handy without Docker).
+    qdrant_path: Path | None = None
     qdrant_collection: str = "paper_chunks"
     database_url: str = "postgresql+psycopg://researchhelp:researchhelp@localhost:5432/researchhelp"
 

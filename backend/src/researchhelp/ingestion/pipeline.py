@@ -12,6 +12,7 @@ from researchhelp.ingestion.cleaning import remove_boilerplate
 from researchhelp.ingestion.loaders.pdf_loader import load_pdf_bytes
 from researchhelp.ingestion.metadata.paper_meta import extract_title, paper_id_from_sha256
 from researchhelp.ingestion.metadata.sections import segment_pages
+from researchhelp.retrieval.vectorstore import PaperVectorStore
 
 
 @dataclass
@@ -43,3 +44,20 @@ def parse_pdf_bytes(
 def parse_pdf(path: str | Path, chunk_size: int = 1000, chunk_overlap: int = 150) -> ParsedPaper:
     path = Path(path)
     return parse_pdf_bytes(path.read_bytes(), path.name, chunk_size, chunk_overlap)
+
+
+def ingest_pdf(
+    path: str | Path,
+    store: PaperVectorStore,
+    chunk_size: int = 1000,
+    chunk_overlap: int = 150,
+) -> ParsedPaper:
+    """Parse a PDF and index its chunks. Existing points of the same paper are removed first,
+    so re-ingesting after a chunking change leaves no stale chunks behind."""
+    paper = parse_pdf(path, chunk_size, chunk_overlap)
+    if not paper.chunks:
+        raise ValueError(f"No extractable text in {paper.filename} (scanned PDF?)")
+    store.ensure_collection()
+    store.delete_paper(paper.paper_id)
+    store.upsert_chunks(paper.chunks)
+    return paper

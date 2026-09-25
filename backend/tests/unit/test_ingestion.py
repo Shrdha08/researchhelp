@@ -5,7 +5,6 @@ from researchhelp.ingestion.cleaning import remove_boilerplate
 from researchhelp.ingestion.loaders.pdf_loader import Line, load_pdf
 from researchhelp.ingestion.metadata.paper_meta import extract_title, paper_id_from_sha256
 from researchhelp.ingestion.metadata.sections import (
-    FRONT_MATTER,
     REFERENCES,
     Segment,
     heading_title,
@@ -62,8 +61,8 @@ def test_title_prefers_metadata(gadget_pdf):
 def test_parse_pdf_sections_and_pages(widget_pdf):
     paper = parse_pdf(widget_pdf)
     assert paper.num_pages == 3
+    # The title-only front-matter chunk is below MIN_CHUNK_CHARS; the title lives in metadata.
     assert paper.sections == [
-        FRONT_MATTER,
         "Abstract",
         "Introduction",
         "Method",
