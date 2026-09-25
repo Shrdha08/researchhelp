@@ -27,9 +27,7 @@ class Settings(BaseSettings):
     # Stores
     qdrant_url: str = "http://localhost:6333"
     qdrant_collection: str = "paper_chunks"
-    database_url: str = (
-        "postgresql+psycopg://researchhelp:researchhelp@localhost:5432/researchhelp"
-    )
+    database_url: str = "postgresql+psycopg://researchhelp:researchhelp@localhost:5432/researchhelp"
 
     # Local models (FastEmbed / ONNX)
     embed_model: str = "BAAI/bge-small-en-v1.5"
