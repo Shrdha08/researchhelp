@@ -7,6 +7,7 @@ from qdrant_client import QdrantClient
 
 from researchhelp.config import Settings, get_settings
 from researchhelp.retrieval.embeddings import FastEmbedDense, FastEmbedSparse
+from researchhelp.retrieval.reranking import CrossEncoderReranker
 from researchhelp.retrieval.retriever import ScopedRetriever
 from researchhelp.retrieval.vectorstore import PaperVectorStore
 
@@ -35,6 +36,22 @@ def get_store() -> PaperVectorStore:
     return store
 
 
-def get_retriever() -> ScopedRetriever:
+@lru_cache
+def get_reranker() -> CrossEncoderReranker:
+    return CrossEncoderReranker(get_settings().rerank_model)
+
+
+def get_retriever(strategy: str | None = None, **overrides) -> ScopedRetriever:
+    """Retriever configured from Settings; ``overrides`` (k_final, k_candidates, ...) are used by
+    evaluation sweeps so that experiments exercise exactly the production code path."""
     settings = get_settings()
-    return ScopedRetriever(get_store(), k_per_paper=settings.k_per_paper, k_final=settings.k_final)
+    strategy = strategy or settings.retrieval_strategy
+    params = {
+        "k_per_paper": settings.k_per_paper,
+        "k_final": settings.k_final,
+        "k_candidates": settings.k_candidates,
+        "min_per_paper": settings.min_per_paper,
+        **overrides,
+    }
+    reranker = get_reranker() if strategy == "hybrid_rerank" else None
+    return ScopedRetriever(get_store(), strategy=strategy, reranker=reranker, **params)
