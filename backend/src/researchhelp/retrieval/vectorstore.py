@@ -136,6 +136,35 @@ class PaperVectorStore:
         )
         return [ScoredChunk(p.payload, p.score) for p in result.points]
 
+    def search_hybrid(
+        self,
+        query_vector: list[float],
+        sparse_vector: models.SparseVector,
+        paper_ids: Sequence[str],
+        limit: int,
+        prefetch_limit: int = 20,
+        exclude_sections: Sequence[str] = DEFAULT_EXCLUDED_SECTIONS,
+    ) -> list[ScoredChunk]:
+        """Dense + BM25 search fused server-side with Reciprocal Rank Fusion.
+
+        Each prefetch returns its own top ``prefetch_limit`` under the same filter; RRF scores a
+        point by sum(1 / (k + rank)) over the lists it appears in. Ranks rather than raw scores
+        are fused because cosine similarities and BM25 scores are not on comparable scales."""
+        flt = build_filter(paper_ids, exclude_sections)
+        result = self.client.query_points(
+            self.collection,
+            prefetch=[
+                models.Prefetch(query=query_vector, using=DENSE, filter=flt, limit=prefetch_limit),
+                models.Prefetch(
+                    query=sparse_vector, using=SPARSE, filter=flt, limit=prefetch_limit
+                ),
+            ],
+            query=models.FusionQuery(fusion=models.Fusion.RRF),
+            limit=limit,
+            with_payload=True,
+        )
+        return [ScoredChunk(p.payload, p.score) for p in result.points]
+
     def list_papers(self) -> list[PaperSummary]:
         """Distinct papers in the collection. Scans payloads, which is fine for a personal
         library of tens of papers; PostgreSQL becomes the paper registry in Phase 5."""

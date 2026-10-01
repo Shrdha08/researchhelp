@@ -108,6 +108,9 @@ def ask(
     paper: Annotated[
         list[str], typer.Option("--paper", "-p", help="Paper ID prefix or title fragment")
     ],
+    strategy: Annotated[
+        str | None, typer.Option(help="semantic | hybrid | hybrid_rerank (default: settings)")
+    ] = None,
     show_context: Annotated[bool, typer.Option(help="Print the retrieved chunks")] = False,
     as_json: Annotated[bool, typer.Option("--json", help="Print the full result as JSON")] = False,
 ):
@@ -122,7 +125,7 @@ def ask(
         typer.echo(f"Error: {exc}", err=True)
         raise typer.Exit(1) from exc
     titles = _resolve_papers(paper)
-    chain = build_evidence_chain(get_retriever(), llm)
+    chain = build_evidence_chain(get_retriever(strategy), llm)
     result = chain.invoke({"question": question, "paper_ids": list(titles), "paper_titles": titles})
 
     if as_json:

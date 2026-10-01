@@ -52,3 +52,20 @@ class HashingSparse:
 
     def embed_query(self, text: str) -> models.SparseVector:
         return self._embed(text)
+
+
+class KeywordReranker:
+    """Scores a chunk by how many query words it contains (stand-in for a cross-encoder)."""
+
+    def __init__(self):
+        self.calls: list[int] = []  # pool size per call
+
+    def rerank(self, query, hits):
+        from dataclasses import replace
+
+        self.calls.append(len(hits))
+        words = set(_tokens(query))
+        rescored = [
+            replace(h, score=float(len(words & set(_tokens(h.payload["text"]))))) for h in hits
+        ]
+        return sorted(rescored, key=lambda h: h.score, reverse=True)

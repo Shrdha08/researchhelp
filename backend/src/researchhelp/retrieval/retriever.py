@@ -7,6 +7,11 @@ For several papers we *fan out*: retrieve top-k for each paper separately (filte
 ``paper_id == X``), then select the final chunks with a per-paper minimum. Without fan-out, one
 long or very on-topic paper can fill every slot and a comparison would silently ignore the
 other papers.
+
+Strategies (compared in evaluation/; all return the same number of chunks, ``k_final``):
+  semantic       dense vector search only (Phase 1 baseline)
+  hybrid         dense + BM25 sparse, fused with RRF inside Qdrant
+  hybrid_rerank  hybrid candidates (~k_candidates in total) re-scored by a cross-encoder
 """
 
 from collections.abc import Sequence
@@ -14,9 +19,11 @@ from typing import Literal
 
 from langchain_core.documents import Document
 
+from researchhelp.retrieval.reranking import Reranker
 from researchhelp.retrieval.vectorstore import PaperVectorStore, ScoredChunk
 
-Strategy = Literal["semantic"]  # "hybrid" and "hybrid_rerank" are added in Phase 2
+Strategy = Literal["semantic", "hybrid", "hybrid_rerank"]
+STRATEGIES: tuple[Strategy, ...] = ("semantic", "hybrid", "hybrid_rerank")
 
 
 def select_balanced(
@@ -61,24 +68,53 @@ class ScopedRetriever:
         k_final: int = 6,
         min_per_paper: int = 1,
         strategy: Strategy = "semantic",
+        k_candidates: int = 20,
+        reranker: Reranker | None = None,
     ):
-        if strategy != "semantic":
+        if strategy not in STRATEGIES:
             raise ValueError(f"Unsupported retrieval strategy: {strategy!r}")
+        if strategy == "hybrid_rerank" and reranker is None:
+            raise ValueError("Strategy 'hybrid_rerank' needs a reranker.")
         self.store = store
         self.k_per_paper = k_per_paper
         self.k_final = k_final
         self.min_per_paper = min_per_paper
         self.strategy = strategy
+        self.k_candidates = k_candidates
+        self.reranker = reranker
+
+    def _per_paper_limit(self, n_papers: int) -> int:
+        if self.strategy != "hybrid_rerank":
+            return self.k_per_paper
+        # Reranking pool of about k_candidates in total, but never fewer than k_per_paper each.
+        return max(self.k_per_paper, -(-self.k_candidates // n_papers))
+
+    def _search(self, query: str, paper_ids: list[str]) -> dict[str, list[ScoredChunk]]:
+        dense = self.store.dense.embed_query(query)  # embed once, reuse for every paper
+        limit = self._per_paper_limit(len(paper_ids))
+        if self.strategy == "semantic":
+            return {pid: self.store.search_dense(dense, [pid], limit=limit) for pid in paper_ids}
+        sparse = self.store.sparse.embed_query(query)
+        return {
+            pid: self.store.search_hybrid(
+                dense, sparse, [pid], limit=limit, prefetch_limit=max(limit, self.k_candidates)
+            )
+            for pid in paper_ids
+        }
 
     def retrieve(self, query: str, paper_ids: Sequence[str]) -> list[Document]:
         if not paper_ids:
             raise ValueError("Select at least one paper to search.")
         paper_ids = list(dict.fromkeys(paper_ids))  # de-duplicate, keep order
 
-        query_vector = self.store.dense.embed_query(query)  # embed once, reuse per paper
-        candidates = {
-            pid: self.store.search_dense(query_vector, [pid], limit=self.k_per_paper)
-            for pid in paper_ids
-        }
+        candidates = self._search(query, paper_ids)
+        if self.strategy == "hybrid_rerank":
+            pool = [hit for hits in candidates.values() for hit in hits]
+            reranked = self.reranker.rerank(query, pool)
+            # Cross-encoder scores share one scale across papers, so regroup and rebalance.
+            candidates = {pid: [] for pid in paper_ids}
+            for hit in reranked:
+                candidates[hit.payload["paper_id"]].append(hit)
+
         selected = select_balanced(candidates, self.k_final, self.min_per_paper)
         return [to_document(hit, rank) for rank, hit in enumerate(selected, start=1)]

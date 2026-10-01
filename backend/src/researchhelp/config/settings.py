@@ -43,6 +43,8 @@ class Settings(BaseSettings):
     chunk_overlap: int = 150
 
     # Retrieval hyperparameters (evaluated in Phase 2)
+    retrieval_strategy: str = "hybrid_rerank"  # semantic | hybrid | hybrid_rerank
+    min_per_paper: int = 1
     k_per_paper: int = 8
     k_candidates: int = 20
     k_final: int = 6
