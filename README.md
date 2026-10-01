@@ -14,7 +14,7 @@ See [docs/architecture.md](docs/architecture.md) and [docs/decisions.md](docs/de
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | Repository + architecture | done |
-| 1 | Ingestion + baseline RAG (CLI) | in progress |
+| 1 | Ingestion + baseline RAG (CLI) | implemented; real-LLM check pending |
 | 2 | Hybrid retrieval, reranking, evaluation | planned |
 | 3 | Research assistant + LangGraph routing | planned |
 | 4 | FastAPI backend | planned |
@@ -33,3 +33,19 @@ cd backend
 uv sync
 uv run pytest
 ```
+
+To run without Docker, set `QDRANT_PATH=./data/qdrant_local` in `.env` to use embedded on-disk Qdrant.
+
+## Usage (CLI, Phase 1)
+
+```bash
+cd backend
+uv run python ../scripts/download_papers.py          # evaluation corpus -> data/papers/
+uv run researchhelp inspect ../data/papers/dpr.pdf --page 5   # check parsing/chunking, no indexing
+uv run researchhelp ingest ../data/papers/            # parse, embed, index
+uv run researchhelp papers                            # list indexed papers
+uv run researchhelp ask "What batch size and learning rate were used?" -p "dense passage"
+uv run researchhelp ask "Compare the datasets used." -p "dense passage" -p "retrieval-augmented generation" --show-context
+```
+
+`-p` takes a paper-ID prefix or a fragment of the title. Answers cite `[S#]` markers, which are resolved to paper, page and section from chunk metadata. Markers the model invents are dropped.

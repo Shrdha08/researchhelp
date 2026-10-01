@@ -4,6 +4,7 @@ One collection holds every chunk of every paper. Each point has a named dense ve
 named sparse (BM25) vector; the paper scope is expressed as a payload filter on ``paper_id``.
 """
 
+import warnings
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -76,10 +77,13 @@ class PaperVectorStore:
             },
             sparse_vectors_config={SPARSE: models.SparseVectorParams(modifier=models.Modifier.IDF)},
         )
-        for field in ("paper_id", "section"):
-            self.client.create_payload_index(
-                self.collection, field, models.PayloadSchemaType.KEYWORD
-            )
+        with warnings.catch_warnings():
+            # Embedded (local) Qdrant ignores payload indexes and warns; the server uses them.
+            warnings.filterwarnings("ignore", message="Payload indexes have no effect")
+            for field in ("paper_id", "section"):
+                self.client.create_payload_index(
+                    self.collection, field, models.PayloadSchemaType.KEYWORD
+                )
 
     # ----- writes -----------------------------------------------------------------------------
 

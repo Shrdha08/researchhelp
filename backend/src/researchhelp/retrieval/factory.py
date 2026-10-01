@@ -1,5 +1,6 @@
 """Builds retrieval components from Settings (one place that knows about concrete models)."""
 
+import atexit
 from functools import lru_cache
 
 from qdrant_client import QdrantClient
@@ -13,8 +14,12 @@ from researchhelp.retrieval.vectorstore import PaperVectorStore
 def make_qdrant_client(settings: Settings) -> QdrantClient:
     if settings.qdrant_path:
         settings.qdrant_path.mkdir(parents=True, exist_ok=True)
-        return QdrantClient(path=str(settings.qdrant_path))
-    return QdrantClient(url=settings.qdrant_url)
+        client = QdrantClient(path=str(settings.qdrant_path))
+    else:
+        client = QdrantClient(url=settings.qdrant_url)
+    # Close before interpreter shutdown; local mode otherwise errors in __del__.
+    atexit.register(client.close)
+    return client
 
 
 @lru_cache
