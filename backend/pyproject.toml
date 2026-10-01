@@ -34,9 +34,6 @@ packages = ["src/researchhelp"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-filterwarnings = [
-    "ignore:Payload indexes have no effect in the local Qdrant:UserWarning",
-]
 markers = [
     "integration: tests that exercise several components together (no network)",
 ]
