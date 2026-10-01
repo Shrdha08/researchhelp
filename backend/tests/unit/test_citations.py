@@ -49,3 +49,10 @@ def test_snippet_is_truncated():
     _, sources = format_context([doc(text="word " * 200)])
     _, (cite,) = resolve_citations("x [S1]", sources)
     assert len(cite.snippet) <= 305 and cite.snippet.endswith("...")
+
+
+def test_resolve_citations_accepts_fullwidth_brackets():
+    _, sources = format_context([doc(), doc("p2", 7)])
+    text, cites = resolve_citations("Batch size 128【S1】 and SGD【S2, S5】.", sources)
+    assert text == "Batch size 128[S1] and SGD[S2]."
+    assert [c.source_id for c in cites] == ["S1", "S2"]

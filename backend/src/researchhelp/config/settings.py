@@ -4,6 +4,7 @@ experiments change configuration, not code."""
 from functools import lru_cache
 from pathlib import Path
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Repo root = backend/src/researchhelp/config/settings.py -> parents[4]
@@ -19,8 +20,8 @@ class Settings(BaseSettings):
 
     # LLM (Groq)
     groq_api_key: str = ""
-    llm_model: str = "llama-3.3-70b-versatile"
-    router_model: str = "llama-3.1-8b-instant"
+    llm_model: str = "openai/gpt-oss-120b"
+    router_model: str = "openai/gpt-oss-20b"
     llm_temperature: float = 0.0
     llm_max_retries: int = 5
 
@@ -48,6 +49,15 @@ class Settings(BaseSettings):
 
     # Paths
     data_dir: Path = REPO_ROOT / "data"
+
+    @field_validator("qdrant_path", "data_dir")
+    @classmethod
+    def _relative_to_repo_root(cls, value: Path | None) -> Path | None:
+        """Relative paths in .env mean "relative to the repo root", not to the current
+        directory, so the CLI behaves the same from backend/ or the root."""
+        if value is None or value.is_absolute():
+            return value
+        return (REPO_ROOT / value).resolve()
 
     @property
     def upload_dir(self) -> Path:

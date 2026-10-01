@@ -55,3 +55,9 @@ def test_remove_boilerplate_keeps_repeated_body_lines():
     pages = [_page(n, "Header", "Footer") for n in range(1, 5)]
     kept = [ln.text for p in remove_boilerplate(pages) for ln in p.lines]
     assert kept.count("See Table 1 for details.") == 4
+
+
+def test_join_lines_dehyphenates_across_blocks():
+    assert join_lines([line("we focus on improv-", block=0), line("ing the model", block=1)]) == (
+        "we focus on improving the model"
+    )
