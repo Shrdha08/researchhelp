@@ -14,7 +14,7 @@ See [docs/architecture.md](docs/architecture.md) and [docs/decisions.md](docs/de
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | Repository + architecture | done |
-| 1 | Ingestion + baseline RAG (CLI) | implemented; real-LLM check pending |
+| 1 | Ingestion + baseline RAG (CLI) | done |
 | 2 | Hybrid retrieval, reranking, evaluation | planned |
 | 3 | Research assistant + LangGraph routing | planned |
 | 4 | FastAPI backend | planned |

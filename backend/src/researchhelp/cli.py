@@ -8,7 +8,6 @@ researchhelp delete <paper-id>
 """
 
 import json
-import textwrap
 from pathlib import Path
 from typing import Annotated
 
@@ -138,7 +137,7 @@ def ask(
                 f"[{m['section']}]  {doc.page_content[:90]!r}"
             )
         typer.echo("")
-    typer.echo(textwrap.fill(result.answer, width=100, replace_whitespace=False))
+    typer.echo(result.answer)
     if result.citations:
         typer.echo("\nSources:")
         for c in result.citations:

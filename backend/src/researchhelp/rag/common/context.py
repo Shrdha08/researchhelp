@@ -12,7 +12,9 @@ from dataclasses import asdict, dataclass
 
 from langchain_core.documents import Document
 
-_MARKER = re.compile(r"\[\s*(S\d+(?:\s*[,;]\s*S\d+)*)\s*\]")
+# "[S1]" / "[S1, S3]". Some models (e.g. gpt-oss) emit full-width brackets "【S1】"; both are
+# accepted and normalised to square brackets.
+_MARKER = re.compile(r"[\[【]\s*(S\d+(?:\s*[,;]\s*S\d+)*)\s*[\]】]")
 SNIPPET_CHARS = 300
 
 

@@ -74,11 +74,12 @@ def join_lines(lines: list[Line]) -> str:
             continue
         if prev is None:
             parts.append(text)
-        elif line.block != prev.block:
-            parts.append("\n\n" + text)
         elif parts[-1].endswith("-") and text[:1].islower():
+            # Word split across a line break; PyMuPDF sometimes also starts a new block here.
             parts[-1] = parts[-1][:-1]
             parts.append(text)
+        elif line.block != prev.block:
+            parts.append("\n\n" + text)
         else:
             parts.append(" " + text)
         prev = line
