@@ -11,6 +11,7 @@ from collections.abc import Sequence
 from dataclasses import replace
 from typing import Protocol
 
+from researchhelp.retrieval.onnx_device import log_provider, onnx_providers
 from researchhelp.retrieval.vectorstore import ScoredChunk
 
 
@@ -26,11 +27,15 @@ def _apply_scores(hits: Sequence[ScoredChunk], scores: Sequence[float]) -> list[
 
 
 class CrossEncoderReranker:
-    def __init__(self, model_name: str = "BAAI/bge-reranker-base", batch_size: int = 16):
+    def __init__(
+        self, model_name: str = "BAAI/bge-reranker-base", batch_size: int = 16, device: str = "auto"
+    ):
         from fastembed.rerank.cross_encoder import TextCrossEncoder
 
+        providers = onnx_providers(device)
         self.model_name = model_name
-        self._model = TextCrossEncoder(model_name)
+        self._model = TextCrossEncoder(model_name, providers=providers)
+        self.provider = log_provider(model_name, self._model, providers)
         self._batch_size = batch_size
 
     def rerank(self, query: str, hits: Sequence[ScoredChunk]) -> list[ScoredChunk]:

@@ -28,7 +28,7 @@ def get_store() -> PaperVectorStore:
     settings = get_settings()
     store = PaperVectorStore(
         client=make_qdrant_client(settings),
-        dense=FastEmbedDense(settings.embed_model),
+        dense=FastEmbedDense(settings.embed_model, device=settings.onnx_device),
         sparse=FastEmbedSparse(settings.sparse_model),
         collection=settings.qdrant_collection,
     )
@@ -38,7 +38,8 @@ def get_store() -> PaperVectorStore:
 
 @lru_cache
 def get_reranker() -> CrossEncoderReranker:
-    return CrossEncoderReranker(get_settings().rerank_model)
+    settings = get_settings()
+    return CrossEncoderReranker(settings.rerank_model, device=settings.onnx_device)
 
 
 def get_retriever(strategy: str | None = None, **overrides) -> ScopedRetriever:

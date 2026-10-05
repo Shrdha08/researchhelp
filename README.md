@@ -15,7 +15,7 @@ See [docs/architecture.md](docs/architecture.md) and [docs/decisions.md](docs/de
 |---|---|---|
 | 0 | Repository + architecture | done |
 | 1 | Ingestion + baseline RAG (CLI) | done |
-| 2 | Hybrid retrieval, reranking, evaluation | planned |
+| 2 | Hybrid retrieval, reranking, evaluation | in progress |
 | 3 | Research assistant + LangGraph routing | planned |
 | 4 | FastAPI backend | planned |
 | 5 | PostgreSQL persistence | planned |
@@ -30,9 +30,11 @@ Requirements: [uv](https://docs.astral.sh/uv/) (it installs Python 3.12 for the 
 cp .env.example .env            # add your GROQ_API_KEY
 docker compose up -d qdrant postgres
 cd backend
-uv sync
+uv sync --extra gpu             # NVIDIA GPU (CUDA 13 driver); or: uv sync --extra cpu
 uv run pytest
 ```
+
+One of the two extras is required, because the ONNX runtime for the local embedding and reranker models comes from it. `ONNX_DEVICE=auto` (the default) uses the GPU when available and logs which provider is active.
 
 To run without Docker, set `QDRANT_PATH=./data/qdrant_local` in `.env` to use embedded on-disk Qdrant.
 

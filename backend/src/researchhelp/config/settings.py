@@ -37,6 +37,8 @@ class Settings(BaseSettings):
     embed_dim: int = 384
     sparse_model: str = "Qdrant/bm25"
     rerank_model: str = "BAAI/bge-reranker-base"
+    # Where the ONNX models run: auto (CUDA if available, else CPU) | cuda | cpu.
+    onnx_device: str = "auto"
 
     # Chunking
     chunk_size: int = 1000
