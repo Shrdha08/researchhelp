@@ -1,0 +1,23 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE is evaluated on six low-resource BEIR datasets.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How many low-resource BEIR datasets does HyDE use?",
+    "What is the number of low-resource BEIR datasets in the HyDE evaluation?",
+    "How many BEIR low-resource datasets are included in the HyDE experiments?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the number of datasets (six) as stated in the reference and supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not contain any information about Retro’s performance on the GLUE benchmark.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "200 400 800 1600 7500 Number of Non-Embedding Params (M)\n\n0.7 0.8\n\n0.9 1.0\n\n172M 425M 1.5B 7.5B Baseline RETRO [OFF] RETRO [ON]\n\n0 1 10 100 1000 10000 Retrieval dataset (B Tokens)\n\n0.7 0.8\n\n0.9 1.0\n\n0 1 3 5 10 30 50 100 Number of neighbors\n\n0.7 0.8\n\n0.9 1.0\n\nFigure 1 | Scaling of Retro. The performance gain of our retrieval models remains constant with model scale (left), and is comparable to multiplying the parameteric model size by ∼10×. The gain increases with the size of the retrieval database (middle) and the number of retrieved neighbours (right) on the C4 validation set, when using up to 40 neighbours. Past this, performance begins to\n\ndegrade, perhaps due to the reduced quality. At evaluation Retro can be used without retrieval data (Retro[OFF]), bringing limited performance degradation compared to baseline transformers.\n\ncontributions are the following.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "0 20\n\n40 60\n\n80 100\n\nRelative bits-per-byte improvement over our 7B baseline without retrieval\n\nJurassic-1 (178B) Gopher (280B) RETRO (7.5B)\n\nFigure 4 | The Pile: Comparison of our 7B baseline against Jurassic-1, Gopher, and Retro. We observe that the retrieval model outperforms the baseline on all test sets and outperforms Jurassic-1 on a majority of them, despite being over an order of magnitude smaller.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 12,
+      "section": "Language modelling"
+    },
+    {
+      "text": "Table 13 | Performance of Retro for different variants. Model performance on C4 evaluation set, measured in bytes-per-bits, for a 247M parameter model trained with a 157 billion token schedule.\n\nAblation group Ablation C4 eval bpb\n\nModel Retro 0.822 No query conditioning 0.829 No CA positional encodings 0.826 Shared embeddings 0.823 6-layer encoder 0.821\n\nRetrieval values Neighbours N 0.950 Continuations F 0.895 No retrieval 0.987\n\nTraining neighbours 1 training neighbours 0.858 4 training neighbours 0.847\n\nCross attention position CA top layer (1/12) 0.827 CA mid layer (6/12) 0.823 CA top layer (12/12) 0.831 CA all layers 0.860 CA every 3 from 1 0.823",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 30,
+      "section": "Question answering experiments"
+    },
+    {
+      "text": "4. Results\n\nWe first report results on language modelling benchmarks. Second, we show how to Retrofit\n\npre-trained Transformer language models into retrieval models with few additional FLOPs. Next, we report Retro results on question answering. Finally, we report evaluation metrics with leakage filtering, to better understand the source of the gains with retrieval.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 10,
+      "section": "Results"
+    },
+    {
+      "text": "our models training on only 3% the number of tokens seen during pre-training.\n\nThe exact match scores are shown in Table 5 and the full fine-tuning details are given in §C.4. Our method is competitive with previous approaches such as Realm, RAG and Dpr, but underperforms the more recent FiD. In contrast with this work, we find that increasing the number of neighbours past 20 does not improve Retro performance on this task. We hypothesise that the encoder-decoder structure of T5—the base model in FiD— and the T5 pre-training objective leads to a model that relies more on the encoder output than Retro, which is important in the QA setting. To compete with T5-finetuned models, future work should consider ways of forcing Retro to rely further on the retrieval encoder output when producing tokens.\n\n4.4. Relating retrieval performance to dataset leakage.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 14,
+      "section": "Question answering"
+    },
+    {
+      "text": "10.81 Baseline transformer (ours) - - - 21.53 22.96 kNN-LM (ours) Wikipedia 4B 4B 18.52 19.54 Retro Wikipedia 4B 0.06B 18.46 18.97 Retro C4 174B 2.9B 12.87 10.23 Retro MassiveText (1%) 18B 0.8B 18.92 20.33 Retro MassiveText (10%) 179B 4B 13.54 14.95 Retro MassiveText (100%) 1792B 28B 3.21 3.92",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 12,
+      "section": "Baseline transformer (ours)"
+    }
+  ]
+}

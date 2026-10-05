@@ -1,0 +1,52 @@
+{
+  "answer": "**Dense Passage Retrieval (DPR)**  \n- Training batch size: 128 [S1]  \n- Learning rate: 10⁻⁵ [S1]\n\n**Fusion‑in‑Decoder (FiD)**  \n- The excerpts do not provide any information about the training batch size or learning rate used for the Fusion‑in‑Decoder model.  \n\nThus, only DPR’s batch size and learning rate are specified in the supplied excerpts; the corresponding details for Fusion‑in‑Decoder are not mentioned.",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_id": "3e67fc1a9977715a:p5:c1",
+      "snippet": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "Cross-dataset generalization One interesting question regarding DPR’s discriminative training is how much performance degradation it may suffer from a non-iid setting. In other words, can it still generalize well when directly applied to a different dataset without additional fine-tuning? To test the cross-dataset generalization, we train DPR on Natural Questions only and test it directly on the smaller WebQuestions and CuratedTREC datasets. We find that DPR generalizes well, with 3-5 points loss from the best performing fine-tuned model in top-20 retrieval accuracy (69.9/86.3 vs. 75.0/89.1 for WebQuestions and TREC, respectively), while still greatly outperforming the BM25 baseline (55.0/70.9).",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same batch or from the whole training set. Effectively, in-batch negative training is an easy and memory-efficient way to reuse the negative examples already in the batch rather than creating new ones. It produces more pairs and thus increases the number of training examples, which might contribute to the good model performance. As a result, accuracy consistently improves as the batch size grows.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "While it is good to have the flexibility to adapt the retriever to each dataset, it would also be desirable to obtain a single retriever that works well across the board. To this end, we train a multidataset encoder by combining training data from all datasets excluding SQuAD.8 In addition to DPR, we also present the results of BM25, the traditional retrieval method9 and BM25+DPR, using a linear combination of their scores as the new ranking function. Specifically, we obtain two initial sets of top-2000 passages based on BM25 and DPR, respectively, and rerank the union of them using BM25(q,p) + λ · sim(q, p) as the ranking function. We used λ = 1.1 based on the retrieval accuracy in\n\nthe development set.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "20 40 60 80 100 k: # of retrieved passages\n\n40\n\n50\n\n60\n\n70\n\n80\n\n90\n\nBM25 # Train: 1k # Train: 10k # Train: 20k # Train: 40k # Train: all (59k)\n\nFigure 1: Retriever top-k accuracy with different numbers of training examples used in our dense passage retriever vs BM25. The results are measured on the development set of Natural Questions. Our DPR trained using 1,000 examples already outperforms BM25.\n\ntiple datasets, TREC, the smallest dataset of the five, benefits greatly from more training examples. In contrast, Natural Questions and WebQuestions improve modestly and TriviaQA degrades slightly. Results can be improved further in some cases by combining DPR with BM25 in both single- and multi-dataset settings.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Main Results"
+    },
+    {
+      "text": "By processing passages independently in the encoder, but jointly in the decoder, this method differs from Min et al. (2020) and Lewis et al. (2020). Processing passages independently in the encoder allows to scale to large number of contexts, as it only performs self attention over one context at a time. This means that the computation time of the model grows linearly with the number of passages, instead of quadratically. On the other hand, processing passages jointly in the decoder allows to better aggregate evidence from multiple passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    }
+  ]
+}

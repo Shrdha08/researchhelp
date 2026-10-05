@@ -22,9 +22,14 @@ def get_chat_model(model: str | None = None, temperature: float | None = None) -
         )
     from langchain_groq import ChatGroq
 
+    model = model or settings.llm_model
+    extra = {}
+    if model.startswith("openai/gpt-oss") and settings.llm_reasoning_effort:
+        extra["reasoning_effort"] = settings.llm_reasoning_effort
     return ChatGroq(
-        model=model or settings.llm_model,
+        model=model,
         temperature=settings.llm_temperature if temperature is None else temperature,
         max_retries=settings.llm_max_retries,
         api_key=settings.groq_api_key,
+        **extra,
     )

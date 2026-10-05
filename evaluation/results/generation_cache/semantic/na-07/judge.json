@@ -1,0 +1,51 @@
+{
+  "claims": [
+    {
+      "claim": "SELF-RAG reported a small human evaluation of answer plausibility and support.",
+      "supported": true
+    },
+    {
+      "claim": "The human evaluation used 50 samples from PopQA and Bio.",
+      "supported": true
+    },
+    {
+      "claim": "Annotators judged whether the model's output was reasonable.",
+      "supported": true
+    },
+    {
+      "claim": "Annotators judged whether cited evidence justified the answer.",
+      "supported": true
+    },
+    {
+      "claim": "The evaluation focused on answer quality rather than overall user satisfaction.",
+      "supported": true
+    },
+    {
+      "claim": "REALM excerpts discuss benchmark experiments on Open-QA datasets.",
+      "supported": true
+    },
+    {
+      "claim": "REALM excerpts do not mention any human or user study.",
+      "supported": true
+    },
+    {
+      "claim": "Neither paper reports a user study measuring user satisfaction.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Did the papers conduct a user study to measure user satisfaction?",
+    "What user studies were performed in these papers?",
+    "Is there any evidence of user satisfaction measurement in the provided text?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that neither paper reports a user satisfaction study, aligning with the reference answer.",
+  "relevant_chunks": [
+    false,
+    true,
+    false,
+    true,
+    false,
+    false
+  ]
+}

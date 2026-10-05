@@ -1,0 +1,61 @@
+{
+  "answer": "ColBERT evaluates its performance on the MS MARCO passage‑ranking collection using the mean reciprocal rank at depth 10 (MRR@10) as the official metric [S3][S4].",
+  "citations": [
+    {
+      "source_id": "S3",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 6,
+      "section": "Method",
+      "chunk_id": "2e487d9b96e3c2e5:p6:c3",
+      "snippet": "4.1 Methodology\n\n4.1.1 Datasets & Metrics. Similar to related work [2, 27, 28], we conduct our experiments on the MS MARCO Ranking [24] (henceforth, MS MARCO) and TREC Complex Answer Retrieval (TREC-CAR) [6] datasets. Both of these recent datasets provide large training data of the scale that ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+      "chunk_id": "2e487d9b96e3c2e5:p7:c3",
+      "snippet": "We report the competition’s official metric, namely MRR@10, on the validation set (Dev) and the evaluation set (Eval). We also report the re-ranking latency, which we measure using a single Tesla V100 GPU, and the FLOPs per query for each neural ranking model. For ColBERT, our reported latency ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Table 4: Space Footprint vs MRR@10 (Dev) on MS MARCO.\n\nTable 4 reports the space footprint of ColBERT under various setings as we reduce the embeddings dimension and/or the bytes per dimension. Interestingly, the most space-efficient seting, that is, re-ranking with cosine similarity with 24-dimensional vectors stored as 2-byte floats, is only 1% worse in MRR@10 than the most space-consuming one, while the former requires only 27 GiBs to represent the MS MARCO collection.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 9,
+      "section": "Indexing Troughput & Footprint"
+    },
+    {
+      "text": "4.5 Indexing Troughput & Footprint\n\nLastly, we examine the indexing throughput and space footprint of ColBERT. Figure 6 reports indexing throughput on MS MARCO documents with ColBERT and four other ablation setings, which individually enable optimizations described in §3.4 on top of basic batched indexing. Based on these throughputs, ColBERT can index MS MARCO in about three hours. Note that any BERT-based model must incur the computational cost of processing each document at least once. While ColBERT encodes each document with BERT exactly once, existing BERT-based rankers would repeat similar computations on possibly hundreds of documents for each query.\n\nSeting Dimension(m) Bytes/Dim Space(GiBs) MRR@10\n\nRe-rank Cosine 128 4 286 34.9 End-to-end L2 128 2 154 36.0 Re-rank L2 128 2 143 34.8 Re-rank Cosine 48 4 54 34.4 Re-rank Cosine 24 2 27 33.9\n\nTable 4: Space Footprint vs MRR@10 (Dev) on MS MARCO.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 9,
+      "section": "Indexing Troughput & Footprint"
+    },
+    {
+      "text": "4.1 Methodology\n\n4.1.1 Datasets & Metrics. Similar to related work [2, 27, 28], we conduct our experiments on the MS MARCO Ranking [24] (henceforth, MS MARCO) and TREC Complex Answer Retrieval (TREC-CAR) [6] datasets. Both of these recent datasets provide large training data of the scale that facilitates training and evaluating deep neural networks. We describe both in detail below.\n\nMS MARCO. MS MARCO is a dataset (and a corresponding competition) introduced by Microsof in 2016 for reading comprehension and adapted in 2018 for retrieval. It is a collection of 8.8M passages from Web pages, which were gathered from Bing’s results to 1M real-world queries. Each query is associated with sparse relevance judgements of one (or very few) documents marked as relevant and no documents explicitly indicated as irrelevant. Per the official evaluation, we use MRR@10 to measure effectiveness.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 6,
+      "section": "Method"
+    },
+    {
+      "text": "We report the competition’s official metric, namely MRR@10, on the validation set (Dev) and the evaluation set (Eval). We also report the re-ranking latency, which we measure using a single Tesla V100 GPU, and the FLOPs per query for each neural ranking model. For ColBERT, our reported latency subsumes the entire computation from gathering the document representations, moving them to the GPU, tokenizing then encoding the query, and applying late interaction to compute document scores. For the baselines, we measure the scoring computations on the GPU and exclude the CPU-based text preprocessing (similar to [9]). In principle, the baselines can pre-compute the majority of this preprocessing (e.g., document tokenization) offline and parallelize the rest across\n\ndocuments online, leaving only a negligible cost. We estimate the FLOPs per query of each model using the torchprofile6 library.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "ColBERTL2 (re-rank) 34.8 36.4 - 75.3 80.5 81.4 ColBERTL2 (end-to-end) 36.0 36.7 458 82.9 92.3 96.8\n\nTable 2: End-to-end retrieval results on MS MARCO. Each model retrieves the top-1000 documents per query directly from the entire 8.8M document collection.\n\nretrieval (i.e., for methods with neural computations) but we use up to all four GPUs during indexing.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Method"
+    },
+    {
+      "text": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Introduction"
+    }
+  ]
+}

@@ -23,6 +23,11 @@ class Settings(BaseSettings):
     llm_model: str = "openai/gpt-oss-120b"
     router_model: str = "openai/gpt-oss-20b"
     llm_temperature: float = 0.0
+    # gpt-oss models reason before answering; "low" is enough for grounded extraction and
+    # saves tokens (they count against Groq's per-minute budget) and latency.
+    llm_reasoning_effort: str | None = "low"
+    # Evaluation judge: a different model family than the generator to reduce self-preference.
+    judge_model: str = "qwen/qwen3.8-27b"
     llm_max_retries: int = 5
 
     # Stores
@@ -36,7 +41,8 @@ class Settings(BaseSettings):
     embed_model: str = "BAAI/bge-small-en-v1.5"
     embed_dim: int = 384
     sparse_model: str = "Qdrant/bm25"
-    rerank_model: str = "BAAI/bge-reranker-base"
+    # Chosen on the dev split (docs/evaluation.md): best Recall@5 and fastest of the 3 tried.
+    rerank_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
     # Where the ONNX models run: auto (CUDA if available, else CPU) | cuda | cpu.
     onnx_device: str = "auto"
 
@@ -48,7 +54,7 @@ class Settings(BaseSettings):
     retrieval_strategy: str = "hybrid_rerank"  # semantic | hybrid | hybrid_rerank
     min_per_paper: int = 1
     k_per_paper: int = 8
-    k_candidates: int = 20
+    k_candidates: int = 10
     k_final: int = 6
 
     # Paths

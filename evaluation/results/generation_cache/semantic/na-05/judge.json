@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "questions": [
+    "Did the ColBERT authors report carbon emissions for training?",
+    "What is the carbon footprint of training ColBERT according to the paper?",
+    "Are there any reported carbon emissions for ColBERT training in the provided text?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about carbon emissions, which aligns with the reference answer stating they were not reported.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

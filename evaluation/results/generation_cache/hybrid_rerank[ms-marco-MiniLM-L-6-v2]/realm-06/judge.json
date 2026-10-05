@@ -1,0 +1,71 @@
+{
+  "claims": [
+    {
+      "claim": "Salient span masking is used during REALM pre-training.",
+      "supported": true
+    },
+    {
+      "claim": "It concentrates learning on examples requiring world knowledge.",
+      "supported": true
+    },
+    {
+      "claim": "It avoids masking random tokens.",
+      "supported": true
+    },
+    {
+      "claim": "REALM identifies salient text spans.",
+      "supported": true
+    },
+    {
+      "claim": "Named entities are detected with a BERT-based tagger.",
+      "supported": true
+    },
+    {
+      "claim": "The tagger is trained on CoNLL-2003 data.",
+      "supported": true
+    },
+    {
+      "claim": "Dates are detected with a regular expression.",
+      "supported": true
+    },
+    {
+      "claim": "One identified span is selected and masked.",
+      "supported": true
+    },
+    {
+      "claim": "The masking occurs within a sentence.",
+      "supported": true
+    },
+    {
+      "claim": "The task is masked language modeling.",
+      "supported": true
+    },
+    {
+      "claim": "This approach outperforms random token masking.",
+      "supported": true
+    },
+    {
+      "claim": "This approach outperforms random span masking.",
+      "supported": true
+    },
+    {
+      "claim": "Latent-variable learning depends on retrieval usefulness.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does salient span masking work in REALM?",
+    "What specific spans does REALM mask during pre-training?",
+    "Why does REALM use salient span masking instead of random masking?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes the strategy, the specific entities masked (named entities and dates), the detection methods, and the rationale, fully aligning with the reference and retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    true
+  ]
+}

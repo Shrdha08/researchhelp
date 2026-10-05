@@ -1,0 +1,61 @@
+{
+  "answer": "The web‑search evaluation of HyDE uses the two TREC Deep Learning test collections:\n\n* **TREC DL19** – the 2019 Deep Learning track query set (defined on MS‑MARCO)  \n* **TREC DL20** – the 2020 Deep Learning track query set (also defined on MS‑MARCO)\n\nThese are the query sets referenced for the web‑search experiments in the paper [S4, S2].",
+  "citations": [
+    {
+      "source_id": "S4",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Web Search",
+      "chunk_id": "dc0ae3c5584ed146:p5:c2",
+      "snippet": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 4,
+      "section": "Web Search",
+      "chunk_id": "dc0ae3c5584ed146:p4:c6",
+      "snippet": "4.2 Web Search\n\nIn Table 1, we show retrieval results on TREC DL19 and TREC DL20. We see HyDE bring sizable improvements to Contriever across the board for"
+    }
+  ],
+  "contexts": [
+    {
+      "text": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a tiny 0.2 margin; in comparison, the underlying Contriever underperforms by more than 50%.\n\nWe also observe HyDE demonstrates strong performance compared to fine-tuned models. HyDE generally shows better performance than ANCE and DPR, even though the two are fine-tuned on MS-MARCO and ANCE also involves some sophisticated hard negative techniques. ContrieverFT shows performance advantages on FiQA and DBPedia. These involve retrieval of financial posts or entities respectively. We believe the performance difference can be attributed to the",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Low Resource Retrieval"
+    },
+    {
+      "text": "4.2 Web Search\n\nIn Table 1, we show retrieval results on TREC DL19 and TREC DL20. We see HyDE bring sizable improvements to Contriever across the board for",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 4,
+      "section": "Web Search"
+    },
+    {
+      "text": "HyDE appears unsupervised. No model is trained in HyDE: both the generative model and the contrastive encoder remain intact. Supervision signals were only involved in instruction learning of our backbone LLM.\n\nIn our experiments, we show HyDE using Instruct- GPT (Ouyang et al., 2022) and Contriever (Izacard et al., 2021) as backbone models significantly outperforms the previous state-of-the-art Contrieveronly zero-shot no-relevance system on 11 queries\n\nsets, covering tasks like Web Search, Question Answering, Fact Verification and languages like Swahili, Korean, Japanese.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around 10% lower map and ndcg@10 than ContrieverFT and similar recall@1k. The ANCE model shows better ndcg@10 numbers than HyDE but lower recall, suggesting it may be biased to a subset of queries and/or relevant documents.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    },
+    {
+      "text": "6 Conclusion\n\nAt the end of the paper, we encourage the readers to take a moment and reflect on the HyDE model. Compare it to some of the other recently seen retrievers or re-ranker. These other models probably differ in their architecture, training method, and/or task, but probably all of them involve modeling relevance scores between a pair of query and docu-",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 6,
+      "section": "Conclusion"
+    },
+    {
+      "text": "We use different instructions for each dataset. They share a similar structure but have different quantifiers to control the exact form of the generated hypothetical documents. These instructions can be found in subsection A.1.\n\nCompared Systems Contriever models, Contriever and mContriever, serve as our major baseline. They are trained using unsupervised contrastive learning. HyDE retrievers share the exact same embedding spaces with them. The only difference is how the query vector is built. These comparisons allow us to easily examine the effect of HyDE. The classical heuristic-based lexical retriever BM25 is also included.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 4,
+      "section": "Setup"
+    }
+  ]
+}

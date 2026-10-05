@@ -1,0 +1,47 @@
+{
+  "claims": [
+    {
+      "claim": "Critic supervised data were created automatically with a large language model.",
+      "supported": true
+    },
+    {
+      "claim": "Data creation was not done by hand.",
+      "supported": true
+    },
+    {
+      "claim": "Authors prompted GPT-4 to generate a reflection token for each input-output pair.",
+      "supported": true
+    },
+    {
+      "claim": "The reflection token evaluates the input-output pair.",
+      "supported": true
+    },
+    {
+      "claim": "The token is stored as (x, y, r) in the critic's training set.",
+      "supported": true
+    },
+    {
+      "claim": "Manual annotation of reflection tokens is costly.",
+      "supported": true
+    },
+    {
+      "claim": "Authors rely on GPT-4 to collect tokens efficiently.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How did the authors collect training data for the Self-RAG critic model?",
+    "What method was used to generate reflection tokens for the critic model?",
+    "Why did the authors use GPT-4 instead of manual annotation for critic data?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that GPT-4 was prompted to generate reflection tokens for input/output pairs, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+  ]
+}

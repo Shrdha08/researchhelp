@@ -1,0 +1,42 @@
+{
+  "answer": "The critic model’s training data was created by automatically generating reflection tokens with GPT‑4 rather than by manual labeling. For each input‑output pair \\((x, y)\\) the authors “prompt GPT‑4 to collect a reflection token r for \\((x, y)\\)” and then add the tuple \\((x, y, r)\\) to the critic‑training set [Dcritic] before updating the critic with a next‑token prediction loss [​S4​]. This approach was adopted because manual annotation of reflection tokens is expensive, so a state‑of‑the‑art LLM (GPT‑4) is used to produce the required supervision [​S1​].",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "3.2 SELF-RAG TRAINING\n\nHere, we describe the supervised data collection and training of two models, the critic C (Section 3.2.1) and the generator M (Section 3.2.2).\n\n3.2.1 TRAINING THE CRITIC MODEL\n\nData collection for critic model. Manual annotation of reflection tokens for each segment is expensive (Wu et al., 2023). A state-of-the-art LLM like GPT-4 (OpenAI, 2023) can be effectively\n\n4We follow Liu et al. (2023a) in using a “perceived” utility value that is independent of retrieved passages.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 4,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "3.2.2 TRAINING THE GENERATOR MODEL\n\nData collection for generator. Given an input-output pair (x, y), we augment the original output y using the retrieval and critic models to create supervised data that precisely mimics the SELF- RAG inference-time process (Section 3.1). For each segment yt ∈y, we run C to assess whether additional passages could help to enhance generation. If retrieval is required, the retrieval special token Retrieve =Yes is added, and R retrieves the top K passages, D. For each passage, C further evaluates whether the passage is relevant and predicts ISREL . If a passage is relevant, C further evaluates whether the passage supports the model generation and predicts ISSUP . Critique tokens",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 5,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the next token prediction from the expanded model vocabulary. We train our generator LM on a diverse collection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired by reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are inserted offline into the original corpus by a trained critic model. This eliminates the need to host a critic model during training, reducing overhead. The critic model, in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4; OpenAI 2023).",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Algorithm 2 SELF-RAG Training\n\n1: Input input-output data D = {X, Y }, generator M, C θ 2: Initialize C with a pre-trained LM 3: Sample data {Xsample, Y sample} ∼{X, Y } ▷Training Critic LM (Section 3.2.1) 4: for (x, y) ∈(Xsample, Y sample) do ▷Data collections for C 5: Prompt GPT-4 to collect a reflection token r for (x, y) 6: Add {(x, y, r)} to Dcritic 7: Update C with next token prediction loss ▷Critic learning; Eq. 1 8: Initialize M with a pre-trained LM ▷Training Generator LM (Section 3.2.2) 9: for (x, y) ∈(X, Y ) do ▷Data collection for M with Dcritic 10: Run C to predict r given (x, y) 11: Add (x, y, r) to Dgen 12: Update M on Dgen with next token prediction loss ▷Generator LM learning; Eq. 2\n\nDataset name category Data source the number of instances",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 18,
+      "section": "Self-Rag Details"
+    },
+    {
+      "text": "Training overview. SELF-RAG enables an arbitrary LM to generate text with reflection tokens by unifying them as next token predictions from the expanded model vocabulary (i.e., the original vocabulary plus reflection tokens). Specifically, we train the generator model M on a curated corpus with interleaving passages retrieved by a retriever R and reflection tokens predicted by a critic model C (summarized in Appendix Algorithm 2). We train C to generate reflection tokens for evaluating retrieved passages and the quality of a given task output (Section 3.2.1). Using the critic model, we update the training corpus by inserting reflection tokens into task outputs offline. Subsequently, we train the final generator model (M) using the conventional LM objective (Section 3.2.2) to enable M to generate reflection tokens by itself without relying on the critic at inference time.\n\n3.2 SELF-RAG TRAINING",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 4,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "Effects of training data size. We conduct an analysis of how the data scale affects the model’s performance. In particular, we randomly sample 5k, 10k, 20k, and 50k instances from our original 150k training instances, and fine-tune four SELF-RAG 7B variants on those subsets. Then, we compare the model performance on PopQA, PubHealth, and ASQA (citation precision) with our final SELF- RAG trained on the full 150k instances. We also evaluate Figures 4a, 4b and 4c shows the models’ performance trained on different amount of data. Across all datasets, increasing data size often shows upward trajectories and the improvements are significantly larger in PopQA and ASQA, while we do not observed such significant improvements on Llama2-FT7B when increasing the training data from 50k to 150k. These results also indicate that further expanding the training data of SELF-RAG may lead to further improvements, although in this work we limit our training data size to 150k.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 10,
+      "section": "Results And Analysis"
+    }
+  ]
+}

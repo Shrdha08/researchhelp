@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder achieves state-of-the-art performance on NaturalQuestions.",
+      "supported": true
+    },
+    {
+      "claim": "Fusion-in-Decoder achieves state-of-the-art performance on TriviaQA.",
+      "supported": true
+    },
+    {
+      "claim": "These are open-domain question-answering benchmarks.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Which benchmarks does Fusion-in-Decoder claim state-of-the-art results on?",
+    "On which datasets does the Fusion-in-Decoder model outperform existing approaches?",
+    "What are the specific open-domain QA benchmarks where Fusion-in-Decoder sets new records?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies NaturalQuestions and TriviaQA as the benchmarks where state-of-the-art results are claimed, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+  ]
+}

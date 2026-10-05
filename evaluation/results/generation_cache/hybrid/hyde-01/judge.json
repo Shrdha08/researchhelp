@@ -1,0 +1,75 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE pivots through a generated hypothetical document.",
+      "supported": true
+    },
+    {
+      "claim": "An instruction-following language model is prompted to produce a hypothetical document.",
+      "supported": true
+    },
+    {
+      "claim": "InstructGPT is an example of the instruction-following language model used.",
+      "supported": true
+    },
+    {
+      "claim": "The hypothetical document reflects the relevance pattern of the query.",
+      "supported": true
+    },
+    {
+      "claim": "The hypothetical document is artificial and may contain inaccurate details.",
+      "supported": true
+    },
+    {
+      "claim": "The hypothetical document is fed to an unsupervised contrastively learned encoder.",
+      "supported": true
+    },
+    {
+      "claim": "Contriever is an example of the unsupervised contrastively learned encoder.",
+      "supported": true
+    },
+    {
+      "claim": "The encoder obtains an embedding vector for the hypothetical document.",
+      "supported": true
+    },
+    {
+      "claim": "The embedding defines a neighborhood in the corpus embedding space.",
+      "supported": true
+    },
+    {
+      "claim": "Real documents with close embeddings are retrieved.",
+      "supported": true
+    },
+    {
+      "claim": "Retrieval is based on inner-product similarity.",
+      "supported": true
+    },
+    {
+      "claim": "No model is retrained in the HyDE pipeline.",
+      "supported": true
+    },
+    {
+      "claim": "The generative LLM and contrastive encoder remain unchanged.",
+      "supported": true
+    },
+    {
+      "claim": "Supervision comes only from instruction-learning of the backbone LLM.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the mechanism behind HyDE's zero-shot dense retrieval?",
+    "How does HyDE use hypothetical documents to retrieve relevant information?",
+    "Describe the pipeline of HyDE for zero-shot retrieval."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes the HyDE process using the specific models and steps mentioned in the reference and supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}

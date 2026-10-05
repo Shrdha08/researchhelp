@@ -1,0 +1,35 @@
+{
+  "claims": [
+    {
+      "claim": "The encoder performs self-attention over a single passage at a time.",
+      "supported": true
+    },
+    {
+      "claim": "Computation grows linearly with the number of passages.",
+      "supported": true
+    },
+    {
+      "claim": "Computation does not grow quadratically with the number of passages.",
+      "supported": true
+    },
+    {
+      "claim": "Linear-time cost allows handling many retrieved passages efficiently.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Why can Fusion-in-Decoder process a large number of passages?",
+    "What is the computational advantage of encoding passages independently?",
+    "How does independent encoding affect the scaling of Fusion-in-Decoder?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately reflects the reference answer and is fully supported by the retrieved context, specifically chunk [1].",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    true,
+    false,
+    false
+  ]
+}

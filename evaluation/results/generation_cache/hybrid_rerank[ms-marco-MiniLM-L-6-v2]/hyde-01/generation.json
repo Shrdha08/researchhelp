@@ -1,0 +1,61 @@
+{
+  "answer": "HyDE tackles zero‑shot dense retrieval by turning each query into a **hypothetical document** with an instruction‑following language model (e.g., InstructGPT). The generated document—though unreal and possibly containing false details—captures the relevance pattern for the query. This document is then fed to an **unsupervised contrastively learned encoder** (e.g., Contriever) which produces an embedding vector. The vector defines a neighbourhood in the corpus embedding space, and real documents whose embeddings are close (by inner‑product similarity) are retrieved as the answer [S1].  \n\nIn experiments, this two‑step process (query → hypothetical document → encoder embedding → vector similarity search) lets HyDE **significantly outperform** the state‑of‑the‑art unsupervised dense retriever Contriever and achieve performance comparable to fine‑tuned retrievers across many tasks and languages [S6].",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_id": "dc0ae3c5584ed146:p1:c1",
+      "snippet": "While dense retrieval has been shown effective and efficient across tasks and languages, it remains difficult to create effective fully zero-shot dense retrieval systems when no relevance label is available. In this paper, we recognize the difficulty of zero-shot learning and encoding relevance. ..."
+    },
+    {
+      "source_id": "S6",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_id": "dc0ae3c5584ed146:p1:c2",
+      "snippet": "This vector identifies a neighborhood in the corpus embedding space, where similar real documents are retrieved based on vector similarity. This second step ground the generated document to the actual corpus, with the encoder’s dense bottleneck filtering out the incorrect details. Our experiments ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "While dense retrieval has been shown effective and efficient across tasks and languages, it remains difficult to create effective fully zero-shot dense retrieval systems when no relevance label is available. In this paper, we recognize the difficulty of zero-shot learning and encoding relevance. Instead, we propose to pivot through Hypothetical Document Embeddings (HyDE). Given a query, HyDE first zero-shot instructs an instruction-following language model (e.g. InstructGPT) to generate a hypothetical document. The document captures relevance patterns but is unreal and may contain false details. Then, an unsupervised contrastively learned encoder (e.g. Contriever) encodes the document into an embedding vector. This vector identifies a neighborhood in the corpus embedding space, where similar real documents are retrieved based on vector similarity.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 1,
+      "section": "Abstract"
+    },
+    {
+      "text": "3 Methodology\n\nIn this section, we first formally define the problem of (zero-shot) dense retrieval. Then we will introduce how HyDE is designed to solve it.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 3,
+      "section": "Method"
+    },
+    {
+      "text": "instruction following generative LLM, as described above.\n\nZero-Shot Dense Retrieval The tasks of zeroshot (dense) retrieval are arguably empirically defined by Thakur et al. (2021) for the neural retrieval community. Their BEIR benchmark consists of diverse retrieval tasks. The paper and many follow-up research generally consider the Transfer Learning setup where the dense retriever is first learned using a diverse and richly supervised corpus and query collection, namely MS-MARCO (Thakur et al., 2021; Wang et al., 2022; Yu et al., 2022).\n\nHowever, as stated by Izacard et al. (2021), such a large collection can rarely be assumed. In this paper, therefore, we study the problem of building effective dense retrieval systems without relevance labels. Similar to Izacard et al. (2021), we also do not assume access to the test time corpora for training. This is a more realistic setup and prevents over-engineering on the test corpora.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 3,
+      "section": "Related Work"
+    },
+    {
+      "text": "3.1 Preliminaries\n\nDense retrieval models similarity between query and document with inner product similarity. Given a query q and document d, it uses two encoder function encq and encd to map them into d dimension vectors vq, vd, whose inner product is used as similarity measurement.\n\nsim(q, d) = ⟨encq(q), encd(d)⟩= ⟨vq, vd⟩(1)\n\nFor zero-shot retrieval, we consider L query sets Q1, Q2, ..., QL and their corresponding search corpus, document sets D1, D2, ..., DL. Denote the j-th query from i-th set query set Qi as qij. We need to fully define mapping functions encq and encd without access to any query set Qi, document set Di, or any relevance judgment rij.\n\nThe difficulty of zero-shot dense retrieval lies precisely in Equation 1: it requires learning of two embedding functions (for query and document respectively) into the same embedding space where inner product captures relevance. Without relevance judgments/scores to fit, learning becomes intractable.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 3,
+      "section": "Preliminaries"
+    },
+    {
+      "text": "On the other hand, zero-shot dense retrieval still remains difficult. Many recent works consider the alternative transfer learning setup, where the dense retrievers are trained on a high-resource dataset and then evaluated on queries from new tasks. The MS- MARCO collection (Bajaj et al., 2016), a massive judged dataset with a large number of judged querydocument pairs, is arguably the most commonly used. As argued by Izacard et al. (2021), in practice, however, the existence of such a large dataset cannot always be assumed. Even MS-MARCO restricts commercial use and cannot be adopted in a variety of real-world search scenarios.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 1,
+      "section": "Introduction"
+    },
+    {
+      "text": "This vector identifies a neighborhood in the corpus embedding space, where similar real documents are retrieved based on vector similarity. This second step ground the generated document to the actual corpus, with the encoder’s dense bottleneck filtering out the incorrect details. Our experiments show that HyDE significantly outperforms the state-of-the-art unsupervised dense retriever Contriever and shows strong performance comparable to fine-tuned retrievers, across various tasks (e.g. web search, QA, fact verification) and languages (e.g. sw, ko, ja).1",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 1,
+      "section": "Abstract"
+    }
+  ]
+}

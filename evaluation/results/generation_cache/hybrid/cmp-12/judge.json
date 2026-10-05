@@ -1,0 +1,51 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT is evaluated on MS MARCO.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT is evaluated on TREC CAR.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE results are reported on low-resource tasks from BEIR.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE is evaluated on TREC DL19.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE is evaluated on TREC DL20.",
+      "supported": true
+    },
+    {
+      "claim": "TREC DL19 and DL20 are defined on MS-MARCO.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT evaluation focuses on passage-ranking datasets.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE is evaluated on a broader set of benchmarks than ColBERT.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What benchmarks were used to evaluate ColBERT and HyDE?",
+    "Compare the evaluation datasets for the ColBERT and HyDE models.",
+    "Which specific test collections are mentioned for ColBERT and HyDE in the text?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies the main benchmarks for both models but misses the specific Mr.TyDi multilingual datasets (Swahili, Korean, Japanese, Bengali) mentioned in the reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    true,
+    false,
+    true
+  ]
+}

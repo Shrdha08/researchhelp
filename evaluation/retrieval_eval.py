@@ -23,6 +23,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from evaluation.common import RESULTS, Question, chunk_matches, load_questions, page_matches
+from researchhelp.config import get_settings
 from researchhelp.retrieval.factory import get_store
 from researchhelp.retrieval.reranking import CrossEncoderReranker
 from researchhelp.retrieval.retriever import STRATEGIES, ScopedRetriever
@@ -53,7 +54,9 @@ def score_question(q: Question, docs) -> dict:
 
 def evaluate(name: str, retriever: ScopedRetriever, questions: list[Question]) -> dict:
     rows, latencies = [], []
-    for q in questions:
+    for i, q in enumerate(questions, 1):
+        if i % 10 == 0:
+            print(f"  {i}/{len(questions)}", flush=True)
         start = time.perf_counter()
         docs = retriever.retrieve(q.question, q.paper_ids)
         latencies.append(time.perf_counter() - start)
@@ -122,9 +125,15 @@ def main() -> None:
     parser.add_argument("--k-per-paper", type=int, default=8)
     parser.add_argument("--min-per-paper", type=int, default=1)
     parser.add_argument("--tag", default="", help="Suffix for the results file name")
+    parser.add_argument(
+        "--device",
+        default=None,
+        help="ONNX device for rerankers (auto|cuda|cpu); default: settings",
+    )
     args = parser.parse_args()
 
     questions = [q for q in load_questions(args.split) if q.evidence]
+    settings = get_settings()
     store = get_store()
     rerankers = args.reranker or ["Xenova/ms-marco-MiniLM-L-6-v2"]
 
@@ -137,7 +146,7 @@ def main() -> None:
             configs.append((strategy, ScopedRetriever(store, strategy=strategy, **common)))
             continue
         for model in rerankers:
-            reranker = CrossEncoderReranker(model)
+            reranker = CrossEncoderReranker(model, device=args.device or settings.onnx_device)
             for kc in args.k_candidates:
                 name = f"hybrid_rerank[{model.split('/')[-1]}, k_cand={kc}]"
                 configs.append(
@@ -149,24 +158,26 @@ def main() -> None:
                     )
                 )
 
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    base = RESULTS / f"retrieval_{args.split}_{stamp}{'_' + args.tag if args.tag else ''}"
+
     results = []
     for name, retriever in configs:
         print(f"Evaluating {name} on {len(questions)} questions ...", flush=True)
-        results.append(evaluate(name, retriever, questions))
-        r = results[-1]
+        r = evaluate(name, retriever, questions)
+        r["reranker_device"] = getattr(retriever.reranker, "provider", None)
+        results.append(r)
         print(
             f"  R@5={r['recall@5']:.3f} R@10={r['recall@10']:.3f} MRR={r['mrr']:.3f} "
             f"latency={r['latency_s']}s",
             flush=True,
         )
+        # Save after every configuration, so a long sweep never loses finished work.
+        base.with_suffix(".json").write_text(json.dumps(results, indent=2), encoding="utf-8")
+        base.with_suffix(".md").write_text(markdown(results, args.split), encoding="utf-8")
 
-    RESULTS.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    base = RESULTS / f"retrieval_{args.split}_{stamp}{'_' + args.tag if args.tag else ''}"
-    base.with_suffix(".json").write_text(json.dumps(results, indent=2), encoding="utf-8")
-    table = markdown(results, args.split)
-    base.with_suffix(".md").write_text(table, encoding="utf-8")
-    print("\n" + table + f"\nSaved {base.with_suffix('.md').name} and .json")
+    print("\n" + markdown(results, args.split) + f"\nSaved {base.with_suffix('.md').name}")
 
 
 if __name__ == "__main__":

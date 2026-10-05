@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not contain any information about carbon emissions reported for training ColBERT.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "3 COLBERT\n\nColBERT prescribes a simple framework for balancing the quality and cost of neural IR, particularly deep language models like BERT. As introduced earlier, delaying the query–document interaction can facilitate cheap neural re-ranking (i.e., through pre-computation) and even support practical end-to-end neural retrieval (i.e., through pruning via vector-similarity search). ColBERT addresses how to do so while still preserving the effectiveness of state-of-the-art models, which condition the bulk of their computations on the joint query–document pair.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Colbert"
+    },
+    {
+      "text": "NSF under CAREER grant CNS-1651570. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 10,
+      "section": "Conclusion"
+    },
+    {
+      "text": "0.15 0.20 0.25 0.30 0.35 0.40\n\nMRR@10\n\n101\n\n102\n\n103\n\n104\n\n105\n\nBM25 doc2query KNRM\n\nDuet\n\nDeepCT\n\nfT+ConvKNRM\n\ndocTTTTTquery\n\nBERT-base\n\nBERT-large\n\nColBERT (re-rank)\n\nColBERT (full retrieval)\n\nBag-of-Words (BoW) Model BoW Model with NLU Augmentation Neural Matching Model Deep Language Model ColBERT (ours)\n\nFigure 1: Effectiveness (MRR@10) versus Mean Qery Latency (log-scale) for a number of representative ranking models on MS MARCO Ranking [24]. Te figure also shows ColBERT. Neural re-rankers run on top of the official BM25 top-1000 results and use a Tesla V100 GPU. Methodology and detailed results are in §4.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 1,
+      "section": "Introduction"
+    },
+    {
+      "text": "4.1.2 Implementation. Our ColBERT models are implemented using Python 3 and PyTorch 1. We use the popular transformers5\n\nlibrary for the pre-trained BERT model. Similar to [25], we fine-tune all ColBERT models with learning rate 3 × 10−6 with a batch size 32. We fix the number of embeddings per query at Nq = 32. We set our ColBERT embedding dimension m to be 128; §4.5 demonstrates ColBERT’s robustness to a wide range of embedding dimensions.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 6,
+      "section": "Method"
+    },
+    {
+      "text": "3.1 Architecture\n\nFigure 3 depicts the general architecture of ColBERT, which comprises: (a) a query encoder fQ, (b) a document encoder fD, and (c) the late interaction mechanism. Given a query q and document d,\n\nfQ encodes q into a bag of fixed-size embeddings Eq while fD encodes d into another bag Ed. Crucially, each embeddings in Eq and Ed is contextualized based on the other terms in q or d, respectively. We describe our BERT-based encoders in §3.2.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 4,
+      "section": "Architecture"
+    },
+    {
+      "text": "We report the competition’s official metric, namely MRR@10, on the validation set (Dev) and the evaluation set (Eval). We also report the re-ranking latency, which we measure using a single Tesla V100 GPU, and the FLOPs per query for each neural ranking model. For ColBERT, our reported latency subsumes the entire computation from gathering the document representations, moving them to the GPU, tokenizing then encoding the query, and applying late interaction to compute document scores. For the baselines, we measure the scoring computations on the GPU and exclude the CPU-based text preprocessing (similar to [9]). In principle, the baselines can pre-compute the majority of this preprocessing (e.g., document tokenization) offline and parallelize the rest across\n\ndocuments online, leaving only a negligible cost. We estimate the FLOPs per query of each model using the torchprofile6 library.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    }
+  ]
+}

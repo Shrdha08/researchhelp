@@ -1,0 +1,42 @@
+{
+  "answer": "**SELF‑RAG**  \nSELF‑RAG decides whether to invoke the retriever during inference by generating a special *retrieval token*. When the model outputs this token it calls the retriever on demand (Step 1) and only then proceeds to process the retrieved passages [​S3​].\n\n**RAG (Retrieval‑Augmented Generation)**  \nStandard RAG does not make an explicit “when‑to‑retrieve” decision; it always applies its retriever \\(p_{\\eta}(z|x)\\) to the input sequence \\(x\\) and obtains the top‑K passages before generation [​S1​].",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "2 Methods\n\nWe explore RAG models, which use the input sequence x to retrieve text documents z and use them as additional context when generating the target sequence y. As shown in Figure 1, our models leverage two components: (i) a retriever pη(z|x) with parameters η that returns (top-K truncated) distributions over text passages given a query x and (ii) a generator pθ(yi|x, z, y1:i−1) parametrized\n\n1Code to run experiments with RAG has been open-sourced as part of the HuggingFace Transformers Library [66] and can be found at https://github.com/huggingface/transformers/blob/master/ examples/rag/. An interactive demo of RAG models can be found at https://huggingface.co/rag/",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 2,
+      "section": "Method"
+    },
+    {
+      "text": "Type Input Output Definitions\n\nRetrieve x / x, y {yes, no, continue} Decides when to retrieve with R ISREL x, d {relevant, irrelevant} d provides useful information to solve x. ISSUP x, d, y {fully supported, partially supported, no support}\n\nAll of the verification-worthy statement in y is supported by d. ISUSE x, y {5, 4, 3, 2, 1} y is a useful response to x.\n\nTable 1: Four types of reflection tokens used in SELF-RAG. Each type uses several tokens to represent its output values. The bottom three rows are three types of Critique tokens, and the bold text indicates the most desirable critique tokens. x, y, d indicate input, output, and a relevant passage, respectively.\n\nAlgorithm 1 SELF-RAG Inference\n\nRequire: Generator LM M, Retriever R, Large-scale passage collections {d1, . . . , dN}",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 4,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "If so, it outputs a retrieval token that calls a retriever model on demand (Step 1). Subsequently, SELF-RAG concurrently processes multiple retrieved passages, evaluating their relevance and then generating corresponding task outputs (Step 2). It then generates critique tokens to criticize its own output and choose best one (Step 3) in terms of factuality and overall quality. This process differs from conventional RAG (Figure 1 left), which",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 1,
+      "section": "Introduction"
+    },
+    {
+      "text": "FEVER [56] requires classifying whether a natural language claim is supported or refuted by Wikipedia, or whether there is not enough information to decide. The task requires retrieving evidence from Wikipedia relating to the claim and then reasoning over this evidence to classify whether the claim is true, false, or unverifiable from Wikipedia alone. FEVER is a retrieval problem coupled with an challenging entailment reasoning task. It also provides an appropriate testbed for exploring the RAG models’ ability to handle classification rather than generation. We map FEVER class labels (supports, refutes, or not enough info) to single output tokens and directly train with claim-class pairs. Crucially, unlike most other approaches to FEVER, we do not use supervision on retrieved evidence. In many real-world applications, retrieval supervision signals aren’t available, and models that do not require such supervision will be applicable to a wider range of tasks.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Fact Verification"
+    },
+    {
+      "text": "Effect of Retrieving more documents Models are trained with either 5 or 10 retrieved latent documents, and we do not observe significant differences in performance between them. We have the flexibility to adjust the number of retrieved documents at test time, which can affect performance and runtime. Figure 3 (left) shows that retrieving more documents at test time monotonically improves Open-domain QA results for RAG-Sequence, but performance peaks for RAG-Token at 10 retrieved documents. Figure 3 (right) shows that retrieving more documents leads to higher Rouge-L for RAG-Token at the expense of Bleu-1, but the effect is less pronounced for RAG-Sequence.\n\n10 20 30 40 50 K Retrieved Docs\n\n39\n\n40\n\n41\n\n42\n\n43\n\n44\n\nRAG-Tok RAG-Seq\n\n10 20 30 40 50 K Retrieved Docs\n\n40\n\n50\n\n60\n\n70\n\n80\n\nRAG-Tok RAG-Seq Fixed DPR BM25\n\n10 20 30 40 50 K Retrieved Docs\n\n48\n\n50\n\n52\n\n54\n\n56\n\nRAG-Tok R-L RAG-Tok B-1 RAG-Seq R-L RAG-Seq B-1",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 8,
+      "section": "Additional Results"
+    },
+    {
+      "text": "2.1 Models\n\nRAG-Sequence Model The RAG-Sequence model uses the same retrieved document to generate the complete sequence. Technically, it treats the retrieved document as a single latent variable that is marginalized to get the seq2seq probability p(y|x) via a top-K approximation. Concretely, the top K documents are retrieved using the retriever, and the generator produces the output sequence probability for each document, which are then marginalized,\n\npRAG-Sequence(y|x) ≈\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)pθ(y|x, z) =\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)\n\nN Y\n\ni\n\npθ(yi|x, z, y1:i−1)",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 3,
+      "section": "Models"
+    }
+  ]
+}

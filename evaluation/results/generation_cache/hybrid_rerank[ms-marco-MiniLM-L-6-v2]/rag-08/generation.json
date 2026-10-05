@@ -1,0 +1,88 @@
+{
+  "answer": "RAG is evaluated on several knowledge‑intensive tasks:\n\n* **Open‑domain Question Answering** – the paper reports results on four open‑domain QA benchmarks and compares RAG to prior state‑of‑the‑art QA systems[S2].  \n* **Abstractive Question Answering** – RAG’s ability to generate free‑form answers is tested on the MSMARCO NLG v2.1 dataset[S4].  \n* **Jeopardy Question Generation** – a non‑QA generation task in which RAG must produce Jeopardy‑style questions conditioned on answer entities[S3][S5].  \n\nThe experiments section also notes that RAG is run on “a wide range of knowledge‑intensive tasks,” but the excerpts only provide details for the three tasks listed above[S6].",
+  "citations": [
+    {
+      "source_id": "S2",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 5,
+      "section": "Open-domain Question Answering",
+      "chunk_id": "23e3249e9a1e7541:p5:c5",
+      "snippet": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 4,
+      "section": "Abstractive Question Answering",
+      "chunk_id": "23e3249e9a1e7541:p4:c7",
+      "snippet": "3.2 Abstractive Question Answering\n\nRAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting, we use the MSMARCO NLG task v2.1 [43]. The task consists of ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 5,
+      "section": "Jeopardy Question Generation",
+      "chunk_id": "23e3249e9a1e7541:p5:c1",
+      "snippet": "3.3 Jeopardy Question Generation\n\nTo evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question generation. Rather than use questions from standard open-domain QA tasks, which typically consist of short, simple questions, we propose the more demanding task of generating ..."
+    },
+    {
+      "source_id": "S5",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 6,
+      "section": "Jeopardy Question Generation",
+      "chunk_id": "23e3249e9a1e7541:p6:c3",
+      "snippet": "4.3 Jeopardy Question Generation\n\nTable 2 shows that RAG-Token performs better than RAG-Sequence on Jeopardy question generation, with both models outperforming BART on Q-BLEU-1. 4 shows human evaluation results, over 452 pairs of generations from BART and RAG-Token. Evaluators indicated that BART ..."
+    },
+    {
+      "source_id": "S6",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_id": "23e3249e9a1e7541:p4:c4",
+      "snippet": "3 Experiments\n\nWe experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for our non-parametric knowledge source. Following Lee et al. [31] and Karpukhin et al. [26], we use the December 2018 dump. Each Wikipedia article is split into ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever. We compare two RAG formulations, one which conditions on the same retrieved passages across the whole generated sequence, and another which can use different passages per token. We fine-tune and evaluate our models on a wide range of knowledgeintensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-specific retrieve-and-extract architectures. For language generation tasks, we find that RAG models generate more specific, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 1,
+      "section": "Abstract"
+    },
+    {
+      "text": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) approaches and the performance of \"open-book\" retrieval-based approaches. Unlike REALM and T5+SSM, RAG enjoys strong results without expensive, specialized “salient span masking” pre-training [20]. It is worth noting that RAG’s retriever is initialized using DPR’s retriever, which uses retrieval supervision on Natural Questions and TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “crossencoder” to re-rank documents, along with an extractive reader. RAG demonstrates that neither a re-ranker nor extractive reader is necessary for state-of-the-art performance.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Open-domain Question Answering"
+    },
+    {
+      "text": "3.3 Jeopardy Question Generation\n\nTo evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question generation. Rather than use questions from standard open-domain QA tasks, which typically consist of short, simple questions, we propose the more demanding task of generating Jeopardy questions. Jeopardy is an unusual format that consists of trying to guess an entity from a fact about that entity. For example, “The World Cup” is the answer to the question “In 1986 Mexico scored as the first country to host this international sports competition twice.” As Jeopardy questions are precise, factual statements, generating Jeopardy questions conditioned on their answer entities constitutes a challenging knowledge-intensive generation task.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Jeopardy Question Generation"
+    },
+    {
+      "text": "3.2 Abstractive Question Answering\n\nRAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting, we use the MSMARCO NLG task v2.1 [43]. The task consists of questions, ten gold passages retrieved from a search engine for each question, and a full sentence answer annotated from the retrieved passages. We do not use the supplied passages, only the questions and answers, to treat",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 4,
+      "section": "Abstractive Question Answering"
+    },
+    {
+      "text": "4.3 Jeopardy Question Generation\n\nTable 2 shows that RAG-Token performs better than RAG-Sequence on Jeopardy question generation, with both models outperforming BART on Q-BLEU-1. 4 shows human evaluation results, over 452 pairs of generations from BART and RAG-Token. Evaluators indicated that BART was more factual than RAG in only 7.1% of cases, while RAG was more factual in 42.7% of cases, and both RAG and BART were factual in a further 17% of cases, clearly demonstrating the effectiveness of RAG on the task over a state-of-the-art generation model. Evaluators also find RAG generations to be more specific by a large margin. Table 3 shows typical generations from each model.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 6,
+      "section": "Jeopardy Question Generation"
+    },
+    {
+      "text": "3 Experiments\n\nWe experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for our non-parametric knowledge source. Following Lee et al. [31] and Karpukhin et al. [26], we use the December 2018 dump. Each Wikipedia article is split into disjoint 100-word chunks, to make a total of 21M documents. We use the document encoder to compute an embedding for each document, and build a single MIPS index using FAISS [23] with a Hierarchical Navigable Small World approximation for fast retrieval [37]. During training, we retrieve the top k documents for each query. We consider k ∈{5, 10} for training and set k for test time using dev data. We now discuss experimental details for each task.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 4,
+      "section": "Experiments"
+    }
+  ]
+}

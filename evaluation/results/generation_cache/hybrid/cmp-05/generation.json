@@ -1,0 +1,61 @@
+{
+  "answer": "**Dense Passage Retrieval (DPR)**  \n- Training batch size: 128 [S1]  \n- Learning rate: 10⁻⁵ [S1]\n\n**Fusion‑in‑Decoder (generative model)**  \n- Training batch size: 64 [S2]  \n- Learning rate: 10⁻⁴ [S2]",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_id": "3e67fc1a9977715a:p5:c1",
+      "snippet": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_id": "f1ee7e927c3fb31b:p4:c1",
+      "snippet": "Evaluation. Predicted answers are evaluated with the standard exact match metric (EM), as introduced by Rajpurkar et al. (2016). A generated answer is considered correct if it matches any answer of the list of acceptable answers after normalization. This normalization step consists in lowercasing ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "Evaluation. Predicted answers are evaluated with the standard exact match metric (EM), as introduced by Rajpurkar et al. (2016). A generated answer is considered correct if it matches any answer of the list of acceptable answers after normalization. This normalization step consists in lowercasing and removing articles, punctuation and duplicated whitespace.\n\nTechnical details. We initialize our models with the pretrained T5 models (Raffel et al., 2019), available in the HuggingFace Transformers library.4 We consider two model sizes, base and large, containing respectively 220M and 770M parameters. We fine-tune the models on each dataset independently, using Adam (Kingma and Ba, 2014) with a constant learning rate of 10−4 and a dropout rate of 10%. We train the model for 10k gradient steps, with a batch size of 64, using 64 Tesla V100 32Gb. We evaluate models every 500 steps and select the",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    },
+    {
+      "text": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support passages, we consider two methods: BM25 (Robertson et al., 1995) and DPR (Karpukhin et al., 2020). In BM25, passages are represented as bag of words, and the ranking function is based on term and inverse document frequencies. We use the implementation from Apache Lucene1 with default parameters, and tokenize questions and passages with SpaCy.2 In DPR, passages and questions are represented as dense vector representations, computed using two BERT networks. The ranking function is the dot product between the query and passage representations. Retrieval is performed using approximate nearest neighbors with the FAISS library.3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "By processing passages independently in the encoder, but jointly in the decoder, this method differs from Min et al. (2020) and Lewis et al. (2020). Processing passages independently in the encoder allows to scale to large number of contexts, as it only performs self attention over one context at a time. This means that the computation time of the model grows linearly with the number of passages, instead of quadratically. On the other hand, processing passages jointly in the decoder allows to better aggregate evidence from multiple passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Question + Passage 1 encoder\n\nQuestion + Passage 2 encoder\n\nQuestion + Passage N encoder\n\ndecoder Answer concat ...\n\nFigure 2: Architecture of the Fusion-in-Decoder method.\n\nrepresentations. Then, a sequence-to-sequence model generates the answer, taking as input the retrieved passages in addition to the question. While conceptually simple, this method sets new state-ofthe-art results on the TriviaQA and NaturalQuestions benchmarks. In particular, we show that the performance of our method significantly improves when the number of retrieved passages increases. We believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "from the i-th passage as Pstart,i(s) × Pend,i(t), and a passage selection score of the i-th passage as Pselected(i).\n\nDuring training, we sample one positive and ̃m−1 negative passages from the top 100 passages returned by the retrieval system (BM25 or DPR) for each question. ̃m is a hyper-parameter and we use ̃m = 24 in all the experiments. The training objective is to maximize the marginal log-likelihood of all the correct answer spans in the positive passage (the answer string may appear multiple times in one passage), combined with the log-likelihood of the positive passage being selected. We use the batch size of 16 for large (NQ, TriviaQA, SQuAD) and 4 for small (TREC, WQ) datasets, and tune k on the development set. For experiments on small datasets under the Multi setting, in which using other datasets is allowed, we fine-tune the reader trained on Natural Questions to the target dataset. All experiments were done on eight 32GB GPUs.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 7,
+      "section": "End-to-end QA System"
+    }
+  ]
+}

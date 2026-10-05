@@ -1,0 +1,70 @@
+{
+  "answer": "Retro yields a performance gain across all of the model scales examined in the paper. Specifically, the authors report that Retro consistently outperforms the baseline **for models ranging from 150 million up to 7 billion non‑embedding parameters**[S2][S3][S5].",
+  "citations": [
+    {
+      "source_id": "S2",
+      "paper_id": "1b3e89b589b73d51",
+      "paper_title": "Improving language models by retrieving from trillions of tokens",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_id": "1b3e89b589b73d51:p2:c1",
+      "snippet": "• We introduce Retro, a retrieval-enhanced autoregressive language model (§2.2). We use a chunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity linear in the amount of retrieved data. We show that retrieving based on a pre-trained frozen Bert model (§2.3) ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "1b3e89b589b73d51",
+      "paper_title": "Improving language models by retrieving from trillions of tokens",
+      "page": 11,
+      "section": "Language modelling",
+      "chunk_id": "1b3e89b589b73d51:p11:c2",
+      "snippet": "Model scaling. In Fig. 1(left) and Fig. 3 we show the language modelling performance as we scale models from 150 million to 7 billion (non-embedding) parameters. We see that on all datasets, Retro outperforms the baseline at all model sizes. Furthermore, we observe that improvements do not diminish ..."
+    },
+    {
+      "source_id": "S5",
+      "paper_id": "1b3e89b589b73d51",
+      "paper_title": "Improving language models by retrieving from trillions of tokens",
+      "page": 16,
+      "section": "Conclusion",
+      "chunk_id": "1b3e89b589b73d51:p16:c0",
+      "snippet": "gains do not diminish for models with up to at least 7B parameters, and correspond to non-retrieval models with 10× more parameters on certain datasets. On Wikitext103 and the Pile, Retro outperforms previous models trained on large scale datasets. We also show that Retro is competitive on ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "200 400 800 1600 7500 Number of Non-Embedding Params (M)\n\n0.7 0.8\n\n0.9 1.0\n\n172M 425M 1.5B 7.5B Baseline RETRO [OFF] RETRO [ON]\n\n0 1 10 100 1000 10000 Retrieval dataset (B Tokens)\n\n0.7 0.8\n\n0.9 1.0\n\n0 1 3 5 10 30 50 100 Number of neighbors\n\n0.7 0.8\n\n0.9 1.0\n\nFigure 1 | Scaling of Retro. The performance gain of our retrieval models remains constant with model scale (left), and is comparable to multiplying the parameteric model size by ∼10×. The gain increases with the size of the retrieval database (middle) and the number of retrieved neighbours (right) on the C4 validation set, when using up to 40 neighbours. Past this, performance begins to\n\ndegrade, perhaps due to the reduced quality. At evaluation Retro can be used without retrieval data (Retro[OFF]), bringing limited performance degradation compared to baseline transformers.\n\ncontributions are the following.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "• We introduce Retro, a retrieval-enhanced autoregressive language model (§2.2). We use a chunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity linear in the amount of retrieved data. We show that retrieving based on a pre-trained frozen Bert model (§2.3) works at scale, removing the need for training and updating a retriever network. • We show that our method scales well with model size and database size (Fig. 1): Retro provides a constant gain for models ranging from 150M to 7B parameters, and Retro can be improved at evaluation time by increasing the database size and the number of retrieved neighbours. Our largest model obtains state-of-the-art results on a range of downstream evaluation datasets including Wikitext103 (Merity et al., 2017) and the Pile (Gao et al., 2020) (§4). We show that Retro can be fine-tuned to achieve competitive performance on downstream tasks such as question answering (§4.3).",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Model scaling. In Fig. 1(left) and Fig. 3 we show the language modelling performance as we scale models from 150 million to 7 billion (non-embedding) parameters. We see that on all datasets, Retro outperforms the baseline at all model sizes. Furthermore, we observe that improvements do not diminish as we scale the models. The performance is dataset dependent, with the largest gains on Wikitext103 and C4. Wikipedia articles and other web pages are similar to Wikitext103 documents,\n\neven if not exact copies (§4.4), we thus obtain dramatic improvements on Wikitext103 as our retrieval model is able to directly exploit these overlaps. The smallest gains are for Curation Corpus, where Retro only slightly outperforms the baseline. This is expected as Curation Corpus summaries are designed to only contain information from the source article and are not included in our retrieval database. On our “future” Wikipedia September 2021 dataset, we also observe consistent gains for all model sizes.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 11,
+      "section": "Language modelling"
+    },
+    {
+      "text": "7.5B Retro model, Jurassic-1 and Gopher. Jurassic-1 outperforms the baseline on all datasets except for books, likely due to the inclusion of books in our training data. Gopher and Retro outperform the baseline on all test sets. Overall, Retro 7.5B outperforms Jurassic-1 and Gopher on a majority of the test sets. On the dm_mathematics and ubuntu_irc subsets, our Retro model does not outperform our 7B baseline and underperforms Jurassic-1. We hypothesise that the retrieved neighbours on these datasets are not helpful, due to a combination of what is in our retrieval dataset and the efficacy of the nearest-neighbour search.\n\nWikitext103. To validate our approach in a controlled setting, we compare our method with kNN-LM (Khandelwal et al., 2020) on the Wikitext103 dataset in Table 4. We train a baseline transformer",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 12,
+      "section": "Language modelling"
+    },
+    {
+      "text": "gains do not diminish for models with up to at least 7B parameters, and correspond to non-retrieval models with 10× more parameters on certain datasets. On Wikitext103 and the Pile, Retro outperforms previous models trained on large scale datasets. We also show that Retro is competitive on retrieval-intensive downstream tasks such as question answering.\n\nRetro models are flexible and can be used without retrieval at evaluation and still achieve comparable performance to baseline models. Conversely, baseline models can be rapidly fine-tuned into Retro models to obtain nearly the same performance as if trained from scratch. Careful analysis shows that only a modest fraction of the gains obtained by Retro are due to test set leakage. In general, we caution for such leakage in large-scale language datasets and suggest further work in better understanding the role of test set leakage in the performance of large-scale language models.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 16,
+      "section": "Conclusion"
+    },
+    {
+      "text": "4.2. Retro-fitting baseline models\n\nWe extend baseline models into Retro models by freezing the pre-trained weights and training\n\nonly chunked cross-attention and neighbour encoder parameters (less than 10% of weights for the 7B model) in Fig. 5. This offers an efficient alternative path to enhance transformers with retrieval, requiring only 6 million sequences (3% of the pre-training sequences that we used). Additionally, by only training the new weights we ensure that when evaluated without retrieval, the original model performance is exactly maintained. Retrofitting models quickly surpasses the performance of baseline models and even achieves performance close to that of Retro models trained from scratch. The experiment hyperparameters are given in §C.3.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 13,
+      "section": "Retro-fitting baseline models"
+    }
+  ]
+}

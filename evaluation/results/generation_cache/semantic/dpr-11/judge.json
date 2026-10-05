@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "BM25 achieves higher top-k accuracy than DPR on SQuAD.",
+      "supported": true
+    },
+    {
+      "claim": "DPR performs consistently better than BM25 on all datasets except SQuAD.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "On which dataset does BM25 outperform DPR?",
+    "Which dataset is the exception where DPR does not outperform BM25?",
+    "According to Table 2, where does BM25 beat DPR?"
+  ],
+  "verdict": "partial",
+  "reason": "The system correctly identifies SQuAD as the dataset where BM25 outperforms DPR but fails to provide the explanation given by the authors (bias from a small set of Wikipedia documents), instead claiming the explanation is missing.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true
+  ]
+}

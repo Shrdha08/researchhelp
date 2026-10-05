@@ -1,0 +1,23 @@
+{
+  "claims": [
+    {
+      "claim": "The provided excerpts do not contain information about Retro's GLUE performance.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is Retro's score on the GLUE benchmark?",
+    "Does the text report Retro's GLUE benchmark results?",
+    "Can you find Retro's GLUE score in the provided context?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the retrieved context does not contain information regarding Retro's performance on the GLUE benchmark, which aligns with the reference answer stating it is not reported.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

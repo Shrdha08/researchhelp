@@ -1,0 +1,35 @@
+{
+  "claims": [
+    {
+      "claim": "Web-search evaluation uses TREC DL19.",
+      "supported": true
+    },
+    {
+      "claim": "Web-search evaluation uses TREC DL20.",
+      "supported": true
+    },
+    {
+      "claim": "TREC DL19 and DL20 are TREC deep-learning query collections.",
+      "supported": true
+    },
+    {
+      "claim": "The paper reports HyDE's retrieval results on these query sets.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Which specific TREC datasets are used for web search evaluation in the HyDE paper?",
+    "What web search query sets does HyDE use for evaluation?",
+    "Identify the datasets used to evaluate HyDE on web search tasks."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies TREC DL19 and DL20 as the web search query sets used to evaluate HyDE, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    true,
+    true,
+    false
+  ]
+}

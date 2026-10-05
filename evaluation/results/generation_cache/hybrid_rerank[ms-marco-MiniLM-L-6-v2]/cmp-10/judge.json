@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "SELF-RAG predicts a Retrieve=Yes token to decide retrieval.",
+      "supported": true
+    },
+    {
+      "claim": "Retrieval triggers if the token probability exceeds a threshold.",
+      "supported": true
+    },
+    {
+      "claim": "The decision is made on-the-fly during generation.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does Self-RAG determine when to retrieve documents?",
+    "What is the difference between Self-RAG and standard RAG regarding retrieval timing?",
+    "Does Self-RAG always retrieve documents for every input?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly explains Self-RAG's on-demand retrieval mechanism but fails to state that standard RAG always retrieves, instead claiming the provided context does not specify this, which contradicts the ground truth and the explicit statement in chunk [4] that common RAG approaches retrieve indiscriminately.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+  ]
+}

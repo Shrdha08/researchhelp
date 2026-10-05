@@ -1,0 +1,52 @@
+{
+  "answer": "HyDE is evaluated on four non‑English languages: **Swahili, Korean, Japanese, and Bengali**[S1].",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 4,
+      "section": "Setup",
+      "chunk_id": "dc0ae3c5584ed146:p4:c3",
+      "snippet": "4.1 Setup\n\nImplementation We implement HyDE using InstructGPT, a GPT-3 model from the instruct series (text-davinci-003; Ouyang et al. (2022)) and Contriever models (Izacard et al., 2021). We\n\nsample from InstructGPT using the OpenAI playground default temperature of 0.7 for open-ended generations. ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "4.1 Setup\n\nImplementation We implement HyDE using InstructGPT, a GPT-3 model from the instruct series (text-davinci-003; Ouyang et al. (2022)) and Contriever models (Izacard et al., 2021). We\n\nsample from InstructGPT using the OpenAI playground default temperature of 0.7 for open-ended generations. We use the English-only Contriever model for English retrieval tasks and multilingual mContriever for non-English tasks. We conducted retrieval experiments with the Pyserini toolkit (Lin et al., 2021a).\n\nDatasets We consider web search query sets TREC DL19 (Craswell et al., 2020a) and DL20 (Craswell et al., 2020b); they are based on the MS-MARCO dataset (Bajaj et al., 2016). We also use a diverse collection of 6 low-resource datasets from the BEIR dataset (Thakur et al., 2021). For non-English retrieval, we consider Swahili, Korean, Japanese, and Bengali from the Mr.Tydi dataset (Zhang et al., 2021).",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 4,
+      "section": "Setup"
+    },
+    {
+      "text": "4.4 Multilingual Retrieval\n\nMultilingual setup poses several additional challenges to HyDE. The small-sized contrastive encoder gets saturated as the number of languages scales (Conneau et al., 2020; Izacard et al., 2021). Meanwhile, our generative LLM faces an opposite issue: with languages of not as high resource as English or French, the high capacity LLM can get under-trained (Hoffmann et al., 2022).\n\nNevertheless, in Table 3, we still find HyDE able to improve the mContriever model. It can outperform non-Contriever models fine-tuned on and transferred from MS-MARCO. On the other hand, we do observe some margins between HyDE and fine-tuned mContrieverFT. Since HyDE and mContrieverFT use similar contrastive encoders, we hypothesize this is because the non-English languages we considered are under-trained in both pre-training and instruction learning stages.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 6,
+      "section": "Multilingual Retrieval"
+    },
+    {
+      "text": "HyDE appears unsupervised. No model is trained in HyDE: both the generative model and the contrastive encoder remain intact. Supervision signals were only involved in instruction learning of our backbone LLM.\n\nIn our experiments, we show HyDE using Instruct- GPT (Ouyang et al., 2022) and Contriever (Izacard et al., 2021) as backbone models significantly outperforms the previous state-of-the-art Contrieveronly zero-shot no-relevance system on 11 queries\n\nsets, covering tasks like Web Search, Question Answering, Fact Verification and languages like Swahili, Korean, Japanese.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "ment. Dense retrievers consider vector similarities while self-attentive re-rankers regression scores. In comparison, the concept of relevance in HyDE is captured by an NLG model and the language generation process. We demonstrate in many cases, HyDE can be as effective as dense retrievers that learn to model numerical relevance scores. So, is numerical relevance just a statistical artifact of language understanding? Will a weak retriever theoretically suffice as the NLU & NLG models rapidly become stronger? Rushing to conclusions is not smart; more works need to be done to get answers. With this paper, we just want to raise these questions.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 7,
+      "section": "Conclusion"
+    },
+    {
+      "text": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around 10% lower map and ndcg@10 than ContrieverFT and similar recall@1k. The ANCE model shows better ndcg@10 numbers than HyDE but lower recall, suggesting it may be biased to a subset of queries and/or relevant documents.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    },
+    {
+      "text": "5 Analysis\n\nThe generative LLM and contrastive encoder make up the backbone of HyDE. In this section, we study the effect of changing their realizations. In particular, we consider smaller language models (LM) and fine-tuned encoders. We conduct our studies on TREC DL19/20.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 6,
+      "section": "Analysis"
+    }
+  ]
+}

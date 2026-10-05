@@ -1,0 +1,23 @@
+{
+  "claims": [
+    {
+      "claim": "RAG was not reported to have been evaluated on languages other than English.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Does the paper evaluate RAG on non-English languages?",
+    "Which languages other than English is RAG tested on?",
+    "Is there any evidence of RAG being evaluated in multilingual settings?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not mention evaluation on non-English languages, aligning with the reference answer.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

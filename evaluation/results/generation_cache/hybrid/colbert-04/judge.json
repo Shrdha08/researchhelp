@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT evaluates performance on MS MARCO using MRR@10.",
+      "supported": true
+    },
+    {
+      "claim": "MRR@10 is the official metric for MS MARCO.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What metric is used to evaluate ColBERT on MS MARCO?",
+    "Which evaluation metric does ColBERT report for the MS MARCO dataset?",
+    "What is the official metric for MS MARCO according to the ColBERT paper?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies MRR@10 as the metric, matching the reference answer and supported by the context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+  ]
+}

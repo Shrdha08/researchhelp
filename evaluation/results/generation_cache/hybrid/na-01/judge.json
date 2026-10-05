@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "questions": [
+    "How much did it cost to train the DPR model?",
+    "What was the total training cost of DPR in US dollars?",
+    "Can you provide the financial cost of training DPR?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about the training cost, which aligns with the reference answer stating it is not in the paper.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

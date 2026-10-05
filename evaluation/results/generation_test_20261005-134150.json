@@ -1,0 +1,987 @@
+{
+  "summary": [
+    {
+      "config": "semantic",
+      "n": 35,
+      "faithfulness": 0.925,
+      "answer_relevance": 0.884,
+      "context_relevance": 0.454,
+      "correctness": 0.724,
+      "refusal_accuracy": 1.0,
+      "n_unanswerable": 6
+    },
+    {
+      "config": "hybrid",
+      "n": 35,
+      "faithfulness": 0.886,
+      "answer_relevance": 0.887,
+      "context_relevance": 0.517,
+      "correctness": 0.707,
+      "refusal_accuracy": 1.0,
+      "n_unanswerable": 6
+    },
+    {
+      "config": "hybrid_rerank[ms-marco-MiniLM-L-6-v2]",
+      "n": 35,
+      "faithfulness": 0.946,
+      "answer_relevance": 0.888,
+      "context_relevance": 0.546,
+      "correctness": 0.793,
+      "refusal_accuracy": 1.0,
+      "n_unanswerable": 6
+    }
+  ],
+  "rows": {
+    "semantic": [
+      {
+        "id": "fid-04",
+        "type": "conceptual",
+        "answer": "Encoding each passage separately means the encoder only performs self‑attention over a single passage at a time, so its computation grows linearly with the number of passages rather than quadratically. This linear‑time cost lets Fusion‑in‑Decoder handle many retrieved passages efficiently. [S1]",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9045706651389599
+      },
+      {
+        "id": "fid-05",
+        "type": "factual",
+        "answer": "**Fusion‑in‑Decoder (FiD) gets more accurate when more passages are retrieved.**  \n\n* The paper reports that, on the development sets, raising the number of retrieved passages from 10 to 100 yields **≈ 6 % higher Exact‑Match on TriviaQA** and **≈ 3.5 % higher Exact‑Match on NaturalQuestions**[S4].  \n\n* The authors also note qualitatively that “the performance of our method significantly improves when the number of retrieved passages increases,” which they interpret as evidence that generative models can combine evidence from many passages better than extractive ones[S2].  \n\nThus, as the number of retrieved passages grows, FiD’s accuracy rises, with the most pronounced gains observed when moving from a small set (≈10 passages) to a larger set (up to 100 passages).",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9601159810059965
+      },
+      {
+        "id": "fid-06",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder claims state‑of‑the‑art performance on the **NaturalQuestions** and **TriviaQA** benchmarks[S3][S6].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9518152882540724
+      },
+      {
+        "id": "fid-07",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder (large) achieves an Exact Match score of **60.6 %** on the NaturalQuestions benchmark[S4]",
+        "correctness": 0.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 0.0,
+        "answer_relevance": 0.9434205266080212
+      },
+      {
+        "id": "fid-09",
+        "type": "factual",
+        "answer": "The BM25 sparse retriever is implemented using Apache Lucene with its default parameters[S1].",
+        "correctness": 0.5,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9051168653941045
+      },
+      {
+        "id": "fid-10",
+        "type": "factual",
+        "answer": "The Fusion‑in‑Decoder models are initialized from pretrained **T5** sequence‑to‑sequence models — specifically the **T5‑base** and **T5‑large** variants. The base model contains **220 M parameters**, and the large model contains **770 M parameters**[S6]. (The architecture can also be built on other pretrained seq‑to‑seq models such as BART, but the experiments in the paper use T5 as the initialization[S3]).",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9118049457440235
+      },
+      {
+        "id": "dpr-02",
+        "type": "factual",
+        "answer": "DPR’s Wikipedia retrieval corpus contains **21,015,324 passages**. These passages were built by taking the English Wikipedia dump (Dec 20 2018), cleaning it with the DrQA preprocessing code to remove tables, infoboxes, lists and disambiguation pages, and then splitting each article into multiple **disjoint 100‑word text blocks**. Each block is treated as a passage and is prefixed with the article’s title and an [SEP] token[S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.913659117259533
+      },
+      {
+        "id": "dpr-06",
+        "type": "conceptual",
+        "answer": "In‑batch negatives are a training trick for the dual‑encoder DPR model in which the passages that appear in the same mini‑batch as a question are reused as negative examples for the other questions in that batch.  \n\nFormally, if a batch contains **B** questions and their associated relevant passages, the model computes a **B × B** similarity matrix **S = Q Pᵀ**. Each diagonal entry (**i = j**) pairs a question with its true passage (a positive example), while every off‑diagonal entry (**i ≠ j**) treats the other **B − 1** passages as negatives for that question. Thus each batch yields **B²** question–passage pairs, providing many negative examples without extra sampling or storage [S4].  \n\nThis approach reuses the negative passages already present in the batch, making training memory‑efficient and increasing the number of training pairs, which has been shown to improve accuracy as batch size grows [S2]. It is the “in‑batch negative” setting described in Section 3.2 of the paper [S5].",
+        "correctness": 1.0,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8895604895963333
+      },
+      {
+        "id": "dpr-08",
+        "type": "factual",
+        "answer": "DPR indexes the passage embeddings with the FAISS library during inference [S4].",
+        "correctness": 0.5,
+        "context_relevance": 0.5,
+        "faithfulness": 0.5,
+        "answer_relevance": 0.872380797309114
+      },
+      {
+        "id": "dpr-09",
+        "type": "factual",
+        "answer": "The DPR experiments were run on a single GPU with 32 GB of memory[S4].",
+        "correctness": 0.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 0.5,
+        "answer_relevance": 0.9259342418489694
+      },
+      {
+        "id": "dpr-11",
+        "type": "factual",
+        "answer": "**Dataset where BM25 beats DPR**  \n- **SQuAD** – Table 2 (excerpt [S6]) reports that, with the exception of SQuAD, DPR “performs consistently better than BM25 on all datasets.” This implies that on SQuAD BM25 achieves higher top‑k accuracy than DPR.\n\n**Explanation given by the authors**  \n- The excerpts do not provide a specific reason why BM25 outperforms DPR on SQuAD. They only note the overall performance pattern (DPR better on all other datasets) without elaborating on the cause for the SQuAD exception.",
+        "correctness": 0.5,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8961126337668084
+      },
+      {
+        "id": "dpr-12",
+        "type": "factual",
+        "answer": "The BM25 implementation used in the DPR experiments employed the following parameters: b = 0.4 (document‑length normalization) and k₁ = 0.9 (term‑frequency scaling)[S5].",
+        "correctness": 1.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.845483171050991
+      },
+      {
+        "id": "rag-04",
+        "type": "factual",
+        "answer": "RAG relies on a dense retriever that is initialized from the DPR (Dense Passage Retrieval) model — the same retriever that DPR trains with supervision on Natural Questions and TriviaQA [S4].",
+        "correctness": 0.5,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8783839139626565
+      },
+      {
+        "id": "rag-08",
+        "type": "factual",
+        "answer": "**Tasks on which RAG is evaluated**\n\n| Paper section | Task(s) evaluated |\n|---|---|\n| **Open‑domain Question Answering** (Section 4.1) | Four open‑domain QA benchmarks (the specific datasets are not named in the excerpt) [S6] |\n| **Fact Verification** (Section 4.4) | FEVER fact‑verification benchmark (3‑way classification) [S4] |\n| **Abstractive Question Answering** (Section 3.2) | MSMARCO NLG task v2.1, which requires generating free‑form answers from questions [S5] |\n\nThe excerpts do not list any other tasks; the “wide range of knowledge‑intensive tasks” mentioned in the Experiments section is not detailed further [S2].",
+        "correctness": 0.5,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8703678676826746
+      },
+      {
+        "id": "realm-03",
+        "type": "factual",
+        "answer": "**REALM’s performance relative to prior methods (as reported in the provided excerpts)**  \n\n| Prior method | Reported advantage of REALM |\n|--------------|-----------------------------|\n| **ORQA** (Lee et al., 2019) | REALM’s improvement over ORQA is attributed solely to its superior pre‑training; the two systems use identical fine‑tuning setups, hyper‑parameters, and training data[S1]. |\n| **Other retrieval‑based systems** (Asai et al., 2019; Min et al., 2019a;b) | Those systems typically retrieve 20–80 documents, whereas REALM achieves the best overall performance while retrieving only **5 documents**[S1]. |\n| **Generative Open‑QA systems based on T5** (Roberts et al., 2020) | The largest T5‑11B model (≈50 × larger than REALM) gains roughly **5 percentage points** in accuracy over smaller T5 variants, yet **REALM outperforms T5‑11B while being 30 × smaller**[S4]. |\n\n**Summary**  \n- REALM beats the directly comparable ORQA system thanks to its pre‑training strategy.  \n- It surpasses other retrieval‑based approaches despite using far fewer retrieved documents (5 vs. 20–80).  \n- Compared with the strongest generative Open‑QA baseline (T5‑11B), REALM achieves higher accuracy even though it is dramatically smaller (30 × less parameters).  \n\nNo explicit numeric accuracy figures are provided in the excerpts, so the answer is limited to the qualitative performance statements above.",
+        "correctness": 0.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.7943958900189454
+      },
+      {
+        "id": "realm-06",
+        "type": "conceptual",
+        "answer": "**Salient span masking** is a masking strategy used during REALM pre‑training to focus the model on examples that require world knowledge. Instead of masking random tokens, the method first identifies “salient” spans—named entities (e.g., “United Kingdom”) detected with a BERT‑based tagger trained on CoNLL‑2003 data, and dates identified via a regular expression. One of these salient spans is then selected and masked within a sentence for the masked language‑modeling task. This approach is shown to significantly outperform other masking strategies in the paper’s experiments[S1].  \n\nThe authors compare this scheme to random token masking (as in BERT) and random span masking (as in SpanBERT), noting that while salient span masking had not been impactful in prior BERT‑style training, it is crucial for REALM because the latent‑variable learning relies heavily on the utility of retrieval and thus needs a consistent learning signal[S2].",
+        "correctness": 0.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "colbert-04",
+        "type": "factual",
+        "answer": "ColBERT evaluates its performance on the MS MARCO passage‑ranking collection using the mean reciprocal rank at depth 10 (MRR@10) as the official metric [S3][S4].",
+        "correctness": 1.0,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9335738663939199
+      },
+      {
+        "id": "colbert-05",
+        "type": "factual",
+        "answer": "ColBERT can index the MS MARCO collection (≈9 M passages) in roughly three hours on a single server with four GPUs[S1][S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8761223686180718
+      },
+      {
+        "id": "hyde-01",
+        "type": "conceptual",
+        "answer": "HyDE tackles zero‑shot dense retrieval by **pivoting through a “hypothetical document”**.  \nGiven a query, it first **instructs an instruction‑following language model (e.g., InstructGPT) to generate a synthetic document** that reflects the relevance patterns of the query, even though the text may contain invented details[S4].  \nNext, an **unsupervised contrastively learned encoder (e.g., Contriever) encodes this generated document into an embedding vector**. This vector defines a neighborhood in the corpus embedding space, and real documents whose embeddings lie nearby are retrieved by vector similarity[S4].  \n\nThus, HyDE performs zero‑shot dense retrieval by coupling a generative LLM (to create a relevance‑rich hypothetical document) with a contrastive encoder (to map that document into the dense retrieval space).",
+        "correctness": 1.0,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8779741408838845
+      },
+      {
+        "id": "hyde-04",
+        "type": "factual",
+        "answer": "The web‑search evaluation of HyDE uses the two TREC Deep Learning test collections:\n\n* **TREC DL19** – the 2019 Deep Learning track query set (defined on MS‑MARCO)  \n* **TREC DL20** – the 2020 Deep Learning track query set (also defined on MS‑MARCO)\n\nThese are the query sets referenced for the web‑search experiments in the paper [S4, S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8779964451679693
+      },
+      {
+        "id": "hyde-05",
+        "type": "factual",
+        "answer": "HyDE is evaluated on four non‑English languages: Swahili, Korean, Japanese, and Bengali [S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8125745464601954
+      },
+      {
+        "id": "hyde-06",
+        "type": "factual",
+        "answer": "On the TREC DL19 web‑search benchmark, HyDE achieves an nDCG@10 of **61.3**, while the unsupervised Contriever baseline attains **44.5** nDCG@10[S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9362871674423381
+      },
+      {
+        "id": "hyde-07",
+        "type": "factual",
+        "answer": "HyDE is evaluated on six low‑resource datasets drawn from the BEIR benchmark[S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9687081312540564
+      },
+      {
+        "id": "selfrag-03",
+        "type": "factual",
+        "answer": "The critic’s supervised data were created automatically with a large language model rather than by hand. For each input‑output pair \\((x, y)\\) in the training set, the authors prompted GPT‑4 to generate a “reflection token” \\(r\\) that evaluates the pair (e.g., the usefulness of retrieved passages) — this token is then stored as \\((x, y, r)\\) in the critic’s training set [​S3​]. The authors note that manual annotation of such reflection tokens is costly, so they rely on a state‑of‑the‑art LLM (GPT‑4) to collect them efficiently [​S1​].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.840416376400774
+      },
+      {
+        "id": "retro-07",
+        "type": "factual",
+        "answer": "**Model sizes that show a performance gain when the retrieval‑augmented Retro architecture is used**\n\n| Paper excerpt | Model sizes mentioned | Reported effect of Retro |\n|---------------|----------------------|--------------------------|\n| **S1** (Figure 1) – scaling study on the C4 validation set | 172 M, 425 M, 1.5 B, **7.5 B** (baseline Transformers) | The gain from Retro remains **constant across these scales** and is comparable to multiplying the parametric model size by ≈10×. |\n| **S5** (Conclusion) | “models with up to at least **7 B** parameters” | Gains **do not diminish** for models up to this size, and on some datasets the gain is equivalent to a non‑retrieval model that is ten times larger. |\n\n**Summary**\n\n- Retro provides a measurable performance improvement for models ranging from **hundreds of millions of parameters (≈172 M)** up through **several billions of parameters (≈7 B–7.5 B)**.  \n- The improvement is roughly constant with model scale in this range, effectively giving smaller models the same performance as a non‑retrieval model that is about ten times larger.  \n\nNo other model sizes are discussed in the provided excerpts.",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.90760751198709
+      },
+      {
+        "id": "cmp-05",
+        "type": "comparison",
+        "answer": "**Dense Passage Retrieval (DPR)**  \n- Training batch size: 128 [S1]  \n- Learning rate: 10⁻⁵ [S1]\n\n**Fusion‑in‑Decoder (FiD)**  \n- The excerpts do not provide any information about the training batch size or learning rate used for the Fusion‑in‑Decoder model.  \n\nThus, only DPR’s batch size and learning rate are specified in the supplied excerpts; the corresponding details for Fusion‑in‑Decoder are not mentioned.",
+        "correctness": 0.5,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.7797800439315224
+      },
+      {
+        "id": "cmp-08",
+        "type": "comparison",
+        "answer": "**ColBERT**  \nColBERT computes relevance by first encoding each query term \\(t_q\\) and each document term \\(t_d\\) into vectors (the sets \\(E_q\\) and \\(E_d\\)). For every query‑term vector \\(v \\in E_q\\) it finds the *maximum* cosine similarity (or squared L2 distance) with any document‑term vector in \\(E_d\\) (the MaxSim operation). The final relevance score is the sum of these maximum similarity values over all query terms [S1].\n\n**Dense Passage Retrieval (DPR)**  \nThe provided excerpts do not describe how DPR computes the relevance between a query and a passage; they only mention that DPR’s retrieval performance is evaluated [S5]. Therefore, the specific relevance‑scoring mechanism for DPR cannot be answered from the given excerpts.",
+        "correctness": 0.5,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.7623816766898632
+      },
+      {
+        "id": "cmp-10",
+        "type": "comparison",
+        "answer": "**SELF‑RAG**\n\n- During inference the model first decodes a **retrieval token**; this token is used to decide whether retrieval is needed for the current input x and the partial generation y<t [​S2​].\n- If the model judges that retrieval is not required, it proceeds as a standard language model and predicts the next output segment.  \n- When retrieval is deemed useful, the model generates the retrieval token, calls the retriever on demand, and then uses additional **critique (reflection) tokens** to evaluate the relevance of the retrieved passages and the factual support of the generated response [​S1​, S2​, S3​].\n\n**Standard RAG**\n\n- Conventional RAG invokes the retriever for every input x, retrieving a fixed set of top‑K passages (i.e., it does not make an on‑the‑fly decision about whether retrieval is needed) [​S6​].\n\n**Comparison**\n\n- SELF‑RAG makes a dynamic, token‑level decision about retrieval based on the model’s own assessment, while traditional RAG always performs retrieval for each query.",
+        "correctness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8771812911080049
+      },
+      {
+        "id": "cmp-12",
+        "type": "comparison",
+        "answer": "**HyDE (Precise Zero‑Shot Dense Retrieval without Relevance Labels)**  \n- Evaluated on the **BEIR benchmark** of low‑resource retrieval tasks (e.g., TREC‑Covid, FiQA, DBPedia, etc.) as shown in Table 2 [S1, S4].  \n- The same benchmark also includes a web‑search setting, but the reported results focus on the BEIR low‑resource datasets [S1].\n\n**ColBERT (Efficient and Effective Passage Search via Contextualized Late Interaction over BERT)**  \n- Evaluated on two passage‑search collections: **MS MARCO** and **TREC CAR** [S2].  \n\n**Comparison**  \n- HyDE’s evaluation is based on a **diverse, multi‑domain BEIR suite** that measures zero‑shot dense retrieval across many topics, whereas ColBERT’s evaluation is limited to **two large‑scale passage‑ranking datasets** (MS MARCO and TREC CAR).  \n- Consequently, HyDE’s benchmarks emphasize **low‑resource, zero‑shot performance**, while ColBERT’s benchmarks focus on **high‑resource, supervised passage‑ranking performance**.",
+        "correctness": 0.5,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 0.8888888888888888,
+        "answer_relevance": 0.8515793978917021
+      },
+      {
+        "id": "na-01",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about the total training cost of DPR in US dollars.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-02",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about Fusion‑in‑Decoder’s performance on the BEIR benchmark. Consequently, I cannot answer that question based on the given material.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-03",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not mention any evaluation of RAG on non‑English languages. Consequently, based on the available information, RAG was not reported to have been evaluated on languages other than English.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-05",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about carbon emissions reported for training ColBERT.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-06",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about Retro’s performance on the GLUE benchmark.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-07",
+        "type": "unanswerable",
+        "answer": "The excerpts do not describe any user‑study that directly measured user satisfaction for either paper.  \n\n* **SELF‑RAG** – The only user‑oriented evaluation reported is a small human evaluation of answer plausibility and support (S&P) on 50 samples from PopQA and Bio, where annotators judged whether the model’s output was reasonable and whether the cited evidence justified the answer [S2]. This evaluation focuses on answer quality rather than overall user satisfaction.  \n\n* **REALM** – The excerpts only discuss benchmark experiments on Open‑QA datasets and do not mention any human or user study [S4].  \n\nTherefore, based on the provided excerpts, neither paper reports a user study measuring user satisfaction.",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": null,
+        "answer_relevance": null
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "fid-04",
+        "type": "conceptual",
+        "answer": "Encoding each passage separately means the encoder’s self‑attention operates on only one passage at a time, so the amount of computation needed for the encoder grows linearly with the number of passages rather than quadratically. This linear growth lets Fusion‑in‑Decoder handle a large number of retrieved contexts efficiently[S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9276987701128833
+      },
+      {
+        "id": "fid-05",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder becomes more accurate when a larger set of passages is retrieved. The paper reports that “the performance of our method significantly improves when the number of retrieved passages increases”[S3].",
+        "correctness": 0.5,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9661997708510791
+      },
+      {
+        "id": "fid-06",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder is reported to achieve state‑of‑the‑art performance on the **NaturalQuestions** and **TriviaQA** benchmarks[S1][S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9596983422385742
+      },
+      {
+        "id": "fid-07",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder (large) achieves an Exact Match score of **60.6 %** on the NaturalQuestions benchmark[S6].",
+        "correctness": 0.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 0.0,
+        "answer_relevance": 0.9207096760091703
+      },
+      {
+        "id": "fid-09",
+        "type": "factual",
+        "answer": "The BM25 sparse retriever is implemented using Apache Lucene (with its default parameters)[S2].",
+        "correctness": 0.5,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8665244854020232
+      },
+      {
+        "id": "fid-10",
+        "type": "factual",
+        "answer": "The Fusion‑in‑Decoder architecture is built on a sequence‑to‑sequence model that is first pretrained on unsupervised data – the authors use either **T5** or **BART** as the starting point [S1].  \nThe version of Fusion‑in‑Decoder evaluated in the paper (the “large” model) contains **approximately 770 million parameters** [S4].",
+        "correctness": 0.5,
+        "context_relevance": 0.5,
+        "faithfulness": 0.8,
+        "answer_relevance": 0.9268833130628372
+      },
+      {
+        "id": "dpr-02",
+        "type": "factual",
+        "answer": "DPR’s Wikipedia retrieval corpus contains **21,015,324 passages**. These passages were built by first cleaning the English Wikipedia dump (Dec 20 2018) with the DrQA preprocessing code to remove semi‑structured elements (tables, infoboxes, lists, disambiguation pages). Each cleaned article was then split into multiple **disjoint 100‑word text blocks**, which serve as the retrieval units, and each block was prefixed with its article title and an [SEP] token [S5].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8716588933961706
+      },
+      {
+        "id": "dpr-06",
+        "type": "conceptual",
+        "answer": "**In‑batch negatives** are a training strategy used for the dual‑encoder DPR model in which the negative passages are taken from the other questions that share the same mini‑batch.  \n\n- For a mini‑batch of size \\(B\\), each question \\(q_i\\) has its own relevant passage \\(p_i\\). The model computes a similarity matrix \\(S = QP^{\\top}\\) of size \\(B \\times B\\) (where each row corresponds to a question and each column to a passage) [S5].  \n- Any pair \\((q_i, p_j)\\) with \\(i \\neq j\\) is treated as a negative example, while the diagonal pair \\((q_i, p_i)\\) is the positive example. Thus each batch yields \\(B(B-1)\\) negative pairs without needing extra sampled negatives [S5].  \n- This “in‑batch negative” approach reuses the passages already present in the batch, effectively increasing the number of training examples and providing a memory‑efficient way to generate negatives [S3].  \n\nIn practice, DPR’s main experiments train with in‑batch negatives (batch size 128) plus one additional BM25 negative per question [S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8845975561135574
+      },
+      {
+        "id": "dpr-08",
+        "type": "factual",
+        "answer": "DPR indexes passage embeddings with the FAISS library during inference [S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8969547496138446
+      },
+      {
+        "id": "dpr-09",
+        "type": "factual",
+        "answer": "The excerpts only state that DPR’s inference was run on a single GPU with 32 GB of memory; no specific GPU model or other hardware details are provided. [S4]",
+        "correctness": 0.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8590686986121863
+      },
+      {
+        "id": "dpr-11",
+        "type": "factual",
+        "answer": "The excerpts do not report any dataset on which BM25 outperforms DPR, nor do they give an explanation for such a case. All cited results indicate that DPR either matches or exceeds BM25 performance.",
+        "correctness": 0.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 0.0,
+        "answer_relevance": 0.8993151630111611
+      },
+      {
+        "id": "dpr-12",
+        "type": "factual",
+        "answer": "The BM25 implementation used in the DPR experiments employed the following parameters: b = 0.4 (document‑length normalization) and k₁ = 0.9 (term‑frequency scaling)[S5].",
+        "correctness": 1.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.844671800568279
+      },
+      {
+        "id": "rag-04",
+        "type": "factual",
+        "answer": "RAG relies on a dense, learned retriever pη(z|x). In the experiments the retriever is initialized from the DPR (Dense Passage Retrieval) model, which was pretrained with retrieval supervision on Natural Questions and TriviaQA [S2]. The paper also compares this dense retriever to a BM25 word‑overlap retriever, showing that the dense version is used by default and yields better performance on most tasks [S3].",
+        "correctness": 0.5,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8895136931722558
+      },
+      {
+        "id": "rag-08",
+        "type": "factual",
+        "answer": "**Tasks on which RAG is evaluated (as reported in the provided excerpts)**  \n\n| Paper excerpt | Task(s) mentioned |\n|---|---|\n| **[S1]** – “Jeopardy Question Generation” | Generation of Jeopardy‑style questions (evaluated with Q‑BLEU‑1 and human judgments). |\n| **[S5]** – “Abstractive Question Answering” | The MSMARCO NLG task v2.1, which requires free‑form sentence answers to questions. |\n| **[S6]** – “Open‑domain Question Answering” | Four open‑domain QA benchmarks (including the T5‑comparable split of TriviaQA, referred to as “TQA”). |\n| **[S3]** – “Experiments” | A “wide range of knowledge‑intensive tasks” using a single Wikipedia dump, indicating that the above tasks are part of a broader experimental suite. |\n\n**Summary**  \nRAG is evaluated on (1) Jeopardy‑style question generation, (2) abstractive QA using the MSMARCO NLG dataset, and (3) several open‑domain QA benchmarks (four tasks, one of which is the TriviaQA/TQA split). These evaluations cover both generation‑focused and retrieval‑focused knowledge‑intensive NLP tasks.",
+        "correctness": 0.5,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8542247593391696
+      },
+      {
+        "id": "realm-03",
+        "type": "factual",
+        "answer": "REALM achieves new state‑of‑the‑art results on the three Open‑QA benchmarks, surpassing all previous systems by **4 % to 16 % absolute accuracy**[S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8658539609520002
+      },
+      {
+        "id": "realm-06",
+        "type": "conceptual",
+        "answer": "Salient span masking is a pre‑training masking strategy used in REALM to focus the masked language‑modeling task on tokens that require world knowledge. Instead of masking random tokens or random spans, the method first identifies **named‑entity spans** (using a BERT‑based tagger trained on CoNLL‑2003) and **date spans** (using a regular expression). One of these identified “salient” spans—e.g., “United Kingdom” or “July 1969”—is then selected and masked within the sentence for the MLM objective. This approach is intended to create training examples that depend on external knowledge, and the authors report that it yields substantially better performance than other masking schemes[S1].",
+        "correctness": 0.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "colbert-04",
+        "type": "factual",
+        "answer": "ColBERT evaluates its performance on the MS MARCO dataset using **MRR@10** as the official metric [S4].",
+        "correctness": 1.0,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9233512002703296
+      },
+      {
+        "id": "colbert-05",
+        "type": "factual",
+        "answer": "ColBERT can index the MS MARCO collection (≈9 M passages) in roughly three hours using a single server with four GPUs[S1][S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8947826839947018
+      },
+      {
+        "id": "hyde-01",
+        "type": "conceptual",
+        "answer": "HyDE tackles zero‑shot dense retrieval by **pivoting through a generated “hypothetical document**”.  \n1. For a given query, an instruction‑following language model (e.g., InstructGPT) is prompted in a zero‑shot manner to **produce a hypothetical document** that reflects the relevance pattern of the query, even though the document is artificial and may contain inaccurate details[S2].  \n2. This hypothetical document is then fed to an **unsupervised contrastively learned encoder** (e.g., Contriever) to obtain its embedding vector[S2].  \n3. The resulting embedding defines a **neighborhood in the corpus embedding space**, and real documents whose embeddings are close (by inner‑product similarity) are retrieved as the answer to the original query[S2].  \n\nNo model is retrained in this pipeline; the generative LLM and the contrastive encoder remain unchanged, and the only supervision comes from the instruction‑learning of the backbone LLM[S3].",
+        "correctness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8692147421422949
+      },
+      {
+        "id": "hyde-04",
+        "type": "factual",
+        "answer": "The web‑search evaluation uses the two TREC deep‑learning query collections:\n\n* **TREC DL19** – the TREC DL 2019 query set (based on MS‑MARCO)  \n* **TREC DL20** – the TREC DL 2020 query set (also based on MS‑MARCO)  \n\nThese are the query sets on which HyDE’s performance is reported for web‑search tasks[S4][S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.879803961131689
+      },
+      {
+        "id": "hyde-05",
+        "type": "factual",
+        "answer": "HyDE is evaluated on four non‑English languages: **Swahili, Korean, Japanese, and Bengali**[S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8201511554281447
+      },
+      {
+        "id": "hyde-06",
+        "type": "factual",
+        "answer": "On the TREC DL19 web‑search benchmark, HyDE achieves an nDCG@10 of **41.8**, whereas the baseline Contriever obtains an nDCG@10 of **24.0**[S2].",
+        "correctness": 0.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 0.0,
+        "answer_relevance": 0.9362871674423381
+      },
+      {
+        "id": "hyde-07",
+        "type": "factual",
+        "answer": "HyDE is evaluated on six low‑resource BEIR datasets [S1, S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9677244903331846
+      },
+      {
+        "id": "selfrag-03",
+        "type": "factual",
+        "answer": "The critic’s supervised data were created by prompting a proprietary large language model (GPT‑4) to generate a “reflection token” r for each input–output pair (x, y). For every training example the pipeline (Algorithm 2) samples (x, y), sends the pair to GPT‑4, receives the reflection token, and adds the triple (x, y, r) to the critic’s training set D₍critic₎, which is then used to train the critic with a next‑token prediction loss【S2†L5-L7】. This approach replaces costly manual annotation of reflection tokens with automatic collection via GPT‑4【S1†L3-L5】.",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8802708000779951
+      },
+      {
+        "id": "retro-07",
+        "type": "factual",
+        "answer": "Retro yields a performance gain across all of the model scales examined in the paper. Specifically, the authors report that Retro consistently outperforms the baseline **for models ranging from 150 million up to 7 billion non‑embedding parameters**[S2][S3][S5].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8581572065985529
+      },
+      {
+        "id": "cmp-05",
+        "type": "comparison",
+        "answer": "**Dense Passage Retrieval (DPR)**  \n- Training batch size: 128 [S1]  \n- Learning rate: 10⁻⁵ [S1]\n\n**Fusion‑in‑Decoder (generative model)**  \n- Training batch size: 64 [S2]  \n- Learning rate: 10⁻⁴ [S2]",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8344039502536461
+      },
+      {
+        "id": "cmp-08",
+        "type": "comparison",
+        "answer": "**ColBERT**  \n- Encodes the query \\(q\\) and the document \\(d\\) separately with BERT, producing sets of contextual token embeddings \\(E_q\\) and \\(E_d\\).  \n- Relevance is obtained by a *late‑interaction* step: for each query token embedding \\(v\\in E_q\\) the maximum cosine similarity (or squared L2 distance) with any document token embedding in \\(E_d\\) is taken, and these maximum scores are summed across all query tokens (the “MaxSim” operation) [S1].\n\n**Dense Passage Retrieval (DPR)**  \n- Encodes each passage into a low‑dimensional dense vector and indexes all passages in that space.  \n- At query time the query is also encoded into a dense vector, and relevance is measured by similarity in this continuous space so that the top‑\\(k\\) most similar passages can be retrieved efficiently [S2]. (The excerpts do not give a more detailed formula for the similarity computation.)",
+        "correctness": 0.5,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.85685579180482
+      },
+      {
+        "id": "cmp-10",
+        "type": "comparison",
+        "answer": "**SELF‑RAG**  \nSELF‑RAG decides whether to invoke the retriever during inference by generating a special *retrieval token*. When the model outputs this token it calls the retriever on demand (Step 1) and only then proceeds to process the retrieved passages [​S3​].\n\n**RAG (Retrieval‑Augmented Generation)**  \nStandard RAG does not make an explicit “when‑to‑retrieve” decision; it always applies its retriever \\(p_{\\eta}(z|x)\\) to the input sequence \\(x\\) and obtains the top‑K passages before generation [​S1​].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8413581917154674
+      },
+      {
+        "id": "cmp-12",
+        "type": "comparison",
+        "answer": "**ColBERT**  \n- The paper evaluates ColBERT on two passage‑search collections: **MS MARCO** and **TREC CAR** [S1].  \n\n**HyDE (Precise Zero‑Shot Dense Retrieval)**  \n- HyDE’s results are reported on **low‑resource tasks from the BEIR benchmark** [S3][S4].  \n- It is also evaluated on **web‑search test sets TREC DL19 and TREC DL20** (which are defined on MS‑MARCO) [S6].  \n\n**Comparison**  \n- ColBERT’s evaluation focuses on the standard passage‑ranking datasets MS MARCO and TREC CAR.  \n- HyDE is evaluated on a broader set of benchmarks: the BEIR suite of low‑resource retrieval tasks and the TREC DL19/20 web‑search tasks, in addition to comparisons with BM25, Contriever, ANCE, DPR, and fine‑tuned models.  \n\nThus, the two systems are tested on different benchmark families: ColBERT on two passage‑search collections, HyDE on BEIR low‑resource tasks and TREC web‑search tasks.",
+        "correctness": 0.5,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8307461655239275
+      },
+      {
+        "id": "na-01",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about the total training cost of DPR in US dollars.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-02",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about Fusion‑in‑Decoder’s performance on the BEIR benchmark. Consequently, I cannot answer that question based on the given excerpts.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-03",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not mention any non‑English languages on which RAG was evaluated.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-05",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about carbon emissions reported by the ColBERT authors for training.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-06",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about Retro’s performance on the GLUE benchmark. Consequently, I cannot report a GLUE score for Retro based on the given material.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-07",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not describe any user study conducted by either REALM or SELF‑RAG to measure user satisfaction. No information about such experiments is included in the excerpts.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      }
+    ],
+    "hybrid_rerank[ms-marco-MiniLM-L-6-v2]": [
+      {
+        "id": "fid-04",
+        "type": "conceptual",
+        "answer": "Encoding each retrieved passage separately means the encoder’s self‑attention operates on only one passage at a time. Consequently, the amount of computation required for the encoder grows linearly with the number of passages, rather than quadratically as would be the case if the encoder had to attend jointly over all passages. This linear scaling lets Fusion‑in‑Decoder handle a large number of contexts efficiently[S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8878043454839445
+      },
+      {
+        "id": "fid-05",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder becomes more accurate when it is given a larger set of retrieved passages. The authors note that “the performance of our method significantly improves when the number of retrieved passages increases”[S1], and the experimental plot in Figure 3 shows the model’s validation performance rising as the number of passages grows from 5 up to 100 for NaturalQuestions, TriviaQA and SQuAD[S4].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9485955871573751
+      },
+      {
+        "id": "fid-06",
+        "type": "factual",
+        "answer": "Fusion‑in‑Decoder is reported to achieve state‑of‑the‑art performance on the **NaturalQuestions** and **TriviaQA** open‑domain question‑answering benchmarks[S1][S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.930185998601523
+      },
+      {
+        "id": "fid-07",
+        "type": "factual",
+        "answer": "The excerpts do not provide a specific Exact Match score for the Fusion‑in‑Decoder (large) model on the NaturalQuestions benchmark.",
+        "correctness": 0.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": null,
+        "answer_relevance": 0.9424827297844874
+      },
+      {
+        "id": "fid-09",
+        "type": "factual",
+        "answer": "The BM25 sparse retriever is implemented using Apache Lucene with its default parameters[S1].",
+        "correctness": 0.5,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8405997230471086
+      },
+      {
+        "id": "fid-10",
+        "type": "factual",
+        "answer": "The Fusion‑in‑Decoder model is built on a pretrained sequence‑to‑sequence network such as **T5** (and also BART is mentioned as an alternative) [S4].  \nTwo model sizes are used:  \n\n* **Base** – about **220 M** parameters  \n* **Large** – about **770 M** parameters  \n\nThese sizes correspond to the T5 base and T5 large checkpoints that are loaded at initialization [S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9034236165477263
+      },
+      {
+        "id": "dpr-02",
+        "type": "factual",
+        "answer": "- **Number of passages:** DPR’s Wikipedia retrieval corpus contains **21,015,324 passages**[S2].  \n\n- **How they were created:**  \n  1. The English Wikipedia dump from Dec 20 2018 was taken as the source.  \n  2. The dump was cleaned with the DrQA preprocessing code (removing tables, infoboxes, lists, and disambiguation pages).  \n  3. Each cleaned article was split into multiple, disjoint text blocks of **100 words** each, which serve as the retrieval units.  \n  4. Each passage was then prepended with the article’s title and an **[SEP]** token[S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8971522574873821
+      },
+      {
+        "id": "dpr-06",
+        "type": "conceptual",
+        "answer": "**In‑batch negatives** are a training technique used in Dense Passage Retrieval (DPR) where the negative passages for a question are taken from the other questions that appear in the same mini‑batch.  \n\n* For a batch of B questions, each question qᵢ has its own positive passage pᵢ. The model computes a similarity matrix S = Q Pᵀ of size B × B, so that every question is paired with every passage in the batch. The pair (qᵢ, pᵢ) (i = j) is treated as a positive example, while all other pairs (qᵢ, pⱼ) (i ≠ j) become negative examples. This effectively creates B × (B − 1) negative pairs per batch without needing to sample extra passages [S6].  \n\n* The approach reuses the negative examples already present in the batch, making it memory‑efficient and increasing the number of training instances (B² pairs) compared with standard 1‑of‑N training [S4].  \n\n* Empirically, in‑batch negative training improves retrieval accuracy, especially as batch size grows, because it provides many more training pairs and leverages “gold” negatives that come from the same batch [S3].  \n\nThus, in‑batch negatives in DPR refer to using the other passages within the same mini‑batch as negative examples for each question during dual‑encoder training.",
+        "correctness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8845975561135574
+      },
+      {
+        "id": "dpr-08",
+        "type": "factual",
+        "answer": "DPR indexes passage embeddings with the FAISS library during inference[S1].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8969547496138446
+      },
+      {
+        "id": "dpr-09",
+        "type": "factual",
+        "answer": "The experiments used a single GPU with 32 GB of memory (the exact GPU model is not specified)[S2].",
+        "correctness": 0.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 0.5,
+        "answer_relevance": 0.9108863740023871
+      },
+      {
+        "id": "dpr-11",
+        "type": "factual",
+        "answer": "- **Dataset where BM25 beats DPR:** SQuAD.  \n\n- **Authors’ explanation:** SQuAD is limited to a small set of Wikipedia documents, which introduces an unwanted bias that makes the traditional BM25 baseline comparatively stronger; consequently DPR does not outperform BM25 on this dataset, unlike on the other four QA sets [S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8941460425242015
+      },
+      {
+        "id": "dpr-12",
+        "type": "factual",
+        "answer": "The BM25 implementation used in the DPR experiments employed the following parameters: b = 0.4 (document‑length normalization) and k₁ = 0.9 (term‑frequency scaling)[S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.16666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8886168062582499
+      },
+      {
+        "id": "rag-04",
+        "type": "factual",
+        "answer": "RAG relies on a **dense retriever** \\(p_{\\eta}(z\\mid x)\\) that is **initialized from the DPR retriever**, which was trained with retrieval supervision on the Natural Questions and TriviaQA datasets [S1]. (The paper also evaluates a word‑overlap BM25 retriever as a baseline, but the default RAG model uses the DPR‑based dense retriever.) [S2]",
+        "correctness": 0.5,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9116324770148594
+      },
+      {
+        "id": "rag-08",
+        "type": "factual",
+        "answer": "RAG is evaluated on several knowledge‑intensive tasks:\n\n* **Open‑domain Question Answering** – the paper reports results on four open‑domain QA benchmarks and compares RAG to prior state‑of‑the‑art QA systems[S2].  \n* **Abstractive Question Answering** – RAG’s ability to generate free‑form answers is tested on the MSMARCO NLG v2.1 dataset[S4].  \n* **Jeopardy Question Generation** – a non‑QA generation task in which RAG must produce Jeopardy‑style questions conditioned on answer entities[S3][S5].  \n\nThe experiments section also notes that RAG is run on “a wide range of knowledge‑intensive tasks,” but the excerpts only provide details for the three tasks listed above[S6].",
+        "correctness": 0.5,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8439455557415717
+      },
+      {
+        "id": "realm-03",
+        "type": "factual",
+        "answer": "REALM beats earlier systems by **4 % to 16 % absolute accuracy** on the Open‑QA benchmarks — the paper reports improvements of this magnitude over all prior methods[S2][S3][S4].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8847821710232061
+      },
+      {
+        "id": "realm-06",
+        "type": "conceptual",
+        "answer": "**Salient span masking** is the masking strategy used during REALM pre‑training to concentrate learning on examples that require world knowledge. Instead of masking random tokens, REALM first identifies “salient” text spans—named entities (detected with a BERT‑based tagger trained on CoNLL‑2003) and dates (detected with a regular expression). One of these identified spans is then selected and masked within a sentence for the masked language modeling task. This approach is shown to outperform random token or random span masking for REALM because the latent‑variable learning depends heavily on the usefulness of retrieval [S1, S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9282494906293056
+      },
+      {
+        "id": "colbert-04",
+        "type": "factual",
+        "answer": "ColBERT’s primary evaluation metric on the MS MARCO passage‑ranking collection is **Mean Reciprocal Rank at 10 (MRR@10)**, which is reported throughout the paper (e.g., in the indexing‑footprint tables)[S3][S6].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9248724959829253
+      },
+      {
+        "id": "colbert-05",
+        "type": "factual",
+        "answer": "ColBERT can index the MS MARCO collection (≈9 M passages) in about **three hours** using a single server with four GPUs[S1][S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8771409122070344
+      },
+      {
+        "id": "hyde-01",
+        "type": "conceptual",
+        "answer": "HyDE tackles zero‑shot dense retrieval by turning each query into a **hypothetical document** with an instruction‑following language model (e.g., InstructGPT). The generated document—though unreal and possibly containing false details—captures the relevance pattern for the query. This document is then fed to an **unsupervised contrastively learned encoder** (e.g., Contriever) which produces an embedding vector. The vector defines a neighbourhood in the corpus embedding space, and real documents whose embeddings are close (by inner‑product similarity) are retrieved as the answer [S1].  \n\nIn experiments, this two‑step process (query → hypothetical document → encoder embedding → vector similarity search) lets HyDE **significantly outperform** the state‑of‑the‑art unsupervised dense retriever Contriever and achieve performance comparable to fine‑tuned retrievers across many tasks and languages [S6].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8292508446208915
+      },
+      {
+        "id": "hyde-04",
+        "type": "factual",
+        "answer": "The web‑search evaluation uses the two TREC deep‑learning query collections:\n\n* **TREC DL19**  \n* **TREC DL20**\n\nThese are the query sets on which the paper reports HyDE’s retrieval results [S1, S4].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8992603222181875
+      },
+      {
+        "id": "hyde-05",
+        "type": "factual",
+        "answer": "HyDE is evaluated on four non‑English languages: Swahili, Korean, Japanese, and Bengali[S3][S4].",
+        "correctness": 1.0,
+        "context_relevance": 0.5,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.832869957407846
+      },
+      {
+        "id": "hyde-06",
+        "type": "factual",
+        "answer": "HyDE achieves an nDCG@10 of **41.8** on TREC DL19, whereas Contriever attains **24.0** nDCG@10 on the same task[S2].",
+        "correctness": 0.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 0.0,
+        "answer_relevance": 0.9088553125539294
+      },
+      {
+        "id": "hyde-07",
+        "type": "factual",
+        "answer": "HyDE is evaluated on six low‑resource datasets drawn from the BEIR benchmark[S2].",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.9800607079358525
+      },
+      {
+        "id": "selfrag-03",
+        "type": "factual",
+        "answer": "The critic model’s training data was created by automatically generating reflection tokens with GPT‑4 rather than by manual labeling. For each input‑output pair \\((x, y)\\) the authors “prompt GPT‑4 to collect a reflection token r for \\((x, y)\\)” and then add the tuple \\((x, y, r)\\) to the critic‑training set [Dcritic] before updating the critic with a next‑token prediction loss [​S4​]. This approach was adopted because manual annotation of reflection tokens is expensive, so a state‑of‑the‑art LLM (GPT‑4) is used to produce the required supervision [​S1​].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.874216939613072
+      },
+      {
+        "id": "retro-07",
+        "type": "factual",
+        "answer": "Retro yields a performance gain across the entire range of model sizes examined in the paper. Specifically, the authors report that Retro consistently outperforms the baseline transformer for models with **150 million up to 7 billion non‑embedding parameters**[S1][S3].",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8618479891030882
+      },
+      {
+        "id": "cmp-05",
+        "type": "comparison",
+        "answer": "**Dense Passage Retrieval (DPR)**  \n- Training batch size: 128 questions per batch [S1]  \n- Learning rate: \\(10^{-5}\\) (Adam optimizer) [S1]  \n\n**Fusion‑in‑Decoder (FID)**  \n- The provided excerpts do not contain any information about the training batch size or learning rate used for the Fusion‑in‑Decoder model [S2, S3].  \n\n**Summary**  \nDPR is trained with a batch size of 128 and a learning rate of \\(10^{-5}\\). No comparable training‑hyperparameter details are given for Fusion‑in‑Decoder in the supplied excerpts.",
+        "correctness": 0.5,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8365600527733634
+      },
+      {
+        "id": "cmp-08",
+        "type": "comparison",
+        "answer": "**ColBERT**\n\n- Queries and documents are first encoded independently by BERT into sets of contextual token embeddings.  \n- Relevance is then obtained by a *late interaction* step: for each query‑term embedding \\(v\\in E_q\\) the maximum cosine similarity with any document‑term embedding in \\(E_d\\) is taken (the MaxSim operator), and these maximum scores are summed over all query terms to produce the final relevance score [S1].  \n- This interaction is described as “cheap and pruning‑friendly” because it operates on the pre‑computed token vectors rather than on a full query‑document pair [S2, S4].\n\n**Dense Passage Retrieval (DPR)**\n\n- DPR also encodes questions (queries) and passages (documents) into low‑dimensional continuous vectors.  \n- All passages are indexed in this dense space, and at run‑time the system retrieves the top‑\\(k\\) passages whose vectors are most similar to the query vector (e.g., via nearest‑neighbor search) [S6].\n\n**Comparison**\n\n- Both methods rely on separate encoding of queries and documents, but ColBERT’s relevance score is a sum of per‑term maximum cosine similarities (a fine‑grained, token‑level interaction), whereas DPR’s relevance is based on a single dense vector similarity between the whole query and each passage.",
+        "correctness": 1.0,
+        "context_relevance": 0.6666666666666666,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.7952366125119111
+      },
+      {
+        "id": "cmp-10",
+        "type": "comparison",
+        "answer": "**SELF‑RAG**\n\n- SELF‑RAG determines whether to retrieve passages dynamically by predicting a special **Retrieve = Yes** token. If the normalized probability of this token exceeds a configurable threshold, retrieval is triggered (the model can also use a hard‑coded threshold)[S1].  \n- The decision is therefore made on‑the‑fly during generation, based on the model’s own confidence in the need for external information[S2].\n\n**RAG (Retrieval‑Augmented Generation)**  \n\n- The excerpts about the RAG paper (e.g., the open‑domain QA results) describe how RAG’s retriever is initialized (from DPR) and that it combines generation with retrieval, but they do **not** specify a mechanism for deciding *when* to retrieve[S6].  \n\n**Summary**\n\n- SELF‑RAG uses an internal “retrieve” token (optionally with a probability threshold) to decide on‑demand retrieval.  \n- The provided excerpts contain no information on how the original RAG model decides when to retrieve.",
+        "correctness": 0.5,
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8640032778961763
+      },
+      {
+        "id": "cmp-12",
+        "type": "comparison",
+        "answer": "**ColBERT**\n\n- The paper evaluates ColBERT on two passage‑search collections: **MS MARCO** and **TREC CAR** [S4].  \n- In the quality–cost trade‑off experiments it re‑ranks the top‑k BM25 results on the **MS MARCO development set** (and also reports results on the official evaluation set)[S1][S6].\n\n**HyDE (Precise Zero‑Shot Dense Retrieval)**  \n\n- HyDE’s performance is reported on the **low‑resource tasks from the BEIR benchmark** [S3].\n\n**Comparison**\n\n- ColBERT’s evaluation benchmarks are the large‑scale passage‑ranking datasets **MS MARCO** and **TREC CAR**, whereas HyDE is evaluated on the **BEIR benchmark’s low‑resource retrieval tasks**. The two papers therefore use different benchmark suites: ColBERT focuses on standard web‑search style passage collections, while HyDE focuses on a diverse set of zero‑shot retrieval datasets assembled in BEIR.",
+        "correctness": 0.5,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.8827611128728996
+      },
+      {
+        "id": "na-01",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about the total training cost of DPR in US dollars.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-02",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about Fusion‑in‑Decoder’s performance on the BEIR benchmark. Consequently, I cannot answer that question based on the given material.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-03",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about non‑English languages on which RAG was evaluated.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-05",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about the carbon emissions reported by the ColBERT authors for training.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-06",
+        "type": "unanswerable",
+        "answer": "The provided excerpts do not contain any information about Retro’s performance on the GLUE benchmark.",
+        "correctness": 1.0,
+        "context_relevance": 0.0,
+        "faithfulness": null,
+        "answer_relevance": null
+      },
+      {
+        "id": "na-07",
+        "type": "unanswerable",
+        "answer": "**SELF‑RAG**  \nThe paper reports a small human evaluation in which annotators judged the model’s outputs for “plausibility” (whether the answer is reasonable and on‑topic) and “support” (whether the cited evidence is sufficient to verify the answer) on 50 samples from the PopQA and Bio datasets [S6]. The study asked annotators to check whether the model‑predicted reflection tokens (ISREL and ISSUP) matched their own inspection of the output. This evaluation measures the perceived quality of the answers, but the excerpts do not describe a user‑satisfaction survey or any other user‑study specifically aimed at measuring overall user satisfaction.\n\n**REALM**  \nThe excerpts contain no description of any user study or satisfaction measurement for REALM [S3].\n\n**Summary**  \n- SELF‑RAG performed a human evaluation of answer plausibility and support, not a direct user‑satisfaction study.  \n- REALM’s excerpts do not mention any user‑satisfaction or user study.",
+        "correctness": 1.0,
+        "context_relevance": 0.3333333333333333,
+        "faithfulness": null,
+        "answer_relevance": null
+      }
+    ]
+  }
+}

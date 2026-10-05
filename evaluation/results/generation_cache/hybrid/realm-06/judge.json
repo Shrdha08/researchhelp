@@ -1,0 +1,4 @@
+{
+  "correct": true,
+  "reasoning": "The retrieved context, specifically chunk [1], explicitly defines salient span masking as a strategy used during REALM pre-training to focus on examples requiring world knowledge. It states that this involves masking salient spans such as named entities (identified by a BERT-based tagger) and dates (identified by regular expressions) instead of random tokens. This aligns perfectly with the reference answer."
+}

@@ -1,0 +1,43 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder accuracy increases with more retrieved passages",
+      "supported": true
+    },
+    {
+      "claim": "Increasing passages from 10 to 100 yields 6% improvement on TriviaQA",
+      "supported": true
+    },
+    {
+      "claim": "Increasing passages from 10 to 100 yields 3.5% improvement on NaturalQuestions",
+      "supported": true
+    },
+    {
+      "claim": "Performance significantly improves as retrieved passages increase",
+      "supported": true
+    },
+    {
+      "claim": "Generative models combine evidence better than extractive ones",
+      "supported": true
+    },
+    {
+      "claim": "Most pronounced gains occur moving from 10 to 100 passages",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does the accuracy of Fusion-in-Decoder change as the number of retrieved passages increases?",
+    "What is the impact of increasing retrieved passages on Fusion-in-Decoder performance?",
+    "Does Fusion-in-Decoder benefit from retrieving more passages?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly states that performance improves as passages increase, specifically up to 100, which aligns with the reference answer.",
+  "relevant_chunks": [
+    false,
+    true,
+    false,
+    true,
+    false,
+    false
+  ]
+}

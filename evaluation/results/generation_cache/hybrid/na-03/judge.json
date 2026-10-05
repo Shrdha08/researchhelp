@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "The provided excerpts do not mention non-English languages.",
+      "supported": true
+    },
+    {
+      "claim": "The provided excerpts do not mention RAG evaluation on non-English languages.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Does the text mention any non-English languages used for RAG evaluation?",
+    "Which non-English languages are RAG models evaluated on in the provided text?",
+    "Is there any information about multilingual evaluation of RAG in the excerpts?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about non-English language evaluations, aligning with the reference answer.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

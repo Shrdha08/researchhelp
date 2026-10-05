@@ -1,0 +1,42 @@
+{
+  "answer": "**Model sizes that show a performance gain when the retrieval‑augmented Retro architecture is used**\n\n| Paper excerpt | Model sizes mentioned | Reported effect of Retro |\n|---------------|----------------------|--------------------------|\n| **S1** (Figure 1) – scaling study on the C4 validation set | 172 M, 425 M, 1.5 B, **7.5 B** (baseline Transformers) | The gain from Retro remains **constant across these scales** and is comparable to multiplying the parametric model size by ≈10×. |\n| **S5** (Conclusion) | “models with up to at least **7 B** parameters” | Gains **do not diminish** for models up to this size, and on some datasets the gain is equivalent to a non‑retrieval model that is ten times larger. |\n\n**Summary**\n\n- Retro provides a measurable performance improvement for models ranging from **hundreds of millions of parameters (≈172 M)** up through **several billions of parameters (≈7 B–7.5 B)**.  \n- The improvement is roughly constant with model scale in this range, effectively giving smaller models the same performance as a non‑retrieval model that is about ten times larger.  \n\nNo other model sizes are discussed in the provided excerpts.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "200 400 800 1600 7500 Number of Non-Embedding Params (M)\n\n0.7 0.8\n\n0.9 1.0\n\n172M 425M 1.5B 7.5B Baseline RETRO [OFF] RETRO [ON]\n\n0 1 10 100 1000 10000 Retrieval dataset (B Tokens)\n\n0.7 0.8\n\n0.9 1.0\n\n0 1 3 5 10 30 50 100 Number of neighbors\n\n0.7 0.8\n\n0.9 1.0\n\nFigure 1 | Scaling of Retro. The performance gain of our retrieval models remains constant with model scale (left), and is comparable to multiplying the parameteric model size by ∼10×. The gain increases with the size of the retrieval database (middle) and the number of retrieved neighbours (right) on the C4 validation set, when using up to 40 neighbours. Past this, performance begins to\n\ndegrade, perhaps due to the reduced quality. At evaluation Retro can be used without retrieval data (Retro[OFF]), bringing limited performance degradation compared to baseline transformers.\n\ncontributions are the following.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "7.5B Retro model, Jurassic-1 and Gopher. Jurassic-1 outperforms the baseline on all datasets except for books, likely due to the inclusion of books in our training data. Gopher and Retro outperform the baseline on all test sets. Overall, Retro 7.5B outperforms Jurassic-1 and Gopher on a majority of the test sets. On the dm_mathematics and ubuntu_irc subsets, our Retro model does not outperform our 7B baseline and underperforms Jurassic-1. We hypothesise that the retrieved neighbours on these datasets are not helpful, due to a combination of what is in our retrieval dataset and the efficacy of the nearest-neighbour search.\n\nWikitext103. To validate our approach in a controlled setting, we compare our method with kNN-LM (Khandelwal et al., 2020) on the Wikitext103 dataset in Table 4. We train a baseline transformer",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 12,
+      "section": "Language modelling"
+    },
+    {
+      "text": "4.2. Retro-fitting baseline models\n\nWe extend baseline models into Retro models by freezing the pre-trained weights and training\n\nonly chunked cross-attention and neighbour encoder parameters (less than 10% of weights for the 7B model) in Fig. 5. This offers an efficient alternative path to enhance transformers with retrieval, requiring only 6 million sequences (3% of the pre-training sequences that we used). Additionally, by only training the new weights we ensure that when evaluated without retrieval, the original model performance is exactly maintained. Retrofitting models quickly surpasses the performance of baseline models and even achieves performance close to that of Retro models trained from scratch. The experiment hyperparameters are given in §C.3.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 13,
+      "section": "Retro-fitting baseline models"
+    },
+    {
+      "text": "Table 13 | Performance of Retro for different variants. Model performance on C4 evaluation set, measured in bytes-per-bits, for a 247M parameter model trained with a 157 billion token schedule.\n\nAblation group Ablation C4 eval bpb\n\nModel Retro 0.822 No query conditioning 0.829 No CA positional encodings 0.826 Shared embeddings 0.823 6-layer encoder 0.821\n\nRetrieval values Neighbours N 0.950 Continuations F 0.895 No retrieval 0.987\n\nTraining neighbours 1 training neighbours 0.858 4 training neighbours 0.847\n\nCross attention position CA top layer (1/12) 0.827 CA mid layer (6/12) 0.823 CA top layer (12/12) 0.831 CA all layers 0.860 CA every 3 from 1 0.823",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 30,
+      "section": "Question answering experiments"
+    },
+    {
+      "text": "gains do not diminish for models with up to at least 7B parameters, and correspond to non-retrieval models with 10× more parameters on certain datasets. On Wikitext103 and the Pile, Retro outperforms previous models trained on large scale datasets. We also show that Retro is competitive on retrieval-intensive downstream tasks such as question answering.\n\nRetro models are flexible and can be used without retrieval at evaluation and still achieve comparable performance to baseline models. Conversely, baseline models can be rapidly fine-tuned into Retro models to obtain nearly the same performance as if trained from scratch. Careful analysis shows that only a modest fraction of the gains obtained by Retro are due to test set leakage. In general, we caution for such leakage in large-scale language datasets and suggest further work in better understanding the role of test set leakage in the performance of large-scale language models.",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 16,
+      "section": "Conclusion"
+    },
+    {
+      "text": "To build an intuition of what kind of information is leveraged by Retro models, we suggest to have a closer look at a few evaluation documents and the corresponding retrieved data in Tables 16, 17, 18 and 19. In these tables, the 4 rows corresponds to the first 4 chunks of the documents. The left-most column shows the chunk Cufrom the document being evaluated, where each token is coloured by the negative cross entropy loss difference LRetro[Off] −LRetro, a positive value, coloured in yellow, indicates that Retro performs better when it has access to neighbours data. The second columns also shows the evaluated chunk Cubut where each token iis coloured by the length of the longest common prefix (LCP) with the preceding neighbours, i.e. the largest integer jsuch that the prefix (xi−j−1, . . . , xi) also appears in Ret(Cu−1). Conversely, columns three and four show the first two neighbours and their continuation, respectively [N1\n\nu, F1\n\nu] and [N2\n\nu, F2",
+      "paper_id": "1b3e89b589b73d51",
+      "page": 32,
+      "section": "Inspecting neighbours and perplexities on evaluation data"
+    }
+  ]
+}

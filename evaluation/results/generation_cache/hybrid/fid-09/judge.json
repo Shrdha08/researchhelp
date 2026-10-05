@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "The BM25 sparse retriever is implemented using Apache Lucene.",
+      "supported": true
+    },
+    {
+      "claim": "The implementation uses default parameters.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What software library is used for the BM25 retriever in the FiD paper?",
+    "Which implementation of BM25 does the FiD paper utilize?",
+    "What are the parameters used for the BM25 retriever in the FiD paper?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies Apache Lucene and default parameters but omits the specific tokenization method (SpaCy) mentioned in the reference answer.",
+  "relevant_chunks": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+  ]
+}

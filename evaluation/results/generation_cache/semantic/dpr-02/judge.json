@@ -1,0 +1,47 @@
+{
+  "claims": [
+    {
+      "claim": "DPR's Wikipedia retrieval corpus contains 21,015,324 passages.",
+      "supported": true
+    },
+    {
+      "claim": "Passages were built from the English Wikipedia dump from Dec 20, 2018.",
+      "supported": true
+    },
+    {
+      "claim": "DrQA preprocessing code was used to clean the data.",
+      "supported": true
+    },
+    {
+      "claim": "Tables, infoboxes, lists, and disambiguation pages were removed.",
+      "supported": true
+    },
+    {
+      "claim": "Each article was split into disjoint 100-word text blocks.",
+      "supported": true
+    },
+    {
+      "claim": "Each passage is prefixed with the article's title.",
+      "supported": true
+    },
+    {
+      "claim": "Each passage is prefixed with an [SEP] token.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the size of the DPR Wikipedia corpus and how are passages formed?",
+    "How were the passages in the DPR retrieval corpus created?",
+    "How many passages are in the DPR Wikipedia dataset and what is their structure?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the exact number of passages and the method of splitting articles into disjoint 100-word blocks, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+  ]
+}

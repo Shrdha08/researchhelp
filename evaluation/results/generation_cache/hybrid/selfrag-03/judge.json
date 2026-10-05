@@ -1,0 +1,43 @@
+{
+  "claims": [
+    {
+      "claim": "Critic supervised data created by prompting GPT-4",
+      "supported": true
+    },
+    {
+      "claim": "GPT-4 generates a reflection token for each pair",
+      "supported": true
+    },
+    {
+      "claim": "Pipeline samples input-output pairs (x, y)",
+      "supported": true
+    },
+    {
+      "claim": "Reflection token added to critic training set",
+      "supported": true
+    },
+    {
+      "claim": "Critic trained with next-token prediction loss",
+      "supported": true
+    },
+    {
+      "claim": "Approach replaces costly manual annotation",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How was the training data for the Self-RAG critic model collected?",
+    "What method was used to generate reflection tokens for the critic model?",
+    "Describe the data collection process for the Self-RAG critic."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes the process of prompting GPT-4 to generate reflection tokens for input-output pairs, which matches the reference answer and is supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    false
+  ]
+}

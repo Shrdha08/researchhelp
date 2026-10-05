@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "Excerpts do not describe a user study by REALM.",
+      "supported": true
+    },
+    {
+      "claim": "Excerpts do not describe a user study by SELF-RAG.",
+      "supported": true
+    },
+    {
+      "claim": "No information about user satisfaction experiments is included.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Did the papers conduct a user study to measure satisfaction?",
+    "What user satisfaction experiments are described in the text?",
+    "Is there any mention of user studies in these excerpts?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about user satisfaction studies, aligning with the reference answer.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

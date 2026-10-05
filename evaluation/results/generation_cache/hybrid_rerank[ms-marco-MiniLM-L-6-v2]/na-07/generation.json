@@ -1,0 +1,61 @@
+{
+  "answer": "**SELF‑RAG**  \nThe paper reports a small human evaluation in which annotators judged the model’s outputs for “plausibility” (whether the answer is reasonable and on‑topic) and “support” (whether the cited evidence is sufficient to verify the answer) on 50 samples from the PopQA and Bio datasets [S6]. The study asked annotators to check whether the model‑predicted reflection tokens (ISREL and ISSUP) matched their own inspection of the output. This evaluation measures the perceived quality of the answers, but the excerpts do not describe a user‑satisfaction survey or any other user‑study specifically aimed at measuring overall user satisfaction.\n\n**REALM**  \nThe excerpts contain no description of any user study or satisfaction measurement for REALM [S3].\n\n**Summary**  \n- SELF‑RAG performed a human evaluation of answer plausibility and support, not a direct user‑satisfaction study.  \n- REALM’s excerpts do not mention any user‑satisfaction or user study.",
+  "citations": [
+    {
+      "source_id": "S6",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 10,
+      "section": "Results And Analysis",
+      "chunk_id": "d9eaa1398abac0df:p10:c3",
+      "snippet": "Human evaluations. We conduct small human evaluations on SELF-RAG outputs, as well as the reliability of predicted reflection tokens. In particular, we sampled 50 samples from PopQA and Bio results. Following Menick et al. (2022), human annotators evaluate S&P, which indicates whether the model ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 6,
+      "section": "Experiments",
+      "chunk_id": "0ec1a7ab3de5514c:p6:c2",
+      "snippet": "CuratedTrec The CuratedTrec dataset is a collection of question-answer pairs drawn from real user queries issued on sites such as MSNSearch and AskJeeves. To account for multiple correct answers or different spelling variations, the answers in this dataset are defined as regular expressions that ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "ETHICAL CONCERNS\n\nThis work aims to improve the factuality of LLM outputs, the lack of which continues to cause numerous real-world problems (e.g., spread of misinformation and provision of incorrect and dangerous advice). While our method shows significant improvements in terms of performance, factuality, and citation accuracy, it can still generate outputs that are not fully supported by the citations. We hope that explicit self-reflection and fine-grained attribution may help users verify factual errors in the model outputs.\n\nACKNOWLEDGMENTS",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 11,
+      "section": "Conclusion"
+    },
+    {
+      "text": "Instructions Given an instruction and an output, rate whether the response appears to be a helpful and informative answer to the query, from 1 (lowest) - 5 (highest). We call this score perceived utility. The detailed criterion is as follows: 5: The response provides a complete, highly detailed, and informative response to the query, fully satisfying the information needs. 4: The response mostly fulfills the need in the query, while there can be some minor improvements such as discussing more detailed information, having better structure of the response, or improving coherence. 3: The response is acceptable, but some major additions or improvements are needed to satisfy users’ needs. 2: The response still addresses the main request, but it is not complete or not relevant to the query. 1: The response is barely on-topic or completely irrelevant.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 30,
+      "section": "Full List Of Instructions And Demonstrations For Gpt-4"
+    },
+    {
+      "text": "CuratedTrec The CuratedTrec dataset is a collection of question-answer pairs drawn from real user queries issued on sites such as MSNSearch and AskJeeves. To account for multiple correct answers or different spelling variations, the answers in this dataset are defined as regular expressions that match all correct answers. It is unclear how to train generation-based models with this type of supervision, so we do not evaluate them on this dataset.\n\n4.2. Approaches compared\n\nRetrieval-based Open-QA Most existing Open-QA systems answer the input question by first retrieving potentially relevant documents from a knowledge corpus, and then using a reading comprehension system to extract an answer from the documents. In this paradigm, the knowledge is stored explicitly in the corpus. We wish to compare different methods for implementing retrieval.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 6,
+      "section": "Experiments"
+    },
+    {
+      "text": "SELF-RAG further enables a customizable decoding algorithm to satisfy hard or soft constraints, which are defined by reflection token predictions. In particular, our inference-time algorithm enables us to (1) flexibly adjust retrieval frequency for different downstream applications and (2) customize models’ behaviors to user preferences by leveraging reflection tokens through segment-level beam search using the weighted linear sum of the reflection token probabilities as segment score.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "While we draw inspiration from studies that use control tokens to start and guide text generation (Lu et al., 2022; Keskar et al., 2019), our trained LM uses critique tokens to assess its own predictions after each generated segment as an integral part of the generation output.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Human evaluations. We conduct small human evaluations on SELF-RAG outputs, as well as the reliability of predicted reflection tokens. In particular, we sampled 50 samples from PopQA and Bio results. Following Menick et al. (2022), human annotators evaluate S&P, which indicates whether the model output is plausible (i.e., the output is a reasonable and on-topic response to the question as if it were occurring in a conversation) and supported (i.e., the provided evidence is sufficient to verify the validity of the answer). For S&P, we do not consider the instances where SELF-RAG predicts irrelevant or no support. We then ask our annotators whether the model-predicted reflection tokens about ISREL and ISSUP match their inspections (e.g., whether the fully supported output is supported by the cited evidence). Human annotators find SELF-RAG answers are often plausible and supported by relevant passages with higher S&P scores on short-form PopQA, which is consistent with Menick et al.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 10,
+      "section": "Results And Analysis"
+    }
+  ]
+}

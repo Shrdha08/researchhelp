@@ -1,0 +1,47 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder is built on a pretrained sequence-to-sequence network.",
+      "supported": true
+    },
+    {
+      "claim": "T5 is used as the pretrained model.",
+      "supported": true
+    },
+    {
+      "claim": "BART is mentioned as an alternative pretrained model.",
+      "supported": true
+    },
+    {
+      "claim": "Two model sizes are used: base and large.",
+      "supported": true
+    },
+    {
+      "claim": "The base model has about 220M parameters.",
+      "supported": true
+    },
+    {
+      "claim": "The large model has about 770M parameters.",
+      "supported": true
+    },
+    {
+      "claim": "These sizes correspond to T5 base and T5 large checkpoints.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What pretrained models initialize Fusion-in-Decoder and what are their sizes?",
+    "Which T5 variants are used for Fusion-in-Decoder and how many parameters do they have?",
+    "Describe the initialization of the Fusion-in-Decoder model including parameter counts."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies T5 base (220M) and large (770M) as the initialization models, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    true,
+    false,
+    false
+  ]
+}

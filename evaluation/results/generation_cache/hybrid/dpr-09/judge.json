@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "DPR inference was run on a single GPU",
+      "supported": true
+    },
+    {
+      "claim": "The GPU had 32 GB of memory",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What GPU hardware was used for DPR inference?",
+    "How much GPU memory was required for DPR inference?",
+    "On what hardware did the DPR reader run?"
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer incorrectly states that inference was run on a single GPU, whereas the reference answer specifies that the experiments were run on eight 32GB GPUs.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    true,
+    false,
+    false
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "answer": "Encoding each passage separately means the encoder only performs self‑attention over a single passage at a time, so its computation grows linearly with the number of passages rather than quadratically. This linear‑time cost lets Fusion‑in‑Decoder handle many retrieved passages efficiently. [S1]",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)",
+      "chunk_id": "f1ee7e927c3fb31b:p3:c3",
+      "snippet": "By processing passages independently in the encoder, but jointly in the decoder, this method differs from Min et al. (2020) and Lewis et al. (2020). Processing passages independently in the encoder allows to scale to large number of contexts, as it only performs self attention over one context at a ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "By processing passages independently in the encoder, but jointly in the decoder, this method differs from Min et al. (2020) and Lewis et al. (2020). Processing passages independently in the encoder allows to scale to large number of contexts, as it only performs self attention over one context at a time. This means that the computation time of the model grows linearly with the number of passages, instead of quadratically. On the other hand, processing passages jointly in the decoder allows to better aggregate evidence from multiple passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Question + Passage 1 encoder\n\nQuestion + Passage 2 encoder\n\nQuestion + Passage N encoder\n\ndecoder Answer concat ...\n\nFigure 2: Architecture of the Fusion-in-Decoder method.\n\nrepresentations. Then, a sequence-to-sequence model generates the answer, taking as input the retrieved passages in addition to the question. While conceptually simple, this method sets new state-ofthe-art results on the TriviaQA and NaturalQuestions benchmarks. In particular, we show that the performance of our method significantly improves when the number of retrieved passages increases. We believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support passages, we consider two methods: BM25 (Robertson et al., 1995) and DPR (Karpukhin et al., 2020). In BM25, passages are represented as bag of words, and the ranking function is based on term and inverse document frequencies. We use the implementation from Apache Lucene1 with default parameters, and tokenize questions and passages with SpaCy.2 In DPR, passages and questions are represented as dense vector representations, computed using two BERT networks. The ranking function is the dot product between the query and passage representations. Retrieval is performed using approximate nearest neighbors with the FAISS library.3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Our approach differs from these works by how the generative model processes the retrieved passages. This allows to scale to large numbers of documents, and to benefit from this large amount of evidence.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 2,
+      "section": "Related Work"
+    },
+    {
+      "text": "NaturalQuestions TriviaQA Training Passages w/o finetuning w/ finetuning w/o finetuning w/ finetuning\n\n5 37.8 45.0 58.1 64.2 10 42.3 45.3 61.1 63.6 25 45.3 46.0 63.2 64.2 50 45.7 46.0 64.2 64.3 100 46.5 - 64.7 -\n\nTable 2: Performance depending on the number of passages used during training. Exact Match scores are reported on dev sets.\n\nnumber of retrieved passages. In particular, we observe that increasing the number of passages from 10 to 100 leads to 6% improvement on TriviaQA and 3.5% improvement on NaturalQuestions. On the other hand, the performance of most extractive models seems to peak around 10 to 20 passages (Wang et al., 2019; Yang et al., 2019). We believe that this is evidence that sequence-tosequence models are good at combining informations from multiple passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 5,
+      "section": "Experiments"
+    },
+    {
+      "text": "Scaling with number of passages. In Figure 3, we report the performance with respect to the",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    }
+  ]
+}

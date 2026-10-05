@@ -1,0 +1,61 @@
+{
+  "answer": "The Fusion‑in‑Decoder models are initialized from pretrained **T5** sequence‑to‑sequence models — specifically the **T5‑base** and **T5‑large** variants. The base model contains **220 M parameters**, and the large model contains **770 M parameters**[S6]. (The architecture can also be built on other pretrained seq‑to‑seq models such as BART, but the experiments in the paper use T5 as the initialization[S3]).",
+  "citations": [
+    {
+      "source_id": "S6",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_id": "f1ee7e927c3fb31b:p4:c1",
+      "snippet": "Evaluation. Predicted answers are evaluated with the standard exact match metric (EM), as introduced by Rajpurkar et al. (2016). A generated answer is considered correct if it matches any answer of the list of acceptable answers after normalization. This normalization step consists in lowercasing ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)",
+      "chunk_id": "f1ee7e927c3fb31b:p3:c2",
+      "snippet": "Reading. Our generative model for open domain QA is based on a sequence-to-sequence network, pretrained on unsupervised data, such as T5 or BART (Raffel et al., 2019; Lewis et al., 2019). The model takes as input the question, as well as the support passages, and generates the answer. More ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "4 Experiments\n\nIn this section, we report empirical evaluations of Fusion-in-Decoder for open domain QA.\n\nDatasets. We consider the following datasets, and use the same setting as Lee et al. (2019):\n\n• NaturalQuestions (Kwiatkowski et al., 2019) contains questions corresponding to Google search queries. The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens.\n\n• TriviaQA (Joshi et al., 2017) contains questions gathered from trivia and quiz-league",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Experiments"
+    },
+    {
+      "text": "Question + Passage 1 encoder\n\nQuestion + Passage 2 encoder\n\nQuestion + Passage N encoder\n\ndecoder Answer concat ...\n\nFigure 2: Architecture of the Fusion-in-Decoder method.\n\nrepresentations. Then, a sequence-to-sequence model generates the answer, taking as input the retrieved passages in addition to the question. While conceptually simple, this method sets new state-ofthe-art results on the TriviaQA and NaturalQuestions benchmarks. In particular, we show that the performance of our method significantly improves when the number of retrieved passages increases. We believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Reading. Our generative model for open domain QA is based on a sequence-to-sequence network, pretrained on unsupervised data, such as T5 or BART (Raffel et al., 2019; Lewis et al., 2019). The model takes as input the question, as well as the support passages, and generates the answer. More precisely, each retrieved passage and its title are concatenated with the question, and processed independently from other passages by the encoder. We add special tokens question:, title: and\n\ncontext: before the question, title and text of each passage. Finally, the decoder performs atten-\n\n1lucene.apache.org 2spacy.io 3github.com/facebookresearch/faiss\n\ntion over the concatenation of the resulting representations of all the retrieved passages. The model thus performs evidence fusion in the decoder only, and we refer to it as Fusion-in-Decoder.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "By processing passages independently in the encoder, but jointly in the decoder, this method differs from Min et al. (2020) and Lewis et al. (2020). Processing passages independently in the encoder allows to scale to large number of contexts, as it only performs self attention over one context at a time. This means that the computation time of the model grows linearly with the number of passages, instead of quadratically. On the other hand, processing passages jointly in the decoder allows to better aggregate evidence from multiple passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Impact of the number of training passages. In the previous section, the model was trained and evaluated with the same number of passages. To reduce the training computational budget, a simple solution consists in training the model with fewer passages. In Table 2, we report the performance obtained by training with different numbers of passages, while testing with 100 passages. We observe that reducing the number of training passages leads to a decrease of accuracy. Further, we propose to finetune the previous models using 100 passages for 1000 steps. This allows to reduce the accuracy gap, while using significantly less computational resources: we can reach 46.0 EM on NaturalQuestions, using 147 GPU hours, compared to 425 GPU hours when training on 100 passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 5,
+      "section": "Experiments"
+    },
+    {
+      "text": "Evaluation. Predicted answers are evaluated with the standard exact match metric (EM), as introduced by Rajpurkar et al. (2016). A generated answer is considered correct if it matches any answer of the list of acceptable answers after normalization. This normalization step consists in lowercasing and removing articles, punctuation and duplicated whitespace.\n\nTechnical details. We initialize our models with the pretrained T5 models (Raffel et al., 2019), available in the HuggingFace Transformers library.4 We consider two model sizes, base and large, containing respectively 220M and 770M parameters. We fine-tune the models on each dataset independently, using Adam (Kingma and Ba, 2014) with a constant learning rate of 10−4 and a dropout rate of 10%. We train the model for 10k gradient steps, with a batch size of 64, using 64 Tesla V100 32Gb. We evaluate models every 500 steps and select the",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    }
+  ]
+}

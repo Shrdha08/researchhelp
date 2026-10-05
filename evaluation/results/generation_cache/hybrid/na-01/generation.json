@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not contain any information about the total training cost of DPR in US dollars.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "Multi DPR 41.5 56.8 42.4 49.4 24.1 BM25+DPR 38.8 57.9 41.1 50.6 35.8\n\nTable 4: End-to-end QA (Exact Match) Accuracy. The first block of results are copied from their cited papers. REALMWiki and REALMNews are the same model but pretrained on Wikipedia and CC-News, respectively. Single and Multi denote that our Dense Passage Retriever (DPR) is trained using individual or combined training datasets (all except SQuAD). For WQ and TREC in the Multi setting, we fine-tune the reader trained on NQ.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 8,
+      "section": "Results"
+    },
+    {
+      "text": "Cross-dataset generalization One interesting question regarding DPR’s discriminative training is how much performance degradation it may suffer from a non-iid setting. In other words, can it still generalize well when directly applied to a different dataset without additional fine-tuning? To test the cross-dataset generalization, we train DPR on Natural Questions only and test it directly on the smaller WebQuestions and CuratedTREC datasets. We find that DPR generalizes well, with 3-5 points loss from the best performing fine-tuned model in top-20 retrieval accuracy (69.9/86.3 vs. 75.0/89.1 for WebQuestions and TREC, respectively), while still greatly outperforming the BM25 baseline (55.0/70.9).",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "effective solution that shows stronger empirical performance, without relying on additional pretraining or complex joint training schemes.\n\nDPR has also been used as an important module in very recent work. For instance, extending the idea of leveraging hard negatives, Xiong et al. (2020a) use the retrieval model trained in the previous iteration to discover new negatives and construct a different set of examples in each training iteration. Starting from our trained DPR model, they show that the retrieval performance can be further improved. Recent work (Izacard and Grave, 2020; Lewis et al., 2020b) have also shown that DPR can be combined with generation models such as BART (Lewis et al., 2020a) and T5 (Raffel et al., 2019), achieving good performance on open-domain QA and other knowledge-intensive tasks.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 9,
+      "section": "Related Work"
+    },
+    {
+      "text": "Training Retriever Top-20 Top-100 NQ TriviaQA WQ TREC SQuAD NQ TriviaQA WQ TREC SQuAD\n\nNone BM25 59.1 66.9 55.0 70.9 68.8 73.7 76.7 71.1 84.1 80.0\n\nSingle DPR 78.4 79.4 73.2 79.8 63.2 85.4 85.0 81.4 89.1 77.2 BM25 + DPR 76.6 79.8 71.0 85.2 71.5 83.8 84.5 80.5 92.7 81.3\n\nMulti DPR 79.4 78.8 75.0 89.1 51.6 86.0 84.7 82.9 93.9 67.6 BM25 + DPR 78.0 79.9 74.7 88.5 66.2 83.9 84.4 82.3 94.1 78.6\n\nTable 2: Top-20 & Top-100 retrieval accuracy on test sets, measured as the percentage of top 20/100 retrieved passages that contain the answer. Single and Multi denote that our Dense Passage Retriever (DPR) was trained using individial or combined training datasets (all the datasets excluding SQuAD). See text for more details.\n\ntraditional retrieval methods, the effects of different training schemes and the run-time efficiency.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "While it is good to have the flexibility to adapt the retriever to each dataset, it would also be desirable to obtain a single retriever that works well across the board. To this end, we train a multidataset encoder by combining training data from all datasets excluding SQuAD.8 In addition to DPR, we also present the results of BM25, the traditional retrieval method9 and BM25+DPR, using a linear combination of their scores as the new ranking function. Specifically, we obtain two initial sets of top-2000 passages based on BM25 and DPR, respectively, and rerank the union of them using BM25(q,p) + λ · sim(q, p) as the ranking function. We used λ = 1.1 based on the retrieval accuracy in\n\nthe development set.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "20 40 60 80 100 k: # of retrieved passages\n\n40\n\n50\n\n60\n\n70\n\n80\n\n90\n\nBM25 # Train: 1k # Train: 10k # Train: 20k # Train: 40k # Train: all (59k)\n\nFigure 1: Retriever top-k accuracy with different numbers of training examples used in our dense passage retriever vs BM25. The results are measured on the development set of Natural Questions. Our DPR trained using 1,000 examples already outperforms BM25.\n\ntiple datasets, TREC, the smallest dataset of the five, benefits greatly from more training examples. In contrast, Natural Questions and WebQuestions improve modestly and TriviaQA degrades slightly. Results can be improved further in some cases by combining DPR with BM25 in both single- and multi-dataset settings.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Main Results"
+    }
+  ]
+}

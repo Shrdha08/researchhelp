@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE is evaluated on four non-English languages.",
+      "supported": true
+    },
+    {
+      "claim": "Swahili is one of the non-English languages evaluated.",
+      "supported": true
+    },
+    {
+      "claim": "Korean is one of the non-English languages evaluated.",
+      "supported": true
+    },
+    {
+      "claim": "Japanese is one of the non-English languages evaluated.",
+      "supported": true
+    },
+    {
+      "claim": "Bengali is one of the non-English languages evaluated.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What non-English languages does HyDE use for evaluation?",
+    "List the languages from the Mr.TyDi dataset used in HyDE experiments.",
+    "Which specific non-English languages are mentioned in the HyDE paper's multilingual retrieval section?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies all four non-English languages (Swahili, Korean, Japanese, and Bengali) mentioned in the reference and supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    true,
+    false,
+    false
+  ]
+}

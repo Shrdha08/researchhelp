@@ -1,0 +1,52 @@
+{
+  "answer": "The BM25 sparse retriever is implemented using Apache Lucene with its default parameters[S1].",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)",
+      "chunk_id": "f1ee7e927c3fb31b:p3:c1",
+      "snippet": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support passages, we consider two methods: BM25 (Robertson et al., 1995) and DPR (Karpukhin et al., 2020). In BM25, passages are represented as bag of words, and the ranking function is based on term and inverse document frequencies. We use the implementation from Apache Lucene1 with default parameters, and tokenize questions and passages with SpaCy.2 In DPR, passages and questions are represented as dense vector representations, computed using two BERT networks. The ranking function is the dot product between the query and passage representations. Retrieval is performed using approximate nearest neighbors with the FAISS library.3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Comparison to state-of-the-art. In table 1, we compare the results obtained by Fusion-in-Decoder with existing approaches for open domain question answering. We observe that while conceptually simple, this method outperforms existing work on the NaturalQuestion and TriviaQA benchmarks. In particular, generative models seem to perform well when evidence from multiple passages need to be aggregated, compared to extractive approaches. Our method also performs better than other generative models, showing that scaling to large number of passages and processing them jointly leads to improvement in accuracy. Second, we observe that using additional knowledge in generative models by using retrieval lead to important performance gains. On NaturalQuestions, the closed book T5 model obtains 36.6% accuracy with 11B parameters, while our approach obtains 44.1% with 770M parameters plus Wikipedia with BM25 retrieval.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    },
+    {
+      "text": "best one on the validation set based on the Exact Match score. During training on NaturalQuestions\n\n4github.com/huggingface/transformers\n\nand SQuAD, we sample the target among the list of answers, while for TriviaQA, we use the unique human-generated answer. For TriviaQA, answers in uppercase are normalized by converting all letters in lowercase except the first letter of each word, using the title Python string method. For both training and testing, we retrieve 100 passages (unless said otherwise), and truncate them to 250 word pieces. Following the results of Karpukhin et al. (2020), passages are retrieved with DPR for NQ and TriviaQA, and with BM25 for SQuAD. We generate answers by using greedy decoding.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    },
+    {
+      "text": "support documents, before extracting the answer from these documents. Different retrieval techniques have been considered, either using sparse representations based on TF/IDF or using dense embeddings (Guu et al., 2020; Karpukhin et al., 2020). The models which extract the answers are often based on contextualized word representations such as ELMo or BERT (Peters et al., 2018; Devlin et al., 2019), and predict a span as answer. Aggregating and combining evidence from multiple passages is not straightforward when using extractive models, and multiple techniques have been proposed to address this limitation (Clark and Gardner, 2018; Min et al., 2019a).\n\nIn this paper, we explore a simple approach having the best of both worlds, by building on the exciting developments in generative modeling and retrieval for open domain question answering. This method proceeds in two steps, by first retrieving supporting passages using either sparse or dense",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 1,
+      "section": "Introduction"
+    },
+    {
+      "text": "retrieved document. Different methods were proposed to tackle the setting where no gold spans are given to the system, but only the correct answer. Clark and Gardner (2018) proposed to use a global normalization over all the span corresponding to the answer, which was later applied to BERT based models (Wang et al., 2019). Min et al. (2019a) introduced a method based on hard expectationmaximization to tackle noisy supervision from this setting. Wang et al. (2018b) described a technique to aggregate answers from different paragraphs, using confidence and coverage scores.\n\nPassage retrieval is an important step in open domain question answering, and is an active area of research to improve QA systems. Initially, sparse representations based on TF/IDF were used to retrieve support documents (Chen et al., 2017). Lee et al. (2018) introduced a supervised learning",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 2,
+      "section": "Related Work"
+    },
+    {
+      "text": "5 Conclusion\n\nIn this paper, we study a simple approach to open domain question answering, which relies on retrieving support passages before processing them with a generative model. We show that while conceptually simple, this approach is competitive with existing methods, and that it scales well with the number of retrieved passages. In future work, we plan to make this model more efficient, in particular when scaling to large number of support passages. We also plan to integrate the retrieval in our model, and to learn the whole system end-to-end.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 5,
+      "section": "Conclusion"
+    }
+  ]
+}

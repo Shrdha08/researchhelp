@@ -1,0 +1,52 @@
+{
+  "answer": "On the TREC DL19 web‑search benchmark, HyDE achieves an nDCG@10 of **61.3**, while the unsupervised Contriever baseline attains **44.5** nDCG@10[S3].",
+  "citations": [
+    {
+      "source_id": "S3",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Web Search",
+      "chunk_id": "dc0ae3c5584ed146:p5:c0",
+      "snippet": "DL19 DL20 map ndcg@10 recall@1k map ndcg@10 recall@1k\n\nw/o relevance judgement BM25 30.1 50.6 75.0 28.6 48.0 78.6 Contriever 24.0 44.5 74.6 24.0 42.1 75.4 HyDE 41.8 61.3 88.0 38.2 57.9 84.4\n\nw/ relevance judgement DPR 36.5 62.2 76.9 41.8 65.3 81.4 ANCE 37.1 64.5 75.5 40.8 64.6 77.6 ContrieverFT ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around 10% lower map and ndcg@10 than ContrieverFT and similar recall@1k. The ANCE model shows better ndcg@10 numbers than HyDE but lower recall, suggesting it may be biased to a subset of queries and/or relevant documents.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    },
+    {
+      "text": "4.2 Web Search\n\nIn Table 1, we show retrieval results on TREC DL19 and TREC DL20. We see HyDE bring sizable improvements to Contriever across the board for",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 4,
+      "section": "Web Search"
+    },
+    {
+      "text": "DL19 DL20 map ndcg@10 recall@1k map ndcg@10 recall@1k\n\nw/o relevance judgement BM25 30.1 50.6 75.0 28.6 48.0 78.6 Contriever 24.0 44.5 74.6 24.0 42.1 75.4 HyDE 41.8 61.3 88.0 38.2 57.9 84.4\n\nw/ relevance judgement DPR 36.5 62.2 76.9 41.8 65.3 81.4 ANCE 37.1 64.5 75.5 40.8 64.6 77.6 ContrieverFT 41.7 62.1 83.6 43.6 63.2 85.8\n\nTable 1: Results for web search on DL19/20. Best performing w/o relevance and overall system(s) are marked bold. DPR, ANCE and ContrieverFT are in-domain supervised models that are finetuned on MS MARCO training data.\n\nScifact Arguana Trec-Covid FiQA DBPedia TREC-NEWS\n\nnDCG@10 w/o relevance judgement BM25 67.9 39.7 59.5 23.6 31.8 39.5 Contriever 64.9 37.9 27.3 24.5 29.2 34.8 HyDE 69.1 46.6 59.3 27.3 36.8 44.0\n\nw/ relevance judgement DPR 31.8 17.5 33.2 29.5 26.3 16.1 ANCE 50.7 41.5 65.4 30.0 28.1 38.2 ContrieverFT 67.7 44.6 59.6 32.9 41.3 42.8",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    },
+    {
+      "text": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a tiny 0.2 margin; in comparison, the underlying Contriever underperforms by more than 50%.\n\nWe also observe HyDE demonstrates strong performance compared to fine-tuned models. HyDE generally shows better performance than ANCE and DPR, even though the two are fine-tuned on MS-MARCO and ANCE also involves some sophisticated hard negative techniques. ContrieverFT shows performance advantages on FiQA and DBPedia. These involve retrieval of financial posts or entities respectively. We believe the performance difference can be attributed to the",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Low Resource Retrieval"
+    },
+    {
+      "text": "5.2 HyDE with Fine-tuned Encoder\n\nTo begin with, HyDE with fine-tuned encoder is not the intended usage: HyDE is more powerful and irreplaceable when few relevance labels are present. Here we are interested to find out if and how HyDE embedding can affect fine-tuned encoders. In Table 4, we see that less powerful instruction LMs can negatively impact the overall performance of the fine-tuned retriever. (To remind our readers, ContrieverFT is in-domain supervisedly fine-tuned for TREC DL19/20). The performance degradations remain small. On the other hand, we also observe the InstructGPT model able to further bring up the performance, especially on DL19. This suggests that there may still exist certain factors not captured by the fine-tuned encoder but only by the generative model.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 6,
+      "section": "HyDE with Fine-tuned Encoder"
+    },
+    {
+      "text": "w/ relevance judgement DPR 31.8 17.5 33.2 29.5 26.3 16.1 ANCE 50.7 41.5 65.4 30.0 28.1 38.2 ContrieverFT 67.7 44.6 59.6 32.9 41.3 42.8\n\nRecall@100 w/o relevance judgement BM25 92.5 93.2 49.8 54.0 46.8 44.7 Contriever 92.6 90.1 17.2 56.2 45.3 42.3 HyDE 96.4 97.9 41.4 62.1 47.2 50.9\n\nw/ relevance judgement DPR 72.7 75.1 21.2 34.2 34.9 21.5 ANCE 81.6 93.7 45.7 58.1 31.9 39.8 ContrieverFT 94.7 97.7 40.7 65.6 54.1 49.2\n\nTable 2: Low resource tasks from BEIR. Best performing w/o relevance and overall system(s) are marked bold.\n\nboth precision-oriented and recall metrics. While unsupervised Contriever can underperform the classical BM25 approach, HyDE outperforms BM25 by large margins.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT evaluates performance on MS MARCO passage-ranking collection.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT uses mean reciprocal rank at depth 10 (MRR@10).",
+      "supported": true
+    },
+    {
+      "claim": "MRR@10 is the official metric for this evaluation.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What metric does ColBERT use to evaluate on MS MARCO?",
+    "Which evaluation metric is reported for ColBERT on the MS MARCO dataset?",
+    "How is ColBERT's effectiveness measured on MS MARCO?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies MRR@10 as the metric, matching the reference answer and supported by the context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+  ]
+}

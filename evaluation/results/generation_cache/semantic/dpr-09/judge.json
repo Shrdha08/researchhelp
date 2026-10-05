@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "DPR experiments were run on a single GPU",
+      "supported": false
+    },
+    {
+      "claim": "The GPU had 32 GB of memory",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What GPU hardware was used for the DPR experiments?",
+    "How much memory did the GPU used in the DPR experiments have?",
+    "On what hardware were the DPR experiments conducted?"
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer incorrectly states a single GPU was used, whereas the reference answer specifies eight 32GB GPUs.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    true,
+    false,
+    false
+  ]
+}

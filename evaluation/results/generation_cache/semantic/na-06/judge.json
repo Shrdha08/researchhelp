@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "questions": [
+    "What is Retro's score on the GLUE benchmark?",
+    "Does the text provide Retro's GLUE benchmark results?",
+    "Can you find the GLUE score for Retro in the provided context?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about Retro's performance on the GLUE benchmark, which aligns with the reference answer stating it is not reported.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

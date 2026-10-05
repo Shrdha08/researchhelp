@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT can index the MS MARCO collection in about three hours.",
+      "supported": true
+    },
+    {
+      "claim": "The MS MARCO collection contains approximately 9 million passages.",
+      "supported": true
+    },
+    {
+      "claim": "Indexing uses a single server with four GPUs.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How long does it take ColBERT to index the MS MARCO dataset?",
+    "What is the indexing time for ColBERT on MS MARCO with four GPUs?",
+    "How many hours does ColBERT require to index 9M MS MARCO passages?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately states the indexing time (about 3 hours), the dataset size (9M passages), and the hardware configuration (single server with four GPUs), matching the reference answer and supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+  ]
+}

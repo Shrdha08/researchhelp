@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE achieves an nDCG@10 of 61.3 on TREC DL19",
+      "supported": true
+    },
+    {
+      "claim": "Contriever attains 44.5 nDCG@10 on TREC DL19",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the nDCG@10 score for HyDE on TREC DL19?",
+    "How does HyDE's nDCG@10 compare to Contriever on TREC DL19?",
+    "What are the nDCG@10 scores for HyDE and Contriever on TREC DL19?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the specific nDCG@10 scores for both HyDE and Contriever on TREC DL19 as stated in the reference and retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+  ]
+}

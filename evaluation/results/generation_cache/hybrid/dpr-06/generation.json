@@ -1,0 +1,70 @@
+{
+  "answer": "**In‑batch negatives** are a training strategy used for the dual‑encoder DPR model in which the negative passages are taken from the other questions that share the same mini‑batch.  \n\n- For a mini‑batch of size \\(B\\), each question \\(q_i\\) has its own relevant passage \\(p_i\\). The model computes a similarity matrix \\(S = QP^{\\top}\\) of size \\(B \\times B\\) (where each row corresponds to a question and each column to a passage) [S5].  \n- Any pair \\((q_i, p_j)\\) with \\(i \\neq j\\) is treated as a negative example, while the diagonal pair \\((q_i, p_i)\\) is the positive example. Thus each batch yields \\(B(B-1)\\) negative pairs without needing extra sampled negatives [S5].  \n- This “in‑batch negative” approach reuses the passages already present in the batch, effectively increasing the number of training examples and providing a memory‑efficient way to generate negatives [S3].  \n\nIn practice, DPR’s main experiments train with in‑batch negatives (batch size 128) plus one additional BM25 negative per question [S1].",
+  "citations": [
+    {
+      "source_id": "S5",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 3,
+      "section": "Training",
+      "chunk_id": "3e67fc1a9977715a:p3:c6",
+      "snippet": "In-batch negatives Assume that we have B questions in a mini-batch and each one is associated with a relevant passage. Let Q and P be the (B×d) matrix of question and passage embeddings\n\nin a batch of size B. S = QPT is a (B × B) matrix of similarity scores, where each row of which corresponds to a ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 4,
+      "section": "Training",
+      "chunk_id": "3e67fc1a9977715a:p4:c0",
+      "snippet": "negative passages for each question.\n\nThe trick of in-batch negatives has been used in the full batch setting (Yih et al., 2011) and more recently for mini-batch (Henderson et al., 2017; Gillick et al., 2019). It has been shown to be an effective strategy for learning a dual-encoder model that ..."
+    },
+    {
+      "source_id": "S1",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_id": "3e67fc1a9977715a:p5:c1",
+      "snippet": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same batch or from the whole training set. Effectively, in-batch negative training is an easy and memory-efficient way to reuse the negative examples already in the batch rather than creating new ones. It produces more pairs and thus increases the number of training examples, which might contribute to the good model performance. As a result, accuracy consistently improves as the batch size grows.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "negative passages for each question.\n\nThe trick of in-batch negatives has been used in the full batch setting (Yih et al., 2011) and more recently for mini-batch (Henderson et al., 2017; Gillick et al., 2019). It has been shown to be an effective strategy for learning a dual-encoder model that boosts the number of training examples.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 4,
+      "section": "Training"
+    },
+    {
+      "text": "In-batch negative training We test different training schemes on the development set of Natural Questions and summarize the results in Table 3. The top block is the standard 1-of-N training setting, where each question in the batch is paired with a positive passage and its own set of n negative passages (Eq. (2)). We find that the choice of negatives — random, BM25 or gold passages (positive passages from other questions) — does not impact the top-k accuracy much in this setting when k ≥20.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "In-batch negatives Assume that we have B questions in a mini-batch and each one is associated with a relevant passage. Let Q and P be the (B×d) matrix of question and passage embeddings\n\nin a batch of size B. S = QPT is a (B × B) matrix of similarity scores, where each row of which corresponds to a question, paired with B passages. In this way, we reuse computation and effectively train on B2 (qi, pj) question/passage pairs in each batch. Any (qi, pj) pair is a positive example when i = j, and negative otherwise. This creates B training instances in each batch, where there are B −1",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 3,
+      "section": "Training"
+    },
+    {
+      "text": "from the i-th passage as Pstart,i(s) × Pend,i(t), and a passage selection score of the i-th passage as Pselected(i).\n\nDuring training, we sample one positive and ̃m−1 negative passages from the top 100 passages returned by the retrieval system (BM25 or DPR) for each question. ̃m is a hyper-parameter and we use ̃m = 24 in all the experiments. The training objective is to maximize the marginal log-likelihood of all the correct answer spans in the positive passage (the answer string may appear multiple times in one passage), combined with the log-likelihood of the positive passage being selected. We use the batch size of 16 for large (NQ, TriviaQA, SQuAD) and 4 for small (TREC, WQ) datasets, and tune k on the development set. For experiments on small datasets under the Multi setting, in which using other datasets is allowed, we fine-tune the reader trained on Natural Questions to the target dataset. All experiments were done on eight 32GB GPUs.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 7,
+      "section": "End-to-end QA System"
+    }
+  ]
+}

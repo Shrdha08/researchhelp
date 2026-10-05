@@ -1,0 +1,52 @@
+{
+  "answer": "DPR’s Wikipedia retrieval corpus contains **21,015,324 passages**. These passages were built by taking the English Wikipedia dump (Dec 20 2018), cleaning it with the DrQA preprocessing code to remove tables, infoboxes, lists and disambiguation pages, and then splitting each article into multiple **disjoint 100‑word text blocks**. Each block is treated as a passage and is prefixed with the article’s title and an [SEP] token[S2].",
+  "citations": [
+    {
+      "source_id": "S2",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 4,
+      "section": "Wikipedia Data Pre-processing",
+      "chunk_id": "3e67fc1a9977715a:p4:c2",
+      "snippet": "4.1 Wikipedia Data Pre-processing\n\nFollowing (Lee et al., 2019), we use the English Wikipedia dump from Dec. 20, 2018 as the source\n\ndocuments for answering questions. We first apply the pre-processing code released in DrQA (Chen et al., 2017) to extract the clean, text-portion of articles from the ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "3 Dense Passage Retriever (DPR)\n\nWe focus our research in this work on improving the retrieval component in open-domain QA. Given a collection of M text passages, the goal of our dense passage retriever (DPR) is to index all the passages in a low-dimensional and continuous space, such that it can retrieve efficiently the top k passages relevant to the input question for the reader at run-time. Note that M can be very large (e.g., 21 million passages in our experiments, described in Section 4.1) and k is usually small, such as 20–100.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 2,
+      "section": "Dense Passage Retriever (DPR)"
+    },
+    {
+      "text": "4.1 Wikipedia Data Pre-processing\n\nFollowing (Lee et al., 2019), we use the English Wikipedia dump from Dec. 20, 2018 as the source\n\ndocuments for answering questions. We first apply the pre-processing code released in DrQA (Chen et al., 2017) to extract the clean, text-portion of articles from the Wikipedia dump. This step removes semi-structured data, such as tables, infoboxes, lists, as well as the disambiguation pages. We then split each article into multiple, disjoint text\n\nblocks of 100 words as passages, serving as our basic retrieval units, following (Wang et al., 2019), which results in 21,015,324 passages in the end.5\n\nEach passage is also prepended with the title of the Wikipedia article where the passage is from, along with an [SEP] token.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 4,
+      "section": "Wikipedia Data Pre-processing"
+    },
+    {
+      "text": "5.1 Main Results\n\nTable 2 compares different passage retrieval systems on five QA datasets, using the top-k accuracy (k ∈{20, 100}). With the exception of SQuAD, DPR performs consistently better than BM25 on all datasets. The gap is especially large when k is small (e.g., 78.4% vs. 59.1% for top-20 accuracy on Natural Questions). When training with mul-\n\n8SQuAD is limited to a small set of Wikipedia documents and thus introduces unwanted bias. We will discuss this issue more in Section 5.1.\n\n9Lucene implementation. BM25 parameters b = 0.4 (document length normalization) and k1 = 0.9 (term frequency scaling) are tuned using development sets.\n\n20 40 60 80 100 k: # of retrieved passages\n\n40\n\n50\n\n60\n\n70\n\n80\n\n90\n\nBM25 # Train: 1k # Train: 10k # Train: 20k # Train: 40k # Train: all (59k)",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Main Results"
+    },
+    {
+      "text": "3.1 Overview\n\nOur dense passage retriever (DPR) uses a dense encoder EP (·) which maps any text passage to a ddimensional real-valued vectors and builds an index for all the M passages that we will use for retrieval.\n\n3The ideal size and boundary of a text passage are functions of both the retriever and reader. We also experimented with natural paragraphs in our preliminary trials and found that using fixed-length passages performs better in both retrieval and final QA accuracy, as observed by Wang et al. (2019).\n\n4Exceptions include (Seo et al., 2019) and (Roberts et al., 2020), which retrieves and generates the answers, respectively.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 2,
+      "section": "Overview"
+    },
+    {
+      "text": "5 Experiments: Passage Retrieval\n\nIn this section, we evaluate the retrieval performance of our Dense Passage Retriever (DPR), along with analysis on how its output differs from\n\n6We use the unfiltered TriviaQA version and discard the noisy evidence documents mined from Bing.\n\n7The improvement of using gold contexts over passages that contain answers is small. See Section 5.2 and Appendix A.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 4,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "It is interesting to contrast our results to those of ORQA (Lee et al., 2019) and also the concurrently developed approach, REALM (Guu et al., 2020). While both methods include additional pretraining tasks and employ an expensive end-to-end training regime, DPR manages to outperform them on both NQ and TriviaQA, simply by focusing on learning a strong passage retrieval model using pairs of questions and answers. The additional pretraining tasks are likely more useful only when the target training sets are small. Although the results of DPR on WQ and TREC in the single-dataset setting are less competitive, adding more question–answer pairs helps boost the performance, achieving the new state of the art.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 8,
+      "section": "Results"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "answer": "**Tasks on which RAG is evaluated**\n\n| Paper section | Task(s) evaluated |\n|---|---|\n| **Open‑domain Question Answering** (Section 4.1) | Four open‑domain QA benchmarks (the specific datasets are not named in the excerpt) [S6] |\n| **Fact Verification** (Section 4.4) | FEVER fact‑verification benchmark (3‑way classification) [S4] |\n| **Abstractive Question Answering** (Section 3.2) | MSMARCO NLG task v2.1, which requires generating free‑form answers from questions [S5] |\n\nThe excerpts do not list any other tasks; the “wide range of knowledge‑intensive tasks” mentioned in the Experiments section is not detailed further [S2].",
+  "citations": [
+    {
+      "source_id": "S6",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 5,
+      "section": "Open-domain Question Answering",
+      "chunk_id": "23e3249e9a1e7541:p5:c5",
+      "snippet": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 6,
+      "section": "Fact Verification",
+      "chunk_id": "23e3249e9a1e7541:p6:c6",
+      "snippet": "4.4 Fact Verification\n\nTable 2 shows our results on FEVER. For 3-way classification, RAG scores are within 4.3% of state-of-the-art models, which are complex pipeline systems with domain-specific architectures and substantial engineering, trained using intermediate retrieval supervision, which RAG ..."
+    },
+    {
+      "source_id": "S5",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 4,
+      "section": "Abstractive Question Answering",
+      "chunk_id": "23e3249e9a1e7541:p4:c7",
+      "snippet": "3.2 Abstractive Question Answering\n\nRAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting, we use the MSMARCO NLG task v2.1 [43]. The task consists of ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_id": "23e3249e9a1e7541:p4:c4",
+      "snippet": "3 Experiments\n\nWe experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for our non-parametric knowledge source. Following Lee et al. [31] and Karpukhin et al. [26], we use the December 2018 dump. Each Wikipedia article is split into ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Broader Impact\n\nThis work offers several positive societal benefits over previous work: the fact that it is more strongly grounded in real factual knowledge (in this case Wikipedia) makes it “hallucinate” less with generations that are more factual, and offers more control and interpretability. RAG could be employed in a wide variety of scenarios with direct benefit to society, for example by endowing it with a medical index and asking it open-domain questions on that topic, or by helping people be more effective at their jobs.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 10,
+      "section": "Discussion"
+    },
+    {
+      "text": "3 Experiments\n\nWe experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for our non-parametric knowledge source. Following Lee et al. [31] and Karpukhin et al. [26], we use the December 2018 dump. Each Wikipedia article is split into disjoint 100-word chunks, to make a total of 21M documents. We use the document encoder to compute an embedding for each document, and build a single MIPS index using FAISS [23] with a Hierarchical Navigable Small World approximation for fast retrieval [37]. During training, we retrieve the top k documents for each query. We consider k ∈{5, 10} for training and set k for test time using dev data. We now discuss experimental details for each task.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 4,
+      "section": "Experiments"
+    },
+    {
+      "text": "2 Methods\n\nWe explore RAG models, which use the input sequence x to retrieve text documents z and use them as additional context when generating the target sequence y. As shown in Figure 1, our models leverage two components: (i) a retriever pη(z|x) with parameters η that returns (top-K truncated) distributions over text passages given a query x and (ii) a generator pθ(yi|x, z, y1:i−1) parametrized\n\n1Code to run experiments with RAG has been open-sourced as part of the HuggingFace Transformers Library [66] and can be found at https://github.com/huggingface/transformers/blob/master/ examples/rag/. An interactive demo of RAG models can be found at https://huggingface.co/rag/",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 2,
+      "section": "Method"
+    },
+    {
+      "text": "4.4 Fact Verification\n\nTable 2 shows our results on FEVER. For 3-way classification, RAG scores are within 4.3% of state-of-the-art models, which are complex pipeline systems with domain-specific architectures and substantial engineering, trained using intermediate retrieval supervision, which RAG does not require.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 6,
+      "section": "Fact Verification"
+    },
+    {
+      "text": "3.2 Abstractive Question Answering\n\nRAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting, we use the MSMARCO NLG task v2.1 [43]. The task consists of questions, ten gold passages retrieved from a search engine for each question, and a full sentence answer annotated from the retrieved passages. We do not use the supplied passages, only the questions and answers, to treat",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 4,
+      "section": "Abstractive Question Answering"
+    },
+    {
+      "text": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) approaches and the performance of \"open-book\" retrieval-based approaches. Unlike REALM and T5+SSM, RAG enjoys strong results without expensive, specialized “salient span masking” pre-training [20]. It is worth noting that RAG’s retriever is initialized using DPR’s retriever, which uses retrieval supervision on Natural Questions and TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “crossencoder” to re-rank documents, along with an extractive reader. RAG demonstrates that neither a re-ranker nor extractive reader is necessary for state-of-the-art performance.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Open-domain Question Answering"
+    }
+  ]
+}

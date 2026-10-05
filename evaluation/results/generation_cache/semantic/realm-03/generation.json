@@ -1,0 +1,61 @@
+{
+  "answer": "**REALM’s performance relative to prior methods (as reported in the provided excerpts)**  \n\n| Prior method | Reported advantage of REALM |\n|--------------|-----------------------------|\n| **ORQA** (Lee et al., 2019) | REALM’s improvement over ORQA is attributed solely to its superior pre‑training; the two systems use identical fine‑tuning setups, hyper‑parameters, and training data[S1]. |\n| **Other retrieval‑based systems** (Asai et al., 2019; Min et al., 2019a;b) | Those systems typically retrieve 20–80 documents, whereas REALM achieves the best overall performance while retrieving only **5 documents**[S1]. |\n| **Generative Open‑QA systems based on T5** (Roberts et al., 2020) | The largest T5‑11B model (≈50 × larger than REALM) gains roughly **5 percentage points** in accuracy over smaller T5 variants, yet **REALM outperforms T5‑11B while being 30 × smaller**[S4]. |\n\n**Summary**  \n- REALM beats the directly comparable ORQA system thanks to its pre‑training strategy.  \n- It surpasses other retrieval‑based approaches despite using far fewer retrieved documents (5 vs. 20–80).  \n- Compared with the strongest generative Open‑QA baseline (T5‑11B), REALM achieves higher accuracy even though it is dramatically smaller (30 × less parameters).  \n\nNo explicit numeric accuracy figures are provided in the excerpts, so the answer is limited to the qualitative performance statements above.",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 7,
+      "section": "Experiments",
+      "chunk_id": "0ec1a7ab3de5514c:p7:c4",
+      "snippet": "Among all systems, the most direct comparison with REALM is ORQA (Lee et al., 2019), where the fine-tuning setup, hyperparameters and training data are identical. The improvement of REALM over ORQA is purely due to better pre-training methods. The results also indicate that our method of ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 7,
+      "section": "Experiments",
+      "chunk_id": "0ec1a7ab3de5514c:p7:c3",
+      "snippet": "As reported in the concurrent work of Roberts et al. (2020), the generative Open-QA systems based on T5 are surprisingly powerful, with the largest T5-11B model outperforming the previous best Open-QA system. Increasing the size of T5 yields consistent improvement, but comes at significant ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Among all systems, the most direct comparison with REALM is ORQA (Lee et al., 2019), where the fine-tuning setup, hyperparameters and training data are identical. The improvement of REALM over ORQA is purely due to better pre-training methods. The results also indicate that our method of pre-training can be applied both on (1) the singlecorpus setting (X = Wikipedia, Z = Wikipedia), or (2) the separate-corpus setting (X = CC-News, Z = Wikipedia).\n\nCompared to other retrieval-based systems (Asai et al., 2019; Min et al., 2019a;b) which often retrieve from 20 to 80 documents, our system gets the overall best performance while only retrieving 5 documents.\n\n4.5. Analysis",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    },
+    {
+      "text": "4.5. Analysis\n\nIn Table 2 we present results for NaturalQuestions-Open after ablating critical components of REALM. In addition to the end-to-end results, we also report how often the gold answer appears in the top-5 retrievals before applying any fine-tuning. The latter metric more significantly isolates the contribution of improving the retriever during pre-training.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    },
+    {
+      "text": "Encoder or Retriever We first aim to determine whether REALM pre-training improves the retriever or the encoder, or both. To do so, we can reset the parameters of either the retriever or the encoder to their baseline state before REALM pre-training, and feed that into fine-tuning. Resetting both the retriever and encoder reduces the system to our main baseline, ORQA. We find that both the encoder and retriever benefit from REALM training separately, but the best result requires both components acting in unison.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "As reported in the concurrent work of Roberts et al. (2020), the generative Open-QA systems based on T5 are surprisingly powerful, with the largest T5-11B model outperforming the previous best Open-QA system. Increasing the size of T5 yields consistent improvement, but comes at significant computational cost (from Base to 11B, the model is 50 times larger, and gains roughly 5 points in accuracy). In contrast, REALM outperforms the largest T5-11B model while being 30 times smaller. It is also important to note that T5 accesses additional reading comprehension data from SQuAD during its pre-training (100,000+ examples). Access to such data could also benefit REALM, but was not used in our experiments.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    },
+    {
+      "text": "Figure 3. REALM pre-training with asynchronous MIPS refreshes.\n\nbelow, the trainer sends the index builder a snapshot of its parameters, θ′. The trainer then continues to train while the index builder uses θ′ to construct a new index in the background. As soon as the index builder is done, it sends the new index back to the trainer, and the process repeats.\n\nWhile asynchronous refreshes can be used for both pretraining and fine-tuning, in our experiments we only use it for pre-training. For fine-tuning, we just build the MIPS index once (using the pre-trained θ) for simplicity and do not update Embeddoc.3 Note that we still fine-tune Embedinput, so the retrieval function is still updated from the query side.\n\nWhat does the retriever learn? Since the knowledge retrieval of REALM is latent, it is not obvious how the training objective encourages meaningful retrievals. Here, we show how it rewards retrievals that improve prediction accuracy.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 5,
+      "section": "Method"
+    },
+    {
+      "text": "3.1. REALM’s generative process\n\nFor both pre-training and fine-tuning, REALM takes some input x and learns a distribution p(y | x) over possible outputs y. For pre-training, the task is masked language modeling: x is a sentence from a pre-training corpus X with some tokens masked out, and the model must predict the value of those missing tokens, y. For fine-tuning, the task is Open-QA: x is a question, and y is the answer.\n\nREALM decomposes p(y | x) into two steps: retrieve, then predict. Given an input x, we first retrieve possibly helpful documents z from a knowledge corpus Z. We model this as a sample from the distribution p(z | x). Then, we condition on both the retrieved z and the original input x to generate the output y—modeled as p(y | z, x). To obtain the overall likelihood of generating y, we treat z as a latent variable and marginalize over all possible documents z, yielding\n\np(y | x) =\n\nX\n\nz∈Z\n\np(y | z, x) p(z | x). (1)\n\n3.2. Model architecture",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 3,
+      "section": "Method"
+    }
+  ]
+}

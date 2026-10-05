@@ -1,0 +1,35 @@
+{
+  "claims": [
+    {
+      "claim": "Encoding each retrieved passage separately means the encoder's self-attention operates on only one passage at a time.",
+      "supported": true
+    },
+    {
+      "claim": "The amount of computation required for the encoder grows linearly with the number of passages.",
+      "supported": true
+    },
+    {
+      "claim": "Computation would grow quadratically if the encoder had to attend jointly over all passages.",
+      "supported": true
+    },
+    {
+      "claim": "This linear scaling lets Fusion-in-Decoder handle a large number of contexts efficiently.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Why can Fusion-in-Decoder process many passages efficiently?",
+    "How does independent encoding affect the computational complexity of Fusion-in-Decoder?",
+    "What is the advantage of encoding passages independently in the encoder?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that independent encoding limits self-attention to single contexts, resulting in linear rather than quadratic computational growth, which matches the reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    true,
+    false,
+    false
+  ]
+}

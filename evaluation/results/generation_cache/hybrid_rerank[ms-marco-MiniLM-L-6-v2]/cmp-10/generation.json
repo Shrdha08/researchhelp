@@ -1,0 +1,70 @@
+{
+  "answer": "**SELF‑RAG**\n\n- SELF‑RAG determines whether to retrieve passages dynamically by predicting a special **Retrieve = Yes** token. If the normalized probability of this token exceeds a configurable threshold, retrieval is triggered (the model can also use a hard‑coded threshold)[S1].  \n- The decision is therefore made on‑the‑fly during generation, based on the model’s own confidence in the need for external information[S2].\n\n**RAG (Retrieval‑Augmented Generation)**  \n\n- The excerpts about the RAG paper (e.g., the open‑domain QA results) describe how RAG’s retriever is initialized (from DPR) and that it combines generation with retrieval, but they do **not** specify a mechanism for deciding *when* to retrieve[S6].  \n\n**Summary**\n\n- SELF‑RAG uses an internal “retrieve” token (optionally with a probability threshold) to decide on‑demand retrieval.  \n- The provided excerpts contain no information on how the original RAG model decides when to retrieve.",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 6,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique",
+      "chunk_id": "d9eaa1398abac0df:p6:c2",
+      "snippet": "Adaptive retrieval with threshold. SELF-RAG dynamically decides when to retrieve text passages by predicting Retrieve . Alternatively, our framework allows a threshold to be set. Specifically, if the probability of generating the Retrieve =Yes token normalized over all output tokens in Retrieve ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_id": "d9eaa1398abac0df:p1:c5",
+      "snippet": "If so, it outputs a retrieval token that calls a retriever model on demand (Step 1). Subsequently, SELF-RAG concurrently processes multiple retrieved passages, evaluating their relevance and then generating corresponding task outputs (Step 2). It then generates critique tokens to criticize its own ..."
+    },
+    {
+      "source_id": "S6",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 5,
+      "section": "Open-domain Question Answering",
+      "chunk_id": "23e3249e9a1e7541:p5:c5",
+      "snippet": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Adaptive retrieval with threshold. SELF-RAG dynamically decides when to retrieve text passages by predicting Retrieve . Alternatively, our framework allows a threshold to be set. Specifically, if the probability of generating the Retrieve =Yes token normalized over all output tokens in Retrieve surpasses a designated threshold, we trigger retrieval (details in Appendix Section A.3).\n\nTree-decoding with critique tokens. At each segment step t, when retrieval is required, based either on hard or soft conditions, R retrieves K passages, and the generator M processes each passage in parallel and outputs K different continuation candidates. We conduct a segment-level beam search (with the beam size=B) to obtain the top-B segment continuations at each timestamp t, and return the best sequence at the end of generation. The score of each segment yt with respect to passage d is updated with a critic score S that is the linear weighted sum of the normalized probability of each",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 6,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "If so, it outputs a retrieval token that calls a retriever model on demand (Step 1). Subsequently, SELF-RAG concurrently processes multiple retrieved passages, evaluating their relevance and then generating corresponding task outputs (Step 2). It then generates critique tokens to criticize its own output and choose best one (Step 3) in terms of factuality and overall quality. This process differs from conventional RAG (Figure 1 left), which",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 1,
+      "section": "Introduction"
+    },
+    {
+      "text": "Type Input Output Definitions\n\nRetrieve x / x, y {yes, no, continue} Decides when to retrieve with R ISREL x, d {relevant, irrelevant} d provides useful information to solve x. ISSUP x, d, y {fully supported, partially supported, no support}\n\nAll of the verification-worthy statement in y is supported by d. ISUSE x, y {5, 4, 3, 2, 1} y is a useful response to x.\n\nTable 1: Four types of reflection tokens used in SELF-RAG. Each type uses several tokens to represent its output values. The bottom three rows are three types of Critique tokens, and the bold text indicates the most desirable critique tokens. x, y, d indicate input, output, and a relevant passage, respectively.\n\nAlgorithm 1 SELF-RAG Inference\n\nRequire: Generator LM M, Retriever R, Large-scale passage collections {d1, . . . , dN}",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 4,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "3 SELF-RAG: LEARNING TO RETRIEVE, GENERATE AND CRITIQUE\n\nWe introduce Self-Reflective Retrieval-Augmented Generation (SELF-RAG), shown in Figure 1.\n\nSELF-RAG is a framework that enhances the quality and factuality of an LLM through retrieval and self-reflection, without sacrificing LLM’s original creativity and versatility. Our end-to-end training lets an LM M generate text informed by retrieved passages, if needed, and criticize the output by learning to generate special tokens. These reflection tokens (Table 1) signal the need for retrieval or confirm the output’s relevance, support, or completeness. In contrast, common RAG approaches retrieve passages indiscriminately, without ensuring complete support from cited sources.\n\n3.1 PROBLEM FORMALIZATION AND OVERVIEW",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 3,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique"
+    },
+    {
+      "text": "Concurrent RAG work. A few concurrent works2 on RAG propose new training or prompting strategies to improve widely-adopted RAG approaches. Lin et al. (2023) fine-tune both the retriever and LM on instruction-tuning datasets in two steps. While we also train our model on diverse instruction-following datasets, SELF-RAG enables retrieval on demand and selection of the best possible model output via fine-grained self-reflection, making it widely applicable and more robust and controllable. Yoran et al. (2023) use a natural language inference model and Xu et al. (2023) use a summarization model to filter out or compress retrieved passages before using them to prompt the LM to generate the output. SELF-RAG processes passages in parallel and filters out irrelevant ones through self-reflection, without relying on external models at inference. Moreover, our self-reflection mechanism also evaluates other aspects of the model output quality including factuality.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 3,
+      "section": "Related Work"
+    },
+    {
+      "text": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) approaches and the performance of \"open-book\" retrieval-based approaches. Unlike REALM and T5+SSM, RAG enjoys strong results without expensive, specialized “salient span masking” pre-training [20]. It is worth noting that RAG’s retriever is initialized using DPR’s retriever, which uses retrieval supervision on Natural Questions and TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “crossencoder” to re-rank documents, along with an extractive reader. RAG demonstrates that neither a re-ranker nor extractive reader is necessary for state-of-the-art performance.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Open-domain Question Answering"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE pivots through a hypothetical document.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE instructs an instruction-following language model to generate a document.",
+      "supported": true
+    },
+    {
+      "claim": "InstructGPT is an example of the instruction-following language model used.",
+      "supported": true
+    },
+    {
+      "claim": "The generated document reflects the relevance patterns of the query.",
+      "supported": true
+    },
+    {
+      "claim": "The generated document may contain invented details.",
+      "supported": true
+    },
+    {
+      "claim": "An unsupervised contrastively learned encoder encodes the generated document.",
+      "supported": true
+    },
+    {
+      "claim": "Contriever is an example of the unsupervised contrastively learned encoder.",
+      "supported": true
+    },
+    {
+      "claim": "The encoder maps the document into an embedding vector.",
+      "supported": true
+    },
+    {
+      "claim": "The vector defines a neighborhood in the corpus embedding space.",
+      "supported": true
+    },
+    {
+      "claim": "Real documents are retrieved based on vector similarity.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the mechanism behind HyDE's zero-shot dense retrieval?",
+    "How does HyDE use a hypothetical document to retrieve real documents?",
+    "Which models does HyDE combine to perform zero-shot dense retrieval?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes the HyDE process using InstructGPT to generate a hypothetical document and Contriever to embed it for retrieval, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+  ]
+}

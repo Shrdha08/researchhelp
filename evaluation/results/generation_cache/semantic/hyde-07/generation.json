@@ -1,0 +1,52 @@
+{
+  "answer": "HyDE is evaluated on six low‑resource datasets drawn from the BEIR benchmark[S3].",
+  "citations": [
+    {
+      "source_id": "S3",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 4,
+      "section": "Setup",
+      "chunk_id": "dc0ae3c5584ed146:p4:c3",
+      "snippet": "4.1 Setup\n\nImplementation We implement HyDE using InstructGPT, a GPT-3 model from the instruct series (text-davinci-003; Ouyang et al. (2022)) and Contriever models (Izacard et al., 2021). We\n\nsample from InstructGPT using the OpenAI playground default temperature of 0.7 for open-ended generations. ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a tiny 0.2 margin; in comparison, the underlying Contriever underperforms by more than 50%.\n\nWe also observe HyDE demonstrates strong performance compared to fine-tuned models. HyDE generally shows better performance than ANCE and DPR, even though the two are fine-tuned on MS-MARCO and ANCE also involves some sophisticated hard negative techniques. ContrieverFT shows performance advantages on FiQA and DBPedia. These involve retrieval of financial posts or entities respectively. We believe the performance difference can be attributed to the",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Low Resource Retrieval"
+    },
+    {
+      "text": "w/ relevance judgement DPR 31.8 17.5 33.2 29.5 26.3 16.1 ANCE 50.7 41.5 65.4 30.0 28.1 38.2 ContrieverFT 67.7 44.6 59.6 32.9 41.3 42.8\n\nRecall@100 w/o relevance judgement BM25 92.5 93.2 49.8 54.0 46.8 44.7 Contriever 92.6 90.1 17.2 56.2 45.3 42.3 HyDE 96.4 97.9 41.4 62.1 47.2 50.9\n\nw/ relevance judgement DPR 72.7 75.1 21.2 34.2 34.9 21.5 ANCE 81.6 93.7 45.7 58.1 31.9 39.8 ContrieverFT 94.7 97.7 40.7 65.6 54.1 49.2\n\nTable 2: Low resource tasks from BEIR. Best performing w/o relevance and overall system(s) are marked bold.\n\nboth precision-oriented and recall metrics. While unsupervised Contriever can underperform the classical BM25 approach, HyDE outperforms BM25 by large margins.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    },
+    {
+      "text": "4.1 Setup\n\nImplementation We implement HyDE using InstructGPT, a GPT-3 model from the instruct series (text-davinci-003; Ouyang et al. (2022)) and Contriever models (Izacard et al., 2021). We\n\nsample from InstructGPT using the OpenAI playground default temperature of 0.7 for open-ended generations. We use the English-only Contriever model for English retrieval tasks and multilingual mContriever for non-English tasks. We conducted retrieval experiments with the Pyserini toolkit (Lin et al., 2021a).\n\nDatasets We consider web search query sets TREC DL19 (Craswell et al., 2020a) and DL20 (Craswell et al., 2020b); they are based on the MS-MARCO dataset (Bajaj et al., 2016). We also use a diverse collection of 6 low-resource datasets from the BEIR dataset (Thakur et al., 2021). For non-English retrieval, we consider Swahili, Korean, Japanese, and Bengali from the Mr.Tydi dataset (Zhang et al., 2021).",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 4,
+      "section": "Setup"
+    },
+    {
+      "text": "HyDE appears unsupervised. No model is trained in HyDE: both the generative model and the contrastive encoder remain intact. Supervision signals were only involved in instruction learning of our backbone LLM.\n\nIn our experiments, we show HyDE using Instruct- GPT (Ouyang et al., 2022) and Contriever (Izacard et al., 2021) as backbone models significantly outperforms the previous state-of-the-art Contrieveronly zero-shot no-relevance system on 11 queries\n\nsets, covering tasks like Web Search, Question Answering, Fact Verification and languages like Swahili, Korean, Japanese.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "5.2 HyDE with Fine-tuned Encoder\n\nTo begin with, HyDE with fine-tuned encoder is not the intended usage: HyDE is more powerful and irreplaceable when few relevance labels are present. Here we are interested to find out if and how HyDE embedding can affect fine-tuned encoders. In Table 4, we see that less powerful instruction LMs can negatively impact the overall performance of the fine-tuned retriever. (To remind our readers, ContrieverFT is in-domain supervisedly fine-tuned for TREC DL19/20). The performance degradations remain small. On the other hand, we also observe the InstructGPT model able to further bring up the performance, especially on DL19. This suggests that there may still exist certain factors not captured by the fine-tuned encoder but only by the generative model.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 6,
+      "section": "HyDE with Fine-tuned Encoder"
+    },
+    {
+      "text": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around 10% lower map and ndcg@10 than ContrieverFT and similar recall@1k. The ANCE model shows better ndcg@10 numbers than HyDE but lower recall, suggesting it may be biased to a subset of queries and/or relevant documents.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    }
+  ]
+}

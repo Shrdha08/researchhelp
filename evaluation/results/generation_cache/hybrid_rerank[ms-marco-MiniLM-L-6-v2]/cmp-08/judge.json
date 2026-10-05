@@ -1,0 +1,59 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT encodes queries and documents independently into contextual token embeddings.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT uses a late interaction step to compute relevance.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT takes the maximum cosine similarity for each query term embedding.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT sums the maximum similarity scores over all query terms.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT's interaction is described as cheap and pruning-friendly.",
+      "supported": true
+    },
+    {
+      "claim": "DPR encodes questions and passages into low-dimensional continuous vectors.",
+      "supported": true
+    },
+    {
+      "claim": "DPR indexes passages in a dense space.",
+      "supported": true
+    },
+    {
+      "claim": "DPR retrieves top-k passages based on vector similarity to the query.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT's relevance score is a sum of per-term maximum cosine similarities.",
+      "supported": true
+    },
+    {
+      "claim": "DPR's relevance is based on single dense vector similarity.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the difference between ColBERT and DPR in computing relevance?",
+    "How does ColBERT's late interaction mechanism work?",
+    "Explain the relevance scoring methods used by ColBERT and DPR."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes ColBERT's MaxSum late interaction and DPR's dense vector retrieval, matching the reference answer's key points.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    true
+  ]
+}

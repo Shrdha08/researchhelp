@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "Retro yields a performance gain across all model scales examined.",
+      "supported": true
+    },
+    {
+      "claim": "Retro consistently outperforms the baseline for models ranging from 150 million to 7 billion parameters.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the range of model sizes for which Retro provides a performance gain?",
+    "Does Retro improve performance across different model scales?",
+    "For which parameter counts does Retro outperform the baseline?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the range of 150M to 7B parameters as stated in the reference and supported by the context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    false
+  ]
+}

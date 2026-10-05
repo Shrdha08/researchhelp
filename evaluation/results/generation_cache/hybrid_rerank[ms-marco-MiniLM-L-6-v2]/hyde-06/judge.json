@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE achieves an nDCG@10 of 41.8 on TREC DL19",
+      "supported": false
+    },
+    {
+      "claim": "Contriever attains 24.0 nDCG@10 on TREC DL19",
+      "supported": false
+    }
+  ],
+  "questions": [
+    "What is the nDCG@10 score for HyDE on TREC DL19?",
+    "How does Contriever perform on TREC DL19 in terms of nDCG@10?",
+    "Compare the nDCG@10 scores of HyDE and Contriever on TREC DL19."
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer confuses the 'map' metric (41.8 for HyDE, 24.0 for Contriever) with the 'nDCG@10' metric (61.3 for HyDE, 44.5 for Contriever) as shown in Table 1 of the context.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    true
+  ]
+}

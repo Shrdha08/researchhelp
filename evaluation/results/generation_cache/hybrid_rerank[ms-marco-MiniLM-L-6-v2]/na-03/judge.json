@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "questions": [
+    "Which non-English languages is RAG evaluated on?",
+    "Does the paper mention evaluation on non-English languages?",
+    "What languages are covered in the RAG evaluation?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about non-English language evaluations, which aligns with the reference answer stating that the paper does not evaluate non-English languages.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

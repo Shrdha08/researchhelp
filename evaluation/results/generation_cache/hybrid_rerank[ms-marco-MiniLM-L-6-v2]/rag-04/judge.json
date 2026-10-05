@@ -1,0 +1,43 @@
+{
+  "claims": [
+    {
+      "claim": "RAG relies on a dense retriever.",
+      "supported": true
+    },
+    {
+      "claim": "The retriever is initialized from the DPR retriever.",
+      "supported": true
+    },
+    {
+      "claim": "DPR was trained with retrieval supervision on Natural Questions.",
+      "supported": true
+    },
+    {
+      "claim": "DPR was trained with retrieval supervision on TriviaQA.",
+      "supported": true
+    },
+    {
+      "claim": "The paper evaluates a BM25 retriever as a baseline.",
+      "supported": true
+    },
+    {
+      "claim": "The default RAG model uses the DPR-based dense retriever.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What type of retriever does RAG use?",
+    "Which retriever is RAG initialized with?",
+    "Does RAG use a dense or sparse retriever by default?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies the DPR retriever but misses the specific architectural details (BERT-base bi-encoder and MIPS) provided in the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+  ]
+}

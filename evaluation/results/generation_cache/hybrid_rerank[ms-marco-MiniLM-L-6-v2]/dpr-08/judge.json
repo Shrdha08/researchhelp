@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "DPR indexes passage embeddings with the FAISS library",
+      "supported": true
+    },
+    {
+      "claim": "DPR indexes passage embeddings during inference",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What library does DPR use to index passage embeddings?",
+    "Which tool is used for indexing in DPR's inference phase?",
+    "How does DPR handle passage embedding indexing?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies FAISS as the library used for indexing, which is the core fact in the reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    true,
+    false,
+    false
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder is built on a sequence-to-sequence model.",
+      "supported": true
+    },
+    {
+      "claim": "The model is pretrained on unsupervised data.",
+      "supported": true
+    },
+    {
+      "claim": "The authors use T5 as the starting point.",
+      "supported": true
+    },
+    {
+      "claim": "The authors use BART as the starting point.",
+      "supported": false
+    },
+    {
+      "claim": "The evaluated Fusion-in-Decoder model contains approximately 770 million parameters.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What pretrained models are used for Fusion-in-Decoder and what is their size?",
+    "Which base architectures does Fusion-in-Decoder rely on and how many parameters does the large version have?",
+    "Describe the initialization and parameter count of the Fusion-in-Decoder model."
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies T5 and the 770M parameter size, but incorrectly claims BART is used as a starting point and fails to mention the base (220M) model size specified in the reference.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    true,
+    true,
+    false
+  ]
+}

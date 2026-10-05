@@ -1,0 +1,79 @@
+{
+  "answer": "**ColBERT**  \n- The paper evaluates ColBERT on two passage‑search collections: **MS MARCO** and **TREC CAR** [S1].  \n\n**HyDE (Precise Zero‑Shot Dense Retrieval)**  \n- HyDE’s results are reported on **low‑resource tasks from the BEIR benchmark** [S3][S4].  \n- It is also evaluated on **web‑search test sets TREC DL19 and TREC DL20** (which are defined on MS‑MARCO) [S6].  \n\n**Comparison**  \n- ColBERT’s evaluation focuses on the standard passage‑ranking datasets MS MARCO and TREC CAR.  \n- HyDE is evaluated on a broader set of benchmarks: the BEIR suite of low‑resource retrieval tasks and the TREC DL19/20 web‑search tasks, in addition to comparisons with BM25, Contriever, ANCE, DPR, and fine‑tuned models.  \n\nThus, the two systems are tested on different benchmark families: ColBERT on two passage‑search collections, HyDE on BEIR low‑resource tasks and TREC web‑search tasks.",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 3,
+      "section": "Introduction",
+      "chunk_id": "2e487d9b96e3c2e5:p3:c0",
+      "snippet": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Low Resource Retrieval",
+      "chunk_id": "dc0ae3c5584ed146:p5:c3",
+      "snippet": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Web Search",
+      "chunk_id": "dc0ae3c5584ed146:p5:c1",
+      "snippet": "w/ relevance judgement DPR 31.8 17.5 33.2 29.5 26.3 16.1 ANCE 50.7 41.5 65.4 30.0 28.1 38.2 ContrieverFT 67.7 44.6 59.6 32.9 41.3 42.8\n\nRecall@100 w/o relevance judgement BM25 92.5 93.2 49.8 54.0 46.8 44.7 Contriever 92.6 90.1 17.2 56.2 45.3 42.3 HyDE 96.4 97.9 41.4 62.1 47.2 50.9\n\nw/ relevance ..."
+    },
+    {
+      "source_id": "S6",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Web Search",
+      "chunk_id": "dc0ae3c5584ed146:p5:c2",
+      "snippet": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Introduction"
+    },
+    {
+      "text": "We use different instructions for each dataset. They share a similar structure but have different quantifiers to control the exact form of the generated hypothetical documents. These instructions can be found in subsection A.1.\n\nCompared Systems Contriever models, Contriever and mContriever, serve as our major baseline. They are trained using unsupervised contrastive learning. HyDE retrievers share the exact same embedding spaces with them. The only difference is how the query vector is built. These comparisons allow us to easily examine the effect of HyDE. The classical heuristic-based lexical retriever BM25 is also included.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 4,
+      "section": "Setup"
+    },
+    {
+      "text": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a tiny 0.2 margin; in comparison, the underlying Contriever underperforms by more than 50%.\n\nWe also observe HyDE demonstrates strong performance compared to fine-tuned models. HyDE generally shows better performance than ANCE and DPR, even though the two are fine-tuned on MS-MARCO and ANCE also involves some sophisticated hard negative techniques. ContrieverFT shows performance advantages on FiQA and DBPedia. These involve retrieval of financial posts or entities respectively. We believe the performance difference can be attributed to the",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Low Resource Retrieval"
+    },
+    {
+      "text": "w/ relevance judgement DPR 31.8 17.5 33.2 29.5 26.3 16.1 ANCE 50.7 41.5 65.4 30.0 28.1 38.2 ContrieverFT 67.7 44.6 59.6 32.9 41.3 42.8\n\nRecall@100 w/o relevance judgement BM25 92.5 93.2 49.8 54.0 46.8 44.7 Contriever 92.6 90.1 17.2 56.2 45.3 42.3 HyDE 96.4 97.9 41.4 62.1 47.2 50.9\n\nw/ relevance judgement DPR 72.7 75.1 21.2 34.2 34.9 21.5 ANCE 81.6 93.7 45.7 58.1 31.9 39.8 ContrieverFT 94.7 97.7 40.7 65.6 54.1 49.2\n\nTable 2: Low resource tasks from BEIR. Best performing w/o relevance and overall system(s) are marked bold.\n\nboth precision-oriented and recall metrics. While unsupervised Contriever can underperform the classical BM25 approach, HyDE outperforms BM25 by large margins.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    },
+    {
+      "text": "In 2018, Zamani et al. [41] introduced SNRM, a representationfocused IR model that encodes each query and each document as a single, sparse high-dimensional vector of “latent terms”. By producing a sparse-vector representation for each document, SNRM is able to use a traditional IR inverted index for representing documents, allowing fast end-to-end retrieval. Despite highly promising results and insights, SNRM’s effectiveness is substantially outperformed by the state of the art on the datasets with which it was evaluated (e.g., see [18, 38]). While SNRM employs sparsity to allow using inverted indexes, we relax this assumption and compare a (dense) BERT-based representation-focused model against our late-interaction ColBERT in our ablation experiments in §4.4. For a detailed overview of existing neural ranking models, we refer the readers to two recent surveys of the literature [8, 21].",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Related Work"
+    },
+    {
+      "text": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around 10% lower map and ndcg@10 than ContrieverFT and similar recall@1k. The ANCE model shows better ndcg@10 numbers than HyDE but lower recall, suggesting it may be biased to a subset of queries and/or relevant documents.",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Web Search"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "claims": [
+    {
+      "claim": "In-batch negatives are a training trick for DPR.",
+      "supported": true
+    },
+    {
+      "claim": "Passages in the same mini-batch are reused as negatives.",
+      "supported": true
+    },
+    {
+      "claim": "Negatives are used for other questions in the batch.",
+      "supported": true
+    },
+    {
+      "claim": "A batch contains B questions and relevant passages.",
+      "supported": true
+    },
+    {
+      "claim": "The model computes a B x B similarity matrix.",
+      "supported": true
+    },
+    {
+      "claim": "The similarity matrix is S = Q P^T.",
+      "supported": true
+    },
+    {
+      "claim": "Diagonal entries pair a question with its true passage.",
+      "supported": true
+    },
+    {
+      "claim": "Diagonal entries are positive examples.",
+      "supported": true
+    },
+    {
+      "claim": "Off-diagonal entries treat other passages as negatives.",
+      "supported": true
+    },
+    {
+      "claim": "Each batch yields B^2 question-passage pairs.",
+      "supported": true
+    },
+    {
+      "claim": "This provides many negative examples without extra sampling.",
+      "supported": true
+    },
+    {
+      "claim": "This approach is memory-efficient.",
+      "supported": true
+    },
+    {
+      "claim": "This approach increases the number of training pairs.",
+      "supported": true
+    },
+    {
+      "claim": "Accuracy improves as batch size grows.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does in-batch negative training work in DPR?",
+    "What is the mechanism behind in-batch negatives?",
+    "Why are in-batch negatives considered efficient for training?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes the mechanism of reusing positive passages from other questions in the batch as negatives, matching the reference answer and supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "REALM achieves new state-of-the-art results on three Open-QA benchmarks.",
+      "supported": true
+    },
+    {
+      "claim": "REALM surpasses all previous systems by 4% to 16% absolute accuracy.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How much does REALM outperform previous methods in terms of accuracy?",
+    "What is the absolute accuracy improvement of REALM over prior systems?",
+    "By what margin does REALM exceed state-of-the-art Open-QA models?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the 4-16% absolute accuracy improvement stated in the reference and context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+  ]
+}

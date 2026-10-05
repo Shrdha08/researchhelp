@@ -1,0 +1,52 @@
+{
+  "answer": "REALM achieves new state‑of‑the‑art results on the three Open‑QA benchmarks, surpassing all previous systems by **4 % to 16 % absolute accuracy**[S1].",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_id": "0ec1a7ab3de5514c:p2:c3",
+      "snippet": "We evaluate our approach by fine-tuning the models pre-trained with REALM on the task of Opendomain Question Answering (Open-QA), one of the most knowledge-intensive tasks in natural language processing. We evaluate on three popular Open-QA benchmarks (NATURALQUESTIONS-OPEN, WEBQUESTIONS, ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "We evaluate our approach by fine-tuning the models pre-trained with REALM on the task of Opendomain Question Answering (Open-QA), one of the most knowledge-intensive tasks in natural language processing. We evaluate on three popular Open-QA benchmarks (NATURALQUESTIONS-OPEN, WEBQUESTIONS, and\n\nCURATEDTREC) and compare to state-of-the-art Open-QA models, including both extremely large models that store knowledge implicitly (such as T5) as well as previous approaches that also use a knowledge retriever to access external knowledge, but implement retrieval in a more heuristic fashion (Lee et al., 2019; Min et al., 2019a; Asai et al., 2019). REALM achieves new state-of-the-art results on all three benchmarks, significantly outperforming all previous systems by 4-16% absolute accuracy. We also demonstrate qualitative benefits of REALM, including interpretability and modularity.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Among all systems, the most direct comparison with REALM is ORQA (Lee et al., 2019), where the fine-tuning setup, hyperparameters and training data are identical. The improvement of REALM over ORQA is purely due to better pre-training methods. The results also indicate that our method of pre-training can be applied both on (1) the singlecorpus setting (X = Wikipedia, Z = Wikipedia), or (2) the separate-corpus setting (X = CC-News, Z = Wikipedia).\n\nCompared to other retrieval-based systems (Asai et al., 2019; Min et al., 2019a;b) which often retrieve from 20 to 80 documents, our system gets the overall best performance while only retrieving 5 documents.\n\n4.5. Analysis",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    },
+    {
+      "text": "As reported in the concurrent work of Roberts et al. (2020), the generative Open-QA systems based on T5 are surprisingly powerful, with the largest T5-11B model outperforming the previous best Open-QA system. Increasing the size of T5 yields consistent improvement, but comes at significant computational cost (from Base to 11B, the model is 50 times larger, and gains roughly 5 points in accuracy). In contrast, REALM outperforms the largest T5-11B model while being 30 times smaller. It is also important to note that T5 accesses additional reading comprehension data from SQuAD during its pre-training (100,000+ examples). Access to such data could also benefit REALM, but was not used in our experiments.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    },
+    {
+      "text": "4.5. Analysis\n\nIn Table 2 we present results for NaturalQuestions-Open after ablating critical components of REALM. In addition to the end-to-end results, we also report how often the gold answer appears in the top-5 retrievals before applying any fine-tuning. The latter metric more significantly isolates the contribution of improving the retriever during pre-training.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    },
+    {
+      "text": "Encoder or Retriever We first aim to determine whether REALM pre-training improves the retriever or the encoder, or both. To do so, we can reset the parameters of either the retriever or the encoder to their baseline state before REALM pre-training, and feed that into fine-tuning. Resetting both the retriever and encoder reduces the system to our main baseline, ORQA. We find that both the encoder and retriever benefit from REALM training separately, but the best result requires both components acting in unison.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "5. Discussion and Related Work\n\nWe previously discussed related methods for Open-QA. Here we present several alternate ways of viewing REALM that connect it to a broader set of ideas beyond Open-QA:\n\nLanguage modeling with corpus as context Language representation models have been incorporating contexts of increasingly large scope when making predictions. Examples of this progression include models that condition on surrounding words (Mikolov et al., 2013a;b), sentences (Kiros et al., 2015; Peters et al., 2018), and paragraphs (Radford et al., 2018; Devlin et al., 2018). We can view REALM as a generalization of the above work to the next level of scope: the entire text corpus.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Discussion and Related Work"
+    }
+  ]
+}

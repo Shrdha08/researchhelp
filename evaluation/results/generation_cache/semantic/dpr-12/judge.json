@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "The BM25 implementation used Lucene.",
+      "supported": true
+    },
+    {
+      "claim": "The parameter b was set to 0.4.",
+      "supported": true
+    },
+    {
+      "claim": "The parameter k1 was set to 0.9.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What specific BM25 parameters were used in the experiments?",
+    "Which values for b and k1 were tuned for BM25?",
+    "What implementation and parameters did the authors use for BM25?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the Lucene implementation and the specific parameter values b=0.4 and k1=0.9 as stated in the reference and retrieved context.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    true,
+    false
+  ]
+}

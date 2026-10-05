@@ -1,0 +1,35 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder becomes more accurate with more retrieved passages",
+      "supported": true
+    },
+    {
+      "claim": "Performance significantly improves as the number of retrieved passages increases",
+      "supported": true
+    },
+    {
+      "claim": "Figure 3 shows performance rising as passages grow from 5 to 100",
+      "supported": true
+    },
+    {
+      "claim": "This trend applies to NaturalQuestions, TriviaQA, and SQuAD",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does the accuracy of Fusion-in-Decoder vary with the number of retrieved passages?",
+    "Does Fusion-in-Decoder perform better with more retrieved passages?",
+    "What does Figure 3 indicate about Fusion-in-Decoder's performance as passage count increases?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that performance improves as the number of retrieved passages increases, consistent with the reference answer and supported by the retrieved context.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "RAG is evaluated on Open-domain Question Answering.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on Abstractive Question Answering.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on Jeopardy Question Generation.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is tested on the MSMARCO NLG v2.1 dataset.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is run on a wide range of knowledge-intensive tasks.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What specific tasks are used to evaluate the RAG model?",
+    "Which benchmarks does the paper use to test RAG's performance?",
+    "List the knowledge-intensive tasks on which RAG is evaluated."
+  ],
+  "verdict": "partial",
+  "reason": "The system answer misses the FEVER fact verification task mentioned in the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}

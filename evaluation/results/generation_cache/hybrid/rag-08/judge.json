@@ -1,0 +1,63 @@
+{
+  "claims": [
+    {
+      "claim": "RAG is evaluated on Jeopardy question generation.",
+      "supported": true
+    },
+    {
+      "claim": "Jeopardy question generation is evaluated with Q-BLEU-1.",
+      "supported": true
+    },
+    {
+      "claim": "Jeopardy question generation is evaluated with human judgments.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on abstractive question answering.",
+      "supported": true
+    },
+    {
+      "claim": "Abstractive QA evaluation uses the MSMARCO NLG task v2.1.",
+      "supported": true
+    },
+    {
+      "claim": "MSMARCO NLG task requires free-form sentence answers.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on open-domain question answering.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on four open-domain QA benchmarks.",
+      "supported": true
+    },
+    {
+      "claim": "One open-domain QA benchmark is the T5-comparable split of TriviaQA.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on a wide range of knowledge-intensive tasks.",
+      "supported": true
+    },
+    {
+      "claim": "Experiments use a single Wikipedia dump.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What specific tasks are used to evaluate the RAG model?",
+    "Which benchmarks does RAG perform on according to the text?",
+    "List the knowledge-intensive tasks on which RAG is evaluated."
+  ],
+  "verdict": "partial",
+  "reason": "The system answer correctly identifies Open-domain QA, Abstractive QA (MS-MARCO), and Jeopardy question generation, but it completely misses the FEVER fact verification task mentioned in the reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    true,
+    true,
+    true
+  ]
+}

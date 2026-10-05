@@ -1,0 +1,35 @@
+{
+  "claims": [
+    {
+      "claim": "Retro yields a performance gain across the entire range of model sizes examined.",
+      "supported": true
+    },
+    {
+      "claim": "Retro consistently outperforms the baseline transformer.",
+      "supported": true
+    },
+    {
+      "claim": "This applies to models with 150 million non-embedding parameters.",
+      "supported": true
+    },
+    {
+      "claim": "This applies to models with up to 7 billion non-embedding parameters.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the range of model sizes for which Retro provides a gain?",
+    "Does Retro improve performance across all tested model scales?",
+    "For which parameter counts does Retro outperform the baseline?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the specific range of model sizes (150M to 7B) for which Retro provides a gain, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ]
+}

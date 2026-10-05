@@ -1,0 +1,61 @@
+{
+  "answer": "RAG relies on a dense, learned retriever pη(z|x). In the experiments the retriever is initialized from the DPR (Dense Passage Retrieval) model, which was pretrained with retrieval supervision on Natural Questions and TriviaQA [S2]. The paper also compares this dense retriever to a BM25 word‑overlap retriever, showing that the dense version is used by default and yields better performance on most tasks [S3].",
+  "citations": [
+    {
+      "source_id": "S2",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 5,
+      "section": "Open-domain Question Answering",
+      "chunk_id": "23e3249e9a1e7541:p5:c5",
+      "snippet": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 7,
+      "section": "Additional Results",
+      "chunk_id": "23e3249e9a1e7541:p7:c4",
+      "snippet": "We compare RAG’s dense retriever to a word overlap-based BM25 retriever [53]. Here, we replace RAG’s retriever with a fixed BM25 system, and use BM25 retrieval scores as logits when calculating p(z|x). Table 6 shows the results. For FEVER, BM25 performs best, perhaps since FEVER claims are heavily ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "2 Methods\n\nWe explore RAG models, which use the input sequence x to retrieve text documents z and use them as additional context when generating the target sequence y. As shown in Figure 1, our models leverage two components: (i) a retriever pη(z|x) with parameters η that returns (top-K truncated) distributions over text passages given a query x and (ii) a generator pθ(yi|x, z, y1:i−1) parametrized\n\n1Code to run experiments with RAG has been open-sourced as part of the HuggingFace Transformers Library [66] and can be found at https://github.com/huggingface/transformers/blob/master/ examples/rag/. An interactive demo of RAG models can be found at https://huggingface.co/rag/",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 2,
+      "section": "Method"
+    },
+    {
+      "text": "4.1 Open-domain Question Answering\n\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA tasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines the generation flexibility of the “closed-book” (parametric only) approaches and the performance of \"open-book\" retrieval-based approaches. Unlike REALM and T5+SSM, RAG enjoys strong results without expensive, specialized “salient span masking” pre-training [20]. It is worth noting that RAG’s retriever is initialized using DPR’s retriever, which uses retrieval supervision on Natural Questions and TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “crossencoder” to re-rank documents, along with an extractive reader. RAG demonstrates that neither a re-ranker nor extractive reader is necessary for state-of-the-art performance.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Open-domain Question Answering"
+    },
+    {
+      "text": "We compare RAG’s dense retriever to a word overlap-based BM25 retriever [53]. Here, we replace RAG’s retriever with a fixed BM25 system, and use BM25 retrieval scores as logits when calculating p(z|x). Table 6 shows the results. For FEVER, BM25 performs best, perhaps since FEVER claims are heavily entity-centric and thus well-suited for word overlap-based retrieval. Differentiable retrieval improves results on all other tasks, especially for Open-Domain QA, where it is crucial.\n\nIndex hot-swapping An advantage of non-parametric memory models like RAG is that knowledge can be easily updated at test time. Parametric-only models like T5 or BART need further training to update their behavior as the world changes. To demonstrate, we build an index using the DrQA [5] Wikipedia dump from December 2016 and compare outputs from RAG using this index to the newer index from our main results (December 2018). We prepare a list of 82 world leaders who had changed",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 7,
+      "section": "Additional Results"
+    },
+    {
+      "text": "A Implementation Details\n\nFor Open-domain QA we report test numbers using 15 retrieved documents for RAG-Token models. For RAG-Sequence models, we report test results using 50 retrieved documents, and we use the Thorough Decoding approach since answers are generally short. We use greedy decoding for QA as we did not find beam search improved results. For Open-MSMarco and Jeopardy question generation, we report test numbers using ten retrieved documents for both RAG-Token and RAG-Sequence, and we also train a BART-large model as a baseline. We use a beam size of four, and use the Fast Decoding approach for RAG-Sequence models, as Thorough Decoding did not improve performance.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 17,
+      "section": "Implementation Details"
+    },
+    {
+      "text": "2.1 Models\n\nRAG-Sequence Model The RAG-Sequence model uses the same retrieved document to generate the complete sequence. Technically, it treats the retrieved document as a single latent variable that is marginalized to get the seq2seq probability p(y|x) via a top-K approximation. Concretely, the top K documents are retrieved using the retriever, and the generator produces the output sequence probability for each document, which are then marginalized,\n\npRAG-Sequence(y|x) ≈\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)pθ(y|x, z) =\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)\n\nN Y\n\ni\n\npθ(yi|x, z, y1:i−1)",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 3,
+      "section": "Models"
+    },
+    {
+      "text": "pRAG-Sequence(y|x) ≈\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)pθ(y|x, z) =\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)\n\nN Y\n\ni\n\npθ(yi|x, z, y1:i−1)\n\nRAG-Token Model In the RAG-Token model we can draw a different latent document for each target token and marginalize accordingly. This allows the generator to choose content from several documents when producing an answer. Concretely, the top K documents are retrieved using the retriever, and then the generator produces a distribution for the next output token for each document, before marginalizing, and repeating the process with the following output token, Formally, we define:\n\npRAG-Token(y|x) ≈\n\nN Y\n\ni\n\nX\n\nz∈top-k(p(·|x))\n\npη(z|x)pθ(yi|x, z, y1:i−1)\n\nFinally, we note that RAG can be used for sequence classification tasks by considering the target class as a target sequence of length one, in which case RAG-Sequence and RAG-Token are equivalent.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 3,
+      "section": "Models"
+    }
+  ]
+}

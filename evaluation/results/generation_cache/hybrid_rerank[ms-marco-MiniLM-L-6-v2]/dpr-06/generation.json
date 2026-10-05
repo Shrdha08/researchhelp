@@ -1,0 +1,70 @@
+{
+  "answer": "**In‑batch negatives** are a training technique used in Dense Passage Retrieval (DPR) where the negative passages for a question are taken from the other questions that appear in the same mini‑batch.  \n\n* For a batch of B questions, each question qᵢ has its own positive passage pᵢ. The model computes a similarity matrix S = Q Pᵀ of size B × B, so that every question is paired with every passage in the batch. The pair (qᵢ, pᵢ) (i = j) is treated as a positive example, while all other pairs (qᵢ, pⱼ) (i ≠ j) become negative examples. This effectively creates B × (B − 1) negative pairs per batch without needing to sample extra passages [S6].  \n\n* The approach reuses the negative examples already present in the batch, making it memory‑efficient and increasing the number of training instances (B² pairs) compared with standard 1‑of‑N training [S4].  \n\n* Empirically, in‑batch negative training improves retrieval accuracy, especially as batch size grows, because it provides many more training pairs and leverages “gold” negatives that come from the same batch [S3].  \n\nThus, in‑batch negatives in DPR refer to using the other passages within the same mini‑batch as negative examples for each question during dual‑encoder training.",
+  "citations": [
+    {
+      "source_id": "S6",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 3,
+      "section": "Training",
+      "chunk_id": "3e67fc1a9977715a:p3:c6",
+      "snippet": "In-batch negatives Assume that we have B questions in a mini-batch and each one is associated with a relevant passage. Let Q and P be the (B×d) matrix of question and passage embeddings\n\nin a batch of size B. S = QPT is a (B × B) matrix of similarity scores, where each row of which corresponds to a ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 4,
+      "section": "Training",
+      "chunk_id": "3e67fc1a9977715a:p4:c0",
+      "snippet": "negative passages for each question.\n\nThe trick of in-batch negatives has been used in the full batch setting (Yih et al., 2011) and more recently for mini-batch (Henderson et al., 2017; Gillick et al., 2019). It has been shown to be an effective strategy for learning a dual-encoder model that ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 6,
+      "section": "Ablation Study on Model Training",
+      "chunk_id": "3e67fc1a9977715a:p6:c2",
+      "snippet": "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "In-batch negative training We test different training schemes on the development set of Natural Questions and summarize the results in Table 3. The top block is the standard 1-of-N training setting, where each question in the batch is paired with a positive passage and its own set of n negative passages (Eq. (2)). We find that the choice of negatives — random, BM25 or gold passages (positive passages from other questions) — does not impact the top-k accuracy much in this setting when k ≥20.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same batch or from the whole training set. Effectively, in-batch negative training is an easy and memory-efficient way to reuse the negative examples already in the batch rather than creating new ones. It produces more pairs and thus increases the number of training examples, which might contribute to the good model performance. As a result, accuracy consistently improves as the batch size grows.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "negative passages for each question.\n\nThe trick of in-batch negatives has been used in the full batch setting (Yih et al., 2011) and more recently for mini-batch (Henderson et al., 2017; Gillick et al., 2019). It has been shown to be an effective strategy for learning a dual-encoder model that boosts the number of training examples.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 4,
+      "section": "Training"
+    },
+    {
+      "text": "Finally, we explore in-batch negative training with additional “hard” negative passages that have high BM25 scores given the question, but do not contain the answer string (the bottom block). These additional passages are used as negative passages for all questions in the same batch. We find that adding a single BM25 negative passage improves the result substantially while adding two does not help further.\n\nImpact of gold passages We use passages that match the gold contexts in the original datasets (when available) as positive examples (Section 4.2).\n\nType #N IB Top-5 Top-20 Top-100\n\nRandom 7 \u0017 47.0 64.3 77.8 BM25 7 \u0017 50.0 63.3 74.8 Gold 7 \u0017 42.6 63.1 78.3\n\nGold 7 \u0013 51.1 69.1 80.8 Gold 31 \u0013 52.1 70.8 82.1 Gold 127 \u0013 55.8 73.0 83.1\n\nG.+BM25(1) 31+32 \u0013 65.0 77.3 84.4 G.+BM25(2) 31+64 \u0013 64.5 76.4 84.0 G.+BM25(1) 127+128 \u0013 65.8 78.0 84.9",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "In-batch negatives Assume that we have B questions in a mini-batch and each one is associated with a relevant passage. Let Q and P be the (B×d) matrix of question and passage embeddings\n\nin a batch of size B. S = QPT is a (B × B) matrix of similarity scores, where each row of which corresponds to a question, paired with B passages. In this way, we reuse computation and effectively train on B2 (qi, pj) question/passage pairs in each batch. Any (qi, pj) pair is a positive example when i = j, and negative otherwise. This creates B training instances in each batch, where there are B −1",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 3,
+      "section": "Training"
+    }
+  ]
+}

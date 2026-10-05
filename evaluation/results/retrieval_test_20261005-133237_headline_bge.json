@@ -1,0 +1,292 @@
+[
+  {
+    "config": "hybrid_rerank[bge-reranker-base, k_cand=10]",
+    "n": 29,
+    "recall@5": 0.638,
+    "recall@10": 0.724,
+    "mrr": 0.487,
+    "page_recall@5": 0.776,
+    "latency_s": 0.72,
+    "by_type": {
+      "comparison": {
+        "n": 4,
+        "recall@5": 0.125,
+        "mrr": 0.281
+      },
+      "conceptual": {
+        "n": 4,
+        "recall@5": 1.0,
+        "mrr": 0.833
+      },
+      "factual": {
+        "n": 21,
+        "recall@5": 0.667,
+        "mrr": 0.46
+      }
+    },
+    "questions": [
+      {
+        "id": "fid-04",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "fid-05",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "fid-06",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.16666666666666666,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 6
+      },
+      {
+        "id": "fid-07",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.16666666666666666,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 6
+      },
+      {
+        "id": "fid-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "fid-10",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "dpr-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "dpr-06",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "dpr-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-09",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "dpr-11",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "dpr-12",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-04",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "rag-08",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "realm-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "realm-06",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "colbert-04",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "colbert-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "hyde-01",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "hyde-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "hyde-07",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "retro-07",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "cmp-05",
+        "type": "comparison",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "cmp-08",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-10",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-12",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.5,
+        "mrr": 0.125,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 8
+      }
+    ],
+    "reranker_device": "CUDAExecutionProvider"
+  }
+]

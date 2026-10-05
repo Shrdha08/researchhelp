@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "BM25 outperforms DPR on the SQuAD dataset.",
+      "supported": true
+    },
+    {
+      "claim": "SQuAD is limited to a small set of Wikipedia documents.",
+      "supported": true
+    },
+    {
+      "claim": "This limitation introduces unwanted bias.",
+      "supported": true
+    },
+    {
+      "claim": "The bias makes BM25 comparatively stronger than DPR on SQuAD.",
+      "supported": true
+    },
+    {
+      "claim": "DPR outperforms BM25 on the other four QA datasets.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "On which dataset does BM25 outperform DPR, and why?",
+    "Why does BM25 perform better than DPR on SQuAD according to the authors?",
+    "What is the reason given for BM25's advantage over DPR on SQuAD?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies SQuAD as the dataset where BM25 outperforms DPR and accurately cites the authors' explanation regarding the small set of Wikipedia documents and resulting bias.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    false,
+    true,
+    false
+  ]
+}

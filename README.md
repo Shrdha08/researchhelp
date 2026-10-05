@@ -7,7 +7,17 @@ Upload research papers (PDF), select one or more, and ask questions:
 
 Stack: Python · LangChain · LangGraph · Qdrant · FastEmbed (bge-small, BM25, bge-reranker) · Groq · FastAPI · PostgreSQL · React · Docker.
 
-See [docs/architecture.md](docs/architecture.md) and [docs/decisions.md](docs/decisions.md).
+See [docs/architecture.md](docs/architecture.md), [docs/decisions.md](docs/decisions.md) and [docs/evaluation.md](docs/evaluation.md).
+
+## Results (test split, hand-labelled benchmark over 8 papers)
+
+| Version | Recall@5 | MRR | Faithfulness | Correctness |
+|---|--:|--:|--:|--:|
+| Semantic search | 0.483 | 0.304 | 0.925 | 0.724 |
+| Hybrid (dense + BM25, RRF) | 0.569 | 0.366 | 0.886 | 0.707 |
+| Hybrid + cross-encoder reranker | **0.655** | **0.448** | **0.946** | **0.793** |
+
+There are 29 answerable test questions; all 6 unanswerable questions were correctly refused by every version. Generation metrics come from an LLM judge (Qwen3.8-27B, a different model family from the gpt-oss-120b generator). Methodology, the reranker selection on the dev split, and limitations are in [docs/evaluation.md](docs/evaluation.md).
 
 ## Status
 
@@ -15,7 +25,7 @@ See [docs/architecture.md](docs/architecture.md) and [docs/decisions.md](docs/de
 |---|---|---|
 | 0 | Repository + architecture | done |
 | 1 | Ingestion + baseline RAG (CLI) | done |
-| 2 | Hybrid retrieval, reranking, evaluation | in progress |
+| 2 | Hybrid retrieval, reranking, evaluation | done (manual judge check pending) |
 | 3 | Research assistant + LangGraph routing | planned |
 | 4 | FastAPI backend | planned |
 | 5 | PostgreSQL persistence | planned |
@@ -37,6 +47,15 @@ uv run pytest
 One of the two extras is required, because the ONNX runtime for the local embedding and reranker models comes from it. `ONNX_DEVICE=auto` (the default) uses the GPU when available and logs which provider is active.
 
 To run without Docker, set `QDRANT_PATH=./data/qdrant_local` in `.env` to use embedded on-disk Qdrant.
+
+## Evaluation
+
+```bash
+cd ..                                                  # repo root
+uv run --project backend python -m evaluation.validate_dataset
+uv run --project backend python -m evaluation.retrieval_eval --split test
+uv run --project backend python -m evaluation.generation_eval --split test --strategies semantic hybrid hybrid_rerank
+```
 
 ## Usage (CLI, Phase 1)
 

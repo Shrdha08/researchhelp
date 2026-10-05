@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "SELF-RAG decides whether to invoke the retriever by generating a special retrieval token.",
+      "supported": true
+    },
+    {
+      "claim": "When SELF-RAG outputs the retrieval token, it calls the retriever on demand.",
+      "supported": true
+    },
+    {
+      "claim": "Standard RAG does not make an explicit decision on when to retrieve.",
+      "supported": true
+    },
+    {
+      "claim": "Standard RAG always applies its retriever to the input sequence.",
+      "supported": true
+    },
+    {
+      "claim": "Standard RAG obtains top-K passages before generation.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the difference between Self-RAG and standard RAG regarding retrieval timing?",
+    "How does Self-RAG determine if it needs to retrieve documents?",
+    "Does standard RAG always retrieve documents for every input?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes that RAG always retrieves top-K documents while Self-RAG uses a retrieval token to decide on-demand retrieval, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    true
+  ]
+}

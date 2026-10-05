@@ -1,0 +1,61 @@
+{
+  "answer": "**Salient span masking** is a masking strategy used during REALM pre‑training to focus the model on examples that require world knowledge. Instead of masking random tokens, the method first identifies “salient” spans—named entities (e.g., “United Kingdom”) detected with a BERT‑based tagger trained on CoNLL‑2003 data, and dates identified via a regular expression. One of these salient spans is then selected and masked within a sentence for the masked language‑modeling task. This approach is shown to significantly outperform other masking strategies in the paper’s experiments[S1].  \n\nThe authors compare this scheme to random token masking (as in BERT) and random span masking (as in SpanBERT), noting that while salient span masking had not been impactful in prior BERT‑style training, it is crucial for REALM because the latent‑variable learning relies heavily on the utility of retrieval and thus needs a consistent learning signal[S2].",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 5,
+      "section": "Method",
+      "chunk_id": "0ec1a7ab3de5514c:p5:c3",
+      "snippet": "Salient span masking During REALM pre-training, we want to focus on examples x that require world knowledge to predict the masked tokens. As explained in Section 2, some MLM spans only require local context. To focus on problems that require world knowledge, we mask salient spans such as “United ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 8,
+      "section": "Experiments",
+      "chunk_id": "0ec1a7ab3de5514c:p8:c2",
+      "snippet": "Masking scheme We compare our salient span masking scheme (Section 3.4) with (1) random token masking introduced in BERT (Devlin et al., 2018) and (2) random span masking proposed by SpanBERT (Joshi et al., 2019). While such salient span masking has not been shown to be impactful in previous work ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Salient span masking During REALM pre-training, we want to focus on examples x that require world knowledge to predict the masked tokens. As explained in Section 2, some MLM spans only require local context. To focus on problems that require world knowledge, we mask salient spans such as “United Kingdom” or “July 1969”. We use a BERT-based tagger trained on CoNLL-2003 data (Sang & De Meulder, 2003) to identify named entities, and a regular expression to identify dates. We select and mask one of these salient spans within a sentence for the masked language modeling task. We show that this significantly outperforms other masking strategies in Section 4.5.\n\nNull document Even with salient span masking, not all masked tokens require world knowledge to predict. We model this by adding an empty null document ∅to the top k retrieved documents, allowing appropriate credit to be assigned to a consistent sink when no retrieval is necessary.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 5,
+      "section": "Method"
+    },
+    {
+      "text": "Masking scheme We compare our salient span masking scheme (Section 3.4) with (1) random token masking introduced in BERT (Devlin et al., 2018) and (2) random span masking proposed by SpanBERT (Joshi et al., 2019). While such salient span masking has not been shown to be impactful in previous work with standard BERT training (Joshi et al., 2019), it is crucial for REALM. Intuitively, the latent variable learning relies heavily on the utility of retrieval and is therefore more sensitive to a consistent learning signal.\n\nMIPS index refresh rate During pre-training, we run a parallel process to re-embed corpus documents and rebuild the MIPS index. This results in one index refresh per approximately 500 training steps. To demonstrate the importance of frequent index refreshes, we compare against using a slower refresh rate. The results in Table 2 suggests that a stale index can hurt model training, and further reducing this staleness could offer better optimization.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "3.1. REALM’s generative process\n\nFor both pre-training and fine-tuning, REALM takes some input x and learns a distribution p(y | x) over possible outputs y. For pre-training, the task is masked language modeling: x is a sentence from a pre-training corpus X with some tokens masked out, and the model must predict the value of those missing tokens, y. For fine-tuning, the task is Open-QA: x is a question, and y is the answer.\n\nREALM decomposes p(y | x) into two steps: retrieve, then predict. Given an input x, we first retrieve possibly helpful documents z from a knowledge corpus Z. We model this as a sample from the distribution p(z | x). Then, we condition on both the retrieved z and the original input x to generate the output y—modeled as p(y | z, x). To obtain the overall likelihood of generating y, we treat z as a latent variable and marginalize over all possible documents z, yielding\n\np(y | x) =\n\nX\n\nz∈Z\n\np(y | z, x) p(z | x). (1)\n\n3.2. Model architecture",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 3,
+      "section": "Method"
+    },
+    {
+      "text": "Figure 2. The overall framework of REALM. Left: Unsupervised pre-training. The knowledge retriever and knowledge-augmented encoder are jointly pre-trained on the unsupervised language modeling task. Right: Supervised fine-tuning. After the parameters of the retriever (θ) and encoder (φ) have been pre-trained, they are then fine-tuned on a task of primary interest, using supervised examples.\n\nlanguage modeling (MLM) loss as in Devlin et al. (2018):\n\np(y | z, x) =\n\nJx Y\n\nj=1\n\np(yj | z, x)\n\np(yj | z, x) ∝exp\n\n\u0000\n\nw⊤\n\nj BERTMASK(j)(joinBERT(x, zbody))\n\n\u0001\n\nwhere BERTMASK(j) denotes the Transformer output vector corresponding to the jth masked token, Jx is the total number of [MASK] tokens in x, and wj is a learned word embedding for token yj.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 4,
+      "section": "Method"
+    },
+    {
+      "text": "Encoder or Retriever We first aim to determine whether REALM pre-training improves the retriever or the encoder, or both. To do so, we can reset the parameters of either the retriever or the encoder to their baseline state before REALM pre-training, and feed that into fine-tuning. Resetting both the retriever and encoder reduces the system to our main baseline, ORQA. We find that both the encoder and retriever benefit from REALM training separately, but the best result requires both components acting in unison.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "3. Approach\n\nWe start by formalizing REALM’s pre-training and finetuning tasks as a retrieve-then-predict generative process in Section 3.1. Then in Section 3.2, we describe the model architectures for each component of that process. In Section 3.3, we show how to implement REALM pre-training and fine-tuning by maximizing the likelihood of REALM’s generative process. En route, we address important computational challenges, explain why training works, and also discuss strategies for injecting useful inductive biases. The overall framework is illustrated in Figure 2.\n\n3.1. REALM’s generative process",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 3,
+      "section": "Method"
+    }
+  ]
+}

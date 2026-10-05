@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT encodes query terms into vectors.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT encodes document terms into vectors.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT finds maximum cosine similarity for each query term.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT compares query term vectors against document term vectors.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT sums maximum similarity values to get relevance score.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does ColBERT calculate the relevance score between a query and a document?",
+    "What is the mechanism behind ColBERT's late interaction scoring?",
+    "Explain the MaxSim operation used in ColBERT."
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly describes ColBERT's mechanism but fails to provide the specific relevance computation method for DPR (dot product of single vectors), which is a key part of the question and reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

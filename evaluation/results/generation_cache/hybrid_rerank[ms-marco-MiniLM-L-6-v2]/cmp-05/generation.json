@@ -1,0 +1,70 @@
+{
+  "answer": "**Dense Passage Retrieval (DPR)**  \n- Training batch size: 128 questions per batch [S1]  \n- Learning rate: \\(10^{-5}\\) (Adam optimizer) [S1]  \n\n**Fusion‑in‑Decoder (FID)**  \n- The provided excerpts do not contain any information about the training batch size or learning rate used for the Fusion‑in‑Decoder model [S2, S3].  \n\n**Summary**  \nDPR is trained with a batch size of 128 and a learning rate of \\(10^{-5}\\). No comparable training‑hyperparameter details are given for Fusion‑in‑Decoder in the supplied excerpts.",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_id": "3e67fc1a9977715a:p5:c1",
+      "snippet": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)",
+      "chunk_id": "f1ee7e927c3fb31b:p3:c1",
+      "snippet": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_id": "f1ee7e927c3fb31b:p4:c3",
+      "snippet": "Comparison to state-of-the-art. In table 1, we compare the results obtained by Fusion-in-Decoder with existing approaches for open domain question answering. We observe that while conceptually simple, this method outperforms existing work on the NaturalQuestion and TriviaQA benchmarks. In ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support passages, we consider two methods: BM25 (Robertson et al., 1995) and DPR (Karpukhin et al., 2020). In BM25, passages are represented as bag of words, and the ranking function is based on term and inverse document frequencies. We use the implementation from Apache Lucene1 with default parameters, and tokenize questions and passages with SpaCy.2 In DPR, passages and questions are represented as dense vector representations, computed using two BERT networks. The ranking function is the dot product between the query and passage representations. Retrieval is performed using approximate nearest neighbors with the FAISS library.3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Comparison to state-of-the-art. In table 1, we compare the results obtained by Fusion-in-Decoder with existing approaches for open domain question answering. We observe that while conceptually simple, this method outperforms existing work on the NaturalQuestion and TriviaQA benchmarks. In particular, generative models seem to perform well when evidence from multiple passages need to be aggregated, compared to extractive approaches. Our method also performs better than other generative models, showing that scaling to large number of passages and processing them jointly leads to improvement in accuracy. Second, we observe that using additional knowledge in generative models by using retrieval lead to important performance gains. On NaturalQuestions, the closed book T5 model obtains 36.6% accuracy with 11B parameters, while our approach obtains 44.1% with 770M parameters plus Wikipedia with BM25 retrieval.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    },
+    {
+      "text": "from the i-th passage as Pstart,i(s) × Pend,i(t), and a passage selection score of the i-th passage as Pselected(i).\n\nDuring training, we sample one positive and ̃m−1 negative passages from the top 100 passages returned by the retrieval system (BM25 or DPR) for each question. ̃m is a hyper-parameter and we use ̃m = 24 in all the experiments. The training objective is to maximize the marginal log-likelihood of all the correct answer spans in the positive passage (the answer string may appear multiple times in one passage), combined with the log-likelihood of the positive passage being selected. We use the batch size of 16 for large (NQ, TriviaQA, SQuAD) and 4 for small (TREC, WQ) datasets, and tune k on the development set. For experiments on small datasets under the Multi setting, in which using other datasets is allowed, we fine-tune the reader trained on Natural Questions to the target dataset. All experiments were done on eight 32GB GPUs.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 7,
+      "section": "End-to-end QA System"
+    },
+    {
+      "text": "In this paper, we address the question: can we train a better dense embedding model using only pairs of questions and passages (or answers), without additional pretraining? By leveraging the now standard BERT pretrained model (Devlin et al., 2019) and a dual-encoder architecture (Bromley et al., 1994), we focus on developing the right training scheme using a relatively small number of question and passage pairs. Through a series of careful ablation studies, our final solution is surprisingly simple: the embedding is optimized for maximizing inner products of the question and relevant passage vectors, with an objective comparing all pairs of questions and passages in a batch. Our Dense Passage Retriever (DPR) is exceptionally strong. It not only outperforms BM25 by a large margin (65.2% vs. 42.9% in Top-5 accuracy), but also results in a substantial improvement on the end-to-end QA accuracy compared to ORQA (41.5% vs.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Cross-dataset generalization One interesting question regarding DPR’s discriminative training is how much performance degradation it may suffer from a non-iid setting. In other words, can it still generalize well when directly applied to a different dataset without additional fine-tuning? To test the cross-dataset generalization, we train DPR on Natural Questions only and test it directly on the smaller WebQuestions and CuratedTREC datasets. We find that DPR generalizes well, with 3-5 points loss from the best performing fine-tuned model in top-20 retrieval accuracy (69.9/86.3 vs. 75.0/89.1 for WebQuestions and TREC, respectively), while still greatly outperforming the BM25 baseline (55.0/70.9).",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    }
+  ]
+}

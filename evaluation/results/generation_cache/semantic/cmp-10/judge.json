@@ -1,0 +1,59 @@
+{
+  "claims": [
+    {
+      "claim": "Self-RAG decodes a retrieval token to decide if retrieval is needed.",
+      "supported": true
+    },
+    {
+      "claim": "If retrieval is not required, Self-RAG predicts the next output segment.",
+      "supported": true
+    },
+    {
+      "claim": "Self-RAG calls the retriever on demand when retrieval is useful.",
+      "supported": true
+    },
+    {
+      "claim": "Self-RAG uses critique tokens to evaluate retrieved passage relevance.",
+      "supported": true
+    },
+    {
+      "claim": "Self-RAG uses critique tokens to evaluate factual support of the response.",
+      "supported": true
+    },
+    {
+      "claim": "Conventional RAG invokes the retriever for every input.",
+      "supported": true
+    },
+    {
+      "claim": "Conventional RAG retrieves a fixed set of top-K passages.",
+      "supported": true
+    },
+    {
+      "claim": "Conventional RAG does not decide if retrieval is needed on the fly.",
+      "supported": true
+    },
+    {
+      "claim": "Self-RAG makes a dynamic, token-level decision about retrieval.",
+      "supported": true
+    },
+    {
+      "claim": "Traditional RAG always performs retrieval for each query.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the difference between Self-RAG and standard RAG regarding retrieval decisions?",
+    "How does Self-RAG determine when to retrieve documents compared to RAG?",
+    "Does standard RAG always retrieve documents, and how does Self-RAG differ?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes that RAG always retrieves top-K documents while Self-RAG uses a retrieval token to decide on demand, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}

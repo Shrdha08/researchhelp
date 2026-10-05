@@ -1,0 +1,51 @@
+{
+  "claims": [
+    {
+      "claim": "SELF-RAG reports a small human evaluation.",
+      "supported": true
+    },
+    {
+      "claim": "Annotators judged model outputs for plausibility.",
+      "supported": true
+    },
+    {
+      "claim": "Annotators judged model outputs for support.",
+      "supported": true
+    },
+    {
+      "claim": "Evaluation used 50 samples from PopQA and Bio.",
+      "supported": true
+    },
+    {
+      "claim": "Annotators checked if reflection tokens matched their inspection.",
+      "supported": true
+    },
+    {
+      "claim": "The evaluation measures perceived quality of answers.",
+      "supported": true
+    },
+    {
+      "claim": "Excerpts do not describe a user-satisfaction survey for SELF-RAG.",
+      "supported": true
+    },
+    {
+      "claim": "Excerpts contain no user study description for REALM.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Did the SELF-RAG or REALM papers conduct a user satisfaction study?",
+    "What type of human evaluation was performed in the SELF-RAG paper?",
+    "Do the provided excerpts mention any user studies measuring satisfaction?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that neither paper reports a user satisfaction study, aligning with the reference answer, while accurately describing the human evaluations that were actually conducted.",
+  "relevant_chunks": [
+    false,
+    false,
+    true,
+    false,
+    false,
+    true
+  ]
+}

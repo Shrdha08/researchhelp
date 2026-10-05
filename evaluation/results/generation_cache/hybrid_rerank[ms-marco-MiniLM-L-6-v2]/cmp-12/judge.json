@@ -1,0 +1,47 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT is evaluated on MS MARCO.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT is evaluated on TREC CAR.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT re-ranks top-k BM25 results on MS MARCO development set.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT reports results on the official evaluation set.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE's performance is reported on low-resource tasks from BEIR.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT focuses on standard web-search style passage collections.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE focuses on a diverse set of zero-shot retrieval datasets in BEIR.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What evaluation benchmarks are used for ColBERT and HyDE?",
+    "Compare the datasets used to evaluate ColBERT versus HyDE.",
+    "Which benchmarks does the ColBERT paper use compared to the HyDE paper?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies the benchmarks for ColBERT but misses several key benchmarks for HyDE mentioned in the reference (TREC DL19/DL20, Mr.TyDi in specific languages).",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}

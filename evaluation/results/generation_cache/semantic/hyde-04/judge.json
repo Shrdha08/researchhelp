@@ -1,0 +1,35 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE web-search evaluation uses TREC DL19.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE web-search evaluation uses TREC DL20.",
+      "supported": true
+    },
+    {
+      "claim": "TREC DL19 is defined on MS-MARCO.",
+      "supported": true
+    },
+    {
+      "claim": "TREC DL20 is defined on MS-MARCO.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "Which specific TREC datasets are used for the web search evaluation of HyDE?",
+    "What query sets does the paper use to evaluate HyDE on web search tasks?",
+    "On which collections are the web search results for HyDE reported?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies TREC DL19 and DL20 as the web search query sets, matching the reference answer.",
+  "relevant_chunks": [
+    false,
+    true,
+    false,
+    true,
+    false,
+    false
+  ]
+}

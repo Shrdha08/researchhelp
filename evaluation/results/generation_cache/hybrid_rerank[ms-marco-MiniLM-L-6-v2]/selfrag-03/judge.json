@@ -1,0 +1,51 @@
+{
+  "claims": [
+    {
+      "claim": "Critic model training data used automatically generated reflection tokens.",
+      "supported": true
+    },
+    {
+      "claim": "Reflection tokens were generated using GPT-4.",
+      "supported": true
+    },
+    {
+      "claim": "Data was not created by manual labeling.",
+      "supported": true
+    },
+    {
+      "claim": "GPT-4 was prompted to collect a reflection token for each input-output pair.",
+      "supported": true
+    },
+    {
+      "claim": "Tuples of input, output, and reflection token were added to the critic training set.",
+      "supported": true
+    },
+    {
+      "claim": "The critic was updated using next-token prediction loss.",
+      "supported": true
+    },
+    {
+      "claim": "Manual annotation of reflection tokens is expensive.",
+      "supported": true
+    },
+    {
+      "claim": "GPT-4 was used because it is a state-of-the-art LLM.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How did the authors collect training data for the Self-RAG critic model?",
+    "What method was used to generate reflection tokens for the critic model?",
+    "Why did Self-RAG use GPT-4 instead of manual annotation for critic training data?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that GPT-4 was prompted to generate reflection tokens for input-output pairs, matching the reference answer.",
+  "relevant_chunks": [
+    true,
+    false,
+    true,
+    true,
+    true,
+    false
+  ]
+}

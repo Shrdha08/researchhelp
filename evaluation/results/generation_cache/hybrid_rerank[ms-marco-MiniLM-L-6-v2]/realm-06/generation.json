@@ -1,0 +1,61 @@
+{
+  "answer": "**Salient span masking** is the masking strategy used during REALM pre‑training to concentrate learning on examples that require world knowledge. Instead of masking random tokens, REALM first identifies “salient” text spans—named entities (detected with a BERT‑based tagger trained on CoNLL‑2003) and dates (detected with a regular expression). One of these identified spans is then selected and masked within a sentence for the masked language modeling task. This approach is shown to outperform random token or random span masking for REALM because the latent‑variable learning depends heavily on the usefulness of retrieval [S1, S2].",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 5,
+      "section": "Method",
+      "chunk_id": "0ec1a7ab3de5514c:p5:c3",
+      "snippet": "Salient span masking During REALM pre-training, we want to focus on examples x that require world knowledge to predict the masked tokens. As explained in Section 2, some MLM spans only require local context. To focus on problems that require world knowledge, we mask salient spans such as “United ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 8,
+      "section": "Experiments",
+      "chunk_id": "0ec1a7ab3de5514c:p8:c2",
+      "snippet": "Masking scheme We compare our salient span masking scheme (Section 3.4) with (1) random token masking introduced in BERT (Devlin et al., 2018) and (2) random span masking proposed by SpanBERT (Joshi et al., 2019). While such salient span masking has not been shown to be impactful in previous work ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Salient span masking During REALM pre-training, we want to focus on examples x that require world knowledge to predict the masked tokens. As explained in Section 2, some MLM spans only require local context. To focus on problems that require world knowledge, we mask salient spans such as “United Kingdom” or “July 1969”. We use a BERT-based tagger trained on CoNLL-2003 data (Sang & De Meulder, 2003) to identify named entities, and a regular expression to identify dates. We select and mask one of these salient spans within a sentence for the masked language modeling task. We show that this significantly outperforms other masking strategies in Section 4.5.\n\nNull document Even with salient span masking, not all masked tokens require world knowledge to predict. We model this by adding an empty null document ∅to the top k retrieved documents, allowing appropriate credit to be assigned to a consistent sink when no retrieval is necessary.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 5,
+      "section": "Method"
+    },
+    {
+      "text": "Masking scheme We compare our salient span masking scheme (Section 3.4) with (1) random token masking introduced in BERT (Devlin et al., 2018) and (2) random span masking proposed by SpanBERT (Joshi et al., 2019). While such salient span masking has not been shown to be impactful in previous work with standard BERT training (Joshi et al., 2019), it is crucial for REALM. Intuitively, the latent variable learning relies heavily on the utility of retrieval and is therefore more sensitive to a consistent learning signal.\n\nMIPS index refresh rate During pre-training, we run a parallel process to re-embed corpus documents and rebuild the MIPS index. This results in one index refresh per approximately 500 training steps. To demonstrate the importance of frequent index refreshes, we compare against using a slower refresh rate. The results in Table 2 suggests that a stale index can hurt model training, and further reducing this staleness could offer better optimization.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "0 50 100 150 200 0\n\n1\n\n2\n\n3\n\nPre-training Steps (Thousands)\n\nSalient span masking Random span masking Random uniform masking\n\nFigure 4. The Retrieval Utility (RU, described in Eq. 2) vs the number of pre-training steps. RU roughly estimates the “usefulness” of retrieval. RU is impacted by the choice of masking and the number of pre-training steps.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 12,
+      "section": "Retrieval Utility"
+    },
+    {
+      "text": "x: “Jennifer\n\nformed the production company Excellent Cadaver.”\n\nBERT also (0.13), then (0.08), later (0.05), ... REALM (Z =20 Dec 2018 corpus) smith (0.01), brown (0.01), jones (0.01) REALM (Z =20 Jan 2020 corpus) lawrence (0.13), brown (0.01), smith (0.01), ...\n\nTable 4. An example where REALM adapts to the updated knowledge corpus. The Wikipedia page “Excellent Cadaver” was added in\n\n2019, so the model was not about to recover the word when the knowledge corpus is outdated (2018). Interestingly, the same REALM model pre-trained on the 2018 corpus is able to retrieve the document in the updated corpus (2020) and generate the correct token, “Lawrence”.\n\n0 50 100 150 200 0\n\n1\n\n2\n\n3\n\nPre-training Steps (Thousands)\n\nSalient span masking Random span masking Random uniform masking",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 12,
+      "section": "Retrieval Utility"
+    },
+    {
+      "text": "Examples of retrieved documents Table 3 shows an example of the REALM masked language model prediction. In this example, “Fermat” is the correct word, and REALM (row (c)) gives the word a much high probability compared to the BERT model (row (a)). Since REALM manages to retrieve some documents with a related fact (row (b)), the marginalized probability of the correct answer dramatically increases. This shows that REALM is able to retrieve document to fill in the masked word even though it is trained with unsupervised text only.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "DrQA (Chen et al., 2017) Sparse Retr.+DocReader N/A - 20.7 25.7 34m HardEM (Min et al., 2019a) Sparse Retr.+Transformer BERT 28.1 - - 110m GraphRetriever (Min et al., 2019b) GraphRetriever+Transformer BERT 31.8 31.6 - 110m PathRetriever (Asai et al., 2019) PathRetriever+Transformer MLM 32.6 - - 110m ORQA (Lee et al., 2019) Dense Retr.+Transformer ICT+BERT 33.3 36.4 30.1 330m\n\nOurs (X = Wikipedia, Z = Wikipedia) Dense Retr.+Transformer REALM 39.2 40.2 46.8 330m Ours (X = CC-News, Z = Wikipedia) Dense Retr.+Transformer REALM 40.4 40.7 42.9 330m\n\nTable 2. Ablation experiments on NQ’s development set.\n\nAblation Exact Match\n\nZero-shot\n\nRetrieval Recall@5\n\nREALM 38.2 38.5\n\nREALM retriever+Baseline encoder 37.4 38.5 Baseline retriever+REALM encoder 35.3 13.9 Baseline (ORQA) 31.3 13.9\n\nREALM with random uniform masks 32.3 24.2 REALM with random span masks 35.3 26.1\n\n30× stale MIPS 28.7 15.1\n\nentire model can be run on a single machine with a 12GB GPU.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 7,
+      "section": "Experiments"
+    }
+  ]
+}

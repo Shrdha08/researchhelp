@@ -1,0 +1,70 @@
+{
+  "answer": "In‑batch negatives are a training trick for the dual‑encoder DPR model in which the passages that appear in the same mini‑batch as a question are reused as negative examples for the other questions in that batch.  \n\nFormally, if a batch contains **B** questions and their associated relevant passages, the model computes a **B × B** similarity matrix **S = Q Pᵀ**. Each diagonal entry (**i = j**) pairs a question with its true passage (a positive example), while every off‑diagonal entry (**i ≠ j**) treats the other **B − 1** passages as negatives for that question. Thus each batch yields **B²** question–passage pairs, providing many negative examples without extra sampling or storage [S4].  \n\nThis approach reuses the negative passages already present in the batch, making training memory‑efficient and increasing the number of training pairs, which has been shown to improve accuracy as batch size grows [S2]. It is the “in‑batch negative” setting described in Section 3.2 of the paper [S5].",
+  "citations": [
+    {
+      "source_id": "S4",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 3,
+      "section": "Training",
+      "chunk_id": "3e67fc1a9977715a:p3:c6",
+      "snippet": "In-batch negatives Assume that we have B questions in a mini-batch and each one is associated with a relevant passage. Let Q and P be the (B×d) matrix of question and passage embeddings\n\nin a batch of size B. S = QPT is a (B × B) matrix of similarity scores, where each row of which corresponds to a ..."
+    },
+    {
+      "source_id": "S2",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 6,
+      "section": "Ablation Study on Model Training",
+      "chunk_id": "3e67fc1a9977715a:p6:c2",
+      "snippet": "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same ..."
+    },
+    {
+      "source_id": "S5",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_id": "3e67fc1a9977715a:p5:c1",
+      "snippet": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "negative passages for each question.\n\nThe trick of in-batch negatives has been used in the full batch setting (Yih et al., 2011) and more recently for mini-batch (Henderson et al., 2017; Gillick et al., 2019). It has been shown to be an effective strategy for learning a dual-encoder model that boosts the number of training examples.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 4,
+      "section": "Training"
+    },
+    {
+      "text": "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same batch or from the whole training set. Effectively, in-batch negative training is an easy and memory-efficient way to reuse the negative examples already in the batch rather than creating new ones. It produces more pairs and thus increases the number of training examples, which might contribute to the good model performance. As a result, accuracy consistently improves as the batch size grows.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "In-batch negative training We test different training schemes on the development set of Natural Questions and summarize the results in Table 3. The top block is the standard 1-of-N training setting, where each question in the batch is paired with a positive passage and its own set of n negative passages (Eq. (2)). We find that the choice of negatives — random, BM25 or gold passages (positive passages from other questions) — does not impact the top-k accuracy much in this setting when k ≥20.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 6,
+      "section": "Ablation Study on Model Training"
+    },
+    {
+      "text": "In-batch negatives Assume that we have B questions in a mini-batch and each one is associated with a relevant passage. Let Q and P be the (B×d) matrix of question and passage embeddings\n\nin a batch of size B. S = QPT is a (B × B) matrix of similarity scores, where each row of which corresponds to a question, paired with B passages. In this way, we reuse computation and effectively train on B2 (qi, pj) question/passage pairs in each batch. Any (qi, pj) pair is a positive example when i = j, and negative otherwise. This creates B training instances in each batch, where there are B −1",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 3,
+      "section": "Training"
+    },
+    {
+      "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 5,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "effective solution that shows stronger empirical performance, without relying on additional pretraining or complex joint training schemes.\n\nDPR has also been used as an important module in very recent work. For instance, extending the idea of leveraging hard negatives, Xiong et al. (2020a) use the retrieval model trained in the previous iteration to discover new negatives and construct a different set of examples in each training iteration. Starting from our trained DPR model, they show that the retrieval performance can be further improved. Recent work (Izacard and Grave, 2020; Lewis et al., 2020b) have also shown that DPR can be combined with generation models such as BART (Lewis et al., 2020a) and T5 (Raffel et al., 2019), achieving good performance on open-domain QA and other knowledge-intensive tasks.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 9,
+      "section": "Related Work"
+    }
+  ]
+}

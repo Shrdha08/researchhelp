@@ -1,0 +1,61 @@
+{
+  "answer": "ColBERT’s primary evaluation metric on the MS MARCO passage‑ranking collection is **Mean Reciprocal Rank at 10 (MRR@10)**, which is reported throughout the paper (e.g., in the indexing‑footprint tables)[S3][S6].",
+  "citations": [
+    {
+      "source_id": "S3",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 9,
+      "section": "Indexing Troughput & Footprint",
+      "chunk_id": "2e487d9b96e3c2e5:p9:c4",
+      "snippet": "4.5 Indexing Troughput & Footprint\n\nLastly, we examine the indexing throughput and space footprint of ColBERT. Figure 6 reports indexing throughput on MS MARCO documents with ColBERT and four other ablation setings, which individually enable optimizations described in §3.4 on top of basic batched ..."
+    },
+    {
+      "source_id": "S6",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 9,
+      "section": "Indexing Troughput & Footprint",
+      "chunk_id": "2e487d9b96e3c2e5:p9:c5",
+      "snippet": "Table 4: Space Footprint vs MRR@10 (Dev) on MS MARCO.\n\nTable 4 reports the space footprint of ColBERT under various setings as we reduce the embeddings dimension and/or the bytes per dimension. Interestingly, the most space-efficient seting, that is, re-ranking with cosine similarity with ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "BM25 + BERTbase 31.0 - BM25 + BERTlarge 33.5 -\n\nBM25 + ColBERT 31.3 44.3\n\nTable 3: Results on TREC CAR.\n\nHaving studied our results on MS MARCO, we now consider TREC CAR, whose official metric is MAP. Results are summarized in Table 3, which includes a number of important baselines (BM25, doc2query, and DeepCT) in addition to re-ranking baselines that\n\nhave been tested on this dataset. Tese results directly mirror those with MS MARCO.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 8,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "4.3 End-to-end Top-k Retrieval\n\nBeyond cheap re-ranking, ColBERT is amenable to top-k retrieval directly from a full collection. Table 2 considers full retrieval, wherein each model retrieves the top-1000 documents directly from MS MARCO’s 8.8M documents per query. In addition to MRR@10 and latency in milliseconds, the table reports Recall@50, Recall@200, and Recall@1000, important metrics for a full-retrieval model that essentially filters down a large collection on a per-query basis.\n\nWe compare against BM25, in particular MS MARCO’s official BM25 ranking as well as a well-tuned baseline based on the Anserini toolkit.7 While many other traditional models exist, we are not aware of any that substantially outperform Anserini’s BM25 implementation (e.g., see RM3 in [28], LMDir in [2], or Microsof’s proprietary feature-based RankSVM on the leaderboard).",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 8,
+      "section": "End-to-end Top-k Retrieval"
+    },
+    {
+      "text": "4.5 Indexing Troughput & Footprint\n\nLastly, we examine the indexing throughput and space footprint of ColBERT. Figure 6 reports indexing throughput on MS MARCO documents with ColBERT and four other ablation setings, which individually enable optimizations described in §3.4 on top of basic batched indexing. Based on these throughputs, ColBERT can index MS MARCO in about three hours. Note that any BERT-based model must incur the computational cost of processing each document at least once. While ColBERT encodes each document with BERT exactly once, existing BERT-based rankers would repeat similar computations on possibly hundreds of documents for each query.\n\nSeting Dimension(m) Bytes/Dim Space(GiBs) MRR@10\n\nRe-rank Cosine 128 4 286 34.9 End-to-end L2 128 2 154 36.0 Re-rank L2 128 2 143 34.8 Re-rank Cosine 48 4 54 34.4 Re-rank Cosine 24 2 27 33.9\n\nTable 4: Space Footprint vs MRR@10 (Dev) on MS MARCO.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 9,
+      "section": "Indexing Troughput & Footprint"
+    },
+    {
+      "text": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Introduction"
+    },
+    {
+      "text": "4.2 Qality–Cost Tradeoff: Top-k Re-ranking\n\nIn this section, we examine ColBERT’s efficiency and effectiveness at re-ranking the top-k results extracted by a bag-of-words retrieval model, which is the most typical seting for testing and deploying neural ranking models. We begin with the MS MARCO dataset. We compare against KNRM, Duet, and fastText+ConvKNRM, a representative set of neural matching models that have been previously tested on MS MARCO. In addition, we compare against the natural adaptation of BERT for ranking by Nogueira and Cho [25], in particular, BERTbase and its deeper counterpart BERTlarge. We also report results for “BERTbase (our training)”, which is based on Nogueira and Cho’s base model (including hyperparameters) but is trained with the same loss function as ColBERT (§3.3) for 200k iterations, allowing for a more direct comparison of the results.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "Table 4: Space Footprint vs MRR@10 (Dev) on MS MARCO.\n\nTable 4 reports the space footprint of ColBERT under various setings as we reduce the embeddings dimension and/or the bytes per dimension. Interestingly, the most space-efficient seting, that is, re-ranking with cosine similarity with 24-dimensional vectors stored as 2-byte floats, is only 1% worse in MRR@10 than the most space-consuming one, while the former requires only 27 GiBs to represent the MS MARCO collection.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 9,
+      "section": "Indexing Troughput & Footprint"
+    }
+  ]
+}

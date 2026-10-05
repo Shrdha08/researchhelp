@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE achieves an nDCG@10 of 41.8 on TREC DL19",
+      "supported": false
+    },
+    {
+      "claim": "Contriever obtains an nDCG@10 of 24.0 on TREC DL19",
+      "supported": false
+    }
+  ],
+  "questions": [
+    "What is the nDCG@10 score for HyDE on TREC DL19?",
+    "How does HyDE's nDCG@10 compare to Contriever on TREC DL19?",
+    "What are the nDCG@10 scores for HyDE and Contriever on TREC DL19?"
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer cites the 'map' scores (41.8 and 24.0) instead of the 'ndcg@10' scores (61.3 and 44.5) requested in the question.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    false
+  ]
+}

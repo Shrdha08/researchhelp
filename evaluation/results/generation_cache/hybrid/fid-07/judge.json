@@ -1,0 +1,23 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder (large) achieves an Exact Match score of 60.6% on NaturalQuestions.",
+      "supported": false
+    }
+  ],
+  "questions": [
+    "What is the Exact Match score for Fusion-in-Decoder (large) on NaturalQuestions?",
+    "How does Fusion-in-Decoder (large) perform on the NaturalQuestions benchmark in terms of EM?",
+    "What EM score does the large version of Fusion-in-Decoder get on NQ?"
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer cites 60.6, which corresponds to the TriviaQA score in the table, whereas the correct NaturalQuestions score is 51.4.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true
+  ]
+}

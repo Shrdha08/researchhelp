@@ -1,0 +1,61 @@
+{
+  "answer": "The excerpts do not describe any user‑study that directly measured user satisfaction for either paper.  \n\n* **SELF‑RAG** – The only user‑oriented evaluation reported is a small human evaluation of answer plausibility and support (S&P) on 50 samples from PopQA and Bio, where annotators judged whether the model’s output was reasonable and whether the cited evidence justified the answer [S2]. This evaluation focuses on answer quality rather than overall user satisfaction.  \n\n* **REALM** – The excerpts only discuss benchmark experiments on Open‑QA datasets and do not mention any human or user study [S4].  \n\nTherefore, based on the provided excerpts, neither paper reports a user study measuring user satisfaction.",
+  "citations": [
+    {
+      "source_id": "S2",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 10,
+      "section": "Results And Analysis",
+      "chunk_id": "d9eaa1398abac0df:p10:c3",
+      "snippet": "Human evaluations. We conduct small human evaluations on SELF-RAG outputs, as well as the reliability of predicted reflection tokens. In particular, we sampled 50 samples from PopQA and Bio results. Following Menick et al. (2022), human annotators evaluate S&P, which indicates whether the model ..."
+    },
+    {
+      "source_id": "S4",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 6,
+      "section": "Experiments",
+      "chunk_id": "0ec1a7ab3de5514c:p6:c0",
+      "snippet": "4. Experiments\n\nWe now evaluate our approach on the Open-QA task. In this section, we describe in detail the benchmarks used and the different approaches to which we compare empirically.\n\n4.1. Open-QA Benchmarks\n\nA number of benchmarks have been proposed for Open- QA. In this work, we focus on ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we additionally retrieve five documents using Google Programmable Search9 and search documents from English Wikipedia. As this API only provides snippets, we retrieve Wikipedia introductory paragraphs for the corresponding entities.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 20,
+      "section": "Experimental Details"
+    },
+    {
+      "text": "Human evaluations. We conduct small human evaluations on SELF-RAG outputs, as well as the reliability of predicted reflection tokens. In particular, we sampled 50 samples from PopQA and Bio results. Following Menick et al. (2022), human annotators evaluate S&P, which indicates whether the model output is plausible (i.e., the output is a reasonable and on-topic response to the question as if it were occurring in a conversation) and supported (i.e., the provided evidence is sufficient to verify the validity of the answer). For S&P, we do not consider the instances where SELF-RAG predicts irrelevant or no support. We then ask our annotators whether the model-predicted reflection tokens about ISREL and ISSUP match their inspections (e.g., whether the fully supported output is supported by the cited evidence). Human annotators find SELF-RAG answers are often plausible and supported by relevant passages with higher S&P scores on short-form PopQA, which is consistent with Menick et al.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 10,
+      "section": "Results And Analysis"
+    },
+    {
+      "text": "Table 2: Overall experiment results on six tasks. Bold numbers indicate the best performance among non-proprietary models, and gray-colored bold text indicates the best proprietary model when they outperforms all non-proprietary models. ∗indicates concurrent or recent results reported by concurrent work. – indicates numbers that are not reported by the original papers or are not applicable. Models are sorted based on scale. FS, em, rg, mau, prec, rec denote FactScore (factuality); str-em, rouge (correctness); MAUVE (fluency); citation precision and recall, respectively.\n\nShort-form Closed-set Long-form generations (with citations) PopQA TQA Pub ARC Bio ASQA LM (acc) (acc) (acc) (acc) (FS) (em) (rg) (mau) (pre) (rec)",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 8,
+      "section": "Experiments"
+    },
+    {
+      "text": "4. Experiments\n\nWe now evaluate our approach on the Open-QA task. In this section, we describe in detail the benchmarks used and the different approaches to which we compare empirically.\n\n4.1. Open-QA Benchmarks\n\nA number of benchmarks have been proposed for Open- QA. In this work, we focus on datasets where the question writers did not already know the answer. This yields questions that reflect more realistic information-seeking needs, and also avoids artifacts that can arise if the question is formulated with a particular answer in mind. A deeper justification is given in Lee et al. (2019). In all cases, the predicted answer is evaluated via exact match with any reference answer, following previous Open-QA work (Chen et al., 2017).",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 6,
+      "section": "Experiments"
+    },
+    {
+      "text": "6 CONCLUSION\n\nThis work introduces SELF-RAG, a new framework to enhance the quality and factuality of LLMs through retrieval on demand and self-reflection. SELF-RAG trains an LM to learn to retrieve, generate, and critique text passages and its own generation by predicting the next tokens from its original vocabulary as well as newly added special tokens, called reflection tokens. SELF-RAG further enables the tailoring of LM behaviors at test time by leveraging reflection tokens. Our holistic evaluations on six tasks using multiple metrics demonstrate that SELF-RAG significantly outperforms LLMs with more parameters or with conventional retrieval-augmented generation approaches.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 10,
+      "section": "Conclusion"
+    },
+    {
+      "text": "Empirical results on six tasks, including reasoning and long-form generation, demonstrate that SELF- RAG significantly outperforms pre-trained and instruction-tuned LLMs that have more parameters and widely adopted RAG approaches with higher citation accuracy. In particular, SELF-RAG outperforms retrieval-augmented ChatGPT on four tasks, Llama2-chat (Touvron et al., 2023) and Alpaca (Dubois et al., 2023) on all tasks. Our analysis demonstrates the effectiveness of training and inference with reflection tokens for overall performance improvements as well as test-time model customizations (e.g., balancing the trade-off between citation previsions and completeness).",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 2,
+      "section": "Introduction"
+    }
+  ]
+}

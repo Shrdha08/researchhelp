@@ -1,0 +1,55 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT encodes query and document separately with BERT.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT produces sets of contextual token embeddings.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT uses a late-interaction step for relevance.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT takes maximum cosine similarity for each query token.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT sums maximum scores across all query tokens.",
+      "supported": true
+    },
+    {
+      "claim": "DPR encodes each passage into a low-dimensional dense vector.",
+      "supported": true
+    },
+    {
+      "claim": "DPR indexes all passages in that continuous space.",
+      "supported": true
+    },
+    {
+      "claim": "DPR encodes the query into a dense vector.",
+      "supported": true
+    },
+    {
+      "claim": "DPR measures relevance by similarity in this continuous space.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the difference between ColBERT and DPR relevance computation?",
+    "How does ColBERT calculate the relevance score between a query and a document?",
+    "Describe the encoding and interaction mechanisms of DPR and ColBERT."
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly describes ColBERT's MaxSim mechanism but fails to explicitly state that DPR uses the dot product of single vectors, instead vaguely referring to 'similarity in this continuous space' and noting the formula is missing from the context.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    true
+  ]
+}

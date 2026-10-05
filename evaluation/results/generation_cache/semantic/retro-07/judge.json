@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "Retro provides a constant gain across model scales.",
+      "supported": true
+    },
+    {
+      "claim": "The gain is comparable to multiplying parametric model size by 10x.",
+      "supported": true
+    },
+    {
+      "claim": "Retro provides gains for models up to at least 7B parameters.",
+      "supported": true
+    },
+    {
+      "claim": "Retro provides gains for models starting from approximately 172M parameters.",
+      "supported": true
+    },
+    {
+      "claim": "The performance improvement is roughly constant with model scale.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "For which model sizes does Retro provide a performance gain?",
+    "How does the performance gain of Retro change with model scale?",
+    "What is the range of model sizes for which Retro shows constant gains?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that Retro provides a constant gain for models ranging from approximately 172M (close to the reference's 150M) up to 7B/7.5B parameters, aligning with the reference answer's key facts.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    false,
+    true,
+    false
+  ]
+}

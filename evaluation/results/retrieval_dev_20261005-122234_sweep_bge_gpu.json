@@ -1,0 +1,1547 @@
+[
+  {
+    "config": "hybrid_rerank[bge-reranker-base, k_cand=10]",
+    "n": 54,
+    "recall@5": 0.605,
+    "recall@10": 0.759,
+    "mrr": 0.453,
+    "page_recall@5": 0.753,
+    "latency_s": 2.19,
+    "by_type": {
+      "comparison": {
+        "n": 9,
+        "recall@5": 0.296,
+        "mrr": 0.212
+      },
+      "conceptual": {
+        "n": 11,
+        "recall@5": 0.545,
+        "mrr": 0.42
+      },
+      "factual": {
+        "n": 34,
+        "recall@5": 0.706,
+        "mrr": 0.528
+      }
+    },
+    "questions": [
+      {
+        "id": "fid-01",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "fid-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "fid-03",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "fid-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-01",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-03",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.16666666666666666,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 6
+      },
+      {
+        "id": "dpr-04",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "dpr-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "dpr-07",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-10",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-01",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.1,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 10
+      },
+      {
+        "id": "rag-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "rag-07",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "rag-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-10",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "rag-11",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "realm-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "realm-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "realm-04",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.14285714285714285,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 7
+      },
+      {
+        "id": "realm-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "colbert-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "colbert-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "colbert-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "colbert-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-02",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-03",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.125,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 8
+      },
+      {
+        "id": "hyde-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "selfrag-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.14285714285714285,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 7
+      },
+      {
+        "id": "selfrag-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "selfrag-05",
+        "type": "factual",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 1.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-06",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-07",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-08",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.1111111111111111,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 9
+      },
+      {
+        "id": "selfrag-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "retro-01",
+        "type": "factual",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 1.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-03",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "retro-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-05",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.125,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 8
+      },
+      {
+        "id": "retro-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-08",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "cmp-01",
+        "type": "comparison",
+        "recall@5": 0.3333333333333333,
+        "recall@10": 0.6666666666666666,
+        "mrr": 0.5,
+        "page_recall@5": 0.3333333333333333,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "cmp-02",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-03",
+        "type": "comparison",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "cmp-04",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-06",
+        "type": "comparison",
+        "recall@5": 0.3333333333333333,
+        "recall@10": 0.3333333333333333,
+        "mrr": 0.5,
+        "page_recall@5": 0.3333333333333333,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "cmp-07",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-09",
+        "type": "comparison",
+        "recall@5": 0.5,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "cmp-11",
+        "type": "comparison",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 0.2,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 5
+      },
+      {
+        "id": "cmp-13",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.5,
+        "mrr": 0.125,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 8
+      }
+    ],
+    "reranker_device": "CUDAExecutionProvider"
+  },
+  {
+    "config": "hybrid_rerank[bge-reranker-base, k_cand=20]",
+    "n": 54,
+    "recall@5": 0.614,
+    "recall@10": 0.722,
+    "mrr": 0.464,
+    "page_recall@5": 0.781,
+    "latency_s": 12.48,
+    "by_type": {
+      "comparison": {
+        "n": 9,
+        "recall@5": 0.241,
+        "mrr": 0.197
+      },
+      "conceptual": {
+        "n": 11,
+        "recall@5": 0.545,
+        "mrr": 0.412
+      },
+      "factual": {
+        "n": 34,
+        "recall@5": 0.735,
+        "mrr": 0.551
+      }
+    },
+    "questions": [
+      {
+        "id": "fid-01",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "fid-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "fid-03",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "fid-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-01",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-03",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.1111111111111111,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 9
+      },
+      {
+        "id": "dpr-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "dpr-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "dpr-07",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-10",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-01",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "rag-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "rag-07",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.16666666666666666,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 6
+      },
+      {
+        "id": "rag-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-10",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "rag-11",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "realm-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "realm-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "realm-04",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.1,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 10
+      },
+      {
+        "id": "realm-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "colbert-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "colbert-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "colbert-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "colbert-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-02",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-03",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "hyde-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "selfrag-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.1,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 10
+      },
+      {
+        "id": "selfrag-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "selfrag-05",
+        "type": "factual",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 1.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-07",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-08",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.2,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 5
+      },
+      {
+        "id": "retro-01",
+        "type": "factual",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 1.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-03",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "retro-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-05",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "retro-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-08",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "cmp-01",
+        "type": "comparison",
+        "recall@5": 0.3333333333333333,
+        "recall@10": 0.6666666666666666,
+        "mrr": 0.5,
+        "page_recall@5": 0.3333333333333333,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "cmp-02",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-03",
+        "type": "comparison",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "cmp-04",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-06",
+        "type": "comparison",
+        "recall@5": 0.3333333333333333,
+        "recall@10": 0.3333333333333333,
+        "mrr": 0.5,
+        "page_recall@5": 0.3333333333333333,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "cmp-07",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-09",
+        "type": "comparison",
+        "recall@5": 0.5,
+        "recall@10": 1.0,
+        "mrr": 0.2,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 5
+      },
+      {
+        "id": "cmp-11",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.5,
+        "mrr": 0.14285714285714285,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 7
+      },
+      {
+        "id": "cmp-13",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.5,
+        "mrr": 0.1,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 10
+      }
+    ],
+    "reranker_device": "CUDAExecutionProvider"
+  },
+  {
+    "config": "hybrid_rerank[bge-reranker-base, k_cand=30]",
+    "n": 54,
+    "recall@5": 0.596,
+    "recall@10": 0.657,
+    "mrr": 0.442,
+    "page_recall@5": 0.753,
+    "latency_s": 20.09,
+    "by_type": {
+      "comparison": {
+        "n": 9,
+        "recall@5": 0.241,
+        "mrr": 0.184
+      },
+      "conceptual": {
+        "n": 11,
+        "recall@5": 0.545,
+        "mrr": 0.394
+      },
+      "factual": {
+        "n": 34,
+        "recall@5": 0.706,
+        "mrr": 0.526
+      }
+    },
+    "questions": [
+      {
+        "id": "fid-01",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "fid-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "fid-03",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "fid-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-01",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-03",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "dpr-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "dpr-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "dpr-07",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "dpr-10",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-01",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "rag-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "rag-05",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "rag-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.25,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 4
+      },
+      {
+        "id": "rag-07",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.14285714285714285,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 7
+      },
+      {
+        "id": "rag-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "rag-10",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "rag-11",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "realm-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "realm-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "realm-04",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "realm-05",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.16666666666666666,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 6
+      },
+      {
+        "id": "colbert-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "colbert-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "colbert-03",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.2,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 5
+      },
+      {
+        "id": "colbert-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-02",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "hyde-03",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "hyde-08",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "selfrag-01",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-02",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.5,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "selfrag-05",
+        "type": "factual",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 1.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-07",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "selfrag-08",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "selfrag-09",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.2,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 5
+      },
+      {
+        "id": "retro-01",
+        "type": "factual",
+        "recall@5": 0.5,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-02",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-03",
+        "type": "conceptual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "retro-04",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-05",
+        "type": "factual",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "retro-06",
+        "type": "factual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "retro-08",
+        "type": "conceptual",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 1
+      },
+      {
+        "id": "cmp-01",
+        "type": "comparison",
+        "recall@5": 0.3333333333333333,
+        "recall@10": 0.6666666666666666,
+        "mrr": 0.5,
+        "page_recall@5": 0.3333333333333333,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "cmp-02",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-03",
+        "type": "comparison",
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "page_recall@5": 1.0,
+        "first_relevant_rank": 3
+      },
+      {
+        "id": "cmp-04",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-06",
+        "type": "comparison",
+        "recall@5": 0.3333333333333333,
+        "recall@10": 0.3333333333333333,
+        "mrr": 0.5,
+        "page_recall@5": 0.3333333333333333,
+        "first_relevant_rank": 2
+      },
+      {
+        "id": "cmp-07",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": null
+      },
+      {
+        "id": "cmp-09",
+        "type": "comparison",
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "mrr": 0.2,
+        "page_recall@5": 0.5,
+        "first_relevant_rank": 5
+      },
+      {
+        "id": "cmp-11",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.5,
+        "mrr": 0.125,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": 8
+      },
+      {
+        "id": "cmp-13",
+        "type": "comparison",
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0,
+        "page_recall@5": 0.0,
+        "first_relevant_rank": null
+      }
+    ],
+    "reranker_device": "CUDAExecutionProvider"
+  }
+]

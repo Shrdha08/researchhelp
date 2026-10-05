@@ -1,0 +1,55 @@
+{
+  "claims": [
+    {
+      "claim": "REALM's improvement over ORQA is due to better pre-training.",
+      "supported": true
+    },
+    {
+      "claim": "ORQA and REALM use identical fine-tuning setups and hyperparameters.",
+      "supported": true
+    },
+    {
+      "claim": "Other retrieval-based systems retrieve 20 to 80 documents.",
+      "supported": true
+    },
+    {
+      "claim": "REALM retrieves only 5 documents.",
+      "supported": true
+    },
+    {
+      "claim": "REALM achieves the best overall performance among compared systems.",
+      "supported": true
+    },
+    {
+      "claim": "T5-11B is 50 times larger than smaller T5 variants.",
+      "supported": true
+    },
+    {
+      "claim": "T5-11B gains roughly 5 points in accuracy over smaller T5 variants.",
+      "supported": true
+    },
+    {
+      "claim": "REALM outperforms the T5-11B model.",
+      "supported": true
+    },
+    {
+      "claim": "REALM is 30 times smaller than T5-11B.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does REALM compare to ORQA and T5-11B in terms of performance and size?",
+    "What are the key performance advantages of REALM over previous retrieval-based and generative systems?",
+    "How does REALM's document retrieval count compare to other retrieval-based systems?"
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer fails to provide the specific quantitative improvement (4-16% absolute accuracy) requested by the question, instead offering only qualitative comparisons and stating that no explicit numeric figures are provided.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    true,
+    false,
+    false
+  ]
+}

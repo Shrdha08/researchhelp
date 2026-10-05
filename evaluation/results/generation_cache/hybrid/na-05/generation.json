@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not contain any information about carbon emissions reported by the ColBERT authors for training.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "3 COLBERT\n\nColBERT prescribes a simple framework for balancing the quality and cost of neural IR, particularly deep language models like BERT. As introduced earlier, delaying the query–document interaction can facilitate cheap neural re-ranking (i.e., through pre-computation) and even support practical end-to-end neural retrieval (i.e., through pruning via vector-similarity search). ColBERT addresses how to do so while still preserving the effectiveness of state-of-the-art models, which condition the bulk of their computations on the joint query–document pair.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Colbert"
+    },
+    {
+      "text": "Diving deeper into the quality–cost tradeoffbetween BERT and ColBERT, Figure 4 demonstrates the relationships between FLOPs and effectiveness (MRR@10) as a function of the re-ranking depth k when re-ranking the top-k results by BM25, comparing ColBERT and BERTbase (our training). We conduct this experiment on MS MARCO (Dev). We note here that as the official top-1000 ranking does not provide the BM25 order (and also lacks documents beyond the top-1000 per query), the models in this experiment re-rank the Anserini [37] toolkit’s BM25 output. Consequently, both MRR@10 values at k = 1000 are slightly higher from those reported in Table 1.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 8,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "NSF under CAREER grant CNS-1651570. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 10,
+      "section": "Conclusion"
+    },
+    {
+      "text": "4.2 Qality–Cost Tradeoff: Top-k Re-ranking\n\nIn this section, we examine ColBERT’s efficiency and effectiveness at re-ranking the top-k results extracted by a bag-of-words retrieval model, which is the most typical seting for testing and deploying neural ranking models. We begin with the MS MARCO dataset. We compare against KNRM, Duet, and fastText+ConvKNRM, a representative set of neural matching models that have been previously tested on MS MARCO. In addition, we compare against the natural adaptation of BERT for ranking by Nogueira and Cho [25], in particular, BERTbase and its deeper counterpart BERTlarge. We also report results for “BERTbase (our training)”, which is based on Nogueira and Cho’s base model (including hyperparameters) but is trained with the same loss function as ColBERT (§3.3) for 200k iterations, allowing for a more direct comparison of the results.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "We report the competition’s official metric, namely MRR@10, on the validation set (Dev) and the evaluation set (Eval). We also report the re-ranking latency, which we measure using a single Tesla V100 GPU, and the FLOPs per query for each neural ranking model. For ColBERT, our reported latency subsumes the entire computation from gathering the document representations, moving them to the GPU, tokenizing then encoding the query, and applying late interaction to compute document scores. For the baselines, we measure the scoring computations on the GPU and exclude the CPU-based text preprocessing (similar to [9]). In principle, the baselines can pre-compute the majority of this preprocessing (e.g., document tokenization) offline and parallelize the rest across\n\ndocuments online, leaving only a negligible cost. We estimate the FLOPs per query of each model using the torchprofile6 library.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "4.1.2 Implementation. Our ColBERT models are implemented using Python 3 and PyTorch 1. We use the popular transformers5\n\nlibrary for the pre-trained BERT model. Similar to [25], we fine-tune all ColBERT models with learning rate 3 × 10−6 with a batch size 32. We fix the number of embeddings per query at Nq = 32. We set our ColBERT embedding dimension m to be 128; §4.5 demonstrates ColBERT’s robustness to a wide range of embedding dimensions.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 6,
+      "section": "Method"
+    }
+  ]
+}

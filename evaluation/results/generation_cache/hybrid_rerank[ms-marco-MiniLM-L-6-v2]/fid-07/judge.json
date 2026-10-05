@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "questions": [
+    "What is the Exact Match score for Fusion-in-Decoder (large) on NaturalQuestions?",
+    "Does the provided text state the EM score for Fusion-in-Decoder (large) on NaturalQuestions?",
+    "Can you find the performance of Fusion-in-Decoder (large) on NaturalQuestions in the context?"
+  ],
+  "verdict": "incorrect",
+  "reason": "The system answer claims the information is missing, but chunk [4] explicitly states the score is 51.4.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    true,
+    false,
+    false
+  ]
+}

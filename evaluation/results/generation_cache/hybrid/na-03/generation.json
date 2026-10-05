@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not mention any non‑English languages on which RAG was evaluated.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever. We compare two RAG formulations, one which conditions on the same retrieved passages across the whole generated sequence, and another which can use different passages per token. We fine-tune and evaluate our models on a wide range of knowledgeintensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-specific retrieve-and-extract architectures. For language generation tasks, we find that RAG models generate more specific, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 1,
+      "section": "Abstract"
+    },
+    {
+      "text": "3.2 Abstractive Question Answering\n\nRAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting, we use the MSMARCO NLG task v2.1 [43]. The task consists of questions, ten gold passages retrieved from a search engine for each question, and a full sentence answer annotated from the retrieved passages. We do not use the supplied passages, only the questions and answers, to treat",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 4,
+      "section": "Abstractive Question Answering"
+    },
+    {
+      "text": "SotA - - 49.8* 49.9* 76.8 92.2*\n\nBART 15.1 19.7 38.2 41.6 64.0 81.1\n\nRAG-Tok. 17.3 22.2 40.1 41.5 72.5 89.5 RAG-Seq. 14.7 21.4 40.8 44.2\n\nto more effective marginalization over documents. Furthermore, RAG can generate correct answers even when the correct answer is not in any retrieved document, achieving 11.8% accuracy in such cases for NQ, where an extractive model would score 0%.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 6,
+      "section": "Open-domain Question Answering"
+    },
+    {
+      "text": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures. Additionally, providing provenance for their decisions and updating their world knowledge remain open research problems. Pretrained models with a differentiable access mechanism to explicit non-parametric memory have so far been only investigated for extractive downstream tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric memory for language generation.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 1,
+      "section": "Abstract"
+    },
+    {
+      "text": "RAG-Token 43.5 54.8 46.5 51.9 17.9 22.6 56.2 49.4 74.5 90.6 RAG-Sequence 44.0 55.8 44.9 53.4 15.3 21.5 57.2 47.5\n\nbetween these dates and use a template “Who is {position}?” (e.g. “Who is the President of Peru?”) to query our NQ RAG model with each index. RAG answers 70% correctly using the 2016 index for 2016 world leaders and 68% using the 2018 index for 2018 world leaders. Accuracy with mismatched indices is low (12% with the 2018 index and 2016 leaders, 4% with the 2016 index and 2018 leaders). This shows we can update RAG’s world knowledge by simply replacing its non-parametric memory.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 8,
+      "section": "Additional Results"
+    },
+    {
+      "text": "3.3 Jeopardy Question Generation\n\nTo evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question generation. Rather than use questions from standard open-domain QA tasks, which typically consist of short, simple questions, we propose the more demanding task of generating Jeopardy questions. Jeopardy is an unusual format that consists of trying to guess an entity from a fact about that entity. For example, “The World Cup” is the answer to the question “In 1986 Mexico scored as the first country to host this international sports competition twice.” As Jeopardy questions are precise, factual statements, generating Jeopardy questions conditioned on their answer entities constitutes a challenging knowledge-intensive generation task.",
+      "paper_id": "23e3249e9a1e7541",
+      "page": 5,
+      "section": "Jeopardy Question Generation"
+    }
+  ]
+}

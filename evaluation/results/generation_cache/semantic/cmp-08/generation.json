@@ -1,0 +1,61 @@
+{
+  "answer": "**ColBERT**  \nColBERT computes relevance by first encoding each query term \\(t_q\\) and each document term \\(t_d\\) into vectors (the sets \\(E_q\\) and \\(E_d\\)). For every query‑term vector \\(v \\in E_q\\) it finds the *maximum* cosine similarity (or squared L2 distance) with any document‑term vector in \\(E_d\\) (the MaxSim operation). The final relevance score is the sum of these maximum similarity values over all query terms [S1].\n\n**Dense Passage Retrieval (DPR)**  \nThe provided excerpts do not describe how DPR computes the relevance between a query and a passage; they only mention that DPR’s retrieval performance is evaluated [S5]. Therefore, the specific relevance‑scoring mechanism for DPR cannot be answered from the given excerpts.",
+  "citations": [
+    {
+      "source_id": "S1",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 4,
+      "section": "Architecture",
+      "chunk_id": "2e487d9b96e3c2e5:p4:c2",
+      "snippet": "Using Eq and Ed, ColBERT computes the relevance score between q and d via late interaction, which we define as a summation of maximum similarity (MaxSim) operators. In particular, we find the maximum cosine similarity of each v ∈Eq with vectors in Ed, and combine the outputs via summation. Besides ..."
+    },
+    {
+      "source_id": "S5",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 4,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_id": "3e67fc1a9977715a:p4:c7",
+      "snippet": "5 Experiments: Passage Retrieval\n\nIn this section, we evaluate the retrieval performance of our Dense Passage Retriever (DPR), along with analysis on how its output differs from\n\n6We use the unfiltered TriviaQA version and discard the noisy evidence documents mined from Bing.\n\n7The improvement of ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Using Eq and Ed, ColBERT computes the relevance score between q and d via late interaction, which we define as a summation of maximum similarity (MaxSim) operators. In particular, we find the maximum cosine similarity of each v ∈Eq with vectors in Ed, and combine the outputs via summation. Besides cosine, we also evaluate squared L2 distance as a measure of vector similarity. Intuitively, this interaction mechanism sofly searches for each query term tq—in a manner that reflects its context in the query—against the document’s embeddings, quantifying the strength of the “match” via the largest similarity score between tq and a document term td. Given these term scores, it then estimates the document relevance by summing the matching evidence across all query terms.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 4,
+      "section": "Architecture"
+    },
+    {
+      "text": "By delaying and yet retaining this finegranular interaction, ColBERT can leverage the expressiveness of deep LMs while simultaneously gaining the ability to pre-compute document representations offline, considerably speeding up query processing. Beyond reducing the cost of re-ranking the documents retrieved by a traditional model, ColBERT’s pruning-friendly interaction mechanism enables leveraging vector-similarity indexes for end-to-end retrieval directly from a large document collection. We extensively evaluate ColBERT using two recent passage search datasets. Results show that ColBERT’s effectiveness is competitive with existing BERT-based models (and outperforms every non- BERT baseline), while executing two orders-of-magnitude faster and requiring four orders-of-magnitude fewer FLOPs per query.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 1,
+      "section": "Abstract"
+    },
+    {
+      "text": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Introduction"
+    },
+    {
+      "text": "3 COLBERT\n\nColBERT prescribes a simple framework for balancing the quality and cost of neural IR, particularly deep language models like BERT. As introduced earlier, delaying the query–document interaction can facilitate cheap neural re-ranking (i.e., through pre-computation) and even support practical end-to-end neural retrieval (i.e., through pruning via vector-similarity search). ColBERT addresses how to do so while still preserving the effectiveness of state-of-the-art models, which condition the bulk of their computations on the joint query–document pair.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Colbert"
+    },
+    {
+      "text": "5 Experiments: Passage Retrieval\n\nIn this section, we evaluate the retrieval performance of our Dense Passage Retriever (DPR), along with analysis on how its output differs from\n\n6We use the unfiltered TriviaQA version and discard the noisy evidence documents mined from Bing.\n\n7The improvement of using gold contexts over passages that contain answers is small. See Section 5.2 and Appendix A.",
+      "paper_id": "3e67fc1a9977715a",
+      "page": 4,
+      "section": "Experiments: Passage Retrieval"
+    },
+    {
+      "text": "3.5 Top-k Re-ranking with ColBERT\n\nRecall that ColBERT can be used for re-ranking the output of another retrieval model, typically a term-based model, or directly for end-to-end retrieval from a document collection. In this section, we discuss how we use ColBERT for ranking a small set of k (e.g., k = 1000) documents given a query q. Since k is small, we rely on batch computations to exhaustively score each document\n\n3Te public BERT implementations we saw simply pad to a pre-defined length.\n\n(unlike our approach in §3.6). To begin with, our query serving subsystem loads the indexed documents representations into memory, representing each document as a matrix of embeddings.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 5,
+      "section": "Top-k Re-ranking with ColBERT"
+    }
+  ]
+}

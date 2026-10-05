@@ -1,0 +1,43 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder models are initialized from pretrained T5 models.",
+      "supported": true
+    },
+    {
+      "claim": "The specific variants used are T5-base and T5-large.",
+      "supported": true
+    },
+    {
+      "claim": "The base model contains 220M parameters.",
+      "supported": true
+    },
+    {
+      "claim": "The large model contains 770M parameters.",
+      "supported": true
+    },
+    {
+      "claim": "The architecture can be built on other models like BART.",
+      "supported": true
+    },
+    {
+      "claim": "The experiments in the paper use T5 as initialization.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What pretrained models initialize Fusion-in-Decoder and what are their sizes?",
+    "Which T5 variants are used for Fusion-in-Decoder and how many parameters do they have?",
+    "Describe the initialization and parameter counts for the Fusion-in-Decoder models."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies the T5 base and large models and their respective parameter counts (220M and 770M) as stated in the reference and context.",
+  "relevant_chunks": [
+    false,
+    false,
+    true,
+    false,
+    false,
+    true
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not describe any user study conducted by either REALM or SELF‑RAG to measure user satisfaction. No information about such experiments is included in the excerpts.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "CuratedTrec The CuratedTrec dataset is a collection of question-answer pairs drawn from real user queries issued on sites such as MSNSearch and AskJeeves. To account for multiple correct answers or different spelling variations, the answers in this dataset are defined as regular expressions that match all correct answers. It is unclear how to train generation-based models with this type of supervision, so we do not evaluate them on this dataset.\n\n4.2. Approaches compared\n\nRetrieval-based Open-QA Most existing Open-QA systems answer the input question by first retrieving potentially relevant documents from a knowledge corpus, and then using a reading comprehension system to extract an answer from the documents. In this paradigm, the knowledge is stored explicitly in the corpus. We wish to compare different methods for implementing retrieval.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 6,
+      "section": "Experiments"
+    },
+    {
+      "text": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we additionally retrieve five documents using Google Programmable Search9 and search documents from English Wikipedia. As this API only provides snippets, we retrieve Wikipedia introductory paragraphs for the corresponding entities.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 20,
+      "section": "Experimental Details"
+    },
+    {
+      "text": "D. Retrieval Utility\n\nThe null document ∅described in Section 3.4 provides a way to measure the importance of a retrieved document z: we define the retrieval utility (RU) of z for the masked input x as the difference between the log-likelihood of the knowledge-augmented encoder when conditioning on z versus on ∅:\n\nRU(z | x) = log p(y | z, x) −log p(y | ∅, x). (2)\n\nA negative RU shows that z is less useful for predicting y than the null document. This could mean that z is irrelevant to x, but could also mean that the masked tokens in x do not require world knowledge to predict, or that the world knowledge is sufficiently commonplace it has been baked into the model’s parameters. In practice, we find that RU increases steadily over the course of pre-training, and is more predictive of good performance on the downstream task of Open-QA than even the overall log-likelihood. An example of how RU behaves over time and across different settings is in Figure 4.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 11,
+      "section": "Retrieval Utility"
+    },
+    {
+      "text": "4. Experiments\n\nWe now evaluate our approach on the Open-QA task. In this section, we describe in detail the benchmarks used and the different approaches to which we compare empirically.\n\n4.1. Open-QA Benchmarks\n\nA number of benchmarks have been proposed for Open- QA. In this work, we focus on datasets where the question writers did not already know the answer. This yields questions that reflect more realistic information-seeking needs, and also avoids artifacts that can arise if the question is formulated with a particular answer in mind. A deeper justification is given in Lee et al. (2019). In all cases, the predicted answer is evaluated via exact match with any reference answer, following previous Open-QA work (Chen et al., 2017).",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 6,
+      "section": "Experiments"
+    },
+    {
+      "text": "SELF-RAG further enables a customizable decoding algorithm to satisfy hard or soft constraints, which are defined by reflection token predictions. In particular, our inference-time algorithm enables us to (1) flexibly adjust retrieval frequency for different downstream applications and (2) customize models’ behaviors to user preferences by leveraging reflection tokens through segment-level beam search using the weighted linear sum of the reflection token probabilities as segment score.",
+      "paper_id": "d9eaa1398abac0df",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Scalable grounded neural memory The document index can be viewed as a memory where the keys are the document embeddings. From this view, our work share motivations with works such as product key memory (Lample et al., 2019), which enables sub-linear memory access in a memory network (Weston et al., 2014; Graves et al., 2014; Sukhbaatar et al., 2015), allowing these scalable memory layers to be integrated into large language models. One main difference is that our memories are grounded—each memory is associated with a document rather than unnamed value vectors. This level of interpretability is crucial for applications like Open-QA, where users would require provenance for a predicted answer to be trustworthy.\n\nUnsupervised Corpus Alignment In sequence-tosequence models with attention (Bahdanau et al., 2014),",
+      "paper_id": "0ec1a7ab3de5514c",
+      "page": 8,
+      "section": "Discussion and Related Work"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "claim": "ColBERT's primary evaluation metric on MS MARCO is MRR@10.",
+      "supported": true
+    },
+    {
+      "claim": "MRR@10 is reported throughout the paper.",
+      "supported": true
+    },
+    {
+      "claim": "MRR@10 is reported in indexing-footprint tables.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the main evaluation metric used for ColBERT on MS MARCO?",
+    "Which metric does the ColBERT paper report for MS MARCO performance?",
+    "How is ColBERT's effectiveness measured on the MS MARCO dataset?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies MRR@10 as the metric, matching the reference answer and supported by the retrieved context.",
+  "relevant_chunks": [
+    false,
+    true,
+    true,
+    false,
+    false,
+    true
+  ]
+}

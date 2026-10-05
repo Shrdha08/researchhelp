@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "Fusion-in-Decoder becomes more accurate when a larger set of passages is retrieved.",
+      "supported": true
+    },
+    {
+      "claim": "The paper reports that performance significantly improves when the number of retrieved passages increases.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "How does the accuracy of Fusion-in-Decoder change with the number of retrieved passages?",
+    "Does retrieving more passages improve Fusion-in-Decoder's performance?",
+    "What is the relationship between the number of retrieved passages and Fusion-in-Decoder accuracy?"
+  ],
+  "verdict": "partial",
+  "reason": "The system answer correctly states that accuracy improves with more passages but fails to mention the specific upper limit of 100 passages noted in the reference answer.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    false
+  ]
+}

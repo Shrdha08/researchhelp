@@ -1,0 +1,55 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE was evaluated on the BEIR benchmark.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE was evaluated on low-resource retrieval tasks.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE evaluation includes TREC-Covid.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE evaluation includes FiQA.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE evaluation includes DBPedia.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT was evaluated on MS MARCO.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT was evaluated on TREC CAR.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE's evaluation emphasizes low-resource, zero-shot performance.",
+      "supported": true
+    },
+    {
+      "claim": "ColBERT's evaluation focuses on high-resource, supervised passage-ranking performance.",
+      "supported": false
+    }
+  ],
+  "questions": [
+    "What benchmarks were used to evaluate HyDE and ColBERT?",
+    "Compare the evaluation datasets for HyDE and ColBERT.",
+    "Which datasets are used in the HyDE and ColBERT papers?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies the BEIR datasets for HyDE and MS MARCO/TREC CAR for ColBERT, but it misses the specific TREC DL19/DL20 and Mr.TyDi datasets mentioned in the reference for HyDE.",
+  "relevant_chunks": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ]
+}

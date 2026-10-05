@@ -1,0 +1,79 @@
+{
+  "answer": "**ColBERT**\n\n- The paper evaluates ColBERT on two passage‑search collections: **MS MARCO** and **TREC CAR** [S4].  \n- In the quality–cost trade‑off experiments it re‑ranks the top‑k BM25 results on the **MS MARCO development set** (and also reports results on the official evaluation set)[S1][S6].\n\n**HyDE (Precise Zero‑Shot Dense Retrieval)**  \n\n- HyDE’s performance is reported on the **low‑resource tasks from the BEIR benchmark** [S3].\n\n**Comparison**\n\n- ColBERT’s evaluation benchmarks are the large‑scale passage‑ranking datasets **MS MARCO** and **TREC CAR**, whereas HyDE is evaluated on the **BEIR benchmark’s low‑resource retrieval tasks**. The two papers therefore use different benchmark suites: ColBERT focuses on standard web‑search style passage collections, while HyDE focuses on a diverse set of zero‑shot retrieval datasets assembled in BEIR.",
+  "citations": [
+    {
+      "source_id": "S4",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 3,
+      "section": "Introduction",
+      "chunk_id": "2e487d9b96e3c2e5:p3:c0",
+      "snippet": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections."
+    },
+    {
+      "source_id": "S1",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 8,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+      "chunk_id": "2e487d9b96e3c2e5:p8:c1",
+      "snippet": "Diving deeper into the quality–cost tradeoffbetween BERT and ColBERT, Figure 4 demonstrates the relationships between FLOPs and effectiveness (MRR@10) as a function of the re-ranking depth k when re-ranking the top-k results by BM25, comparing ColBERT and BERTbase (our training). We conduct this ..."
+    },
+    {
+      "source_id": "S6",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+      "chunk_id": "2e487d9b96e3c2e5:p7:c3",
+      "snippet": "We report the competition’s official metric, namely MRR@10, on the validation set (Dev) and the evaluation set (Eval). We also report the re-ranking latency, which we measure using a single Tesla V100 GPU, and the FLOPs per query for each neural ranking model. For ColBERT, our reported latency ..."
+    },
+    {
+      "source_id": "S3",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Low Resource Retrieval",
+      "chunk_id": "dc0ae3c5584ed146:p5:c3",
+      "snippet": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a ..."
+    }
+  ],
+  "contexts": [
+    {
+      "text": "Diving deeper into the quality–cost tradeoffbetween BERT and ColBERT, Figure 4 demonstrates the relationships between FLOPs and effectiveness (MRR@10) as a function of the re-ranking depth k when re-ranking the top-k results by BM25, comparing ColBERT and BERTbase (our training). We conduct this experiment on MS MARCO (Dev). We note here that as the official top-1000 ranking does not provide the BM25 order (and also lacks documents beyond the top-1000 per query), the models in this experiment re-rank the Anserini [37] toolkit’s BM25 output. Consequently, both MRR@10 values at k = 1000 are slightly higher from those reported in Table 1.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 8,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    },
+    {
+      "text": "We use three sets of queries for evaluation. Te official development and evaluation sets contain roughly 7k queries. However, the relevance judgements of the evaluation set are held-out by Microsof and effectiveness results can only be obtained by submiting to the competition’s organizers. We submited our main re-ranking ColBERT model for the results in §4.2. In addition, the collection includes roughly 55k queries (with labels) that are provided as additional validation data. We re-purpose a random sample of 5k queries among those (i.e., ones not in our development or training\n\nsets) as a “local” evaluation set. Along with the official development set, we use this held-out set for testing our models as well as baselines in §4.3. We do so to avoid submiting multiple variants of the same model at once, as the organizers discourage too many submissions by the same team.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 6,
+      "section": "Method"
+    },
+    {
+      "text": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a tiny 0.2 margin; in comparison, the underlying Contriever underperforms by more than 50%.\n\nWe also observe HyDE demonstrates strong performance compared to fine-tuned models. HyDE generally shows better performance than ANCE and DPR, even though the two are fine-tuned on MS-MARCO and ANCE also involves some sophisticated hard negative techniques. ContrieverFT shows performance advantages on FiQA and DBPedia. These involve retrieval of financial posts or entities respectively. We believe the performance difference can be attributed to the",
+      "paper_id": "dc0ae3c5584ed146",
+      "page": 5,
+      "section": "Low Resource Retrieval"
+    },
+    {
+      "text": "(3) We show how to leverage ColBERT both for re-ranking on\n\ntop of a term-based retrieval model (§3.5) and for searching a full collection using vector similarity indexes (§3.6). (4) We evaluate ColBERT on MS MARCO and TREC CAR, two\n\nrecent passage search collections.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 3,
+      "section": "Introduction"
+    },
+    {
+      "text": "4 EXPERIMENTAL EVALUATION\n\nWe now turn our atention to empirically testing ColBERT, addressing the following research questions.\n\nRQ1: In a typical re-ranking setup, how well can ColBERT bridge the existing gap (highlighted in §1) between highly-efficient and highly-effective neural models? (§4.2)\n\nRQ2: Beyond re-ranking, can ColBERT effectively support endto-end retrieval directly from a large collection? (§4.3)\n\nRQ3: What does each component of ColBERT (e.g., late interaction, query augmentation) contribute to its quality? (§4.4)\n\nRQ4: What are ColBERT’s indexing-related costs in terms of offline computation and memory overhead? (§4.5)",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 6,
+      "section": "Experimental Evaluation"
+    },
+    {
+      "text": "We report the competition’s official metric, namely MRR@10, on the validation set (Dev) and the evaluation set (Eval). We also report the re-ranking latency, which we measure using a single Tesla V100 GPU, and the FLOPs per query for each neural ranking model. For ColBERT, our reported latency subsumes the entire computation from gathering the document representations, moving them to the GPU, tokenizing then encoding the query, and applying late interaction to compute document scores. For the baselines, we measure the scoring computations on the GPU and exclude the CPU-based text preprocessing (similar to [9]). In principle, the baselines can pre-compute the majority of this preprocessing (e.g., document tokenization) offline and parallelize the rest across\n\ndocuments online, leaving only a negligible cost. We estimate the FLOPs per query of each model using the torchprofile6 library.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "claims": [
+    {
+      "claim": "RAG is evaluated on Open-domain Question Answering.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on Fact Verification.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on the FEVER benchmark.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on Abstractive Question Answering.",
+      "supported": true
+    },
+    {
+      "claim": "RAG is evaluated on the MSMARCO NLG task.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What specific tasks are used to evaluate RAG in the paper?",
+    "Which benchmarks does RAG perform on?",
+    "List the evaluation tasks for the RAG model."
+  ],
+  "verdict": "partial",
+  "reason": "The system answer misses the Jeopardy question generation task mentioned in the reference answer.",
+  "relevant_chunks": [
+    false,
+    true,
+    false,
+    true,
+    true,
+    true
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "answer": "The provided excerpts do not contain any information about Fusion‑in‑Decoder’s performance on the BEIR benchmark. Consequently, I cannot answer that question based on the given material.",
+  "citations": [],
+  "contexts": [
+    {
+      "text": "By processing passages independently in the encoder, but jointly in the decoder, this method differs from Min et al. (2020) and Lewis et al. (2020). Processing passages independently in the encoder allows to scale to large number of contexts, as it only performs self attention over one context at a time. This means that the computation time of the model grows linearly with the number of passages, instead of quadratically. On the other hand, processing passages jointly in the decoder allows to better aggregate evidence from multiple passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "4 Experiments\n\nIn this section, we report empirical evaluations of Fusion-in-Decoder for open domain QA.\n\nDatasets. We consider the following datasets, and use the same setting as Lee et al. (2019):\n\n• NaturalQuestions (Kwiatkowski et al., 2019) contains questions corresponding to Google search queries. The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens.\n\n• TriviaQA (Joshi et al., 2017) contains questions gathered from trivia and quiz-league",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Experiments"
+    },
+    {
+      "text": "Question + Passage 1 encoder\n\nQuestion + Passage 2 encoder\n\nQuestion + Passage N encoder\n\ndecoder Answer concat ...\n\nFigure 2: Architecture of the Fusion-in-Decoder method.\n\nrepresentations. Then, a sequence-to-sequence model generates the answer, taking as input the retrieved passages in addition to the question. While conceptually simple, this method sets new state-ofthe-art results on the TriviaQA and NaturalQuestions benchmarks. In particular, we show that the performance of our method significantly improves when the number of retrieved passages increases. We believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 2,
+      "section": "Introduction"
+    },
+    {
+      "text": "Reading. Our generative model for open domain QA is based on a sequence-to-sequence network, pretrained on unsupervised data, such as T5 or BART (Raffel et al., 2019; Lewis et al., 2019). The model takes as input the question, as well as the support passages, and generates the answer. More precisely, each retrieved passage and its title are concatenated with the question, and processed independently from other passages by the encoder. We add special tokens question:, title: and\n\ncontext: before the question, title and text of each passage. Finally, the decoder performs atten-\n\n1lucene.apache.org 2spacy.io 3github.com/facebookresearch/faiss\n\ntion over the concatenation of the resulting representations of all the retrieved passages. The model thus performs evidence fusion in the decoder only, and we refer to it as Fusion-in-Decoder.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support passages, we consider two methods: BM25 (Robertson et al., 1995) and DPR (Karpukhin et al., 2020). In BM25, passages are represented as bag of words, and the ranking function is based on term and inverse document frequencies. We use the implementation from Apache Lucene1 with default parameters, and tokenize questions and passages with SpaCy.2 In DPR, passages and questions are represented as dense vector representations, computed using two BERT networks. The ranking function is the dot product between the query and passage representations. Retrieval is performed using approximate nearest neighbors with the FAISS library.3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)"
+    },
+    {
+      "text": "Comparison to state-of-the-art. In table 1, we compare the results obtained by Fusion-in-Decoder with existing approaches for open domain question answering. We observe that while conceptually simple, this method outperforms existing work on the NaturalQuestion and TriviaQA benchmarks. In particular, generative models seem to perform well when evidence from multiple passages need to be aggregated, compared to extractive approaches. Our method also performs better than other generative models, showing that scaling to large number of passages and processing them jointly leads to improvement in accuracy. Second, we observe that using additional knowledge in generative models by using retrieval lead to important performance gains. On NaturalQuestions, the closed book T5 model obtains 36.6% accuracy with 11B parameters, while our approach obtains 44.1% with 770M parameters plus Wikipedia with BM25 retrieval.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "page": 4,
+      "section": "Experiments"
+    }
+  ]
+}

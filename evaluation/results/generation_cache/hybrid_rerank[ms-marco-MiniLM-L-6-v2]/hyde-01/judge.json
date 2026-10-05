@@ -1,0 +1,67 @@
+{
+  "claims": [
+    {
+      "claim": "HyDE turns each query into a hypothetical document.",
+      "supported": true
+    },
+    {
+      "claim": "An instruction-following language model generates the hypothetical document.",
+      "supported": true
+    },
+    {
+      "claim": "InstructGPT is an example of the language model used.",
+      "supported": true
+    },
+    {
+      "claim": "The generated document captures the relevance pattern for the query.",
+      "supported": true
+    },
+    {
+      "claim": "The generated document may contain false details.",
+      "supported": true
+    },
+    {
+      "claim": "The document is fed to an unsupervised contrastively learned encoder.",
+      "supported": true
+    },
+    {
+      "claim": "Contriever is an example of the encoder used.",
+      "supported": true
+    },
+    {
+      "claim": "The encoder produces an embedding vector for the document.",
+      "supported": true
+    },
+    {
+      "claim": "The vector defines a neighborhood in the corpus embedding space.",
+      "supported": true
+    },
+    {
+      "claim": "Real documents are retrieved based on vector similarity.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE significantly outperforms the unsupervised dense retriever Contriever.",
+      "supported": true
+    },
+    {
+      "claim": "HyDE achieves performance comparable to fine-tuned retrievers.",
+      "supported": true
+    }
+  ],
+  "questions": [
+    "What is the mechanism behind HyDE's zero-shot dense retrieval?",
+    "How does HyDE use hypothetical documents to retrieve relevant information?",
+    "Describe the process HyDE uses to embed queries for retrieval without training data."
+  ],
+  "verdict": "correct",
+  "reason": "The system answer accurately describes the HyDE process (generating hypothetical documents with an LLM and embedding them with an unsupervised encoder) and aligns perfectly with the reference answer and retrieved context.",
+  "relevant_chunks": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    true
+  ]
+}

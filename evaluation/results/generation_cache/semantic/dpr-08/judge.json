@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "claim": "DPR indexes passage embeddings with FAISS",
+      "supported": true
+    },
+    {
+      "claim": "This indexing happens during inference",
+      "supported": false
+    }
+  ],
+  "questions": [
+    "What library does DPR use for indexing?",
+    "Which tool is used to index passage embeddings in DPR?",
+    "How does DPR index embeddings for retrieval?"
+  ],
+  "verdict": "partial",
+  "reason": "The answer correctly identifies FAISS but incorrectly states the indexing happens 'during inference' rather than offline as specified in the reference and context.",
+  "relevant_chunks": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    false
+  ]
+}

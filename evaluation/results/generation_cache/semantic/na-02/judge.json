@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "questions": [
+    "What are the BEIR benchmark results for Fusion-in-Decoder?",
+    "Does the text mention Fusion-in-Decoder's performance on BEIR?",
+    "How does Fusion-in-Decoder score on the BEIR dataset?"
+  ],
+  "verdict": "correct",
+  "reason": "The system answer correctly identifies that the provided context does not contain information about the BEIR benchmark, aligning with the reference answer.",
+  "relevant_chunks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}
