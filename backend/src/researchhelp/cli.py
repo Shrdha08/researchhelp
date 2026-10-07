@@ -188,5 +188,17 @@ def ask(
         _render_evidence(result, show_context)
 
 
+@app.command()
+def serve(
+    host: Annotated[str, typer.Option(help="Interface to bind")] = "127.0.0.1",
+    port: Annotated[int, typer.Option(help="Port")] = 8000,
+    reload: Annotated[bool, typer.Option(help="Auto-reload on code changes (dev)")] = False,
+):
+    """Run the HTTP API (Swagger UI at /docs)."""
+    import uvicorn
+
+    uvicorn.run("researchhelp.api.main:app", host=host, port=port, reload=reload)
+
+
 if __name__ == "__main__":
     app()

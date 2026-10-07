@@ -64,6 +64,10 @@ class Settings(BaseSettings):
         "limitations, weaknesses, assumptions, failure cases, future work, open problems"
     )
 
+    # API (Phase 4)
+    max_upload_mb: int = 50
+    cors_origins: list[str] = ["http://localhost:5173"]  # Vite dev server (Phase 6)
+
     # Paths
     data_dir: Path = REPO_ROOT / "data"
 
@@ -79,6 +83,11 @@ class Settings(BaseSettings):
     @property
     def upload_dir(self) -> Path:
         return self.data_dir / "uploads"
+
+    @property
+    def registry_path(self) -> Path:
+        """JSON paper registry used until PostgreSQL replaces it in Phase 5."""
+        return self.data_dir / "papers.json"
 
 
 @lru_cache
