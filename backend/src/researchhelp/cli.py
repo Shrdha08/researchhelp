@@ -1,8 +1,9 @@
-"""Command-line driver for Phases 1-3 (before the FastAPI backend exists).
+"""Command-line driver (before the FastAPI backend exists).
 
 researchhelp ingest data/papers/            # one or more PDFs or directories
 researchhelp papers                         # list indexed papers
 researchhelp ask "What datasets are used?" -p dpr -p "retrieval-augmented"
+researchhelp ask "What gaps exist across these papers?" -p dpr -p rag --mode research
 researchhelp inspect data/papers/dpr.pdf    # show parsed chunks (no indexing)
 researchhelp delete <paper-id>
 """
@@ -102,35 +103,7 @@ def inspect(
             typer.echo(chunk.text)
 
 
-@app.command()
-def ask(
-    question: str,
-    paper: Annotated[
-        list[str], typer.Option("--paper", "-p", help="Paper ID prefix or title fragment")
-    ],
-    strategy: Annotated[
-        str | None, typer.Option(help="semantic | hybrid | hybrid_rerank (default: settings)")
-    ] = None,
-    show_context: Annotated[bool, typer.Option(help="Print the retrieved chunks")] = False,
-    as_json: Annotated[bool, typer.Option("--json", help="Print the full result as JSON")] = False,
-):
-    """Answer a question from the selected papers, with citations."""
-    from researchhelp.rag.common.llm import MissingAPIKeyError, get_chat_model
-    from researchhelp.rag.evidence.chain import build_evidence_chain
-    from researchhelp.retrieval.factory import get_retriever
-
-    try:
-        llm = get_chat_model()
-    except MissingAPIKeyError as exc:
-        typer.echo(f"Error: {exc}", err=True)
-        raise typer.Exit(1) from exc
-    titles = _resolve_papers(paper)
-    chain = build_evidence_chain(get_retriever(strategy), llm)
-    result = chain.invoke({"question": question, "paper_ids": list(titles), "paper_titles": titles})
-
-    if as_json:
-        typer.echo(json.dumps(result.to_dict(), indent=2, ensure_ascii=False))
-        return
+def _render_evidence(result, show_context: bool) -> None:
     if show_context:
         typer.echo("Retrieved context:")
         for i, doc in enumerate(result.sources, start=1):
@@ -145,6 +118,74 @@ def ask(
         typer.echo("\nSources:")
         for c in result.citations:
             typer.echo(f"  [{c.source_id}] {c.paper_title} - page {c.page} ({c.section})")
+
+
+def _render_research(result) -> None:
+    if result.message:
+        typer.echo(f"Note: {result.message}\n")
+    if result.evidence:
+        typer.echo("== Evidence (stated in the papers) ==")
+        for e in result.evidence:
+            pages = ", ".join(f"p.{c.page}" for c in e.citations)
+            typer.echo(f"  {e.id}. {e.claim}")
+            typer.echo(f"      [{e.paper_title} - {pages}]")
+    if result.analysis:
+        typer.echo("\n== Analysis (inferred from the evidence) ==")
+        for i, a in enumerate(result.analysis, start=1):
+            typer.echo(f"  A{i}. {a.statement}")
+            typer.echo(f"      based on {', '.join(a.based_on)}; confidence {a.confidence}")
+    if result.directions:
+        typer.echo("\n== Proposed research directions (hypotheses, not established gaps) ==")
+        for i, d in enumerate(result.directions, start=1):
+            typer.echo(f"  D{i}. {d.title}")
+            typer.echo(f"      Rationale: {d.rationale}")
+            if d.validation_experiment:
+                typer.echo(f"      How to test: {d.validation_experiment}")
+            typer.echo(f"      based on {', '.join(d.based_on)}")
+    if result.status == "unstructured" and result.raw_text:
+        typer.echo("\n== Raw model output ==")
+        typer.echo(result.raw_text)
+
+
+@app.command()
+def ask(
+    question: str,
+    paper: Annotated[
+        list[str], typer.Option("--paper", "-p", help="Paper ID prefix or title fragment")
+    ],
+    mode: Annotated[str, typer.Option(help="auto (router decides) | evidence | research")] = "auto",
+    strategy: Annotated[
+        str | None, typer.Option(help="semantic | hybrid | hybrid_rerank (default: settings)")
+    ] = None,
+    show_context: Annotated[bool, typer.Option(help="Print the retrieved chunks")] = False,
+    as_json: Annotated[bool, typer.Option("--json", help="Print the full result as JSON")] = False,
+):
+    """Ask about the selected papers: evidence Q&A with citations, or research assistance."""
+    from researchhelp.graph.factory import get_app
+    from researchhelp.rag.common.llm import MissingAPIKeyError
+
+    if mode not in ("auto", "evidence", "research"):
+        raise typer.BadParameter("--mode must be auto, evidence or research")
+    try:
+        graph = get_app(strategy)
+    except MissingAPIKeyError as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(1) from exc
+    titles = _resolve_papers(paper)
+    state = graph.invoke(
+        {"question": question, "paper_ids": list(titles), "paper_titles": titles, "mode": mode}
+    )
+    result = state["result"]
+
+    if as_json:
+        route = {k: state.get(k) for k in ("intent", "route_reason", "route_source")}
+        typer.echo(json.dumps({**route, "result": result.to_dict()}, indent=2, ensure_ascii=False))
+        return
+    typer.echo(f"[route: {state['intent']} ({state['route_source']}): {state['route_reason']}]\n")
+    if state["intent"] == "research":
+        _render_research(result)
+    else:
+        _render_evidence(result, show_context)
 
 
 if __name__ == "__main__":
