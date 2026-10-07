@@ -101,6 +101,8 @@ class ResearchAnswer:
     sources: list[Document] = field(default_factory=list)
     raw_text: str = ""  # model output kept when structured parsing failed
     message: str = ""
+    # Items the model produced but validation removed (invented sources / ungrounded inference).
+    dropped: dict[str, int] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {
@@ -116,4 +118,5 @@ class ResearchAnswer:
             "directions": [d.model_dump() for d in self.directions],
             "sources": [{"text": d.page_content, **d.metadata} for d in self.sources],
             "raw_text": self.raw_text,
+            "dropped": self.dropped,
         }

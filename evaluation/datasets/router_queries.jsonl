@@ -1,0 +1,52 @@
+{"id": "r01", "query": "What dataset does this paper use?", "intent": "evidence", "tag": "factual"}
+{"id": "r02", "query": "Which optimizer and learning rate were used to train the model?", "intent": "evidence", "tag": "factual"}
+{"id": "r03", "query": "What is the main contribution of this paper?", "intent": "evidence", "tag": "summary"}
+{"id": "r04", "query": "What problem does the paper address?", "intent": "evidence", "tag": "summary"}
+{"id": "r05", "query": "Summarise the methodology of these papers.", "intent": "evidence", "tag": "summary"}
+{"id": "r06", "query": "What were the main experimental results?", "intent": "evidence", "tag": "factual"}
+{"id": "r07", "query": "Which baselines does the paper compare against?", "intent": "evidence", "tag": "factual"}
+{"id": "r08", "query": "How many passages are retrieved per question?", "intent": "evidence", "tag": "factual"}
+{"id": "r09", "query": "What evaluation metric is reported on MS MARCO?", "intent": "evidence", "tag": "factual"}
+{"id": "r10", "query": "Compare the methodologies of these papers.", "intent": "evidence", "tag": "comparison"}
+{"id": "r11", "query": "Compare the datasets used by these papers.", "intent": "evidence", "tag": "comparison"}
+{"id": "r12", "query": "How do the retrievers in these papers differ?", "intent": "evidence", "tag": "comparison"}
+{"id": "r13", "query": "Which paper reports the highest exact match on Natural Questions?", "intent": "evidence", "tag": "comparison"}
+{"id": "r14", "query": "What model architecture is used for the generator?", "intent": "evidence", "tag": "factual"}
+{"id": "r15", "query": "How is the document index built?", "intent": "evidence", "tag": "factual"}
+{"id": "r16", "query": "What hardware was used for training?", "intent": "evidence", "tag": "factual"}
+{"id": "r17", "query": "Explain how late interaction works in ColBERT.", "intent": "evidence", "tag": "summary"}
+{"id": "r18", "query": "What does the ablation study show?", "intent": "evidence", "tag": "factual"}
+{"id": "r19", "query": "What limitations did the authors identify?", "intent": "evidence", "tag": "hard-limitations"}
+{"id": "r20", "query": "Which limitations are acknowledged in the papers?", "intent": "evidence", "tag": "hard-limitations"}
+{"id": "r21", "query": "What future work do the authors mention?", "intent": "evidence", "tag": "hard-future"}
+{"id": "r22", "query": "Do the authors discuss any weaknesses of their method?", "intent": "evidence", "tag": "hard-limitations"}
+{"id": "r23", "query": "What open problems does the RAG paper say remain?", "intent": "evidence", "tag": "hard-future"}
+{"id": "r24", "query": "According to the paper, why does BM25 beat DPR on SQuAD?", "intent": "evidence", "tag": "hard-limitations"}
+{"id": "r25", "query": "What improvements over BM25 does DPR report?", "intent": "evidence", "tag": "hard-improve"}
+{"id": "r26", "query": "Which directions for future research do the authors list?", "intent": "evidence", "tag": "hard-future"}
+{"id": "r27", "query": "What are the limitations of these approaches?", "intent": "research", "tag": "hard-limitations"}
+{"id": "r28", "query": "What weaknesses do these methods share?", "intent": "research", "tag": "hard-limitations"}
+{"id": "r29", "query": "What research gaps exist across these papers?", "intent": "research", "tag": "gaps"}
+{"id": "r30", "query": "What is missing from the evaluation in these papers?", "intent": "research", "tag": "gaps"}
+{"id": "r31", "query": "How could the methodology be improved?", "intent": "research", "tag": "improve"}
+{"id": "r32", "query": "How could the retriever be made more efficient?", "intent": "research", "tag": "improve"}
+{"id": "r33", "query": "What possible extensions could be explored?", "intent": "research", "tag": "directions"}
+{"id": "r34", "query": "Suggest a new research direction based on these papers.", "intent": "research", "tag": "directions"}
+{"id": "r35", "query": "What new research directions could be investigated?", "intent": "research", "tag": "directions"}
+{"id": "r36", "query": "How could this approach be adapted to code search?", "intent": "research", "tag": "adapt"}
+{"id": "r37", "query": "Could these methods work for legal documents?", "intent": "research", "tag": "adapt"}
+{"id": "r38", "query": "What experiments could be conducted to validate an improvement?", "intent": "research", "tag": "experiments"}
+{"id": "r39", "query": "Design an experiment to test whether reranking helps these models.", "intent": "research", "tag": "experiments"}
+{"id": "r40", "query": "What hypotheses could combine the ideas of these two papers?", "intent": "research", "tag": "directions"}
+{"id": "r41", "query": "Which assumptions in these papers might not hold in practice?", "intent": "research", "tag": "gaps"}
+{"id": "r42", "query": "Critique the evaluation methodology of these papers.", "intent": "research", "tag": "gaps"}
+{"id": "r43", "query": "If I wanted to build on this work for my thesis, what should I try?", "intent": "research", "tag": "directions"}
+{"id": "r44", "query": "What would happen if the retrieval corpus were much noisier?", "intent": "research", "tag": "gaps"}
+{"id": "r45", "query": "Propose a way to reduce the inference cost of these models.", "intent": "research", "tag": "improve"}
+{"id": "r46", "query": "Where do these approaches fall short for multilingual retrieval?", "intent": "research", "tag": "hard-limitations"}
+{"id": "r47", "query": "Is there a common blind spot in how these papers evaluate retrieval?", "intent": "research", "tag": "gaps"}
+{"id": "r48", "query": "What research question remains unanswered after reading these papers?", "intent": "research", "tag": "gaps"}
+{"id": "r49", "query": "How might the findings of RAG and FiD be combined into a better system?", "intent": "research", "tag": "directions"}
+{"id": "r50", "query": "Why might dense retrieval fail on rare entities, and how could that be fixed?", "intent": "research", "tag": "improve"}
+{"id": "r51", "query": "What batch size was used and why?", "intent": "evidence", "tag": "factual"}
+{"id": "r52", "query": "What did the paper find about the effect of the number of retrieved documents?", "intent": "evidence", "tag": "factual"}

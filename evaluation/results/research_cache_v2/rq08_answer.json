@@ -1,0 +1,217 @@
+{
+  "question": "How could ColBERT's efficiency be improved further?",
+  "paper_ids": [
+    "2e487d9b96e3c2e5"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "ColBERT’s latency and FLOPs can be considerably reduced by padding queries to a shorter length, using smaller vector dimensions, and employing quantization of the document embeddings.",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "citations": [
+        {
+          "source_id": "S5",
+          "paper_id": "2e487d9b96e3c2e5",
+          "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+          "page": 7,
+          "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+          "chunk_id": "2e487d9b96e3c2e5:p7:c6",
+          "snippet": "In particular, the query encoding and interaction in ColBERT consume only 13 milliseconds of its total execution time. We note that ColBERT’s latency and FLOPs can be considerably reduced by padding queries to a shorter length, using smaller vector dimensions (the MRR@10 of which is tested in ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "Storing the document embeddings on GPU, if sufficient memory exists, is a direction for future work to improve efficiency.",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "2e487d9b96e3c2e5",
+          "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+          "page": 8,
+          "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+          "chunk_id": "2e487d9b96e3c2e5:p8:c0",
+          "snippet": "vectors, and storing the embeddings on GPU if sufficient memory exists. We leave these directions for future work.\n\n0.27 0.29 0.31 0.33 0.35 0.37\n\nMRR@10\n\n103 104 105 106 107 108 109\n\nk=10\n\n20 50 100 200\n\n500 1000\n\n2000\n\nk=10 20 50 100\n\n200\n\n500 1000\n\n2000\n\nBERTbase (our training)\n\nColBERT\n\nFigure ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "Reducing query length via padding truncation directly cuts FLOPs, suggesting that query length is a primary driver of latency in ColBERT.",
+      "based_on": [
+        "E1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "Lowering the dimensionality of the token vectors yields computational savings but may trade off retrieval accuracy.",
+      "based_on": [
+        "E1"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Quantizing document embeddings can shrink memory bandwidth requirements, implying that storage format is a bottleneck for large corpora.",
+      "based_on": [
+        "E1"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Keeping document embeddings in GPU memory could eliminate host‑GPU transfer overhead, but this is contingent on available GPU capacity.",
+      "based_on": [
+        "E2"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Dynamic Query Length Truncation",
+      "rationale": "If shorter queries reduce FLOPs without harming relevance, a runtime policy that adaptively truncates queries based on length distribution could improve throughput.",
+      "based_on": [
+        "E1"
+      ],
+      "validation_experiment": "Use MS MARCO passage ranking; baseline: standard ColBERT; metric: MRR@10 and average latency; compare static vs. dynamic truncation policies."
+    },
+    {
+      "title": "Mixed‑Precision Quantized Embedding Store on GPU",
+      "rationale": "Storing quantized document embeddings directly on GPU combines two suggestions (quantization and GPU residency) to cut both memory and transfer costs.",
+      "based_on": [
+        "E1",
+        "E2"
+      ],
+      "validation_experiment": "Index a 500M passage collection on an A100; baseline: FP32 embeddings on CPU; metric: index size, retrieval latency, and Recall@100."
+    },
+    {
+      "title": "Adaptive Dimensionality per Token",
+      "rationale": "Not all tokens contribute equally; allocating higher dimensions to salient tokens while compressing others could retain accuracy with lower overall FLOPs.",
+      "based_on": [
+        "E1"
+      ],
+      "validation_experiment": "Implement per-token dimension scaling on TREC Deep Learning 2023; baseline: uniform 128‑dim vectors; metric: nDCG@10 and FLOPs per query."
+    }
+  ],
+  "sources": [
+    {
+      "text": "5 CONCLUSIONS\n\nIn this paper, we introduced ColBERT, a novel ranking model that employs contextualized late interaction over deep LMs (in particular, BERT) for efficient retrieval. By independently encoding queries and documents into fine-grained representations that interact via cheap and pruning-friendly computations, ColBERT can leverage the expressiveness of deep LMs while greatly speeding up query processing. In addition, doing so allows using ColBERT for end-toend neural retrieval directly from a large document collection. Our results show that ColBERT is more than 170× faster and requires 14,000× fewer FLOPs/query than existing BERT-based models, all while only minimally impacting quality and while outperforming every non-BERT baseline.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 9,
+      "section": "Conclusion",
+      "chunk_index": 76,
+      "chunk_id": "2e487d9b96e3c2e5:p9:c6",
+      "score": 1.9368553161621094,
+      "rank": 1
+    },
+    {
+      "text": "vectors, and storing the embeddings on GPU if sufficient memory exists. We leave these directions for future work.\n\n0.27 0.29 0.31 0.33 0.35 0.37\n\nMRR@10\n\n103 104 105 106 107 108 109\n\nk=10\n\n20 50 100 200\n\n500 1000\n\n2000\n\nk=10 20 50 100\n\n200\n\n500 1000\n\n2000\n\nBERTbase (our training)\n\nColBERT\n\nFigure 4: FLOPs (in millions) and MRR@10 as functions of the re-ranking depth k. Since the official BM25 ranking is not ordered, the initial top-k retrieval is conducted with Anserini’s BM25.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 8,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+      "chunk_index": 62,
+      "chunk_id": "2e487d9b96e3c2e5:p8:c0",
+      "score": -9.49978256225586,
+      "rank": 1
+    },
+    {
+      "text": "4 EXPERIMENTAL EVALUATION\n\nWe now turn our atention to empirically testing ColBERT, addressing the following research questions.\n\nRQ1: In a typical re-ranking setup, how well can ColBERT bridge the existing gap (highlighted in §1) between highly-efficient and highly-effective neural models? (§4.2)\n\nRQ2: Beyond re-ranking, can ColBERT effectively support endto-end retrieval directly from a large collection? (§4.3)\n\nRQ3: What does each component of ColBERT (e.g., late interaction, query augmentation) contribute to its quality? (§4.4)\n\nRQ4: What are ColBERT’s indexing-related costs in terms of offline computation and memory overhead? (§4.5)",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 6,
+      "section": "Experimental Evaluation",
+      "chunk_index": 47,
+      "chunk_id": "2e487d9b96e3c2e5:p6:c2",
+      "score": 1.0277957916259766,
+      "rank": 2
+    },
+    {
+      "text": "As the figure shows, BERT considerably improves search precision, raising MRR@10 by almost 7% against the best previous methods; simultaneously, it increases latency by up to tens of thousands of milliseconds even with a high-end GPU. Tis poses a challenging tradeoffsince raising query response times by as litle as 100ms is known to impact user experience and even measurably diminish revenue [17]. To tackle this problem, recent work has started exploring using Natural Language Understanding (NLU) techniques to augment traditional retrieval models like BM25 [32]. For example, Nogueira et al. [26, 28] expand documents with NLU-generated queries before indexing with BM25 scores and Dai & Callan [2] replace BM25’s term frequency with NLU-estimated term importance. Despite successfully reducing latency, these approaches generally reduce precision substantially relative to BERT.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_index": 10,
+      "chunk_id": "2e487d9b96e3c2e5:p2:c1",
+      "score": -11.12699031829834,
+      "rank": 2
+    },
+    {
+      "text": "In particular, the query encoding and interaction in ColBERT consume only 13 milliseconds of its total execution time. We note that ColBERT’s latency and FLOPs can be considerably reduced by padding queries to a shorter length, using smaller vector dimensions (the MRR@10 of which is tested in §4.5), employing quantization of the document",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 7,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+      "chunk_index": 61,
+      "chunk_id": "2e487d9b96e3c2e5:p7:c6",
+      "score": 0.8104541897773743,
+      "rank": 3
+    },
+    {
+      "text": "In 2018, Zamani et al. [41] introduced SNRM, a representationfocused IR model that encodes each query and each document as a single, sparse high-dimensional vector of “latent terms”. By producing a sparse-vector representation for each document, SNRM is able to use a traditional IR inverted index for representing documents, allowing fast end-to-end retrieval. Despite highly promising results and insights, SNRM’s effectiveness is substantially outperformed by the state of the art on the datasets with which it was evaluated (e.g., see [18, 38]). While SNRM employs sparsity to allow using inverted indexes, we relax this assumption and compare a (dense) BERT-based representation-focused model against our late-interaction ColBERT in our ablation experiments in §4.4. For a detailed overview of existing neural ranking models, we refer the readers to two recent surveys of the literature [8, 21].",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 3,
+      "section": "Related Work",
+      "chunk_index": 19,
+      "chunk_id": "2e487d9b96e3c2e5:p3:c2",
+      "score": -11.252480506896973,
+      "rank": 3
+    },
+    {
+      "text": "To reconcile efficiency and contextualization in IR, we propose ColBERT, a ranking model based on contextualized late interaction over BERT. As the name suggests, ColBERT proposes a novel late interaction paradigm for estimating relevance between a query q and a document d. Under late interaction, q and d are separately encoded into two sets of contextual embeddings, and relevance is evaluated using cheap and pruning-friendly computations between both sets—that is, fast computations that enable ranking without exhaustively evaluating every possible candidate.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_index": 11,
+      "chunk_id": "2e487d9b96e3c2e5:p2:c2",
+      "score": 0.7037484049797058,
+      "rank": 4
+    },
+    {
+      "text": "NSF under CAREER grant CNS-1651570. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 10,
+      "section": "Conclusion",
+      "chunk_index": 78,
+      "chunk_id": "2e487d9b96e3c2e5:p10:c0",
+      "score": -11.30517292022705,
+      "rank": 4
+    },
+    {
+      "text": "As Figure 1 illustrates, ColBERT can serve queries in tens or few hundreds of milliseconds. For instance, when used for reranking as in “ColBERT (re-rank)”, it delivers over 170× speedup (and requires 14,000× fewer FLOPs) relative to existing BERT-based models, while being more effective than every non-BERT baseline (§4.2 & 4.3). ColBERT’s indexing—the only time it needs to feed documents through BERT—is also practical: it can index the MS MARCO collection of 9M passages in about 3 hours using a single server with four GPUs (§4.5), retaining its effectiveness with a space footprint of as litle as few tens of GiBs. Our extensive ablation study (§4.4) shows that late interaction, its implementation via MaxSim operations, and crucial design choices within our BERTbased encoders are all essential to ColBERT’s effectiveness.\n\nOur main contributions are as follows.\n\n(1) We propose late interaction (§3.1) as a paradigm for efficient",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_index": 15,
+      "chunk_id": "2e487d9b96e3c2e5:p2:c6",
+      "score": 0.4209573566913605,
+      "rank": 5
+    },
+    {
+      "text": "Looking at Table 2, we first see Anserini’s BM25 baseline at 18.7 MRR@10, noticing its very low latency as implemented in Anserini (which extends the well-known Lucene system), owing to both very cheap operations and decades of bag-of-words top-k retrieval optimizations. Te three subsequent baselines, namely doc2query, DeepCT, and docTTTTquery, each brings a decisive enhancement to effectiveness. Tese improvements come at negligible overheads in latency, since these baselines ultimately rely on BM25-based retrieval. Te most effective among these three, docTTTTquery, demonstrates a massive 9% gain over vanilla BM25 by fine-tuning the recent language model T5.\n\n7htp://anserini.io/ 8In practice, a myriad of reasons could still cause DeepCT’s latency to differ slightly from BM25’s. For instance, the top-k pruning strategy employed, if any, could interact differently with a changed distribution of scores.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 8,
+      "section": "End-to-end Top-k Retrieval",
+      "chunk_index": 69,
+      "chunk_id": "2e487d9b96e3c2e5:p8:c7",
+      "score": -11.336515426635742,
+      "rank": 5
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

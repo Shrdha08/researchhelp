@@ -1,0 +1,400 @@
+{
+  "question": "What weaknesses do these methods share, and what would address them?",
+  "paper_ids": [
+    "d9eaa1398abac0df",
+    "dc0ae3c5584ed146"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "SELF-RAG can still generate outputs that are not fully supported by the citations, indicating a weakness in factual grounding.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 11,
+          "section": "Conclusion",
+          "chunk_id": "d9eaa1398abac0df:p11:c0",
+          "snippet": "ETHICAL CONCERNS\n\nThis work aims to improve the factuality of LLM outputs, the lack of which continues to cause numerous real-world problems (e.g., spread of misinformation and provision of incorrect and dangerous advice). While our method shows significant improvements in terms of performance, ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "The authors note limited effectiveness of off-the-shelf retrieval models trained primarily on knowledge-intensive tasks for open-ended generation.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c0",
+          "snippet": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "SELF-RAG does not explore instruction‑tuning of retrieval systems or joint training of retrieval and language‑model components, leaving these potential improvements for future work.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c1",
+          "snippet": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "HyDE assumes the query distribution is unimodal (i.e., the query is not ambiguous), and the study of ambiguous queries and diversity is left to future work.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 4,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p4:c1",
+          "snippet": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous ..."
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "claim": "Both methods rely heavily on the quality and recency of Wikipedia dumps, and performance can vary when the corpus is outdated.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c0",
+          "snippet": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia ..."
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "claim": "SELF-RAG’s reliance on external APIs that only provide snippets (e.g., Google Programmable Search) may limit the completeness of retrieved context.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c1",
+          "snippet": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we ..."
+        }
+      ]
+    },
+    {
+      "id": "E7",
+      "claim": "HyDE’s performance advantage is demonstrated mainly on low‑resource BEIR tasks, but it is still outperformed by BM25 on TREC‑Covid, suggesting lexical methods can still be stronger in some domains.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S7",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 5,
+          "section": "Low Resource Retrieval",
+          "chunk_id": "dc0ae3c5584ed146:p5:c3",
+          "snippet": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a ..."
+        }
+      ]
+    },
+    {
+      "id": "E8",
+      "claim": "The authors suggest that explicit self‑reflection and fine‑grained attribution could help users verify factual errors, addressing the factuality weakness.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 11,
+          "section": "Conclusion",
+          "chunk_id": "d9eaa1398abac0df:p11:c0",
+          "snippet": "ETHICAL CONCERNS\n\nThis work aims to improve the factuality of LLM outputs, the lack of which continues to cause numerous real-world problems (e.g., spread of misinformation and provision of incorrect and dangerous advice). While our method shows significant improvements in terms of performance, ..."
+        }
+      ]
+    },
+    {
+      "id": "E9",
+      "claim": "Future work to incorporate instruction‑tuning or joint training of retrieval and LM components is proposed as a way to improve retrieval relevance and generation quality.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c1",
+          "snippet": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we ..."
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "claim": "Investigating ambiguous queries and diversity in the generation of hypothetical documents is identified as a future direction to strengthen HyDE.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 4,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p4:c1",
+          "snippet": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous ..."
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "claim": "Updating and aligning the retrieval corpus (e.g., using newer Wikipedia dumps) is suggested to mitigate performance variance caused by outdated knowledge bases.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c0",
+          "snippet": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia ..."
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "claim": "The conclusion raises open questions about whether numerical relevance scores are necessary, implying that further research is needed to understand the trade‑offs between dense retrievers and generative approaches.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S8",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 7,
+          "section": "Conclusion",
+          "chunk_id": "dc0ae3c5584ed146:p7:c0",
+          "snippet": "ment. Dense retrievers consider vector similarities while self-attentive re-rankers regression scores. In comparison, the concept of relevance in HyDE is captured by an NLG model and the language generation process. We demonstrate in many cases, HyDE can be as effective as dense retrievers that ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "Both SELF-RAG and HyDE produce outputs that can lack factual grounding when the retrieved evidence is incomplete or outdated.",
+      "based_on": [
+        "E1",
+        "E5",
+        "E6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "The retrieval components in both systems rely on static, pre‑indexed corpora (e.g., Wikipedia dumps) and do not adapt to evolving knowledge, leading to performance variance over time.",
+      "based_on": [
+        "E5",
+        "E11"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Neither method jointly optimizes retrieval and generation; they treat retrieval as a separate, frozen module, which may limit relevance of retrieved passages for open‑ended generation.",
+      "based_on": [
+        "E3",
+        "E9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "HyDE assumes a unimodal query distribution, making it vulnerable to ambiguous queries, while SELF‑RAG does not explicitly address query ambiguity, suggesting a shared weakness in handling diverse user intents.",
+      "based_on": [
+        "E4",
+        "E10"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Lexical retrieval (e.g., BM25) can still outperform dense or generative retrieval on domain‑specific corpora, indicating that dense/LLM‑based methods are not universally superior.",
+      "based_on": [
+        "E7"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Joint Instruction‑Tuned Retrieval‑Generation Training",
+      "rationale": "Jointly fine‑tuning the retriever with the language model on instruction‑following data could align retrieved passages with generation needs, addressing the lack of joint optimization noted in both papers.",
+      "based_on": [
+        "E3",
+        "E9"
+      ],
+      "validation_experiment": "Dataset: NaturalQuestions + InstructGPT prompts; Baselines: SELF‑RAG (fixed retriever) and HyDE; Metric: factual consistency (FactCC) and BLEU/ROUGE for generation quality."
+    },
+    {
+      "title": "Dynamic Corpus Refresh with Continual Learning",
+      "rationale": "Continuously updating the retrieval index with newer Wikipedia dumps or news streams and fine‑tuning the retriever on the refreshed corpus could mitigate outdated knowledge effects.",
+      "based_on": [
+        "E5",
+        "E11"
+      ],
+      "validation_experiment": "Dataset: Time‑split QA (e.g., TREC‑Covid pre‑2020 vs post‑2020); Baselines: static‑index SELF‑RAG, static‑index HyDE; Metric: accuracy on time‑sensitive questions."
+    },
+    {
+      "title": "Ambiguity‑Aware Hypothetical Document Generation",
+      "rationale": "Extending HyDE to generate multiple diverse hypothetical documents for ambiguous queries can improve recall and reduce factual errors, addressing the unimodal assumption weakness.",
+      "based_on": [
+        "E4",
+        "E10"
+      ],
+      "validation_experiment": "Dataset: Ambiguous query subset of BEIR; Baselines: original HyDE (single hypothesis) and BM25; Metric: nDCG@10 and diversity‑aware relevance (ERR‑IA)."
+    },
+    {
+      "title": "Hybrid Lexical‑Dense Retrieval Fusion",
+      "rationale": "Combining lexical scores (BM25) with dense or generative scores can leverage the strengths of each, especially in domains where lexical methods still excel.",
+      "based_on": [
+        "E7"
+      ],
+      "validation_experiment": "Dataset: TREC‑Covid and MS‑MARCO; Baselines: BM25 alone, HyDE alone, SELF‑RAG alone; Metric: MAP and Recall@100."
+    }
+  ],
+  "sources": [
+    {
+      "text": "ETHICAL CONCERNS\n\nThis work aims to improve the factuality of LLM outputs, the lack of which continues to cause numerous real-world problems (e.g., spread of misinformation and provision of incorrect and dangerous advice). While our method shows significant improvements in terms of performance, factuality, and citation accuracy, it can still generate outputs that are not fully supported by the citations. We hope that explicit self-reflection and fine-grained attribution may help users verify factual errors in the model outputs.\n\nACKNOWLEDGMENTS",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 11,
+      "section": "Conclusion",
+      "chunk_index": 67,
+      "chunk_id": "d9eaa1398abac0df:p11:c0",
+      "score": -6.171642303466797,
+      "rank": 1
+    },
+    {
+      "text": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we additionally retrieve five documents using Google Programmable Search9 and search documents from English Wikipedia. As this API only provides snippets, we retrieve Wikipedia introductory paragraphs for the corresponding entities.",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 20,
+      "section": "Experimental Details",
+      "chunk_index": 109,
+      "chunk_id": "d9eaa1398abac0df:p20:c1",
+      "score": -6.293127059936523,
+      "rank": 1
+    },
+    {
+      "text": "State-of-the-art LLMs continue to struggle with factual errors (Mallen et al., 2023; Min et al., 2023) despite their increased model and data scale (Ouyang et al., 2022). Retrieval-Augmented Generation (RAG) methods (Figure 1 left; Lewis et al. 2020; Guu et al. 2020) augment the input of LLMs with relevant retrieved passages, reducing factual errors in knowledge-intensive tasks (Ram et al., 2023; Asai et al., 2023a). However, these methods may hinder the versatility of LLMs or introduce unnecessary or off-topic passages that lead to low-quality generations (Shi et al., 2023) since they retrieve passages indiscriminately regardless of whether the factual grounding is helpful. Moreover, the output is not guaranteed to be consistent with retrieved relevant passages (Gao et al., 2023) since the models are not explicitly trained to leverage and follow facts from provided passages.",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 3,
+      "chunk_id": "d9eaa1398abac0df:p1:c3",
+      "score": -6.534621715545654,
+      "rank": 2
+    },
+    {
+      "text": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia sometimes lacks articles about some entities that have been more recently added to Wikipedia. Therefore, for PopQA, we used the December 2020 preprocessed Wikipedia corpus provided by Izacard et al. (2022b) and generated document embeddings.8 The issues of performance variance from different Wikipedia dumps have been reported by prior work (Asai et al., 2020; Izacard et al., 2022b). Yet, we observe limited effectiveness of such off-the-shelf retrieval models trained primarily on knowledge-intensive tasks for open-ended generation (e.g., instruction following).",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 20,
+      "section": "Experimental Details",
+      "chunk_index": 108,
+      "chunk_id": "d9eaa1398abac0df:p20:c0",
+      "score": -9.318717956542969,
+      "rank": 2
+    },
+    {
+      "text": "We use different instructions for each dataset. They share a similar structure but have different quantifiers to control the exact form of the generated hypothetical documents. These instructions can be found in subsection A.1.\n\nCompared Systems Contriever models, Contriever and mContriever, serve as our major baseline. They are trained using unsupervised contrastive learning. HyDE retrievers share the exact same embedding spaces with them. The only difference is how the query vector is built. These comparisons allow us to easily examine the effect of HyDE. The classical heuristic-based lexical retriever BM25 is also included.",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 4,
+      "section": "Setup",
+      "chunk_index": 22,
+      "chunk_id": "dc0ae3c5584ed146:p4:c4",
+      "score": -8.412656784057617,
+      "rank": 3
+    },
+    {
+      "text": "Challenge; Clark et al. 2018). We use accuracy as an evaluation metric and report on the test set. We aggregate the answer probabilities of target classes for both of these datasets (Appendix Section B.2).\n\nShort-form generations tasks include two open-domain question answering (QA) datasets, PopQA (Mallen et al., 2023) and TriviaQA-unfiltered (Joshi et al., 2017), where systems need to answer arbitrary questions about factual knowledge. For PopQA, we use the long-tail subset, consisting of 1,399 rare entity queries whose monthly Wikipedia page views are less than 100. As the TriviaQA-unfiltered (open) test set is not publicly available, we follow prior work’s validation and test split (Min et al., 2019; Guu et al., 2020), using 11,313 test queries for evaluation. We evaluate performance based on whether gold answers are included in the model generations instead of strictly requiring exact matching, following Mallen et al. (2023); Schick et al. (2023).",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 7,
+      "section": "Experiments",
+      "chunk_index": 42,
+      "chunk_id": "d9eaa1398abac0df:p7:c0",
+      "score": -9.73150634765625,
+      "rank": 3
+    },
+    {
+      "text": "4.3 Low Resource Retrieval\n\nIn Table 2, we show retrieval results on lowresource tasks from BEIR. Similar to web search, HyDE again brings sizable improvements to Contriever across the board in terms of both ndcg and recall. HyDE is only outperformed by BM25 on one dataset, TREC-Covid but with a tiny 0.2 margin; in comparison, the underlying Contriever underperforms by more than 50%.\n\nWe also observe HyDE demonstrates strong performance compared to fine-tuned models. HyDE generally shows better performance than ANCE and DPR, even though the two are fine-tuned on MS-MARCO and ANCE also involves some sophisticated hard negative techniques. ContrieverFT shows performance advantages on FiQA and DBPedia. These involve retrieval of financial posts or entities respectively. We believe the performance difference can be attributed to the",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Low Resource Retrieval",
+      "chunk_index": 28,
+      "chunk_id": "dc0ae3c5584ed146:p5:c3",
+      "score": -9.074724197387695,
+      "rank": 4
+    },
+    {
+      "text": "ment. Dense retrievers consider vector similarities while self-attentive re-rankers regression scores. In comparison, the concept of relevance in HyDE is captured by an NLG model and the language generation process. We demonstrate in many cases, HyDE can be as effective as dense retrievers that learn to model numerical relevance scores. So, is numerical relevance just a statistical artifact of language understanding? Will a weak retriever theoretically suffice as the NLU & NLG models rapidly become stronger? Rushing to conclusions is not smart; more works need to be done to get answers. With this paper, we just want to raise these questions.",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 7,
+      "section": "Conclusion",
+      "chunk_index": 36,
+      "chunk_id": "dc0ae3c5584ed146:p7:c0",
+      "score": -9.241822242736816,
+      "rank": 5
+    },
+    {
+      "text": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous queries and diversity is left to future work. We estimate Equation 5 by sampling N documents from g, [ ˆd1, ˆd2, ..., ˆ dN].\n\nˆvqij = 1\n\nN\n\nX\n\nˆ dk∼g(qij,INSTi)\n\nf(dk) (6)\n\n= 1\n\nN\n\nN X\n\nk=1\n\nf( ˆdk) (7)\n\nWe also consider the query as a possible hypothesis,\n\nˆvqij = 1 N + 1[\n\nN X\n\nk=1\n\nf( ˆdk) + f(qij)] (8)",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 4,
+      "section": "HyDE",
+      "chunk_index": 19,
+      "chunk_id": "dc0ae3c5584ed146:p4:c1",
+      "score": -10.252375602722168,
+      "rank": 5
+    },
+    {
+      "text": "6 Conclusion\n\nAt the end of the paper, we encourage the readers to take a moment and reflect on the HyDE model. Compare it to some of the other recently seen retrievers or re-ranker. These other models probably differ in their architecture, training method, and/or task, but probably all of them involve modeling relevance scores between a pair of query and docu-",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 6,
+      "section": "Conclusion",
+      "chunk_index": 35,
+      "chunk_id": "dc0ae3c5584ed146:p6:c6",
+      "score": -9.371634483337402,
+      "rank": 6
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

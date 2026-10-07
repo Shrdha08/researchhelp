@@ -1,0 +1,262 @@
+{
+  "openai/gpt-oss-20b::What dataset does this paper use?": {
+    "intent": "evidence",
+    "reason": "The question asks for a specific dataset used in the paper, which is a factual detail directly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Which optimizer and learning rate were used to train the model?": {
+    "intent": "evidence",
+    "reason": "The question asks for specific training details (optimizer and learning rate) that are stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What is the main contribution of this paper?": {
+    "intent": "evidence",
+    "reason": "The main contribution is explicitly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What problem does the paper address?": {
+    "intent": "evidence",
+    "reason": "The question asks for the problem statement as presented in the paper, which is directly stated by the authors.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Summarise the methodology of these papers.": {
+    "intent": "evidence",
+    "reason": "User requests a summary of the methodology, which is directly stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What were the main experimental results?": {
+    "intent": "evidence",
+    "reason": "User requests specific experimental results reported in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Which baselines does the paper compare against?": {
+    "intent": "evidence",
+    "reason": "The question asks for specific baselines mentioned in the paper, which is a factual detail directly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How many passages are retrieved per question?": {
+    "intent": "evidence",
+    "reason": "The question asks for a specific detail stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What evaluation metric is reported on MS MARCO?": {
+    "intent": "evidence",
+    "reason": "User asks for a specific evaluation metric reported on MS MARCO, which is a factual detail from the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Compare the methodologies of these papers.": {
+    "intent": "evidence",
+    "reason": "User requests a comparison of methodologies, which is a direct request for information stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Compare the datasets used by these papers.": {
+    "intent": "evidence",
+    "reason": "The user asks to compare datasets used by the papers, which is a factual comparison directly stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How do the retrievers in these papers differ?": {
+    "intent": "evidence",
+    "reason": "User requests a comparison of retriever methods as described in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Which paper reports the highest exact match on Natural Questions?": {
+    "intent": "evidence",
+    "reason": "User asks for a specific result reported in a paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What model architecture is used for the generator?": {
+    "intent": "evidence",
+    "reason": "The question asks for a specific detail (the generator architecture) that is typically stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How is the document index built?": {
+    "intent": "evidence",
+    "reason": "The construction of the document index is a method detail that is explicitly described in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What hardware was used for training?": {
+    "intent": "evidence",
+    "reason": "Hardware details are explicitly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Explain how late interaction works in ColBERT.": {
+    "intent": "evidence",
+    "reason": "User requests explanation of a method described in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What does the ablation study show?": {
+    "intent": "evidence",
+    "reason": "The ablation study results are explicitly reported in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What limitations did the authors identify?": {
+    "intent": "evidence",
+    "reason": "User asks for limitations identified by the authors, which is directly stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Which limitations are acknowledged in the papers?": {
+    "intent": "evidence",
+    "reason": "User requests limitations acknowledged by the authors, which are directly stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What future work do the authors mention?": {
+    "intent": "evidence",
+    "reason": "The question asks for future work mentioned by the authors, which is directly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Do the authors discuss any weaknesses of their method?": {
+    "intent": "evidence",
+    "reason": "User asks whether authors discuss weaknesses, which is a direct question about content stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What open problems does the RAG paper say remain?": {
+    "intent": "evidence",
+    "reason": "The question asks for open problems explicitly stated by the authors in the RAG paper, which is information directly provided in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::According to the paper, why does BM25 beat DPR on SQuAD?": {
+    "intent": "evidence",
+    "reason": "The question asks for a specific claim made in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What improvements over BM25 does DPR report?": {
+    "intent": "evidence",
+    "reason": "The question asks for specific improvements reported in the DPR paper, which are directly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Which directions for future research do the authors list?": {
+    "intent": "evidence",
+    "reason": "The question asks for specific future research directions listed by the authors, which is directly stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What are the limitations of these approaches?": {
+    "intent": "research",
+    "reason": "User asks for limitations beyond what authors explicitly state, requiring analysis of weaknesses and gaps.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What weaknesses do these methods share?": {
+    "intent": "research",
+    "reason": "The question asks for a comparative analysis of weaknesses shared across multiple methods, which requires synthesis beyond the explicit statements in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What research gaps exist across these papers?": {
+    "intent": "research",
+    "reason": "User requests analysis of research gaps across papers, which requires evaluation beyond the authors' own statements.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What is missing from the evaluation in these papers?": {
+    "intent": "research",
+    "reason": "User asks for missing evaluation aspects, which requires analysis beyond stated content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How could the methodology be improved?": {
+    "intent": "research",
+    "reason": "User asks for improvements beyond what is stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How could the retriever be made more efficient?": {
+    "intent": "research",
+    "reason": "User requests improvement suggestions beyond the paper's content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What possible extensions could be explored?": {
+    "intent": "research",
+    "reason": "User is asking for potential extensions beyond what is stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Suggest a new research direction based on these papers.": {
+    "intent": "research",
+    "reason": "User requests a new research direction, which requires analysis beyond the papers' content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What new research directions could be investigated?": {
+    "intent": "research",
+    "reason": "User asks for new research directions, which requires analysis beyond the content of existing papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How could this approach be adapted to code search?": {
+    "intent": "research",
+    "reason": "User requests adaptation of an approach to a new problem, requiring analysis beyond the paper's content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Could these methods work for legal documents?": {
+    "intent": "research",
+    "reason": "User asks about applicability of methods to a new domain, requiring analysis beyond the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What experiments could be conducted to validate an improvement?": {
+    "intent": "research",
+    "reason": "User asks for new experiments to validate an improvement, which requires analysis beyond the paper's content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Design an experiment to test whether reranking helps these models.": {
+    "intent": "research",
+    "reason": "User requests design of a new experiment, which is beyond the content of the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What hypotheses could combine the ideas of these two papers?": {
+    "intent": "research",
+    "reason": "User requests new hypotheses combining ideas from two papers, which requires analysis beyond the papers' content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Which assumptions in these papers might not hold in practice?": {
+    "intent": "research",
+    "reason": "User requests analysis of assumptions that may not hold in practice, which requires evaluation beyond the authors' statements.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Critique the evaluation methodology of these papers.": {
+    "intent": "research",
+    "reason": "User requests a critique of evaluation methodology, which requires analysis beyond the papers' stated content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::If I wanted to build on this work for my thesis, what should I try?": {
+    "intent": "research",
+    "reason": "User requests suggestions for future work beyond what is stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What would happen if the retrieval corpus were much noisier?": {
+    "intent": "research",
+    "reason": "User asks for analysis of potential impact, not a direct fact from papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Propose a way to reduce the inference cost of these models.": {
+    "intent": "research",
+    "reason": "User requests a proposal for reducing inference cost, which requires analysis beyond the paper content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Where do these approaches fall short for multilingual retrieval?": {
+    "intent": "research",
+    "reason": "User asks for limitations of approaches for multilingual retrieval, which requires analysis beyond what is explicitly stated in the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Is there a common blind spot in how these papers evaluate retrieval?": {
+    "intent": "research",
+    "reason": "User asks for analysis of evaluation blind spots across papers, which requires inference beyond what authors explicitly state.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What research question remains unanswered after reading these papers?": {
+    "intent": "research",
+    "reason": "User asks for unanswered research questions, which requires analysis beyond the papers.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::How might the findings of RAG and FiD be combined into a better system?": {
+    "intent": "research",
+    "reason": "User asks for a new system design combining RAG and FiD, which requires analysis beyond the papers' stated content.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::Why might dense retrieval fail on rare entities, and how could that be fixed?": {
+    "intent": "research",
+    "reason": "User asks for analysis of failure modes and potential fixes beyond what authors explicitly state.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What batch size was used and why?": {
+    "intent": "evidence",
+    "reason": "The question asks for a specific detail (batch size) that is stated in the paper.",
+    "source": "llm"
+  },
+  "openai/gpt-oss-20b::What did the paper find about the effect of the number of retrieved documents?": {
+    "intent": "evidence",
+    "reason": "The question asks for a specific result reported in the paper about the effect of the number of retrieved documents.",
+    "source": "llm"
+  }
+}

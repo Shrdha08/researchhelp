@@ -3,7 +3,9 @@
 Upload research papers (PDF), select one or more, and ask questions:
 
 - **Evidence Q&A**: grounded answers with paper and page citations ("What datasets does this paper use?", "Compare the methodologies of A and B").
-- **Research assistance** *(Phase 3)*: limitations, research gaps and proposed directions, with evidence kept separate from inference.
+- **Research assistance**: limitations, research gaps and proposed directions, in three separated sections: *evidence* (cited), *analysis* (inferred) and *proposed directions* (hypotheses, each with an experiment to test it).
+
+A LangGraph router decides which of the two pipelines answers each question; `--mode` overrides it.
 
 Stack: Python · LangChain · LangGraph · Qdrant · FastEmbed (bge-small, BM25, bge-reranker) · Groq · FastAPI · PostgreSQL · React · Docker.
 
@@ -19,6 +21,8 @@ See [docs/architecture.md](docs/architecture.md), [docs/decisions.md](docs/decis
 
 There are 29 answerable test questions; all 6 unanswerable questions were correctly refused by every version. Generation metrics come from an LLM judge (Qwen3.8-27B, a different model family from the gpt-oss-120b generator). Methodology, the reranker selection on the dev split, and limitations are in [docs/evaluation.md](docs/evaluation.md).
 
+**Router and research assistant:** the LLM router (gpt-oss-20b) sent 52/52 labelled queries to the right pipeline, against 0.83 for a keyword baseline. Across 10 research prompts, every answer had all three sections and cited every selected paper. 89.5% of evidence claims were judged supported by the excerpts they cite, and the remaining failures are documented.
+
 ## Status
 
 | Phase | Scope | Status |
@@ -26,7 +30,7 @@ There are 29 answerable test questions; all 6 unanswerable questions were correc
 | 0 | Repository + architecture | done |
 | 1 | Ingestion + baseline RAG (CLI) | done |
 | 2 | Hybrid retrieval, reranking, evaluation | done (manual judge check pending) |
-| 3 | Research assistant + LangGraph routing | planned |
+| 3 | Research assistant + LangGraph routing | done |
 | 4 | FastAPI backend | planned |
 | 5 | PostgreSQL persistence | planned |
 | 6 | React frontend | planned |
@@ -57,7 +61,7 @@ uv run --project backend python -m evaluation.retrieval_eval --split test
 uv run --project backend python -m evaluation.generation_eval --split test --strategies semantic hybrid hybrid_rerank
 ```
 
-## Usage (CLI, Phase 1)
+## Usage (CLI)
 
 ```bash
 cd backend
@@ -67,6 +71,10 @@ uv run researchhelp ingest ../data/papers/            # parse, embed, index
 uv run researchhelp papers                            # list indexed papers
 uv run researchhelp ask "What batch size and learning rate were used?" -p "dense passage"
 uv run researchhelp ask "Compare the datasets used." -p "dense passage" -p "retrieval-augmented generation" --show-context
+uv run researchhelp ask "What research gaps exist across these papers?" -p "dense passage" -p "retrieval-augmented generation" -p "leveraging passage"
+uv run researchhelp ask "How could the retriever be improved?" -p "dense passage" --mode evidence   # force a pipeline
 ```
+
+Every answer starts with the route taken, e.g. `[route: research (llm): ...]`. The route source is `llm`, `keyword` (fallback) or `forced` (from `--mode`).
 
 `-p` takes a paper-ID prefix or a fragment of the title. Answers cite `[S#]` markers, which are resolved to paper, page and section from chunk metadata. Markers the model invents are dropped.

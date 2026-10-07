@@ -1,0 +1,320 @@
+{
+  "question": "Which assumptions in these papers might not hold in practice?",
+  "paper_ids": [
+    "0ec1a7ab3de5514c",
+    "3e67fc1a9977715a"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "The paper assumes an extractive QA setting where the answer must be a span appearing in one or more passages in the corpus.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 2,
+          "section": "Background",
+          "chunk_id": "3e67fc1a9977715a:p2:c4",
+          "snippet": "2 Background\n\nThe problem of open-domain QA studied in this paper can be described as follows. Given a factoid question, such as “Who first voiced Meg on Family Guy?” or “Where was the 8th Dalai Lama born?”, a system is required to answer it using a large corpus of diversified topics. More ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "The paper assumes that the document collection can be split into text passages of equal length to serve as basic retrieval units.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 2,
+          "section": "Background",
+          "chunk_id": "3e67fc1a9977715a:p2:c4",
+          "snippet": "2 Background\n\nThe problem of open-domain QA studied in this paper can be described as follows. Given a factoid question, such as “Who first voiced Meg on Family Guy?” or “Where was the 8th Dalai Lama born?”, a system is required to answer it using a large corpus of diversified topics. More ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "The paper assumes that negative passages can be approximated by random passages, BM25 top passages without the answer, or gold passages paired with other questions.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S3",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 3,
+          "section": "Training",
+          "chunk_id": "3e67fc1a9977715a:p3:c4",
+          "snippet": "Positive and negative passages For retrieval problems, it is often the case that positive examples are available explicitly, while negative examples need to be selected from an extremely large pool. For instance, passages relevant to a question may be given in a QA dataset, or can be found using ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "The paper assumes that the evaluation metric of exact match with any reference answer is sufficient for measuring Open-QA performance.",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "0ec1a7ab3de5514c",
+          "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "page": 6,
+          "section": "Experiments",
+          "chunk_id": "0ec1a7ab3de5514c:p6:c0",
+          "snippet": "4. Experiments\n\nWe now evaluate our approach on the Open-QA task. In this section, we describe in detail the benchmarks used and the different approaches to which we compare empirically.\n\n4.1. Open-QA Benchmarks\n\nA number of benchmarks have been proposed for Open- QA. In this work, we focus on ..."
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "claim": "The paper assumes that the null document provides a meaningful baseline for measuring retrieval utility of a retrieved document.",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "citations": [
+        {
+          "source_id": "S5",
+          "paper_id": "0ec1a7ab3de5514c",
+          "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "page": 11,
+          "section": "Retrieval Utility",
+          "chunk_id": "0ec1a7ab3de5514c:p11:c4",
+          "snippet": "D. Retrieval Utility\n\nThe null document ∅described in Section 3.4 provides a way to measure the importance of a retrieved document z: we define the retrieval utility (RU) of z for the masked input x as the difference between the log-likelihood of the knowledge-augmented encoder when conditioning on ..."
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "claim": "The paper assumes that excluding trivial retrieval candidates (exact string matches) during pre‑training prevents the retriever from learning only exact matches.",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "0ec1a7ab3de5514c",
+          "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "page": 5,
+          "section": "Method",
+          "chunk_id": "0ec1a7ab3de5514c:p5:c4",
+          "snippet": "Prohibiting trivial retrievals If the pre-training corpus X and the knowledge corpus Z are the same, there exists a trivial retrieval candidate z that is too informative: if the masked sentence x comes from document z, the knowledge augmented encoder can trivially predict y by looking at the ..."
+        }
+      ]
+    },
+    {
+      "id": "E7",
+      "claim": "The paper assumes that the pre‑training corpus and the knowledge corpus are distinct enough that trivial retrievals are rare, justifying the exclusion of exact matches.",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "0ec1a7ab3de5514c",
+          "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "page": 5,
+          "section": "Method",
+          "chunk_id": "0ec1a7ab3de5514c:p5:c4",
+          "snippet": "Prohibiting trivial retrievals If the pre-training corpus X and the knowledge corpus Z are the same, there exists a trivial retrieval candidate z that is too informative: if the masked sentence x comes from document z, the knowledge augmented encoder can trivially predict y by looking at the ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "The extractive QA assumption (answers must be exact spans in passages) may fail for questions requiring synthesis, inference, or answers not explicitly present in the corpus.",
+      "based_on": [
+        "E1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "Splitting the document collection into equal‑length passages can break sentence boundaries and disrupt context, which may degrade retrieval quality in real-world heterogeneous documents.",
+      "based_on": [
+        "E2"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Approximating negatives with random or BM25 top passages assumes these are sufficiently hard; in practice, they may be too easy or inadvertently contain partial answer information, biasing the retriever.",
+      "based_on": [
+        "E3"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Using exact‑match EM as the sole metric overlooks partial correctness, answer paraphrasing, and multi‑span answers, potentially overstating system performance.",
+      "based_on": [
+        "E4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "The null‑document baseline presumes that a completely empty retrieval provides a meaningful lower bound, but in practice models may still generate plausible answers from language modeling alone, making the baseline less informative.",
+      "based_on": [
+        "E5"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Excluding exact‑string matches during pre‑training assumes that trivial matches are rare in the pre‑training corpus; however, many web‑scale corpora contain duplicated sentences or boilerplate text, so the assumption may not hold.",
+      "based_on": [
+        "E6",
+        "E7"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Evaluate Retrieval on Non‑Extractive Answers",
+      "rationale": "If answers often require synthesis beyond span extraction, the dense retriever may retrieve irrelevant passages. Testing on datasets with generative answers will reveal the impact of the extractive assumption.",
+      "based_on": [
+        "E1"
+      ],
+      "validation_experiment": "Dataset: Natural Questions (full answers) and ELI5; Baseline: DPR vs. a generative retriever (e.g., RAG); Metric: BLEU/ROUGE + human judgment of answer relevance."
+    },
+    {
+      "title": "Passage Segmentation Sensitivity Study",
+      "rationale": "The equal‑length passage assumption may harm retrieval when sentences are split. Comparing different segmentation strategies will quantify this effect.",
+      "based_on": [
+        "E2"
+      ],
+      "validation_experiment": "Dataset: Wikipedia dump; Segmentation variants: fixed 100‑token windows, sentence‑aligned windows, hierarchical chunks; Baseline: DPR trained on each; Metric: Recall@10 and end‑to‑end QA EM."
+    },
+    {
+      "title": "Hard Negative Construction Impact",
+      "rationale": "Current negative sampling may be too easy or leak answer information. Introducing adversarial negatives (e.g., passages with overlapping entities but no answer) can test the robustness of the assumption.",
+      "based_on": [
+        "E3"
+      ],
+      "validation_experiment": "Dataset: TriviaQA; Negatives: random, BM25 top, and adversarial entity‑overlap negatives; Baseline: DPR trained with each set; Metric: Retrieval MRR and downstream QA EM."
+    },
+    {
+      "title": "Beyond Exact‑Match Evaluation",
+      "rationale": "Relying solely on exact‑match EM may mask true performance. Incorporating fuzzy metrics will assess whether the assumption of metric sufficiency holds.",
+      "based_on": [
+        "E4"
+      ],
+      "validation_experiment": "Dataset: Natural Questions; Metrics: Exact‑Match, F1, BLEU, and human‑rated answer correctness; Compare REALM scores under each metric."
+    }
+  ],
+  "sources": [
+    {
+      "text": "2 Background\n\nThe problem of open-domain QA studied in this paper can be described as follows. Given a factoid question, such as “Who first voiced Meg on Family Guy?” or “Where was the 8th Dalai Lama born?”, a system is required to answer it using a large corpus of diversified topics. More specifically, we assume\n\nthe extractive QA setting, in which the answer is restricted to a span appearing in one or more passages in the corpus. Assume that our collection contains D documents, d1, d2, · · · , dD. We first split each of the documents into text passages of equal lengths as the basic retrieval units3 and get M total passages in our corpus C = {p1, p2, . . . , pM}, where each passage pi can be viewed as a sequence of tokens w(i)\n\n1 , w(i) 2 , · · · , w(i) |pi|. Given a question q,\n\nthe task is to find a span w(i)\n\ns , w(i)\n\ns+1, · · · , w(i)",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 2,
+      "section": "Background",
+      "chunk_index": 10,
+      "chunk_id": "3e67fc1a9977715a:p2:c4",
+      "score": -6.542929649353027,
+      "rank": 1
+    },
+    {
+      "text": "6. Future Work\n\nThe work presented here is the minimal instantiation of a family of REALM-like approaches where a representation is pre-trained to perform reasoning over a large corpus of knowledge on-the-fly during inference. We are particularly optimistic about generalizations of this work to (1) structured knowledge, which would result in a generalization of Peters et al. (2019) where we would also learn the decision of which entities are informative, (2) the multi-lingual setting, e.g., retrieving knowledge in a high-resource language to better represent text in a low-resource language, and (3) the multi-modal setting, e.g., retrieving images or videos that can provide knowledge rarely observed in text.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 9,
+      "section": "Future Work",
+      "chunk_index": 50,
+      "chunk_id": "0ec1a7ab3de5514c:p9:c1",
+      "score": -4.375260829925537,
+      "rank": 1
+    },
+    {
+      "text": "Positive and negative passages For retrieval problems, it is often the case that positive examples are available explicitly, while negative examples need to be selected from an extremely large pool. For instance, passages relevant to a question may be given in a QA dataset, or can be found using the answer. All other passages in the collection, while not specified explicitly, can be viewed as irrelevant by default. In practice, how to select negative examples is often overlooked but could be decisive for learning a high-quality encoder. We consider three different types of negatives: (1) Random: any random passage from the corpus; (2) BM25: top passages returned by BM25 which don’t contain the answer but match most question tokens; (3) Gold: positive passages paired with other questions which appear in the training set. We will discuss the impact of different types of negative passages and training schemes in Section 5.2.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 3,
+      "section": "Training",
+      "chunk_index": 18,
+      "chunk_id": "3e67fc1a9977715a:p3:c4",
+      "score": -6.694745063781738,
+      "rank": 2
+    },
+    {
+      "text": "4. Experiments\n\nWe now evaluate our approach on the Open-QA task. In this section, we describe in detail the benchmarks used and the different approaches to which we compare empirically.\n\n4.1. Open-QA Benchmarks\n\nA number of benchmarks have been proposed for Open- QA. In this work, we focus on datasets where the question writers did not already know the answer. This yields questions that reflect more realistic information-seeking needs, and also avoids artifacts that can arise if the question is formulated with a particular answer in mind. A deeper justification is given in Lee et al. (2019). In all cases, the predicted answer is evaluated via exact match with any reference answer, following previous Open-QA work (Chen et al., 2017).",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 6,
+      "section": "Experiments",
+      "chunk_index": 29,
+      "chunk_id": "0ec1a7ab3de5514c:p6:c0",
+      "score": -6.535643577575684,
+      "rank": 2
+    },
+    {
+      "text": "D. Retrieval Utility\n\nThe null document ∅described in Section 3.4 provides a way to measure the importance of a retrieved document z: we define the retrieval utility (RU) of z for the masked input x as the difference between the log-likelihood of the knowledge-augmented encoder when conditioning on z versus on ∅:\n\nRU(z | x) = log p(y | z, x) −log p(y | ∅, x). (2)\n\nA negative RU shows that z is less useful for predicting y than the null document. This could mean that z is irrelevant to x, but could also mean that the masked tokens in x do not require world knowledge to predict, or that the world knowledge is sufficiently commonplace it has been baked into the model’s parameters. In practice, we find that RU increases steadily over the course of pre-training, and is more predictive of good performance on the downstream task of Open-QA than even the overall log-likelihood. An example of how RU behaves over time and across different settings is in Figure 4.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 11,
+      "section": "Retrieval Utility",
+      "chunk_index": 64,
+      "chunk_id": "0ec1a7ab3de5514c:p11:c4",
+      "score": -8.822366714477539,
+      "rank": 3
+    },
+    {
+      "text": "1 Introduction\n\nOpen-domain question answering (QA) (Voorhees, 1999) is a task that answers factoid questions using a large collection of documents. While early QA systems are often complicated and consist of multiple components (Ferrucci (2012); Moldovan et al. (2003), inter alia), the advances of reading comprehension models suggest a much simplified two-stage framework: (1) a context retriever first selects a small subset of passages where some of them contain the answer to the question, and then (2) a machine reader can thoroughly examine the retrieved contexts and identify the correct answer (Chen et al., 2017). Although reducing open-domain QA to machine reading is a very reasonable strategy, a huge performance degradation is often observed in practice2, indicating the needs of improving retrieval.\n\n∗Equal contribution 1The code and trained models have been released at https://github.com/facebookresearch/DPR.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 2,
+      "chunk_id": "3e67fc1a9977715a:p1:c2",
+      "score": -9.299054145812988,
+      "rank": 3
+    },
+    {
+      "text": "Many approaches use non-learned heuristic retrieval such as sparse bag-of-words matching (Robertson et al., 2009) or entity linking on the question to select a small set of relevant documents (e.g., 20). These documents are typically then re-ranked using a learned model, but coverage may be limited by the initial heuristic retrieval step. Approaches such as DrQA (Chen et al., 2017), HardEM (Min et al., 2019a), GraphRetriever (Min et al., 2019b), and PathRetriever (Asai et al., 2019) in Table 1 are in this category.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 6,
+      "section": "Experiments",
+      "chunk_index": 32,
+      "chunk_id": "0ec1a7ab3de5514c:p6:c3",
+      "score": -8.926692962646484,
+      "rank": 4
+    },
+    {
+      "text": "7 Related Work\n\nPassage retrieval has been an important component for open-domain QA (Voorhees, 1999). It not only effectively reduces the search space for answer extraction, but also identifies the support context for users to verify the answer. Strong sparse vector space models like TF-IDF or BM25 have",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 8,
+      "section": "Related Work",
+      "chunk_index": 58,
+      "chunk_id": "3e67fc1a9977715a:p8:c6",
+      "score": -9.677648544311523,
+      "rank": 4
+    },
+    {
+      "text": "Prohibiting trivial retrievals If the pre-training corpus X and the knowledge corpus Z are the same, there exists a trivial retrieval candidate z that is too informative: if the masked sentence x comes from document z, the knowledge augmented encoder can trivially predict y by looking at the unmasked version of x in z. This results in a large positive gradient for p(z | x). If this occurs too often, the knowledge retriever ends up learning to look for exact string matches between x and z, which does not capture other forms of relevance. For this reason, we exclude this trivial candidate during pre-training.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 5,
+      "section": "Method",
+      "chunk_index": 27,
+      "chunk_id": "0ec1a7ab3de5514c:p5:c4",
+      "score": -9.549080848693848,
+      "rank": 5
+    },
+    {
+      "text": "5. Discussion and Related Work\n\nWe previously discussed related methods for Open-QA. Here we present several alternate ways of viewing REALM that connect it to a broader set of ideas beyond Open-QA:\n\nLanguage modeling with corpus as context Language representation models have been incorporating contexts of increasingly large scope when making predictions. Examples of this progression include models that condition on surrounding words (Mikolov et al., 2013a;b), sentences (Kiros et al., 2015; Peters et al., 2018), and paragraphs (Radford et al., 2018; Devlin et al., 2018). We can view REALM as a generalization of the above work to the next level of scope: the entire text corpus.",
+      "paper_id": "0ec1a7ab3de5514c",
+      "paper_title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "page": 8,
+      "section": "Discussion and Related Work",
+      "chunk_index": 46,
+      "chunk_id": "0ec1a7ab3de5514c:p8:c4",
+      "score": -9.737198829650879,
+      "rank": 5
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

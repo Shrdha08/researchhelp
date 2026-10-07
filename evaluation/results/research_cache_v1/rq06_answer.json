@@ -1,0 +1,284 @@
+{
+  "question": "What experiments could validate an improvement to Fusion-in-Decoder?",
+  "paper_ids": [
+    "f1ee7e927c3fb31b"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "We report empirical evaluations of Fusion-in-Decoder for open domain QA on NaturalQuestions and TriviaQA datasets.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S3",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 3,
+          "section": "Experiments",
+          "chunk_id": "f1ee7e927c3fb31b:p3:c4",
+          "snippet": "4 Experiments\n\nIn this section, we report empirical evaluations of Fusion-in-Decoder for open domain QA.\n\nDatasets. We consider the following datasets, and use the same setting as Lee et al. (2019):\n\n• NaturalQuestions (Kwiatkowski et al., 2019) contains questions corresponding to Google search ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "Performance of Fusion-in-Decoder significantly improves when the number of retrieved passages increases, as shown by experiments varying the number of passages up to one hundred.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S5",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 2,
+          "section": "Introduction",
+          "chunk_id": "f1ee7e927c3fb31b:p2:c0",
+          "snippet": "Question + Passage 1 encoder\n\nQuestion + Passage 2 encoder\n\nQuestion + Passage N encoder\n\ndecoder Answer concat ...\n\nFigure 2: Architecture of the Fusion-in-Decoder method.\n\nrepresentations. Then, a sequence-to-sequence model generates the answer, taking as input the retrieved passages in addition ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "Figure 3 shows the performance of Fusion-in-Decoder (base) on validation sets as a function of the number of retrieved passages for NaturalQuestions, TriviaQA, and SQuAD.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S7",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 4,
+          "section": "Experiments",
+          "chunk_id": "f1ee7e927c3fb31b:p4:c0",
+          "snippet": "10 25 50 100\n\nNumber of passages\n\n40 41 42 43 44 45 46 47\n\nNaturalQuestions\n\n5 10 25 50 100\n\nNumber of passages\n\n54\n\n56\n\n58\n\n60\n\n62\n\n64\n\n66 TriviaQA\n\n5 10 25 50 100\n\nNumber of passages\n\n34 36 38 40 42 44 46 48 50 SQuAD\n\nFigure 3: Performance of Fusion-in-Decoder (base) on valid sets as a function ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "We compare Fusion-in-Decoder to state-of-the-art approaches on NaturalQuestions and TriviaQA, demonstrating higher accuracy with fewer model parameters when using retrieval.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 4,
+          "section": "Experiments",
+          "chunk_id": "f1ee7e927c3fb31b:p4:c3",
+          "snippet": "Comparison to state-of-the-art. In table 1, we compare the results obtained by Fusion-in-Decoder with existing approaches for open domain question answering. We observe that while conceptually simple, this method outperforms existing work on the NaturalQuestion and TriviaQA benchmarks. In ..."
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "claim": "Using BM25 or DPR retrieval methods for support passages is evaluated, with implementation details provided for reproducibility.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 3,
+          "section": "Fusion-in-Decoder (large)",
+          "chunk_id": "f1ee7e927c3fb31b:p3:c1",
+          "snippet": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support ..."
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "claim": "We follow Lee et al. (2019) by using the validation set as test and keeping 10% of the training set for validation, ensuring consistent experimental splits.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S7",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 4,
+          "section": "Experiments",
+          "chunk_id": "f1ee7e927c3fb31b:p4:c0",
+          "snippet": "10 25 50 100\n\nNumber of passages\n\n40 41 42 43 44 45 46 47\n\nNaturalQuestions\n\n5 10 25 50 100\n\nNumber of passages\n\n54\n\n56\n\n58\n\n60\n\n62\n\n64\n\n66 TriviaQA\n\n5 10 25 50 100\n\nNumber of passages\n\n34 36 38 40 42 44 46 48 50 SQuAD\n\nFigure 3: Performance of Fusion-in-Decoder (base) on valid sets as a function ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "Fusion-in-Decoder benefits from more retrieved passages, but performance may plateau or degrade beyond a certain count.",
+      "based_on": [
+        "E2",
+        "E3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "The current evaluations only use BM25 and DPR retrieval; alternative retrievers could further affect Fusion-in-Decoder performance.",
+      "based_on": [
+        "E5"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Comparisons to state‑of‑the‑art are limited to NaturalQuestions and TriviaQA, leaving open how Fusion-in-Decoder scales to other domains such as SQuAD or multilingual QA.",
+      "based_on": [
+        "E4",
+        "E3"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "The experimental protocol reuses validation sets as test sets, which may mask overfitting effects when tuning the number of passages.",
+      "based_on": [
+        "E6"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Optimal Passage Count Scheduler",
+      "rationale": "Since performance improves with more passages but likely saturates, a dynamic scheduler that selects the number of passages per query could yield better efficiency without sacrificing accuracy.",
+      "based_on": [
+        "E2",
+        "E3"
+      ],
+      "validation_experiment": "Dataset: NaturalQuestions (test split); Baselines: static Fusion-in-Decoder with 10, 50, 100 passages; Metric: Exact Match (EM) and latency; Compare against a model that predicts k per query using a lightweight classifier."
+    },
+    {
+      "title": "Retriever Diversity Augmentation",
+      "rationale": "Fusion-in-Decoder has only been tested with BM25 and DPR; integrating heterogeneous retrievers (e.g., dense hybrid, lexical+semantic) may provide richer context and improve answer generation.",
+      "based_on": [
+        "E5"
+      ],
+      "validation_experiment": "Dataset: TriviaQA; Baselines: Fusion-in-Decoder with BM25 only, DPR only; New condition: ensemble of BM25 + SPLADE + ColBERT; Metric: F1 and EM."
+    },
+    {
+      "title": "Cross‑Domain Generalization Study",
+      "rationale": "Current evidence focuses on NaturalQuestions and TriviaQA; testing on a distinct dataset (e.g., SQuAD 2.0 or multilingual XQuAD) will reveal whether the observed passage‑count benefits generalize.",
+      "based_on": [
+        "E4",
+        "E3"
+      ],
+      "validation_experiment": "Dataset: SQuAD 2.0 (dev); Baselines: Fusion-in-Decoder with 10 vs 100 passages; Metric: EM and F1; Compare to a strong baseline like RAG."
+    }
+  ],
+  "sources": [
+    {
+      "text": "Comparison to state-of-the-art. In table 1, we compare the results obtained by Fusion-in-Decoder with existing approaches for open domain question answering. We observe that while conceptually simple, this method outperforms existing work on the NaturalQuestion and TriviaQA benchmarks. In particular, generative models seem to perform well when evidence from multiple passages need to be aggregated, compared to extractive approaches. Our method also performs better than other generative models, showing that scaling to large number of passages and processing them jointly leads to improvement in accuracy. Second, we observe that using additional knowledge in generative models by using retrieval lead to important performance gains. On NaturalQuestions, the closed book T5 model obtains 36.6% accuracy with 11B parameters, while our approach obtains 44.1% with 770M parameters plus Wikipedia with BM25 retrieval.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_index": 20,
+      "chunk_id": "f1ee7e927c3fb31b:p4:c3",
+      "score": 2.7535386085510254,
+      "rank": 1
+    },
+    {
+      "text": "2 Related work\n\nOpen domain question answering is the task of answering general domain questions, in which the evidence is not given as input to the system. While being a longstanding problem in natural language processing (Voorhees et al., 1999), this task has recently regained interest following the work by Chen et al. (2017). In that version of the problem, strong supervision is available to the learning system, in the form of spans corresponding to answers. Chen et al. (2017) proposed to solve the problem by first retrieving support document from Wikipedia, before extracting the answer from the",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 2,
+      "section": "Related Work",
+      "chunk_index": 6,
+      "chunk_id": "f1ee7e927c3fb31b:p2:c1",
+      "score": -4.714526653289795,
+      "rank": 1
+    },
+    {
+      "text": "4 Experiments\n\nIn this section, we report empirical evaluations of Fusion-in-Decoder for open domain QA.\n\nDatasets. We consider the following datasets, and use the same setting as Lee et al. (2019):\n\n• NaturalQuestions (Kwiatkowski et al., 2019) contains questions corresponding to Google search queries. The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens.\n\n• TriviaQA (Joshi et al., 2017) contains questions gathered from trivia and quiz-league",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 3,
+      "section": "Experiments",
+      "chunk_index": 16,
+      "chunk_id": "f1ee7e927c3fb31b:p3:c4",
+      "score": 2.4267783164978027,
+      "rank": 2
+    },
+    {
+      "text": "5 Conclusion\n\nIn this paper, we study a simple approach to open domain question answering, which relies on retrieving support passages before processing them with a generative model. We show that while conceptually simple, this approach is competitive with existing methods, and that it scales well with the number of retrieved passages. In future work, we plan to make this model more efficient, in particular when scaling to large number of support passages. We also plan to integrate the retrieval in our model, and to learn the whole system end-to-end.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 5,
+      "section": "Conclusion",
+      "chunk_index": 25,
+      "chunk_id": "f1ee7e927c3fb31b:p5:c2",
+      "score": -4.817255973815918,
+      "rank": 2
+    },
+    {
+      "text": "Question + Passage 1 encoder\n\nQuestion + Passage 2 encoder\n\nQuestion + Passage N encoder\n\ndecoder Answer concat ...\n\nFigure 2: Architecture of the Fusion-in-Decoder method.\n\nrepresentations. Then, a sequence-to-sequence model generates the answer, taking as input the retrieved passages in addition to the question. While conceptually simple, this method sets new state-ofthe-art results on the TriviaQA and NaturalQuestions benchmarks. In particular, we show that the performance of our method significantly improves when the number of retrieved passages increases. We believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_index": 5,
+      "chunk_id": "f1ee7e927c3fb31b:p2:c0",
+      "score": 1.172431230545044,
+      "rank": 3
+    },
+    {
+      "text": "support documents, before extracting the answer from these documents. Different retrieval techniques have been considered, either using sparse representations based on TF/IDF or using dense embeddings (Guu et al., 2020; Karpukhin et al., 2020). The models which extract the answers are often based on contextualized word representations such as ELMo or BERT (Peters et al., 2018; Devlin et al., 2019), and predict a span as answer. Aggregating and combining evidence from multiple passages is not straightforward when using extractive models, and multiple techniques have been proposed to address this limitation (Clark and Gardner, 2018; Min et al., 2019a).\n\nIn this paper, we explore a simple approach having the best of both worlds, by building on the exciting developments in generative modeling and retrieval for open domain question answering. This method proceeds in two steps, by first retrieving supporting passages using either sparse or dense",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 4,
+      "chunk_id": "f1ee7e927c3fb31b:p1:c4",
+      "score": -9.785693168640137,
+      "rank": 3
+    },
+    {
+      "text": "10 25 50 100\n\nNumber of passages\n\n40 41 42 43 44 45 46 47\n\nNaturalQuestions\n\n5 10 25 50 100\n\nNumber of passages\n\n54\n\n56\n\n58\n\n60\n\n62\n\n64\n\n66 TriviaQA\n\n5 10 25 50 100\n\nNumber of passages\n\n34 36 38 40 42 44 46 48 50 SQuAD\n\nFigure 3: Performance of Fusion-in-Decoder (base) on valid sets as a function of the number of retrieved passages.\n\nwebsites. The unfiltered version of TriviaQA is used for open-domain question answering.\n\n• SQuAD v1.1 (Rajpurkar et al., 2016) is a reading comprehension dataset. Given a paragraph extracted from Wikipedia, annotators were asked to write questions, for which the answer is a span from the corresponding paragraph.\n\nFollowing Lee et al. (2019) we use the validation as test, and keep 10% of the training set for validation. We use the Wikipedia dumps from Dec. 20, 2018\n\nfor NQ and TriviaQA and from Dec. 21, 2016 for SQuAD. We apply the same preprocessing as Chen et al. (2017); Karpukhin et al. (2020), leading to passages of 100 words, which do not overlap.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 4,
+      "section": "Experiments",
+      "chunk_index": 17,
+      "chunk_id": "f1ee7e927c3fb31b:p4:c0",
+      "score": -1.1655224561691284,
+      "rank": 4
+    },
+    {
+      "text": "Generative question answering was mostly considered in previous work for datasets requiring to generate answers, such as NarrativeQA (Koˇcisk`y et al., 2018), CoQA (Reddy et al., 2019) or ELI5 (Fan et al., 2019). These datasets were generated in a way that answers do not correspond to spans in support documents, thus requiring abstractive models. Raffel et al. (2019) showed that generative models are competitive for reading comprehension tasks such as SQuAD (Rajpurkar et al., 2016), where answers are spans. Roberts et al. (2020) proposed to use large pretrained generative models, without using additional knowledge, for open domain question answering. Closest to our work, Min et al. (2020) and Lewis et al. (2020) introduced retrieval augmented generative models for open domain question answering. Our approach differs from these works by how the generative model processes the retrieved passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 2,
+      "section": "Related Work",
+      "chunk_index": 9,
+      "chunk_id": "f1ee7e927c3fb31b:p2:c4",
+      "score": -10.410968780517578,
+      "rank": 4
+    },
+    {
+      "text": "60.6 Fusion-in-Decoder (large) 51.4 67.6 80.1 56.7 63.2\n\nTable 1: Comparison to state-of-the-art. On TriviaQA, we report results on the open domain test set (left), and on the hidden test set (right), competitions.codalab.org/competitions/17208#results).\n\nRetrieval. For the retrieval of support passages, we consider two methods: BM25 (Robertson et al., 1995) and DPR (Karpukhin et al., 2020). In BM25, passages are represented as bag of words, and the ranking function is based on term and inverse document frequencies. We use the implementation from Apache Lucene1 with default parameters, and tokenize questions and passages with SpaCy.2 In DPR, passages and questions are represented as dense vector representations, computed using two BERT networks. The ranking function is the dot product between the query and passage representations. Retrieval is performed using approximate nearest neighbors with the FAISS library.3",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 3,
+      "section": "Fusion-in-Decoder (large)",
+      "chunk_index": 13,
+      "chunk_id": "f1ee7e927c3fb31b:p3:c1",
+      "score": -2.497204303741455,
+      "rank": 5
+    },
+    {
+      "text": "Retrieval based approaches were previously considered in the context of open domain question answering with extractive models (Chen et al., 2017). In that case, systems start by retrieving\n\nAlan Turing was a British\n\ncomputer scientist. Born in Maida Vale, London...\n\nWhere was Alan\n\nTuring born?\n\nGenerative seq2seq model\n\nMaida Vale,\n\nLondon\n\nFigure 1: A simple approach to open domain question answering. First, it retrieves support text passages from an external source of knowledge such as Wikipedia. Then, a generative encoder-decoder model produces the answer, conditioned on the question and the retrieved passages. This approach scales well with the number of retrieved passages, as the performance keeps improving when retrieving up to one hundred passages.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 3,
+      "chunk_id": "f1ee7e927c3fb31b:p1:c3",
+      "score": -10.508357048034668,
+      "rank": 5
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

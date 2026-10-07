@@ -124,3 +124,44 @@ Source: `generation_test_20261005-134150.md`. Generator `openai/gpt-oss-120b` (r
 - **Tables are extracted as flat text**, so numbers lose their column headers (hyde-06). Table-aware parsing is out of scope.
 - **The questions were written by the project author**, with an AI assistant's help in locating passages. The answers were labelled from the same parsed text the system retrieves from.
 - **The LLM judge** comes from a different model family than the generator, but it is still an LLM. The manual agreement check above addresses this.
+
+---
+
+# Phase 3: Router and research assistant
+
+## 5. Router (intent classification)
+
+Source: `results/router_20261007-231352.md`, from `python -m evaluation.router_eval`. There are 52 labelled queries in `datasets/router_queries.jsonl`: 28 evidence and 24 research. They include a deliberately hard subset where evidence and research questions are easy to confuse, such as "What limitations did the authors identify?" (evidence) versus "What are the limitations of these approaches?" (research). See ADR-13.
+
+| Router | Accuracy | Accuracy on the 44 queries not used as few-shot examples |
+|---|--:|--:|
+| LLM router (gpt-oss-20b, few-shot JSON) | **1.000** (52/52) | **1.000** |
+| Keyword router (the fallback, as a baseline) | 0.827 | 0.795 |
+
+- The keyword router fails on paraphrased research requests with no trigger word: "What is missing from the evaluation…", "Which assumptions … might not hold", "Is there a common blind spot…". It also fires falsely on author-stated content that contains a trigger word: "What *improvements* over BM25 does DPR report?", "What *open problems* does the RAG paper say remain?".
+- None of the 52 LLM calls needed the keyword fallback.
+- **Caveat:** the queries, the labels and the router's few-shot prompt were all written by the project author, with an AI assistant's help. Eight queries appear verbatim as few-shot examples, which is why accuracy is also reported without them. A set of queries written by someone else would be the stronger test; 1.000 on 52 self-written queries shouldn't be read as "the router never fails".
+
+## 6. Research assistant
+
+Source: `results/research_20261007-233328_v3.md` and the cache `results/research_cache_v3/`, from `python -m evaluation.research_eval`. There are 10 research prompts over 1–3 papers each (`datasets/research_questions.jsonl`). Research answers have no ground truth, so the evaluation measures what can be checked: structure, grounding, and the faithfulness of the **evidence** section. Analysis and directions are inferences by design, so "faithfulness" doesn't apply to them; they are graded by hand with the rubric sheet `results/research_rubric_20261007-233328_v3.md`.
+
+| Metric | v1 | v2 | **v3 (final)** |
+|---|--:|--:|--:|
+| Answers with all three sections | 0.9 (one `no_evidence`) | 1.0 | **1.0** |
+| Answers citing every selected paper | 0.9 | 1.0 | **1.0** |
+| Analysis/direction items linked to ≥1 evidence item | 1.0 | 1.0 | **1.0** |
+| Items removed by validation (invented sources, ungrounded inference) | 0 | 0 | **0** |
+| Mean items per answer (evidence / analysis / directions) | 5.9 / 4.2 / 3.0 | 7.9 / 5.1 / 3.7 | 8.6 / 4.7 / 3.5 |
+| **Evidence faithfulness** (judge: claim supported by its cited excerpts) | 0.881 | 0.785 | **0.895** (77/86) |
+
+**How v3 was reached.** These iterations were driven by the evaluation, and they are reported because they show what each prompt change did:
+
+- **v1** left one question (adapting HyDE to legal documents) with no evidence. The extraction prompt said "return an empty list if nothing is relevant", and the model judged HyDE's own method description irrelevant to a *new* domain.
+- The first judge also truncated each excerpt to 900 characters, which hid facts near the end of a chunk and produced false "unsupported" verdicts. It was replaced by a judge that shows every cited chunk once, in full, and explicitly counts added interpretation as unsupported. That judge is stricter: v1's answers scored 0.932 under the old judge and **0.881 under the new one**. All numbers in the table use the new judge.
+- **v2** told the extraction step that a method's own description is relevant evidence even for new settings. Completeness rose to 1.0, but **faithfulness fell to 0.785** under the same judge. The model started putting *suggestions* into the evidence section ("Compare FiD performance when…"), including one factual error (FiD sizes given as 770M/11B; they are 220M/770M).
+- **v3** kept that rule and added an explicit ban on suggestions, experiments and conclusions in the evidence step. The result is complete answers **and** the best faithfulness.
+
+**Remaining failure pattern (9 of 86 claims).** A correct factual core with an interpretive tail, for example "…DPR outperforms BM25 except on SQuAD, *indicating a gap* in…" or "…evaluated on MS MARCO and TREC CAR, *without evaluation on* other QA datasets". These are mild versions of the leak v2 showed: the step that should only restate the papers adds a small inference.
+
+**Caveats.** There are 10 questions, and v2 and v3 were tuned on these same 10, so there is no held-out set here. The faithfulness verdicts come from an LLM judge. The quality of the analysis and directions (specificity, grounding, plausibility) is only measured by the manual rubric, which is pending.

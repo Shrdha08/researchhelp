@@ -1,0 +1,398 @@
+{
+  "question": "How could retrieval-augmented generation be improved based on these papers?",
+  "paper_ids": [
+    "23e3249e9a1e7541",
+    "d9eaa1398abac0df"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "SELF-RAG adaptively retrieves passages on-demand using reflection tokens, rather than retrieving a fixed number of passages indiscriminately.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S5",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 1,
+          "section": "Abstract",
+          "chunk_id": "d9eaa1398abac0df:p1:c1",
+          "snippet": "Despite their remarkable capabilities, large language models (LLMs) often produce responses containing factual inaccuracies due to their sole reliance on the parametric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad hoc approach that augments LMs with retrieval of relevant ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "SELF-RAG determines whether retrieval would be helpful for a given generation step and emits a retrieval token to invoke a retriever model.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 1,
+          "section": "Introduction",
+          "chunk_id": "d9eaa1398abac0df:p1:c4",
+          "snippet": "This work introduces Self-Reflective Retrieval-augmented Generation (SELF-RAG) to improve an LLM’s generation quality, including its factual accuracy without hurting its versatility, via on-demand retrieval and self-reflection. We train an arbitrary LM in an end-to-end manner to learn to reflect on ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "SELF-RAG also generates critique tokens to assess the quality of its own output and guide further retrieval or generation.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 1,
+          "section": "Introduction",
+          "chunk_id": "d9eaa1398abac0df:p1:c4",
+          "snippet": "This work introduces Self-Reflective Retrieval-augmented Generation (SELF-RAG) to improve an LLM’s generation quality, including its factual accuracy without hurting its versatility, via on-demand retrieval and self-reflection. We train an arbitrary LM in an end-to-end manner to learn to reflect on ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "SELF-RAG trains a single arbitrary LM end-to-end to both generate text and reflect on retrieved passages using special tokens.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S7",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 3,
+          "section": "Self-Rag: Learning To Retrieve, Generate And Critique",
+          "chunk_id": "d9eaa1398abac0df:p3:c5",
+          "snippet": "3 SELF-RAG: LEARNING TO RETRIEVE, GENERATE AND CRITIQUE\n\nWe introduce Self-Reflective Retrieval-Augmented Generation (SELF-RAG), shown in Figure 1.\n\nSELF-RAG is a framework that enhances the quality and factuality of an LLM through retrieval and self-reflection, without sacrificing LLM’s original ..."
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "claim": "SELF-RAG outperforms state-of-the-art LLMs and retrieval-augmented models on open-domain QA, reasoning, and fact verification tasks, improving factuality and citation accuracy for long-form generations.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 1,
+          "section": "Abstract",
+          "chunk_id": "d9eaa1398abac0df:p1:c2",
+          "snippet": "Generating reflection tokens makes the LM controllable during the inference phase, enabling it to tailor its behavior to diverse task requirements. Experiments show that SELF- RAG (7B and 13B parameters) significantly outperforms state-of-the-art LLMs and retrieval-augmented models on a diverse set ..."
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "claim": "The authors leave exploring instruction-tuning of retrieval systems and joint training of retrieval and LM components for future work.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c1",
+          "snippet": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we ..."
+        }
+      ]
+    },
+    {
+      "id": "E7",
+      "claim": "Retrieval-Augmented Generation (RAG) models combine parametric and non‑parametric memory and achieve state‑of‑the‑art results on open‑domain QA.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 9,
+          "section": "Discussion",
+          "chunk_id": "23e3249e9a1e7541:p9:c4",
+          "snippet": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual ..."
+        }
+      ]
+    },
+    {
+      "id": "E8",
+      "claim": "RAG models can hot‑swap the retrieval index to update knowledge without retraining the entire model.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 9,
+          "section": "Discussion",
+          "chunk_id": "23e3249e9a1e7541:p9:c4",
+          "snippet": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual ..."
+        }
+      ]
+    },
+    {
+      "id": "E9",
+      "claim": "Future work suggested includes jointly pre‑training the parametric and non‑parametric components from scratch, possibly with a denoising objective similar to BART.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 9,
+          "section": "Discussion",
+          "chunk_id": "23e3249e9a1e7541:p9:c4",
+          "snippet": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual ..."
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "claim": "The authors note that off‑the‑shelf retrieval models trained on knowledge‑intensive tasks show limited effectiveness for open‑ended generation such as instruction following.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S10",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c0",
+          "snippet": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia ..."
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "claim": "Performance variance arises from using different Wikipedia dumps for retrieval, as newer entities may be missing from older dumps.",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "citations": [
+        {
+          "source_id": "S10",
+          "paper_id": "d9eaa1398abac0df",
+          "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+          "page": 20,
+          "section": "Experimental Details",
+          "chunk_id": "d9eaa1398abac0df:p20:c0",
+          "snippet": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia ..."
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "claim": "RAG’s stronger grounding in factual knowledge reduces hallucinations and offers more control and interpretability, enabling broader societal benefits.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S8",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 10,
+          "section": "Discussion",
+          "chunk_id": "23e3249e9a1e7541:p10:c0",
+          "snippet": "Broader Impact\n\nThis work offers several positive societal benefits over previous work: the fact that it is more strongly grounded in real factual knowledge (in this case Wikipedia) makes it “hallucinate” less with generations that are more factual, and offers more control and interpretability. RAG ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "Dynamic, on‑demand retrieval using special tokens (as in SELF‑RAG) can reduce unnecessary context and improve factuality compared to static retrieval of a fixed number of passages.",
+      "based_on": [
+        "E1",
+        "E2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "Self‑generated critique tokens provide an internal feedback loop that can steer additional retrieval or regeneration, suggesting that explicit self‑evaluation is beneficial for long‑form generation.",
+      "based_on": [
+        "E3",
+        "E5"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Current off‑the‑shelf retrievers, trained on narrow knowledge‑intensive tasks, struggle with open‑ended instruction following, indicating a mismatch between retrieval objectives and generation goals.",
+      "based_on": [
+        "E10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "The quality of the retrieval index (e.g., recency of Wikipedia dumps) materially affects RAG performance, highlighting the need for continual index updates or robust handling of missing entities.",
+      "based_on": [
+        "E11"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Joint pre‑training of the parametric LM and the non‑parametric retriever from scratch is largely unexplored, and could yield tighter integration than current two‑stage training pipelines.",
+      "based_on": [
+        "E9"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Instruction‑Tuned Retrieval via Retrieval‑Token Supervision",
+      "rationale": "SELF‑RAG shows that a retrieval token can decide when to fetch, but the retrieval model itself is not instruction‑tuned. Aligning retrieval decisions with downstream instruction following may close the gap identified in E10.",
+      "based_on": [
+        "E2",
+        "E10"
+      ],
+      "validation_experiment": "Fine‑tune a retriever on an instruction‑following dataset (e.g., Alpaca or FLAN) using a retrieval‑token loss; compare against standard off‑the‑shelf retriever on the Open‑Domain QA and instruction‑following benchmarks (e.g., NaturalQuestions + AlpacaEval) using Exact Match and ROUGE‑L."
+    },
+    {
+      "title": "Joint End‑to‑End Pre‑training of LM and Retriever with Denoising Objective",
+      "rationale": "Both SELF‑RAG (E4) and the future work in RAG (E9) suggest benefits from joint training. A BART‑style denoising task that corrupts both text and retrieval context could teach the LM to rely on retrieved passages while learning retrieval representations.",
+      "based_on": [
+        "E4",
+        "E9"
+      ],
+      "validation_experiment": "Pre‑train a unified LM‑retriever model on a large corpus (e.g., Wikipedia + BookCorpus) with masked‑span and masked‑retrieval‑passage objectives; evaluate on open‑domain QA (NaturalQuestions) and fact‑verification (FEVER) using EM and F1, comparing to separately pre‑trained RAG baselines."
+    },
+    {
+      "title": "Continual Index Refresh with Retrieval‑Aware Knowledge Distillation",
+      "rationale": "Performance variance due to stale Wikipedia dumps (E11) suggests a need for mechanisms that adapt to new knowledge without full retraining. Distilling knowledge from a fresh index into the existing retriever could maintain performance while keeping the model lightweight.",
+      "based_on": [
+        "E11",
+        "E8"
+      ],
+      "validation_experiment": "Create two Wikipedia snapshots (2022 vs 2024); train a base retriever on the older snapshot, then apply knowledge‑distillation updates using the newer snapshot. Measure QA accuracy drift on a fixed test set before and after update, reporting ΔEM."
+    },
+    {
+      "title": "Critique‑Guided Retrieval Scheduling",
+      "rationale": "SELF‑RAG’s critique tokens (E3) indicate that self‑assessment can trigger further retrieval. Systematically studying how critique confidence thresholds affect retrieval frequency could optimize the trade‑off between latency and factuality.",
+      "based_on": [
+        "E3",
+        "E5"
+      ],
+      "validation_experiment": "Implement a variant of SELF‑RAG where critique confidence thresholds are varied (e.g., 0.5, 0.7, 0.9); evaluate on long‑form generation tasks (e.g., WikiHow) measuring factuality (FactCC) and latency (seconds per token)."
+    }
+  ],
+  "sources": [
+    {
+      "text": "This work introduces Self-Reflective Retrieval-augmented Generation (SELF-RAG) to improve an LLM’s generation quality, including its factual accuracy without hurting its versatility, via on-demand retrieval and self-reflection. We train an arbitrary LM in an end-to-end manner to learn to reflect on its own generation process given a task input by generating both task output and intermittent special tokens (i.e., reflection tokens). Reflection tokens are categorized into retrieval and critique tokens to indicate the need for retrieval and its generation quality respectively (Figure 1 right). In particular, given an input prompt and preceding generations, SELF-RAG first determines if augmenting the continued generation with retrieved passages would be helpful. If so, it outputs a retrieval token that calls a retriever model on demand (Step 1).",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 4,
+      "chunk_id": "d9eaa1398abac0df:p1:c4",
+      "score": 4.0061750411987305,
+      "rank": 1
+    },
+    {
+      "text": "Recent or concurrent work studies instruction-tuning of retrieval systems (Asai et al., 2023b) or joint training of retrieval and LM components (Lin et al., 2023), while we leave exploring the effectivess of such appraoches for future work. For bio generation and open-domain QA tasks, we additionally retrieve five documents using Google Programmable Search9 and search documents from English Wikipedia. As this API only provides snippets, we retrieve Wikipedia introductory paragraphs for the corresponding entities.",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 20,
+      "section": "Experimental Details",
+      "chunk_index": 109,
+      "chunk_id": "d9eaa1398abac0df:p20:c1",
+      "score": -6.293127059936523,
+      "rank": 1
+    },
+    {
+      "text": "2 RELATED WORK\n\nRetrieval-Augmented Generation. Retrieval-Augmented Generation (RAG) augments the input space of LMs with retrieved text passages (Guu et al., 2020; Lewis et al., 2020), leading to large improvements in knowledge-intensive tasks after fine-tuning or used with off-the-shelf LMs (Ram et al., 2023). A more recent work (Luo et al., 2023) instruction-tunes an LM with a fixed number",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 2,
+      "section": "Related Work",
+      "chunk_index": 14,
+      "chunk_id": "d9eaa1398abac0df:p2:c7",
+      "score": 3.990902900695801,
+      "rank": 2
+    },
+    {
+      "text": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual and specific. We conducted an thorough investigation of the learned retrieval component, validating its effectiveness, and we illustrated how the retrieval index can be hot-swapped to update the model without requiring any retraining. In future work, it may be fruitful to investigate if the two components can be jointly pre-trained from scratch, either with a denoising objective similar to BART or some another objective. Our work opens up new research directions on how parametric and non-parametric memories interact and how to most effectively combine them, showing promise in being applied to a wide variety of NLP tasks.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 9,
+      "section": "Discussion",
+      "chunk_index": 54,
+      "chunk_id": "23e3249e9a1e7541:p9:c4",
+      "score": -8.334920883178711,
+      "rank": 2
+    },
+    {
+      "text": "Despite their remarkable capabilities, large language models (LLMs) often produce responses containing factual inaccuracies due to their sole reliance on the parametric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad hoc approach that augments LMs with retrieval of relevant knowledge, decreases such issues. However, indiscriminately retrieving and incorporating a fixed number of retrieved passages, regardless of whether retrieval is necessary, or passages are relevant, diminishes LM versatility or can lead to unhelpful response generation. We introduce a new framework called Self-Reflective Retrieval-Augmented Generation (SELF-RAG) that enhances an LM’s quality and factuality through retrieval and self-reflection. Our framework trains a single arbitrary LM that adaptively retrieves passages on-demand, and generates and reflects on retrieved passages and its own generations using special tokens, called reflection tokens.",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_index": 1,
+      "chunk_id": "d9eaa1398abac0df:p1:c1",
+      "score": 3.049203634262085,
+      "rank": 3
+    },
+    {
+      "text": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures. Additionally, providing provenance for their decisions and updating their world knowledge remain open research problems. Pretrained models with a differentiable access mechanism to explicit non-parametric memory have so far been only investigated for extractive downstream tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric memory for language generation.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_index": 1,
+      "chunk_id": "23e3249e9a1e7541:p1:c1",
+      "score": -8.83038330078125,
+      "rank": 3
+    },
+    {
+      "text": "3 SELF-RAG: LEARNING TO RETRIEVE, GENERATE AND CRITIQUE\n\nWe introduce Self-Reflective Retrieval-Augmented Generation (SELF-RAG), shown in Figure 1.\n\nSELF-RAG is a framework that enhances the quality and factuality of an LLM through retrieval and self-reflection, without sacrificing LLM’s original creativity and versatility. Our end-to-end training lets an LM M generate text informed by retrieved passages, if needed, and criticize the output by learning to generate special tokens. These reflection tokens (Table 1) signal the need for retrieval or confirm the output’s relevance, support, or completeness. In contrast, common RAG approaches retrieve passages indiscriminately, without ensuring complete support from cited sources.\n\n3.1 PROBLEM FORMALIZATION AND OVERVIEW",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 3,
+      "section": "Self-Rag: Learning To Retrieve, Generate And Critique",
+      "chunk_index": 20,
+      "chunk_id": "d9eaa1398abac0df:p3:c5",
+      "score": 2.1714491844177246,
+      "rank": 4
+    },
+    {
+      "text": "Broader Impact\n\nThis work offers several positive societal benefits over previous work: the fact that it is more strongly grounded in real factual knowledge (in this case Wikipedia) makes it “hallucinate” less with generations that are more factual, and offers more control and interpretability. RAG could be employed in a wide variety of scenarios with direct benefit to society, for example by endowing it with a medical index and asking it open-domain questions on that topic, or by helping people be more effective at their jobs.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 10,
+      "section": "Discussion",
+      "chunk_index": 55,
+      "chunk_id": "23e3249e9a1e7541:p10:c0",
+      "score": -9.138760566711426,
+      "rank": 4
+    },
+    {
+      "text": "Generating reflection tokens makes the LM controllable during the inference phase, enabling it to tailor its behavior to diverse task requirements. Experiments show that SELF- RAG (7B and 13B parameters) significantly outperforms state-of-the-art LLMs and retrieval-augmented models on a diverse set of tasks. Specifically, SELF-RAG outperforms ChatGPT and retrieval-augmented Llama2-chat on Open-domain QA, reasoning and fact verification tasks, and it shows significant gains in improving factuality and citation accuracy for long-form generations relative to these models.1",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_index": 2,
+      "chunk_id": "d9eaa1398abac0df:p1:c2",
+      "score": 1.2659423351287842,
+      "rank": 5
+    },
+    {
+      "text": "Retrieval setup details. By default, we use Contriever-MS MARCO to retrieve the top five documents from Wikipedia, and use official Wikipedia embeddings based on 2018 English Wikipedia. On PopQA, where question and answer pairs are created based on WikiData in 2022, we found that the 2018 Wikipedia sometimes lacks articles about some entities that have been more recently added to Wikipedia. Therefore, for PopQA, we used the December 2020 preprocessed Wikipedia corpus provided by Izacard et al. (2022b) and generated document embeddings.8 The issues of performance variance from different Wikipedia dumps have been reported by prior work (Asai et al., 2020; Izacard et al., 2022b). Yet, we observe limited effectiveness of such off-the-shelf retrieval models trained primarily on knowledge-intensive tasks for open-ended generation (e.g., instruction following).",
+      "paper_id": "d9eaa1398abac0df",
+      "paper_title": "SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION",
+      "page": 20,
+      "section": "Experimental Details",
+      "chunk_index": 108,
+      "chunk_id": "d9eaa1398abac0df:p20:c0",
+      "score": -9.318717956542969,
+      "rank": 5
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

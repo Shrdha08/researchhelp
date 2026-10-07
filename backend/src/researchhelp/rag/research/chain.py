@@ -138,6 +138,7 @@ def build_research_chain(
             return result
 
         result.evidence = validate_evidence(extraction, sources)
+        result.dropped["evidence"] = len(extraction.evidence) - len(result.evidence)
         if not result.evidence:
             return result  # never speculate without evidence
 
@@ -160,8 +161,10 @@ def build_research_chain(
             result.message = "Evidence is shown; the analysis output could not be parsed."
             return result
 
-        synthesis = validate_synthesis(synthesis, {e.id for e in result.evidence})
-        result.analysis, result.directions = synthesis.analysis, synthesis.directions
+        kept = validate_synthesis(synthesis, {e.id for e in result.evidence})
+        result.dropped["analysis"] = len(synthesis.analysis) - len(kept.analysis)
+        result.dropped["directions"] = len(synthesis.directions) - len(kept.directions)
+        result.analysis, result.directions = kept.analysis, kept.directions
         result.status, result.message = "ok", ""
         return result
 

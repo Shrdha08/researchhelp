@@ -1,0 +1,393 @@
+{
+  "question": "How could HyDE be adapted to a domain-specific search problem such as legal documents?",
+  "paper_ids": [
+    "dc0ae3c5584ed146"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "HyDE builds a query vector by sampling hypothetical documents from an instruction‑following language model and encoding them with an unsupervised contrastive document encoder.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 3,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p3:c4",
+          "snippet": "3.2 HyDE\n\nHyDE circumvents the aforementioned learning problem by performing search in documentonly embedding space that captures documentdocument similarity. This can be easily learned using unsupervised contrastive learning (Izacard et al., 2021; Gao et al., 2021; Gao and Callan, 2022). We set ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "The document encoder f is learned via unsupervised contrastive learning and is shared across all documents in the corpus.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 3,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p3:c4",
+          "snippet": "3.2 HyDE\n\nHyDE circumvents the aforementioned learning problem by performing search in documentonly embedding space that captures documentdocument similarity. This can be easily learned using unsupervised contrastive learning (Izacard et al., 2021; Gao et al., 2021; Gao and Callan, 2022). We set ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "HyDE assumes the distribution of query vectors is uni‑modal, i.e., the query is not ambiguous, and leaves the study of ambiguous queries to future work.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 4,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p4:c1",
+          "snippet": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "HyDE estimates the expected query embedding by sampling N hypothetical documents from the language model and averaging their encoded vectors.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 4,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p4:c1",
+          "snippet": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous ..."
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "claim": "HyDE can achieve performance comparable to a fine‑tuned dense retriever at the early stage of a search system, before any relevance labels are available.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S3",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 7,
+          "section": "Conclusion",
+          "chunk_id": "dc0ae3c5584ed146:p7:c1",
+          "snippet": "Concretely in this paper, we introduce a new paradigm of interactions between LLM and dense encoder/retriever. We demonstrate (part of) relevance modeling and instruction understanding can be delegated to the more powerful and flexible LLM. As a consequence, the need for relevance labels is ..."
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "claim": "As more relevance‑rich logs become available, a supervised dense retriever can be gradually introduced, with HyDE handling less common or emerging queries.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S3",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 7,
+          "section": "Conclusion",
+          "chunk_id": "dc0ae3c5584ed146:p7:c1",
+          "snippet": "Concretely in this paper, we introduce a new paradigm of interactions between LLM and dense encoder/retriever. We demonstrate (part of) relevance modeling and instruction understanding can be delegated to the more powerful and flexible LLM. As a consequence, the need for relevance labels is ..."
+        }
+      ]
+    },
+    {
+      "id": "E7",
+      "claim": "HyDE significantly outperforms the unsupervised dense retriever Contriever and shows strong performance comparable to fine‑tuned retrievers across tasks such as web search, QA, and fact verification, and across multiple languages.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S5",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 1,
+          "section": "Abstract",
+          "chunk_id": "dc0ae3c5584ed146:p1:c2",
+          "snippet": "This vector identifies a neighborhood in the corpus embedding space, where similar real documents are retrieved based on vector similarity. This second step ground the generated document to the actual corpus, with the encoder’s dense bottleneck filtering out the incorrect details. Our experiments ..."
+        }
+      ]
+    },
+    {
+      "id": "E8",
+      "claim": "HyDE remains competitive with fine‑tuned models on benchmark web‑search tasks (e.g., TREC DL19/20), achieving comparable MAP and nDCG@10 to ContrieverFT and recall@1k.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S7",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 5,
+          "section": "Web Search",
+          "chunk_id": "dc0ae3c5584ed146:p5:c2",
+          "snippet": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around ..."
+        }
+      ]
+    },
+    {
+      "id": "E9",
+      "claim": "The method does not assume access to test‑time corpora for training, aligning with a realistic zero‑shot setup where large supervised collections are unavailable.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S10",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 3,
+          "section": "Related Work",
+          "chunk_id": "dc0ae3c5584ed146:p3:c0",
+          "snippet": "instruction following generative LLM, as described above.\n\nZero-Shot Dense Retrieval The tasks of zeroshot (dense) retrieval are arguably empirically defined by Thakur et al. (2021) for the neural retrieval community. Their BEIR benchmark consists of diverse retrieval tasks. The paper and many ..."
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "claim": "HyDE’s reliance on an instruction‑following LLM allows the system to incorporate domain‑specific instructions (INST) when generating hypothetical documents for queries.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 3,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p3:c4",
+          "snippet": "3.2 HyDE\n\nHyDE circumvents the aforementioned learning problem by performing search in documentonly embedding space that captures documentdocument similarity. This can be easily learned using unsupervised contrastive learning (Izacard et al., 2021; Gao et al., 2021; Gao and Callan, 2022). We set ..."
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "claim": "Adapting HyDE to a new domain would involve providing domain‑specific instructions to the LLM and optionally fine‑tuning the unsupervised contrastive encoder on domain documents, while still requiring no relevance labels.",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 3,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p3:c4",
+          "snippet": "3.2 HyDE\n\nHyDE circumvents the aforementioned learning problem by performing search in documentonly embedding space that captures documentdocument similarity. This can be easily learned using unsupervised contrastive learning (Izacard et al., 2021; Gao et al., 2021; Gao and Callan, 2022). We set ..."
+        },
+        {
+          "source_id": "S2",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 4,
+          "section": "HyDE",
+          "chunk_id": "dc0ae3c5584ed146:p4:c1",
+          "snippet": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous ..."
+        },
+        {
+          "source_id": "S10",
+          "paper_id": "dc0ae3c5584ed146",
+          "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "page": 3,
+          "section": "Related Work",
+          "chunk_id": "dc0ae3c5584ed146:p3:c0",
+          "snippet": "instruction following generative LLM, as described above.\n\nZero-Shot Dense Retrieval The tasks of zeroshot (dense) retrieval are arguably empirically defined by Thakur et al. (2021) for the neural retrieval community. Their BEIR benchmark consists of diverse retrieval tasks. The paper and many ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "HyDE’s query generation relies on an instruction‑following LLM, so providing legal‑specific prompts can steer the hypothetical documents toward legal language and concepts.",
+      "based_on": [
+        "E1",
+        "E10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "The unsupervised contrastive encoder is shared across all documents; without domain‑specific fine‑tuning it may not capture legal terminology nuances.",
+      "based_on": [
+        "E2",
+        "E11"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "HyDE assumes a unimodal query distribution; legal queries often contain multiple sub‑issues (e.g., fact, statute, precedent), which could violate this assumption.",
+      "based_on": [
+        "E3"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Averaging N sampled hypothetical documents may dilute rare but critical legal phrasing, especially when N is small.",
+      "based_on": [
+        "E4"
+      ],
+      "confidence": "low"
+    },
+    {
+      "statement": "HyDE can serve as an initial zero‑shot retriever for legal corpora before any relevance judgments exist, after which supervised fine‑tuning can be introduced.",
+      "based_on": [
+        "E5",
+        "E6",
+        "E11"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Legal Prompt Engineering for Hypothetical Document Generation",
+      "rationale": "If domain‑specific instructions guide the LLM, the sampled documents should reflect legal discourse, improving query embeddings for legal retrieval.",
+      "based_on": [
+        "E1",
+        "E10",
+        "E11"
+      ],
+      "validation_experiment": "Dataset: COLIEE (Japanese legal case retrieval) + a US case law benchmark; Baseline: HyDE with generic prompts vs. HyDE with crafted legal prompts; Metric: nDCG@10 and recall@1k."
+    },
+    {
+      "title": "Contrastive Encoder Fine‑Tuning on Legal Corpora",
+      "rationale": "Adapting the unsupervised encoder to legal text should better capture domain terminology while preserving HyDE’s zero‑shot label‑free nature.",
+      "based_on": [
+        "E2",
+        "E11"
+      ],
+      "validation_experiment": "Dataset: A large collection of statutes and case opinions (e.g., Harvard Law Library); Train: unsupervised contrastive learning on legal documents; Compare: original encoder vs. legal‑fine‑tuned encoder within HyDE; Metric: MAP and recall@1k on legal QA queries."
+    },
+    {
+      "title": "Multi‑Modal Query Representation for Ambiguous Legal Queries",
+      "rationale": "Legal questions often embed multiple sub‑questions; extending HyDE to generate a set of diverse hypothetical documents and keep them as separate query vectors could address the unimodal assumption limitation.",
+      "based_on": [
+        "E3",
+        "E4"
+      ],
+      "validation_experiment": "Dataset: Multi‑issue legal queries from the LegalEval benchmark; Method: sample N=5 hypothetical docs, keep each embedding (no averaging) and retrieve with max‑sim aggregation; Baseline: standard HyDE averaging; Metric: precision@10 for each sub‑issue and overall nDCG."
+    }
+  ],
+  "sources": [
+    {
+      "text": "3.2 HyDE\n\nHyDE circumvents the aforementioned learning problem by performing search in documentonly embedding space that captures documentdocument similarity. This can be easily learned using unsupervised contrastive learning (Izacard et al., 2021; Gao et al., 2021; Gao and Callan, 2022). We set document encoder encd directly as a contrastive encoder enccon.\n\nf = encd = enccon (2)\n\nThis function is also denoted as f for simplicity. This unsupervised contrastive encoder will be shared by all incoming document corpus.\n\nvd = f(d) ∀d ∈D1 ∪D2 ∪... ∪DL (3)\n\nTo build the query vector, we consider in addition an instruction following LM, InstructLM. It takes a query q and a textual instruction INST and follows them to perform the task specified by INST. For simplicity, denote,\n\ng(q, INST) = InstructLM(q, INST) (4)\n\nNow we can use g to map queries to \"hypothetical\" documents by sampling from g, setting INST",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 3,
+      "section": "HyDE",
+      "chunk_index": 17,
+      "chunk_id": "dc0ae3c5584ed146:p3:c4",
+      "score": -0.24476996064186096,
+      "rank": 1
+    },
+    {
+      "text": "the document encoder f. Write,\n\nE[vqij] = E[f(g(qij, INSTi))] (5)\n\nFormally, g defines a probability distribution based on the chain rule. In this paper, we simply consider the expectation value, assuming the distribution of vqij is uni-modal, i.e. the query is not ambiguous. The study of ambiguous queries and diversity is left to future work. We estimate Equation 5 by sampling N documents from g, [ ˆd1, ˆd2, ..., ˆ dN].\n\nˆvqij = 1\n\nN\n\nX\n\nˆ dk∼g(qij,INSTi)\n\nf(dk) (6)\n\n= 1\n\nN\n\nN X\n\nk=1\n\nf( ˆdk) (7)\n\nWe also consider the query as a possible hypothesis,\n\nˆvqij = 1 N + 1[\n\nN X\n\nk=1\n\nf( ˆdk) + f(qij)] (8)",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 4,
+      "section": "HyDE",
+      "chunk_index": 19,
+      "chunk_id": "dc0ae3c5584ed146:p4:c1",
+      "score": -10.252375602722168,
+      "rank": 1
+    },
+    {
+      "text": "Concretely in this paper, we introduce a new paradigm of interactions between LLM and dense encoder/retriever. We demonstrate (part of) relevance modeling and instruction understanding can be delegated to the more powerful and flexible LLM. As a consequence, the need for relevance labels is removed. We are excited to see how this can be generalized further to more sophisticated tasks like multi-hop retrieval/QA and conversational search.\n\nWe argue HyDE is also of practical use though not necessarily over the entire lifespan of a search system. At the very beginning of the life of the search system, serving queries using HyDE offers performance comparable to a fine-tuned model, which no other relevance-free model can offer. As the search log grows, a supervised dense retriever can be gradually rolled out. As the dense retriever grows stronger, more queries will be routed to it, with only less common and emerging ones going to HyDE backend.",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 7,
+      "section": "Conclusion",
+      "chunk_index": 37,
+      "chunk_id": "dc0ae3c5584ed146:p7:c1",
+      "score": -1.657124638557434,
+      "rank": 2
+    },
+    {
+      "text": "2 Related Works\n\nDense Retrieval (Lee et al., 2019; Karpukhin et al., 2020) has been extensively studied after the emergence of pre-trained Transformer language models (Devlin et al., 2019). Researchers studied the metric learning problems, such as training loss (Karpukhin et al., 2020) and negative sampling (Xiong et al., 2021; Qu et al., 2021), and also introduced distillation (Qu et al., 2021; Lin et al., 2021b; Hofstätter et al., 2021). Later works studied the second stage pre-training of language model specifically for retrieval (Izacard et al., 2021; Gao and Callan, 2021; Lu et al., 2021; Gao and Callan, 2022; Liu and Shao, 2022). The popularity of dense retrieval can be partially attributed to the rich and successful research in very efficient minimum inner product search (MIPS) at very large (billion) scales (Johnson et al., 2017).",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 2,
+      "section": "Related Work",
+      "chunk_index": 11,
+      "chunk_id": "dc0ae3c5584ed146:p2:c4",
+      "score": -10.972918510437012,
+      "rank": 2
+    },
+    {
+      "text": "This vector identifies a neighborhood in the corpus embedding space, where similar real documents are retrieved based on vector similarity. This second step ground the generated document to the actual corpus, with the encoder’s dense bottleneck filtering out the incorrect details. Our experiments show that HyDE significantly outperforms the state-of-the-art unsupervised dense retriever Contriever and shows strong performance comparable to fine-tuned retrievers, across various tasks (e.g. web search, QA, fact verification) and languages (e.g. sw, ko, ja).1",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_index": 2,
+      "chunk_id": "dc0ae3c5584ed146:p1:c2",
+      "score": -3.7953145503997803,
+      "rank": 3
+    },
+    {
+      "text": "A.1.1 Web Search\n\nPlease write a passage to answer the question Question: [QUESTION] Passage:",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 11,
+      "section": "Web Search",
+      "chunk_index": 61,
+      "chunk_id": "dc0ae3c5584ed146:p11:c0",
+      "score": -10.99531364440918,
+      "rank": 3
+    },
+    {
+      "text": "HyDE remains competitive even when compared to fine-tuned models. Note that TREC DL19/20 are search tasks defined on MS-MARCO and there, all the fine-tuned models are richly supervised. On TREC DL19, HyDE shows comparable map and ndcg@10 to ContrieverFT and best recall@1k. On DL20, HyDE gets around 10% lower map and ndcg@10 than ContrieverFT and similar recall@1k. The ANCE model shows better ndcg@10 numbers than HyDE but lower recall, suggesting it may be biased to a subset of queries and/or relevant documents.",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 5,
+      "section": "Web Search",
+      "chunk_index": 27,
+      "chunk_id": "dc0ae3c5584ed146:p5:c2",
+      "score": -3.9906187057495117,
+      "rank": 4
+    },
+    {
+      "text": "A.1.5 FiQA\n\nPlease write a financial article passage to answer the question Question: [QUESTION] Passage:",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 11,
+      "section": "FiQA",
+      "chunk_index": 65,
+      "chunk_id": "dc0ae3c5584ed146:p11:c4",
+      "score": -11.064311027526855,
+      "rank": 4
+    },
+    {
+      "text": "3 Methodology\n\nIn this section, we first formally define the problem of (zero-shot) dense retrieval. Then we will introduce how HyDE is designed to solve it.",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 3,
+      "section": "Method",
+      "chunk_index": 15,
+      "chunk_id": "dc0ae3c5584ed146:p3:c2",
+      "score": -4.022401332855225,
+      "rank": 5
+    },
+    {
+      "text": "instruction following generative LLM, as described above.\n\nZero-Shot Dense Retrieval The tasks of zeroshot (dense) retrieval are arguably empirically defined by Thakur et al. (2021) for the neural retrieval community. Their BEIR benchmark consists of diverse retrieval tasks. The paper and many follow-up research generally consider the Transfer Learning setup where the dense retriever is first learned using a diverse and richly supervised corpus and query collection, namely MS-MARCO (Thakur et al., 2021; Wang et al., 2022; Yu et al., 2022).\n\nHowever, as stated by Izacard et al. (2021), such a large collection can rarely be assumed. In this paper, therefore, we study the problem of building effective dense retrieval systems without relevance labels. Similar to Izacard et al. (2021), we also do not assume access to the test time corpora for training. This is a more realistic setup and prevents over-engineering on the test corpora.",
+      "paper_id": "dc0ae3c5584ed146",
+      "paper_title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "page": 3,
+      "section": "Related Work",
+      "chunk_index": 13,
+      "chunk_id": "dc0ae3c5584ed146:p3:c0",
+      "score": -11.265777587890625,
+      "rank": 5
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

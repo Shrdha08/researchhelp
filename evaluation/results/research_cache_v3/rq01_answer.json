@@ -1,0 +1,403 @@
+{
+  "question": "What research gaps exist across these papers and how could they be addressed?",
+  "paper_ids": [
+    "3e67fc1a9977715a",
+    "23e3249e9a1e7541",
+    "f1ee7e927c3fb31b"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "The FEVER evidence extraction sub-task is not straightforward for the authors because they use a different Wikipedia dump, and they plan to address this in future work.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 18,
+          "section": "Further Details on FEVER",
+          "chunk_id": "23e3249e9a1e7541:p18:c3",
+          "snippet": "E Further Details on FEVER\n\nFor FEVER classification, we follow the practice from [32], and first re-generate the claim, and then classify using the representation of the final hidden state, before finally marginalizing across documents to obtain the class probabilities. The FEVER task ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "The authors suggest investigating joint pre‑training of the parametric and non‑parametric components from scratch, possibly with a denoising objective, as future work.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S6",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 9,
+          "section": "Discussion",
+          "chunk_id": "23e3249e9a1e7541:p9:c4",
+          "snippet": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "The paper notes that making the model more efficient when scaling to a large number of support passages and integrating retrieval into an end‑to‑end trainable system are future research directions.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 5,
+          "section": "Conclusion",
+          "chunk_id": "f1ee7e927c3fb31b:p5:c2",
+          "snippet": "5 Conclusion\n\nIn this paper, we study a simple approach to open domain question answering, which relies on retrieving support passages before processing them with a generative model. We show that while conceptually simple, this approach is competitive with existing methods, and that it scales well ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "Aggregating and combining evidence from multiple passages is not straightforward when using extractive models, highlighting a limitation of current approaches.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S3",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 1,
+          "section": "Introduction",
+          "chunk_id": "f1ee7e927c3fb31b:p1:c4",
+          "snippet": "support documents, before extracting the answer from these documents. Different retrieval techniques have been considered, either using sparse representations based on TF/IDF or using dense embeddings (Guu et al., 2020; Karpukhin et al., 2020). The models which extract the answers are often based ..."
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "claim": "SQuAD is considered not ideal for open‑domain QA because many questions lack context without the provided paragraph, and it introduces unwanted bias.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S5",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 4,
+          "section": "Question Answering Datasets",
+          "chunk_id": "3e67fc1a9977715a:p4:c5",
+          "snippet": "as well as various Web sources and is intended for open-domain QA from unstructured corpora. SQuAD v1.1 (Rajpurkar et al., 2016) is a popular benchmark dataset for reading comprehension. Annotators were presented with a Wikipedia paragraph, and asked to write questions that could be answered from ..."
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "claim": "The authors observe that DPR consistently outperforms BM25 on most datasets except SQuAD, indicating a gap in performance on datasets with limited Wikipedia coverage.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S9",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 5,
+          "section": "Main Results",
+          "chunk_id": "3e67fc1a9977715a:p5:c3",
+          "snippet": "5.1 Main Results\n\nTable 2 compares different passage retrieval systems on five QA datasets, using the top-k accuracy (k ∈{20, 100}). With the exception of SQuAD, DPR performs consistently better than BM25 on all datasets. The gap is especially large when k is small (e.g., 78.4% vs. 59.1% for top-20 ..."
+        }
+      ]
+    },
+    {
+      "id": "E7",
+      "claim": "Providing provenance for decisions and updating world knowledge remain open research problems for retrieval‑augmented generation models.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S8",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 1,
+          "section": "Abstract",
+          "chunk_id": "23e3249e9a1e7541:p1:c1",
+          "snippet": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive ..."
+        }
+      ]
+    },
+    {
+      "id": "E8",
+      "claim": "The current approach relies on a separate retrieval step before generation, and the authors plan to integrate retrieval into the model to enable end‑to‑end learning.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 5,
+          "section": "Conclusion",
+          "chunk_id": "f1ee7e927c3fb31b:p5:c2",
+          "snippet": "5 Conclusion\n\nIn this paper, we study a simple approach to open domain question answering, which relies on retrieving support passages before processing them with a generative model. We show that while conceptually simple, this approach is competitive with existing methods, and that it scales well ..."
+        }
+      ]
+    },
+    {
+      "id": "E9",
+      "claim": "The authors highlight that scaling the number of retrieved passages is challenging and that more efficient methods are needed for large‑scale retrieval‑augmented generation.",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S4",
+          "paper_id": "f1ee7e927c3fb31b",
+          "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "page": 5,
+          "section": "Conclusion",
+          "chunk_id": "f1ee7e927c3fb31b:p5:c2",
+          "snippet": "5 Conclusion\n\nIn this paper, we study a simple approach to open domain question answering, which relies on retrieving support passages before processing them with a generative model. We show that while conceptually simple, this approach is competitive with existing methods, and that it scales well ..."
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "claim": "The discussion notes that hot‑swapping the retrieval index can update the model without retraining, but joint pre‑training of retrieval and generation components is still an open question.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S6",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 9,
+          "section": "Discussion",
+          "chunk_id": "23e3249e9a1e7541:p9:c4",
+          "snippet": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual ..."
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "claim": "The paper points out that dense passage retrieval models are trained only on question‑passage pairs without additional pretraining, leaving open the possibility of further improvements with more extensive pretraining.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S7",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 2,
+          "section": "Introduction",
+          "chunk_id": "3e67fc1a9977715a:p2:c1",
+          "snippet": "In this paper, we address the question: can we train a better dense embedding model using only pairs of questions and passages (or answers), without additional pretraining? By leveraging the now standard BERT pretrained model (Devlin et al., 2019) and a dual-encoder architecture (Bromley et al., ..."
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "claim": "The authors acknowledge that extracting sentences as evidence for FEVER is difficult due to dataset differences, indicating a gap in applying their method to evidence‑extraction tasks.",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "23e3249e9a1e7541",
+          "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "page": 18,
+          "section": "Further Details on FEVER",
+          "chunk_id": "23e3249e9a1e7541:p18:c3",
+          "snippet": "E Further Details on FEVER\n\nFor FEVER classification, we follow the practice from [32], and first re-generate the claim, and then classify using the representation of the final hidden state, before finally marginalizing across documents to obtain the class probabilities. The FEVER task ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "Current retrieval‑augmented generation (RAG) pipelines rely on a disjoint retrieval step, making end‑to‑end training difficult and limiting scalability to many passages.",
+      "based_on": [
+        "E3",
+        "E8",
+        "E9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "Joint pre‑training of the parametric (generator) and non‑parametric (retriever) components is largely unexplored, especially with objectives that combine denoising and retrieval alignment.",
+      "based_on": [
+        "E2",
+        "E10"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Evidence extraction for fact‑checking tasks (e.g., FEVER) is hampered by mismatched Wikipedia dumps and the need to select sentence‑level evidence, a problem not solved by existing RAG models.",
+      "based_on": [
+        "E1",
+        "E12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "Dense passage retrieval (DPR) underperforms on datasets like SQuAD that lack sufficient Wikipedia coverage, suggesting a gap in handling domains with limited or noisy context.",
+      "based_on": [
+        "E5",
+        "E6"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "Existing dense retrievers are trained only on question‑passage pairs without broader pre‑training, leaving potential gains from large‑scale language model pre‑training untapped.",
+      "based_on": [
+        "E11"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "directions": [
+    {
+      "title": "End‑to‑End Retrieval‑Generation with Differentiable Retrieval",
+      "rationale": "Integrating retrieval into the generation model would remove the brittle separate step and allow gradients to improve both components jointly, addressing scalability and training inefficiencies noted in multiple papers.",
+      "based_on": [
+        "E3",
+        "E8",
+        "E9"
+      ],
+      "validation_experiment": "Train a differentiable retriever (e.g., MIPS with learned indexes) jointly with T5 on NaturalQuestions and evaluate using Exact Match and Retrieval Latency compared to the two‑stage baseline."
+    },
+    {
+      "title": "Joint Pre‑Training of Retriever and Generator with Denoising Objectives",
+      "rationale": "A unified pre‑training objective that masks text and forces the model to retrieve relevant passages before reconstructing the masked tokens could align the two modules from scratch, as suggested by the authors.",
+      "based_on": [
+        "E2",
+        "E10"
+      ],
+      "validation_experiment": "Pre‑train on a large Wikipedia dump using a masked language modeling + retrieval loss, then fine‑tune on TriviaQA; compare to standard RAG using BLEU and Retrieval Recall."
+    },
+    {
+      "title": "Cross‑Dataset Retrieval for Fact‑Checking with Unified Wikipedia Snapshots",
+      "rationale": "Standardizing the Wikipedia version across training and evaluation would reduce evidence‑extraction mismatches for FEVER and similar tasks, enabling more reliable assessment of RAG models on fact‑checking.",
+      "based_on": [
+        "E1",
+        "E12"
+      ],
+      "validation_experiment": "Re‑run the FEVER evidence extraction sub‑task using a fixed 2023 Wikipedia dump; measure sentence‑level evidence precision/recall and downstream claim verification accuracy against the original setup."
+    },
+    {
+      "title": "Hybrid Retrieval for Low‑Coverage Domains",
+      "rationale": "Combining dense retrieval with traditional lexical methods (BM25) may compensate for DPR’s weakness on datasets like SQuAD where Wikipedia coverage is sparse, improving overall QA performance.",
+      "based_on": [
+        "E5",
+        "E6"
+      ],
+      "validation_experiment": "Create a hybrid retriever that interpolates DPR scores with BM25 on SQuAD and NaturalQuestions; evaluate top‑k retrieval Recall@100 and downstream QA Exact Match."
+    }
+  ],
+  "sources": [
+    {
+      "text": "E Further Details on FEVER\n\nFor FEVER classification, we follow the practice from [32], and first re-generate the claim, and then classify using the representation of the final hidden state, before finally marginalizing across documents to obtain the class probabilities. The FEVER task traditionally has two sub-tasks. The first is to classify the claim as either \"Supported\", \"Refuted\" or \"Not Enough Info\", which is the task we explore in the main paper. FEVER’s other sub-task involves extracting sentences from Wikipedia as evidence supporting the classification prediction. As FEVER uses a different Wikipedia dump to us, directly tackling this task is not straightforward. We hope to address this in future work.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 18,
+      "section": "Further Details on FEVER",
+      "chunk_index": 96,
+      "chunk_id": "23e3249e9a1e7541:p18:c3",
+      "score": -8.578612327575684,
+      "rank": 1
+    },
+    {
+      "text": "2 Related work\n\nOpen domain question answering is the task of answering general domain questions, in which the evidence is not given as input to the system. While being a longstanding problem in natural language processing (Voorhees et al., 1999), this task has recently regained interest following the work by Chen et al. (2017). In that version of the problem, strong supervision is available to the learning system, in the form of spans corresponding to answers. Chen et al. (2017) proposed to solve the problem by first retrieving support document from Wikipedia, before extracting the answer from the",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 2,
+      "section": "Related Work",
+      "chunk_index": 6,
+      "chunk_id": "f1ee7e927c3fb31b:p2:c1",
+      "score": -4.714526653289795,
+      "rank": 1
+    },
+    {
+      "text": "support documents, before extracting the answer from these documents. Different retrieval techniques have been considered, either using sparse representations based on TF/IDF or using dense embeddings (Guu et al., 2020; Karpukhin et al., 2020). The models which extract the answers are often based on contextualized word representations such as ELMo or BERT (Peters et al., 2018; Devlin et al., 2019), and predict a span as answer. Aggregating and combining evidence from multiple passages is not straightforward when using extractive models, and multiple techniques have been proposed to address this limitation (Clark and Gardner, 2018; Min et al., 2019a).\n\nIn this paper, we explore a simple approach having the best of both worlds, by building on the exciting developments in generative modeling and retrieval for open domain question answering. This method proceeds in two steps, by first retrieving supporting passages using either sparse or dense",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 4,
+      "chunk_id": "f1ee7e927c3fb31b:p1:c4",
+      "score": -8.952770233154297,
+      "rank": 2
+    },
+    {
+      "text": "5 Conclusion\n\nIn this paper, we study a simple approach to open domain question answering, which relies on retrieving support passages before processing them with a generative model. We show that while conceptually simple, this approach is competitive with existing methods, and that it scales well with the number of retrieved passages. In future work, we plan to make this model more efficient, in particular when scaling to large number of support passages. We also plan to integrate the retrieval in our model, and to learn the whole system end-to-end.",
+      "paper_id": "f1ee7e927c3fb31b",
+      "paper_title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "page": 5,
+      "section": "Conclusion",
+      "chunk_index": 25,
+      "chunk_id": "f1ee7e927c3fb31b:p5:c2",
+      "score": -4.817255973815918,
+      "rank": 2
+    },
+    {
+      "text": "as well as various Web sources and is intended for open-domain QA from unstructured corpora. SQuAD v1.1 (Rajpurkar et al., 2016) is a popular benchmark dataset for reading comprehension. Annotators were presented with a Wikipedia paragraph, and asked to write questions that could be answered from the given text. Although SQuAD has been used previously for open-domain QA research, it is not ideal because many questions lack context in absence of the provided paragraph. We still include it in our experiments for providing a fair comparison to previous work and we will discuss more in Section 5.1.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 4,
+      "section": "Question Answering Datasets",
+      "chunk_index": 26,
+      "chunk_id": "3e67fc1a9977715a:p4:c5",
+      "score": -9.42728328704834,
+      "rank": 3
+    },
+    {
+      "text": "6 Discussion\n\nIn this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, finding RAG more factual and specific. We conducted an thorough investigation of the learned retrieval component, validating its effectiveness, and we illustrated how the retrieval index can be hot-swapped to update the model without requiring any retraining. In future work, it may be fruitful to investigate if the two components can be jointly pre-trained from scratch, either with a denoising objective similar to BART or some another objective. Our work opens up new research directions on how parametric and non-parametric memories interact and how to most effectively combine them, showing promise in being applied to a wide variety of NLP tasks.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 9,
+      "section": "Discussion",
+      "chunk_index": 54,
+      "chunk_id": "23e3249e9a1e7541:p9:c4",
+      "score": -8.334920883178711,
+      "rank": 3
+    },
+    {
+      "text": "In this paper, we address the question: can we train a better dense embedding model using only pairs of questions and passages (or answers), without additional pretraining? By leveraging the now standard BERT pretrained model (Devlin et al., 2019) and a dual-encoder architecture (Bromley et al., 1994), we focus on developing the right training scheme using a relatively small number of question and passage pairs. Through a series of careful ablation studies, our final solution is surprisingly simple: the embedding is optimized for maximizing inner products of the question and relevant passage vectors, with an objective comparing all pairs of questions and passages in a batch. Our Dense Passage Retriever (DPR) is exceptionally strong. It not only outperforms BM25 by a large margin (65.2% vs. 42.9% in Top-5 accuracy), but also results in a substantial improvement on the end-to-end QA accuracy compared to ORQA (41.5% vs.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_index": 7,
+      "chunk_id": "3e67fc1a9977715a:p2:c1",
+      "score": -9.722938537597656,
+      "rank": 4
+    },
+    {
+      "text": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures. Additionally, providing provenance for their decisions and updating their world knowledge remain open research problems. Pretrained models with a differentiable access mechanism to explicit non-parametric memory have so far been only investigated for extractive downstream tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric memory for language generation.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_index": 1,
+      "chunk_id": "23e3249e9a1e7541:p1:c1",
+      "score": -8.83038330078125,
+      "rank": 4
+    },
+    {
+      "text": "5.1 Main Results\n\nTable 2 compares different passage retrieval systems on five QA datasets, using the top-k accuracy (k ∈{20, 100}). With the exception of SQuAD, DPR performs consistently better than BM25 on all datasets. The gap is especially large when k is small (e.g., 78.4% vs. 59.1% for top-20 accuracy on Natural Questions). When training with mul-\n\n8SQuAD is limited to a small set of Wikipedia documents and thus introduces unwanted bias. We will discuss this issue more in Section 5.1.\n\n9Lucene implementation. BM25 parameters b = 0.4 (document length normalization) and k1 = 0.9 (term frequency scaling) are tuned using development sets.\n\n20 40 60 80 100 k: # of retrieved passages\n\n40\n\n50\n\n60\n\n70\n\n80\n\n90\n\nBM25 # Train: 1k # Train: 10k # Train: 20k # Train: 40k # Train: all (59k)",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 5,
+      "section": "Main Results",
+      "chunk_index": 32,
+      "chunk_id": "3e67fc1a9977715a:p5:c3",
+      "score": -9.730581283569336,
+      "rank": 5
+    },
+    {
+      "text": "Broader Impact\n\nThis work offers several positive societal benefits over previous work: the fact that it is more strongly grounded in real factual knowledge (in this case Wikipedia) makes it “hallucinate” less with generations that are more factual, and offers more control and interpretability. RAG could be employed in a wide variety of scenarios with direct benefit to society, for example by endowing it with a medical index and asking it open-domain questions on that topic, or by helping people be more effective at their jobs.",
+      "paper_id": "23e3249e9a1e7541",
+      "paper_title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "page": 10,
+      "section": "Discussion",
+      "chunk_index": 55,
+      "chunk_id": "23e3249e9a1e7541:p10:c0",
+      "score": -9.138760566711426,
+      "rank": 5
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "question": "What are the limitations of these retrieval approaches?",
+  "paper_ids": [
+    "3e67fc1a9977715a",
+    "2e487d9b96e3c2e5"
+  ],
+  "status": "ok",
+  "message": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "A huge performance degradation is often observed in practice when reducing open-domain QA to a two-stage framework of retrieval followed by reading, indicating the need for improving retrieval.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S2",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 1,
+          "section": "Introduction",
+          "chunk_id": "3e67fc1a9977715a:p1:c2",
+          "snippet": "1 Introduction\n\nOpen-domain question answering (QA) (Voorhees, 1999) is a task that answers factoid questions using a large collection of documents. While early QA systems are often complicated and consist of multiple components (Ferrucci (2012); Moldovan et al. (2003), inter alia), the advances of ..."
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "claim": "BERT considerably improves search precision but increases latency by up to tens of thousands of milliseconds even with a high-end GPU, posing a challenging tradeoff for user experience.",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "citations": [
+        {
+          "source_id": "S8",
+          "paper_id": "2e487d9b96e3c2e5",
+          "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+          "page": 2,
+          "section": "Introduction",
+          "chunk_id": "2e487d9b96e3c2e5:p2:c1",
+          "snippet": "As the figure shows, BERT considerably improves search precision, raising MRR@10 by almost 7% against the best previous methods; simultaneously, it increases latency by up to tens of thousands of milliseconds even with a high-end GPU. Tis poses a challenging tradeoffsince raising query response ..."
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "ColBERT’s late‑interaction operator is designed to enable end‑to‑end retrieval from a large collection, but exhaustive evaluation of each candidate document is infeasible when the number of documents N is very large.",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "citations": [
+        {
+          "source_id": "S6",
+          "paper_id": "2e487d9b96e3c2e5",
+          "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+          "page": 5,
+          "section": "End-to-end Top-k Retrieval with ColBERT",
+          "chunk_id": "2e487d9b96e3c2e5:p5:c7",
+          "snippet": "3.6 End-to-end Top-k Retrieval with ColBERT\n\nAs mentioned before, ColBERT’s late-interaction operator is specifically designed to enable end-to-end retrieval from a large collection, largely to improve recall relative to term-based retrieval approaches. Tis section is concerned with cases where the ..."
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "More complex model frameworks or similarity functions do not necessarily provide additional value beyond a simple dual‑encoder approach.",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "citations": [
+        {
+          "source_id": "S1",
+          "paper_id": "3e67fc1a9977715a",
+          "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "page": 9,
+          "section": "Conclusion",
+          "chunk_id": "3e67fc1a9977715a:p9:c5",
+          "snippet": "8 Conclusion\n\nIn this work, we demonstrated that dense retrieval can outperform and potentially replace the traditional sparse retrieval component in open-domain question answering. While a simple dual-encoder approach can be made to work surprisingly well, we showed that there are some critical ..."
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "statement": "Retrieval quality remains a bottleneck for open-domain QA pipelines, as even modest drops in recall cause large downstream performance losses.",
+      "based_on": [
+        "E1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "BERT-based retrievers achieve higher precision but incur latency that can be orders of magnitude larger than traditional sparse methods, limiting real‑time applicability.",
+      "based_on": [
+        "E2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "ColBERT’s late‑interaction design, while enabling richer matching, still requires exhaustive scoring of all passages, which becomes infeasible for collections with billions of documents.",
+      "based_on": [
+        "E3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "statement": "Increasing model complexity or using more sophisticated similarity functions does not automatically translate into better retrieval performance beyond a simple dual‑encoder DPR setup.",
+      "based_on": [
+        "E4"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "statement": "There is an inherent trade‑off between retrieval latency and accuracy across dense and late‑interaction models, suggesting that current methods lack a scalable way to balance both.",
+      "based_on": [
+        "E2",
+        "E3"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "directions": [
+    {
+      "title": "Hybrid Sparse‑Dense Retrieval with Adaptive Latency Budget",
+      "rationale": "Combining fast sparse scores with a lightweight dense reranker could retain high precision while keeping latency within user‑acceptable limits, addressing the latency‑accuracy trade‑off highlighted in E2 and E3.",
+      "based_on": [
+        "E2",
+        "E3"
+      ],
+      "validation_experiment": "Dataset: Natural Questions; Baselines: DPR, ColBERT, BM25; Metric: top‑5 recall vs. average query latency (ms) under a 200 ms budget."
+    },
+    {
+      "title": "Learned Approximate Late Interaction via Product Quantization",
+      "rationale": "If exhaustive late‑interaction scoring is infeasible (E3), learning a quantized representation of token‑level embeddings could approximate the interaction at lower cost, testing whether approximation preserves the precision gains of ColBERT.",
+      "based_on": [
+        "E3"
+      ],
+      "validation_experiment": "Dataset: MS MARCO Passage; Baselines: full ColBERT, PQ‑approximated ColBERT; Metric: MRR@10 and index‑size‑adjusted query time."
+    },
+    {
+      "title": "Dynamic Dual‑Encoder Scaling Based on Query Difficulty",
+      "rationale": "E4 suggests simple dual‑encoders are competitive; a system that detects hard queries and selectively upgrades to a more complex encoder could improve overall QA performance without uniformly increasing cost.",
+      "based_on": [
+        "E1",
+        "E4"
+      ],
+      "validation_experiment": "Dataset: TriviaQA; Baselines: DPR alone, DPR+adaptive complex encoder; Metric: end‑to‑end QA exact match vs. average retrieval latency."
+    }
+  ],
+  "sources": [
+    {
+      "text": "8 Conclusion\n\nIn this work, we demonstrated that dense retrieval can outperform and potentially replace the traditional sparse retrieval component in open-domain question answering. While a simple dual-encoder approach can be made to work surprisingly well, we showed that there are some critical ingredients to training a dense retriever successfully. Moreover, our empirical analysis and ablation studies indicate that more complex model frameworks or similarity functions do not necessarily provide additional values. As a result of improved retrieval performance, we obtained new state-of-the-art results on multiple open-domain question answering benchmarks.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 9,
+      "section": "Conclusion",
+      "chunk_index": 64,
+      "chunk_id": "3e67fc1a9977715a:p9:c5",
+      "score": -0.7705483436584473,
+      "rank": 1
+    },
+    {
+      "text": "1 Introduction\n\nOpen-domain question answering (QA) (Voorhees, 1999) is a task that answers factoid questions using a large collection of documents. While early QA systems are often complicated and consist of multiple components (Ferrucci (2012); Moldovan et al. (2003), inter alia), the advances of reading comprehension models suggest a much simplified two-stage framework: (1) a context retriever first selects a small subset of passages where some of them contain the answer to the question, and then (2) a machine reader can thoroughly examine the retrieved contexts and identify the correct answer (Chen et al., 2017). Although reducing open-domain QA to machine reading is a very reasonable strategy, a huge performance degradation is often observed in practice2, indicating the needs of improving retrieval.\n\n∗Equal contribution 1The code and trained models have been released at https://github.com/facebookresearch/DPR.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 1,
+      "section": "Introduction",
+      "chunk_index": 2,
+      "chunk_id": "3e67fc1a9977715a:p1:c2",
+      "score": -9.299054145812988,
+      "rank": 1
+    },
+    {
+      "text": "Dense retrieval for open-domain QA has been explored by Das et al. (2019), who propose to retrieve relevant passages iteratively using reformulated question vectors. As an alternative approach that skips passage retrieval, Seo et al. (2019) propose to encode candidate answer phrases as vectors and directly retrieve the answers to the input questions efficiently. Using additional pretraining with the objective that matches surrogates of questions and relevant passages, Lee et al. (2019) jointly train the question encoder and reader. Their approach outperforms the BM25 plus reader paradigm on multiple open-domain QA datasets in QA accuracy, and is further extended by REALM (Guu et al., 2020), which includes tuning the passage encoder asynchronously by re-indexing the passages during training. The pretraining objective has also recently been improved by Xiong et al. (2020b). In contrast, our model provides a simple and yet",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 9,
+      "section": "Related Work",
+      "chunk_index": 62,
+      "chunk_id": "3e67fc1a9977715a:p9:c3",
+      "score": -1.4913281202316284,
+      "rank": 2
+    },
+    {
+      "text": "vectors, and storing the embeddings on GPU if sufficient memory exists. We leave these directions for future work.\n\n0.27 0.29 0.31 0.33 0.35 0.37\n\nMRR@10\n\n103 104 105 106 107 108 109\n\nk=10\n\n20 50 100 200\n\n500 1000\n\n2000\n\nk=10 20 50 100\n\n200\n\n500 1000\n\n2000\n\nBERTbase (our training)\n\nColBERT\n\nFigure 4: FLOPs (in millions) and MRR@10 as functions of the re-ranking depth k. Since the official BM25 ranking is not ordered, the initial top-k retrieval is conducted with Anserini’s BM25.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 8,
+      "section": "Qality–Cost Tradeoff: Top-k Re-ranking",
+      "chunk_index": 62,
+      "chunk_id": "2e487d9b96e3c2e5:p8:c0",
+      "score": -9.49978256225586,
+      "rank": 2
+    },
+    {
+      "text": "7 Related Work\n\nPassage retrieval has been an important component for open-domain QA (Voorhees, 1999). It not only effectively reduces the search space for answer extraction, but also identifies the support context for users to verify the answer. Strong sparse vector space models like TF-IDF or BM25 have",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 8,
+      "section": "Related Work",
+      "chunk_index": 58,
+      "chunk_id": "3e67fc1a9977715a:p8:c6",
+      "score": -1.820781946182251,
+      "rank": 3
+    },
+    {
+      "text": "3.6 End-to-end Top-k Retrieval with ColBERT\n\nAs mentioned before, ColBERT’s late-interaction operator is specifically designed to enable end-to-end retrieval from a large collection, largely to improve recall relative to term-based retrieval approaches. Tis section is concerned with cases where the number of documents to be ranked is too large for exhaustive evaluation of each possible candidate document, particularly when we are only interested in the highest scoring ones. Concretely, we focus here on retrieving the top-k results directly from a large document collection with N (e.g., N = 10, 000, 000) documents, where k ≪N.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 5,
+      "section": "End-to-end Top-k Retrieval with ColBERT",
+      "chunk_index": 42,
+      "chunk_id": "2e487d9b96e3c2e5:p5:c7",
+      "score": -1.8316559791564941,
+      "rank": 4
+    },
+    {
+      "text": "2 Background\n\nThe problem of open-domain QA studied in this paper can be described as follows. Given a factoid question, such as “Who first voiced Meg on Family Guy?” or “Where was the 8th Dalai Lama born?”, a system is required to answer it using a large corpus of diversified topics. More specifically, we assume\n\nthe extractive QA setting, in which the answer is restricted to a span appearing in one or more passages in the corpus. Assume that our collection contains D documents, d1, d2, · · · , dD. We first split each of the documents into text passages of equal lengths as the basic retrieval units3 and get M total passages in our corpus C = {p1, p2, . . . , pM}, where each passage pi can be viewed as a sequence of tokens w(i)\n\n1 , w(i) 2 , · · · , w(i) |pi|. Given a question q,\n\nthe task is to find a span w(i)\n\ns , w(i)\n\ns+1, · · · , w(i)",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 2,
+      "section": "Background",
+      "chunk_index": 10,
+      "chunk_id": "3e67fc1a9977715a:p2:c4",
+      "score": -9.796514511108398,
+      "rank": 4
+    },
+    {
+      "text": "As the figure shows, BERT considerably improves search precision, raising MRR@10 by almost 7% against the best previous methods; simultaneously, it increases latency by up to tens of thousands of milliseconds even with a high-end GPU. Tis poses a challenging tradeoffsince raising query response times by as litle as 100ms is known to impact user experience and even measurably diminish revenue [17]. To tackle this problem, recent work has started exploring using Natural Language Understanding (NLU) techniques to augment traditional retrieval models like BM25 [32]. For example, Nogueira et al. [26, 28] expand documents with NLU-generated queries before indexing with BM25 scores and Dai & Callan [2] replace BM25’s term frequency with NLU-estimated term importance. Despite successfully reducing latency, these approaches generally reduce precision substantially relative to BERT.",
+      "paper_id": "2e487d9b96e3c2e5",
+      "paper_title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "page": 2,
+      "section": "Introduction",
+      "chunk_index": 10,
+      "chunk_id": "2e487d9b96e3c2e5:p2:c1",
+      "score": -2.88344669342041,
+      "rank": 5
+    },
+    {
+      "text": "Abstract\n\nOpen-domain question answering relies on efficient passage retrieval to select candidate contexts, where traditional sparse vector space models, such as TF-IDF or BM25, are the de facto method. In this work, we show that retrieval can be practically implemented using dense representations alone, where embeddings are learned from a small number of questions and passages by a simple dualencoder framework. When evaluated on a wide range of open-domain QA datasets, our dense retriever outperforms a strong Lucene- BM25 system greatly by 9%-19% absolute in terms of top-20 passage retrieval accuracy, and helps our end-to-end QA system establish new state-of-the-art on multiple open-domain QA benchmarks.1",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 1,
+      "section": "Abstract",
+      "chunk_index": 1,
+      "chunk_id": "3e67fc1a9977715a:p1:c1",
+      "score": -10.049942016601562,
+      "rank": 5
+    },
+    {
+      "text": "5 Experiments: Passage Retrieval\n\nIn this section, we evaluate the retrieval performance of our Dense Passage Retriever (DPR), along with analysis on how its output differs from\n\n6We use the unfiltered TriviaQA version and discard the noisy evidence documents mined from Bing.\n\n7The improvement of using gold contexts over passages that contain answers is small. See Section 5.2 and Appendix A.",
+      "paper_id": "3e67fc1a9977715a",
+      "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "page": 4,
+      "section": "Experiments: Passage Retrieval",
+      "chunk_index": 28,
+      "chunk_id": "3e67fc1a9977715a:p4:c7",
+      "score": -5.286334991455078,
+      "rank": 6
+    }
+  ],
+  "raw_text": "",
+  "dropped": {
+    "evidence": 0,
+    "analysis": 0,
+    "directions": 0
+  }
+}

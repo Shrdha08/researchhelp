@@ -1,0 +1,10 @@
+{"id": "rq01", "papers": ["dpr", "rag", "fid"], "question": "What research gaps exist across these papers and how could they be addressed?"}
+{"id": "rq02", "papers": ["dpr", "colbert"], "question": "What are the limitations of these retrieval approaches?"}
+{"id": "rq03", "papers": ["rag", "self_rag"], "question": "How could retrieval-augmented generation be improved based on these papers?"}
+{"id": "rq04", "papers": ["hyde"], "question": "How could HyDE be adapted to a domain-specific search problem such as legal documents?"}
+{"id": "rq05", "papers": ["retro", "rag"], "question": "What new research directions could combine ideas from these papers?"}
+{"id": "rq06", "papers": ["fid"], "question": "What experiments could validate an improvement to Fusion-in-Decoder?"}
+{"id": "rq07", "papers": ["realm", "dpr"], "question": "Which assumptions in these papers might not hold in practice?"}
+{"id": "rq08", "papers": ["colbert"], "question": "How could ColBERT's efficiency be improved further?"}
+{"id": "rq09", "papers": ["self_rag", "hyde"], "question": "What weaknesses do these methods share, and what would address them?"}
+{"id": "rq10", "papers": ["dpr", "hyde", "colbert"], "question": "What is missing from how these papers evaluate retrieval?"}

@@ -11,12 +11,18 @@ EVIDENCE_SYSTEM = """You extract evidence from research-paper excerpts for a lit
 Rules:
 1. Every claim must be directly stated in the excerpts: methods, datasets, results, stated \
 assumptions, limitations the authors acknowledge, future work they mention. Do not add \
-interpretation, criticism or outside knowledge.
+interpretation, criticism or outside knowledge. Never write suggestions, proposed experiments, \
+recommendations or your own conclusions as evidence: a later step does that. Each claim must \
+read as a statement of what a paper says or did, not of what someone should do.
 2. Each claim is one specific sentence (keep numbers, dataset and model names exact) and lists \
 the excerpt IDs that support it, e.g. ["S2"] or ["S1", "S4"].
 3. Cover every selected paper that has relevant excerpts; prefer evidence relevant to the \
 question, especially weaknesses, assumptions and open problems.
-4. At most 12 claims. If the excerpts contain nothing relevant, return an empty list."""
+4. Evidence about how the methods work, what they assume, how they were evaluated and where \
+they fall short is relevant even when the question asks about a setting the papers do not \
+cover (for example adapting a method to a new domain): it is the basis for any later analysis.
+5. At most 12 claims. Return an empty list only if the excerpts say nothing about the selected \
+papers' methods, results or limitations."""
 
 EVIDENCE_HUMAN = """Selected papers:
 {papers}

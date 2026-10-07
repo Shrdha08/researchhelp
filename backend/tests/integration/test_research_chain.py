@@ -71,6 +71,7 @@ def test_research_chain_multi_paper(indexed):
     assert all(e.citations for e in result.evidence)
     assert [a.statement for a in result.analysis] == ["Both models are only tested on small data."]
     assert result.directions[0].based_on == ["E2"]
+    assert result.dropped == {"evidence": 1, "analysis": 1, "directions": 0}
     assert {d.metadata["paper_id"] for d in result.sources} == {widget.paper_id, gadget.paper_id}
     assert len(result.sources) <= 6
 

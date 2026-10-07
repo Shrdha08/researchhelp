@@ -64,3 +64,31 @@ question + paper_ids
   ─► parse [S#] markers → resolve to paper/page/section; drop IDs not in context
   ─► answer + citations
 ```
+
+## Routing (LangGraph, Phase 3)
+
+```
+START ──(mode = evidence | research)─────────────────► evidence_rag | research_assistant ─► END
+  └──(mode = auto)──► classify ──(intent)────────────► evidence_rag | research_assistant ─► END
+                       gpt-oss-20b few-shot JSON;
+                       keyword fallback on failure
+```
+
+The graph decides only the *intent*. Scope (`paper_ids`) is passed through unchanged, and both pipelines use the same `ScopedRetriever`. The graph state records how each route was chosen: `llm`, `keyword` or `forced`.
+
+## Research-assistant data flow (Phase 3)
+
+```
+question + paper_ids
+  ─► ScopedRetriever(question)  ┐  merged by rank, de-duplicated,
+  ─► ScopedRetriever(fixed      ┘  capped at research_k_final (10)
+       "limitations / future work" query)
+  ─► Chain A: extract evidence (JSON)       sees the [S#] excerpts; may only restate them
+       └─ validate: drop claims without a real [S#] source; number E1..En; attach pages
+  ─► Chain B: synthesise (JSON)             sees ONLY the evidence list, never the excerpts
+       └─ validate: drop analysis/direction items not linked to a real E#
+  ─► ResearchAnswer  Evidence (cited) | Analysis (inferred, with confidence)
+                     | Proposed directions (hypotheses + how to test them)
+```
+
+With no valid evidence, synthesis is skipped (`status = no_evidence`). If the model's JSON can't be repaired, the evidence is kept and the raw text is shown (`status = unstructured`).
