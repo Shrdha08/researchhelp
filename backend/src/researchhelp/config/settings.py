@@ -57,6 +57,13 @@ class Settings(BaseSettings):
     k_candidates: int = 10
     k_final: int = 6
 
+    # Research assistant (Phase 3): a second, fixed retrieval query surfaces the passages where
+    # papers discuss their own weaknesses; the merged context is capped at research_k_final.
+    research_k_final: int = 10
+    research_aux_query: str = (
+        "limitations, weaknesses, assumptions, failure cases, future work, open problems"
+    )
+
     # Paths
     data_dir: Path = REPO_ROOT / "data"
 

@@ -81,4 +81,9 @@ def resolve_citations(answer: str, sources: dict[str, Document]) -> tuple[str, l
 
     cleaned = _MARKER.sub(replace, answer)
     cleaned = re.sub(r"[ \t]+([.,;:])", r"\1", cleaned)  # tidy spaces left by removed markers
-    return cleaned.strip(), [_citation(s, sources[s]) for s in used]
+    return cleaned.strip(), citations_for(used, sources)
+
+
+def citations_for(source_ids: Sequence[str], sources: dict[str, Document]) -> list[Citation]:
+    """Citations for the given IDs, in order and de-duplicated, skipping IDs not in ``sources``."""
+    return [_citation(s, sources[s]) for s in dict.fromkeys(source_ids) if s in sources]
