@@ -43,3 +43,9 @@ The ambiguous case is limitations. The rule is that questions about what the **a
 
 ## ADR-14: A fixed auxiliary retrieval query for the research assistant
 A research question like "how could this be improved?" doesn't share vocabulary with the passages where papers discuss their own weaknesses, so retrieving with the user's question alone tends to miss them. The research pipeline therefore runs the shared retriever a second time with a **fixed** query ("limitations, weaknesses, assumptions, failure cases, future work, open problems"), then merges the two ranked lists. It's deterministic and costs one extra retrieval (no LLM call), so it isn't LLM query decomposition.
+
+## ADR-15: Background ingestion with FastAPI BackgroundTasks, plus startup reconciliation
+Indexing a paper takes seconds to a minute (parsing, then embedding on CPU or GPU), so `POST /papers/upload` returns `202` straight away and the client polls the paper's status. Ingestion runs in FastAPI's `BackgroundTasks`, in the same process as the API, rather than in a job queue (Celery or RQ with Redis), which would add two services to a single-user student project. The cost is that a task dies with its process. That's handled explicitly: on startup, any paper still marked `processing` becomes `failed` and can be re-uploaded. Because the paper ID is the content hash, re-uploading is idempotent. If the app ever needed many concurrent uploads or several API workers, a real queue would be the next step.
+
+## ADR-16: Repository interface for paper records; JSON file until Phase 5
+Services depend on a `PaperRepository` protocol (`get`, `list_all`, `add`, `update`, `delete`), not on a storage technology. Phase 4 uses a JSON file with a lock and atomic replace, which is enough for one API process. Phase 5 swaps in PostgreSQL behind the same interface, without changing the routes or services.

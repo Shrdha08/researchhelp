@@ -92,3 +92,25 @@ question + paper_ids
 ```
 
 With no valid evidence, synthesis is skipped (`status = no_evidence`). If the model's JSON can't be repaired, the evidence is kept and the raw text is shown (`status = unstructured`).
+
+## HTTP API (Phase 4)
+
+```
+routes (api/routes/*)          HTTP only: validation (Pydantic), status codes, uploads, background tasks
+   │
+services (services/*)          paper lifecycle, dedupe, scope validation, consistency; raise ServiceErrors
+   │                           (mapped once to 400/404/409/503 in api/main.py)
+   ├── PaperRepository         JSON file now (repository/json_repository.py); PostgreSQL in Phase 5
+   ├── PaperVectorStore        Qdrant chunks
+   └── LangGraph app           evidence / research pipelines (rag/, graph/)
+```
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /papers/upload` | multi-file upload; 202 + `processing`; indexing runs as a background task; same PDF → `duplicate: true` |
+| `GET /papers`, `GET /papers/{id}` | registry records: status `processing / ready / failed`, title, pages, chunks, error |
+| `DELETE /papers/{id}` | removes Qdrant points, then the file, then the record (409 while processing) |
+| `POST /query` | `{question, paper_ids, mode}` → `{intent, route_source, route_reason, evidence | research}` |
+| `GET /health` | Qdrant reachable, paper count, LLM key configured |
+
+**Paper status lifecycle:** `processing` → `ready` | `failed`. Failed papers have their partial chunks removed and can be re-uploaded. At startup, papers left in `processing` (their background task died with the process) become `failed`, papers indexed through the CLI are imported, and `ready` records whose chunks are missing become `failed`.

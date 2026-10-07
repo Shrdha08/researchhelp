@@ -31,7 +31,7 @@ There are 29 answerable test questions; all 6 unanswerable questions were correc
 | 1 | Ingestion + baseline RAG (CLI) | done |
 | 2 | Hybrid retrieval, reranking, evaluation | done (manual judge check pending) |
 | 3 | Research assistant + LangGraph routing | done |
-| 4 | FastAPI backend | planned |
+| 4 | FastAPI backend | done |
 | 5 | PostgreSQL persistence | planned |
 | 6 | React frontend | planned |
 | 7 | Tests, Docker, deployment | planned |
@@ -51,6 +51,18 @@ uv run pytest
 One of the two extras is required, because the ONNX runtime for the local embedding and reranker models comes from it. `ONNX_DEVICE=auto` (the default) uses the GPU when available and logs which provider is active.
 
 To run without Docker, set `QDRANT_PATH=./data/qdrant_local` in `.env` to use embedded on-disk Qdrant.
+
+## API
+
+```bash
+cd backend
+uv run researchhelp serve            # http://127.0.0.1:8000, Swagger UI at /docs
+curl -F "files=@../data/papers/dpr.pdf" localhost:8000/papers/upload    # 202, status processing
+curl localhost:8000/papers                                               # poll until "ready"
+curl -H "Content-Type: application/json" localhost:8000/query      -d '{"question": "Which datasets are used?", "paper_ids": ["3e67fc1a9977715a"], "mode": "auto"}'
+```
+
+Endpoints: `POST /papers/upload`, `GET /papers`, `GET /papers/{id}`, `DELETE /papers/{id}`, `POST /query`, `GET /health`. Papers indexed with the CLI appear in the API automatically after a restart.
 
 ## Evaluation
 
