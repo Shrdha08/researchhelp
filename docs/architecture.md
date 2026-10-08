@@ -100,7 +100,7 @@ routes (api/routes/*)          HTTP only: validation (Pydantic), status codes, u
    │
 services (services/*)          paper lifecycle, dedupe, scope validation, consistency; raise ServiceErrors
    │                           (mapped once to 400/404/409/503 in api/main.py)
-   ├── PaperRepository         JSON file now (repository/json_repository.py); PostgreSQL in Phase 5
+   ├── PaperRepository         PostgreSQL (repository/sql_repository.py); JSON registry kept for tests
    ├── PaperVectorStore        Qdrant chunks
    └── LangGraph app           evidence / research pipelines (rag/, graph/)
 ```
@@ -114,3 +114,23 @@ services (services/*)          paper lifecycle, dedupe, scope validation, consis
 | `GET /health` | Qdrant reachable, paper count, LLM key configured |
 
 **Paper status lifecycle:** `processing` → `ready` | `failed`. Failed papers have their partial chunks removed and can be re-uploaded. At startup, papers left in `processing` (their background task died with the process) become `failed`, papers indexed through the CLI are imported, and `ready` records whose chunks are missing become `failed`.
+
+## Data stores: why PostgreSQL and Qdrant (Phase 5)
+
+| | PostgreSQL | Qdrant |
+|---|---|---|
+| **Holds** | Application records: papers (status, title, counts, errors), conversations, messages (including the full structured answers) | Chunks: text, page, section, dense and BM25 sparse vectors |
+| **Good at** | Relational integrity (foreign keys, cascade delete), transactions, queries over records | Filtered nearest-neighbour search, hybrid dense + sparse fusion |
+| **Queried by** | Services (paper status, history) | The retriever (every question) |
+| **Link** | `papers.id` | `paper_id` in every point's payload (the same content hash) |
+
+Neither is a substitute for the other: PostgreSQL could store vectors (pgvector) but has no built-in sparse+dense fusion, and Qdrant could store a payload per point but has no foreign keys, transactions or cascading deletes. The only place where the two must agree is the paper's lifecycle, and that is the service's job: ingestion writes chunks first and the `ready` status last; deletion removes chunks first and the record last; startup reconciliation repairs any drift.
+
+```
+papers (id PK = content hash, filename, status, title, num_pages, num_chunks, error, timestamps)
+conversations (id PK uuid, title, created_at, updated_at)
+messages (id PK, conversation_id FK → conversations ON DELETE CASCADE, role, content,
+          intent, mode, paper_ids JSONB, payload JSONB, created_at)
+```
+
+An assistant message's `payload` is the same JSON `/query` returned (route, evidence or research body, citations). Deleting a paper does not touch history: stored answers cite the pages that were true when they were given.

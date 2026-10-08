@@ -32,7 +32,7 @@ There are 29 answerable test questions; all 6 unanswerable questions were correc
 | 2 | Hybrid retrieval, reranking, evaluation | done (manual judge check pending) |
 | 3 | Research assistant + LangGraph routing | done |
 | 4 | FastAPI backend | done |
-| 5 | PostgreSQL persistence | planned |
+| 5 | PostgreSQL persistence | done |
 | 6 | React frontend | planned |
 | 7 | Tests, Docker, deployment | planned |
 
@@ -42,7 +42,7 @@ Requirements: [uv](https://docs.astral.sh/uv/) (it installs Python 3.12 for the 
 
 ```bash
 cp .env.example .env            # add your GROQ_API_KEY
-docker compose up -d qdrant postgres
+docker compose up -d qdrant postgres   # PostgreSQL is on host port 5433
 cd backend
 uv sync --extra gpu             # NVIDIA GPU (CUDA 13 driver); or: uv sync --extra cpu
 uv run pytest
@@ -62,7 +62,9 @@ curl localhost:8000/papers                                               # poll 
 curl -H "Content-Type: application/json" localhost:8000/query      -d '{"question": "Which datasets are used?", "paper_ids": ["3e67fc1a9977715a"], "mode": "auto"}'
 ```
 
-Endpoints: `POST /papers/upload`, `GET /papers`, `GET /papers/{id}`, `DELETE /papers/{id}`, `POST /query`, `GET /health`. Papers indexed with the CLI appear in the API automatically after a restart.
+Endpoints: `POST /papers/upload`, `GET /papers`, `GET /papers/{id}`, `DELETE /papers/{id}`, `POST /query`, `GET /conversations`, `GET /conversations/{id}`, `DELETE /conversations/{id}`, `GET /health`.
+
+Paper records, conversations and messages are stored in PostgreSQL (migrations run automatically at startup, or `uv run researchhelp migrate`); chunks and vectors stay in Qdrant. `POST /query` starts a new conversation unless you pass `conversation_id`; history is stored and shown but not given to the model. Papers indexed with the CLI appear in the API automatically after a restart.
 
 ## Evaluation
 
