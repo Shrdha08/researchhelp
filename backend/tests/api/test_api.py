@@ -12,7 +12,8 @@ from researchhelp.graph.builder import build_graph
 from researchhelp.rag.common.llm import MissingAPIKeyError
 from researchhelp.rag.evidence.chain import build_evidence_chain
 from researchhelp.rag.research.chain import build_research_chain
-from researchhelp.repository.json_repository import JsonPaperRepository
+from researchhelp.repository.conversations import SqlConversationRepository
+from researchhelp.repository.sql_repository import SqlPaperRepository
 from researchhelp.retrieval.retriever import ScopedRetriever
 from researchhelp.services.paper_service import PaperService
 from researchhelp.services.query_service import QueryService
@@ -21,12 +22,12 @@ pytestmark = pytest.mark.integration
 
 
 @pytest.fixture
-def make_client(store, tmp_path):
+def make_client(store, tmp_path, sqlite_sessions):
     """Returns a factory: make_client(llm_responses) -> (TestClient, PaperService)."""
 
     def make(responses=None, graph_factory=None):
         papers = PaperService(
-            JsonPaperRepository(tmp_path / "papers.json"),
+            SqlPaperRepository(sqlite_sessions),
             store,
             tmp_path / "uploads",
             chunk_size=300,
@@ -43,7 +44,9 @@ def make_client(store, tmp_path):
                 router_llm=None,  # keyword routing
             )
 
-        app = create_app(papers, QueryService(graph_factory or default_graph, papers))
+        conversations = SqlConversationRepository(sqlite_sessions)
+        service = QueryService(graph_factory or default_graph, papers, conversations)
+        app = create_app(papers, service)
         return TestClient(app), papers
 
     return make
@@ -58,7 +61,13 @@ def test_health(make_client):
     client, _ = make_client()
     with client:
         body = client.get("/health").json()
-    assert body == {"status": "ok", "qdrant": True, "papers": 0, "llm_configured": True}
+    assert body == {
+        "status": "ok",
+        "qdrant": True,
+        "database": True,
+        "papers": 0,
+        "llm_configured": True,
+    }
 
 
 def test_upload_ingests_in_background_and_lists(make_client, widget_pdf, gadget_pdf):
@@ -195,3 +204,97 @@ def test_delete_removes_index_file_and_record(make_client, widget_pdf):
         assert client.delete(f"/papers/{pid}").status_code == 404
     assert papers.store.count(pid) == 0
     assert not papers.path_for(pid).exists()
+
+
+def ask(client, pid, question="Which optimizer was used?", **extra):
+    return client.post("/query", json={"question": question, "paper_ids": [pid], **extra})
+
+
+def test_query_creates_conversation_and_follow_up_appends(make_client, widget_pdf):
+    client, _ = make_client(responses=["AdamW [S1].", "3e-4 [S1]."])
+    with client:
+        pid = upload(client, widget_pdf).json()["papers"][0]["paper"]["id"]
+        first = ask(client, pid).json()
+        cid = first["conversation_id"]
+        assert cid
+        second = ask(client, pid, "And the learning rate?", conversation_id=cid).json()
+        assert second["conversation_id"] == cid
+
+        listed = client.get("/conversations").json()
+        assert [(c["id"], c["message_count"]) for c in listed] == [(cid, 4)]
+        assert listed[0]["title"] == "Which optimizer was used?"
+
+        history = client.get(f"/conversations/{cid}").json()
+    roles = [m["role"] for m in history["messages"]]
+    assert roles == ["user", "assistant", "user", "assistant"]
+    user_msg, answer_msg = history["messages"][:2]
+    assert (user_msg["content"], user_msg["mode"], user_msg["paper_ids"]) == (
+        "Which optimizer was used?",
+        "auto",
+        [pid],
+    )
+    # The stored payload re-renders the answer exactly as /query returned it, citations included.
+    assert answer_msg["payload"]["evidence"]["answer"] == first["evidence"]["answer"]
+    assert answer_msg["payload"]["evidence"]["citations"] == first["evidence"]["citations"]
+    assert answer_msg["intent"] == "evidence"
+
+
+def test_research_answer_is_stored_with_all_sections(make_client, widget_pdf):
+    evidence = json.dumps({"evidence": [{"claim": "SWN uses AdamW.", "sources": ["S1"]}]})
+    synthesis = json.dumps(
+        {
+            "analysis": [{"statement": "Single optimizer.", "based_on": ["E1"]}],
+            "directions": [
+                {"title": "T", "rationale": "r", "based_on": ["E1"], "validation_experiment": "x"}
+            ],
+        }
+    )
+    client, _ = make_client(responses=[evidence, synthesis])
+    with client:
+        pid = upload(client, widget_pdf).json()["papers"][0]["paper"]["id"]
+        cid = ask(client, pid, "What could be improved?", mode="research").json()["conversation_id"]
+        message = client.get(f"/conversations/{cid}").json()["messages"][1]
+    research = message["payload"]["research"]
+    assert message["intent"] == "research" and research["status"] == "ok"
+    assert research["evidence"][0]["citations"] and research["directions"][0]["based_on"] == ["E1"]
+    assert message["content"].startswith("Research assistance (ok): 1 evidence items")
+
+
+def test_failed_query_is_not_stored(make_client, widget_pdf):
+    def no_key():
+        raise MissingAPIKeyError("GROQ_API_KEY is not set")
+
+    client, _ = make_client(graph_factory=no_key)
+    with client:
+        pid = upload(client, widget_pdf).json()["papers"][0]["paper"]["id"]
+        assert ask(client, pid).status_code == 503
+        assert client.get("/conversations").json() == []
+
+
+def test_unknown_conversation_is_404_before_any_work(make_client, widget_pdf):
+    client, _ = make_client(responses=["unused"])
+    with client:
+        pid = upload(client, widget_pdf).json()["papers"][0]["paper"]["id"]
+        assert ask(client, pid, conversation_id="nope").status_code == 404
+        assert client.get("/conversations/nope").status_code == 404
+        assert client.delete("/conversations/nope").status_code == 404
+
+
+def test_delete_conversation(make_client, widget_pdf):
+    client, _ = make_client(responses=["AdamW [S1]."])
+    with client:
+        pid = upload(client, widget_pdf).json()["papers"][0]["paper"]["id"]
+        cid = ask(client, pid).json()["conversation_id"]
+        assert client.delete(f"/conversations/{cid}").status_code == 204
+        assert client.get("/conversations").json() == []
+        assert client.get(f"/conversations/{cid}").status_code == 404
+
+
+def test_deleting_a_paper_keeps_conversation_history(make_client, widget_pdf):
+    client, _ = make_client(responses=["AdamW [S1]."])
+    with client:
+        pid = upload(client, widget_pdf).json()["papers"][0]["paper"]["id"]
+        cid = ask(client, pid).json()["conversation_id"]
+        assert client.delete(f"/papers/{pid}").status_code == 204
+        history = client.get(f"/conversations/{cid}").json()
+    assert history["message_count"] == 2  # answers cite pages that were true when asked

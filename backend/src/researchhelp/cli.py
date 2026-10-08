@@ -189,6 +189,17 @@ def ask(
 
 
 @app.command()
+def migrate(
+    revision: Annotated[str, typer.Argument(help="Target revision (default: latest)")] = "head",
+):
+    """Apply database migrations (the API also does this at startup)."""
+    from researchhelp.db.migrate import upgrade
+
+    upgrade(get_settings().database_url, revision)
+    typer.echo(f"Database is at revision: {revision}")
+
+
+@app.command()
 def serve(
     host: Annotated[str, typer.Option(help="Interface to bind")] = "127.0.0.1",
     port: Annotated[int, typer.Option(help="Port")] = 8000,

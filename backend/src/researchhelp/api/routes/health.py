@@ -7,18 +7,25 @@ router = APIRouter(tags=["health"])
 
 @router.get("/health", response_model=HealthResponse)
 def health(request: Request):
-    """Liveness plus dependency checks: Qdrant reachable, number of registered papers, and
-    whether an LLM key is configured (queries need it, uploads do not)."""
-    papers = request.app.state.paper_service
+    """Liveness plus dependency checks: Qdrant and PostgreSQL reachable, number of registered
+    papers, and whether an LLM key is configured (queries need it, uploads do not)."""
+    state = request.app.state
+    papers = state.paper_service
     try:
         papers.store.client.get_collections()
         qdrant = True
     except Exception:
         qdrant = False
-    llm = bool(request.app.state.llm_configured)
+    try:
+        count = len(papers.list_all())
+        database = True
+    except Exception:  # database down: report it instead of failing the health check itself
+        count, database = 0, False
+    llm = bool(state.llm_configured)
     return HealthResponse(
-        status="ok" if qdrant and llm else "degraded",
+        status="ok" if qdrant and database and llm else "degraded",
         qdrant=qdrant,
-        papers=len(papers.list_all()),
+        database=database,
+        papers=count,
         llm_configured=llm,
     )

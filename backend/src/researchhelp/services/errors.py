@@ -24,3 +24,7 @@ class PaperBusy(ServiceError):  # 409: cannot delete while ingestion is running
 
 class LLMUnavailable(ServiceError):  # 503: e.g. GROQ_API_KEY missing
     pass
+
+
+class ConversationNotFound(ServiceError):  # 404
+    pass

@@ -50,6 +50,11 @@ class QueryRequest(BaseModel):
     mode: Literal["auto", "evidence", "research"] = Field(
         "auto", description="auto lets the router decide; evidence/research force a pipeline"
     )
+    conversation_id: str | None = Field(
+        None,
+        description="Add to an existing conversation; omit to start a new one. History is only "
+        "stored and displayed: it is not given to the model as context.",
+    )
 
 
 class CitationOut(_Out):
@@ -109,6 +114,7 @@ class ResearchResult(_Out):
 
 
 class QueryResponse(_Out):
+    conversation_id: str | None = Field(None, description="Conversation this exchange was saved to")
     intent: Literal["evidence", "research"]
     route_source: Literal["llm", "keyword", "forced"]
     route_reason: str
@@ -116,19 +122,41 @@ class QueryResponse(_Out):
     research: ResearchResult | None = Field(None, description="Set when intent is research")
 
     @classmethod
-    def of(cls, state: dict) -> "QueryResponse":
-        result = state["result"].to_dict()
-        body = {"evidence": result} if state["intent"] == "evidence" else {"research": result}
-        return cls(
-            intent=state["intent"],
-            route_source=state["route_source"],
-            route_reason=state["route_reason"],
-            **body,
-        )
+    def of(cls, payload: dict, conversation_id: str | None) -> "QueryResponse":
+        return cls.model_validate({**payload, "conversation_id": conversation_id})
+
+
+# ----- conversations ----------------------------------------------------------------------------
+
+
+class MessageOut(_Out):
+    id: int
+    role: Literal["user", "assistant"]
+    content: str
+    created_at: str
+    intent: Literal["evidence", "research"] | None = None
+    mode: Literal["auto", "evidence", "research"] | None = None
+    paper_ids: list[str] = []
+    payload: QueryResponse | None = Field(
+        None, description="Assistant messages: the full structured answer, as /query returned it"
+    )
+
+
+class ConversationSummary(_Out):
+    id: str
+    title: str
+    created_at: str
+    updated_at: str
+    message_count: int
+
+
+class ConversationOut(ConversationSummary):
+    messages: list[MessageOut]
 
 
 class HealthResponse(_Out):
     status: Literal["ok", "degraded"]
     qdrant: bool
+    database: bool
     papers: int
     llm_configured: bool

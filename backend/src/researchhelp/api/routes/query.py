@@ -16,4 +16,7 @@ def query(body: QueryRequest, service: Annotated[QueryService, Depends(query_ser
     The router sends it to evidence Q&A (cited answer) or to the research assistant (evidence /
     analysis / proposed directions); ``mode`` overrides the router. A plain ``def`` endpoint on
     purpose: retrieval and the LLM calls are blocking, so FastAPI runs it in its thread pool."""
-    return QueryResponse.of(service.ask(body.question, body.paper_ids, body.mode))
+    payload, conversation_id = service.ask(
+        body.question, body.paper_ids, body.mode, body.conversation_id
+    )
+    return QueryResponse.of(payload, conversation_id)

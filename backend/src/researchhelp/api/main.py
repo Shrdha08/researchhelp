@@ -14,9 +14,10 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from researchhelp.api.routes import health, papers, query
+from researchhelp.api.routes import conversations, health, papers, query
 from researchhelp.config import get_settings
 from researchhelp.services.errors import (
+    ConversationNotFound,
     InvalidUpload,
     LLMUnavailable,
     PaperBusy,
@@ -31,6 +32,7 @@ log = logging.getLogger(__name__)
 _STATUS = {
     InvalidUpload: 400,
     PaperNotFound: 404,
+    ConversationNotFound: 404,
     PaperNotReady: 409,
     PaperBusy: 409,
     LLMUnavailable: 503,
@@ -38,14 +40,26 @@ _STATUS = {
 
 
 def _default_services() -> tuple[PaperService, QueryService, bool]:
-    """Production wiring: Qdrant + local models + JSON registry + the LangGraph app."""
+    """Production wiring: PostgreSQL + Qdrant + local models + the LangGraph app."""
+    from researchhelp.db.migrate import upgrade
+    from researchhelp.db.session import make_engine, make_session_factory
     from researchhelp.graph.factory import get_app
-    from researchhelp.repository.json_repository import JsonPaperRepository
+    from researchhelp.repository.conversations import SqlConversationRepository
+    from researchhelp.repository.json_repository import import_json_registry
+    from researchhelp.repository.sql_repository import SqlPaperRepository
     from researchhelp.retrieval.factory import get_store
 
     settings = get_settings()
+    if settings.auto_migrate:
+        upgrade(settings.database_url)  # idempotent: applies only migrations not yet applied
+    sessions = make_session_factory(make_engine(settings.database_url))
+    repo = SqlPaperRepository(sessions)
+    imported = import_json_registry(settings.registry_path, repo)
+    if imported:
+        log.info("imported %d paper records from the old JSON registry", imported)
+
     papers_svc = PaperService(
-        repo=JsonPaperRepository(settings.registry_path),
+        repo=repo,
         store=get_store(),  # loads the embedding models once, at startup
         upload_dir=settings.upload_dir,
         chunk_size=settings.chunk_size,
@@ -54,7 +68,7 @@ def _default_services() -> tuple[PaperService, QueryService, bool]:
     )
     stats = papers_svc.reconcile()
     log.info("paper registry reconciled with the index: %s", stats)
-    query_svc = QueryService(get_app, papers_svc)
+    query_svc = QueryService(get_app, papers_svc, SqlConversationRepository(sessions))
     llm_configured = bool(settings.groq_api_key)
     if llm_configured:
         query_svc.graph()  # warm up: load the reranker and build the graph before first request
@@ -84,7 +98,7 @@ def create_app(
 
     app = FastAPI(
         title="ResearchHelp API",
-        version="0.4.0",
+        version="0.5.0",
         description="Upload research papers, ask evidence questions with page citations, "
         "or get research assistance (evidence / analysis / proposed directions).",
         lifespan=lifespan,
@@ -106,6 +120,7 @@ def create_app(
     app.include_router(health.router)
     app.include_router(papers.router)
     app.include_router(query.router)
+    app.include_router(conversations.router)
     return app
 
 

@@ -35,7 +35,8 @@ class Settings(BaseSettings):
     # If set, use embedded on-disk Qdrant instead of the server (handy without Docker).
     qdrant_path: Path | None = None
     qdrant_collection: str = "paper_chunks"
-    database_url: str = "postgresql+psycopg://researchhelp:researchhelp@localhost:5432/researchhelp"
+    auto_migrate: bool = True  # run Alembic migrations when the API starts
+    database_url: str = "postgresql+pg8000://researchhelp:researchhelp@localhost:5433/researchhelp"
 
     # Local models (FastEmbed / ONNX)
     embed_model: str = "BAAI/bge-small-en-v1.5"
@@ -86,7 +87,7 @@ class Settings(BaseSettings):
 
     @property
     def registry_path(self) -> Path:
-        """JSON paper registry used until PostgreSQL replaces it in Phase 5."""
+        """Phase 4's JSON paper registry; imported into PostgreSQL once, then renamed."""
         return self.data_dir / "papers.json"
 
 

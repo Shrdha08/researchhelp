@@ -66,3 +66,20 @@ class JsonPaperRepository:
             records = self._load()
             if records.pop(paper_id, None) is not None:
                 self._save(records)
+
+
+def import_json_registry(path: Path, target) -> int:
+    """One-time move of Phase 4's JSON registry into another repository (PostgreSQL).
+
+    Records already present in ``target`` are skipped. The file is renamed afterwards so the
+    import never runs twice. Returns the number of records imported."""
+    path = Path(path)
+    if not path.exists():
+        return 0
+    imported = 0
+    for record in JsonPaperRepository(path).list_all():
+        if target.get(record.id) is None:
+            target.add(record)
+            imported += 1
+    path.rename(path.with_suffix(".json.imported"))
+    return imported
