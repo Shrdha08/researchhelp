@@ -1,0 +1,77 @@
+{
+ "conversation_id": null,
+ "intent": "evidence",
+ "route_source": "llm",
+ "route_reason": "The GPU information is a specific experimental detail provided in the paper.",
+ "evidence": {
+  "answer": "The experiments were run on eight GPUs, each with 32 GB of memory[S2].",
+  "citations": [
+   {
+    "source_id": "S2",
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 7,
+    "section": "End-to-end QA System",
+    "chunk_id": "3e67fc1a9977715a:p7:c7",
+    "snippet": "from the i-th passage as Pstart,i(s) × Pend,i(t), and a passage selection score of the i-th passage as Pselected(i).\n\nDuring training, we sample one positive and ̃m−1 negative passages from the top 100 passages returned by the retrieval system (BM25 or DPR) for each question. ̃m is a ..."
+   }
+  ],
+  "sources": [
+   {
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 5,
+    "section": "Experiments: Passage Retrieval",
+    "chunk_id": "3e67fc1a9977715a:p5:c1",
+    "text": "traditional retrieval methods, the effects of different training schemes and the run-time efficiency.\n\nThe DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10−5 using Adam, linear scheduling with warm-up and dropout rate 0.1.",
+    "score": -3.0215916633605957
+   },
+   {
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 7,
+    "section": "End-to-end QA System",
+    "chunk_id": "3e67fc1a9977715a:p7:c7",
+    "text": "from the i-th passage as Pstart,i(s) × Pend,i(t), and a passage selection score of the i-th passage as Pselected(i).\n\nDuring training, we sample one positive and ̃m−1 negative passages from the top 100 passages returned by the retrieval system (BM25 or DPR) for each question. ̃m is a hyper-parameter and we use ̃m = 24 in all the experiments. The training objective is to maximize the marginal log-likelihood of all the correct answer spans in the positive passage (the answer string may appear multiple times in one passage), combined with the log-likelihood of the positive passage being selected. We use the batch size of 16 for large (NQ, TriviaQA, SQuAD) and 4 for small (TREC, WQ) datasets, and tune k on the development set. For experiments on small datasets under the Multi setting, in which using other datasets is allowed, we fine-tune the reader trained on Natural Questions to the target dataset. All experiments were done on eight 32GB GPUs.",
+    "score": -3.472221612930298
+   },
+   {
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 4,
+    "section": "Experimental Setup",
+    "chunk_id": "3e67fc1a9977715a:p4:c1",
+    "text": "4 Experimental Setup\n\nIn this section, we describe the data we used for experiments and the basic setup.",
+    "score": -4.207956790924072
+   },
+   {
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 8,
+    "section": "Results",
+    "chunk_id": "3e67fc1a9977715a:p8:c5",
+    "text": "One thing worth noticing is that our reader does consider more passages compared to ORQA, although it is not completely clear how much more time it takes for inference. While DPR processes up to 100 passages for each question, the reader is able to fit all of them into one batch on a single 32GB GPU, thus the latency remains almost identical to the single passage case (around 20ms). The exact impact on throughput is harder to measure: ORQA uses 2-3x longer passages compared to DPR (288 word pieces compared to our 100 tokens) and the computational complexity is superlinear in passage length. We also note that we found k = 50 to be optimal for NQ, and k = 10 leads to only marginal loss in exact match accuracy (40.8 vs. 41.5 EM on NQ), which should be roughly comparable to ORQA’s 5-passage setup.",
+    "score": -5.97395658493042
+   },
+   {
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 12,
+    "section": "Alternative Similarity Functions &",
+    "chunk_id": "3e67fc1a9977715a:p12:c1",
+    "text": "B Alternative Similarity Functions & Triplet Loss\n\nIn addition to dot product (DP) and negative loglikelihood based on softmax (NLL), we also experiment with Euclidean distance (L2) and the triplet loss. We negate L2 similarity scores before applying softmax and change signs of question-topositive and question-to-negative similarities when applying the triplet loss on dot product scores. The margin value of the triplet loss is set to 1. Table 6 summarizes the results. All these additional experiments are conducted using the same hyperparameters tuned for the baseline (DP, NLL).\n\nNote that the retrieval accuracy for our “baseline” settings reported in Table 5 (Gold) and Table 6 (DP, NLL) is slightly better than those reported in Table 3. This is due to a better hyper-parameter setting used in these analysis experiments, which is documented in our code release.",
+    "score": -5.990565299987793
+   },
+   {
+    "paper_id": "3e67fc1a9977715a",
+    "paper_title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "page": 4,
+    "section": "Experiments: Passage Retrieval",
+    "chunk_id": "3e67fc1a9977715a:p4:c7",
+    "text": "5 Experiments: Passage Retrieval\n\nIn this section, we evaluate the retrieval performance of our Dense Passage Retriever (DPR), along with analysis on how its output differs from\n\n6We use the unfiltered TriviaQA version and discard the noisy evidence documents mined from Bing.\n\n7The improvement of using gold contexts over passages that contain answers is small. See Section 5.2 and Appendix A.",
+    "score": -6.109715461730957
+   }
+  ]
+ },
+ "research": null
+}

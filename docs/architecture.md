@@ -134,3 +134,15 @@ messages (id PK, conversation_id FK → conversations ON DELETE CASCADE, role, c
 ```
 
 An assistant message's `payload` is the same JSON `/query` returned (route, evidence or research body, citations). Deleting a paper does not touch history: stored answers cite the pages that were true when they were given.
+
+## Frontend (Phase 6)
+
+```
+browser ── /api/* ──► Vite dev proxy (dev) | nginx (Phase 7) ──► FastAPI   (prefix stripped)
+   │
+   App.tsx  state: papers, selection, conversations, thread     api.ts  the only fetch calls
+   ├── PaperPanel · QueryBox · ConversationList
+   └── EvidenceAnswer · ResearchAnswer · SourcesPanel           types.ts mirrors the backend schemas
+```
+
+The UI keeps the separation the backend enforces: a research answer renders as three visually distinct sections (evidence with page citations; analysis labelled as inferred; directions labelled as hypotheses to test), and every analysis or direction item links back to the evidence items it builds on.

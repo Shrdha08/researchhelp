@@ -33,7 +33,7 @@ There are 29 answerable test questions; all 6 unanswerable questions were correc
 | 3 | Research assistant + LangGraph routing | done |
 | 4 | FastAPI backend | done |
 | 5 | PostgreSQL persistence | done |
-| 6 | React frontend | planned |
+| 6 | React frontend | done |
 | 7 | Tests, Docker, deployment | planned |
 
 ## Local setup
@@ -65,6 +65,16 @@ curl -H "Content-Type: application/json" localhost:8000/query      -d '{"questio
 Endpoints: `POST /papers/upload`, `GET /papers`, `GET /papers/{id}`, `DELETE /papers/{id}`, `POST /query`, `GET /conversations`, `GET /conversations/{id}`, `DELETE /conversations/{id}`, `GET /health`.
 
 Paper records, conversations and messages are stored in PostgreSQL (migrations run automatically at startup, or `uv run researchhelp migrate`); chunks and vectors stay in Qdrant. `POST /query` starts a new conversation unless you pass `conversation_id`; history is stored and shown but not given to the model. Papers indexed with the CLI appear in the API automatically after a restart.
+
+## Web UI
+
+```bash
+docker compose up -d qdrant postgres
+cd backend && uv run researchhelp serve          # terminal 1: API on :8000
+cd frontend && npm install && npm run dev        # terminal 2: UI on http://localhost:5173
+```
+
+Upload PDFs, tick the papers a question is about, and ask. Factual questions get a cited answer whose `[S#]` markers open the retrieved passage; research questions get three separate sections (evidence from the papers, analysis inferred from it, proposed directions to test). Past conversations are listed on the left and re-open exactly as they were answered. See [frontend/README.md](frontend/README.md).
 
 ## Evaluation
 
